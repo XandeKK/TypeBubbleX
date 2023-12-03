@@ -1,8 +1,8 @@
 extends Node
 class_name TextStyles
 
-var parent : Control : set = set_parent
-var list : Array[Dictionary] : get = get_list, set = set_list
+var parent : Control : set = _set_parent
+var list : Array[Dictionary] : get = _get_list, set = _set_list
 
 func add(start : int, end : int) -> void:
 	var text_style = TextStyle.new()
@@ -23,11 +23,11 @@ func remove(index : int) -> void:
 		return
 	list.remove_at(index)
 
-func get_list() -> Array:
+func _set_parent(value : Control) -> void:
+	parent = value
+
+func _get_list() -> Array:
 	return list
 
-func set_list(value : Array[Dictionary]) -> void:
+func _set_list(value : Array[Dictionary]) -> void:
 	list = value
-
-func set_parent(value : Control) -> void:
-	parent = value

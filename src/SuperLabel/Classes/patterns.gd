@@ -1,8 +1,8 @@
 extends Node
 class_name Patterns
 
-var parent : Control : set = set_parent
-var list : Array[TextureRect] : get = get_list, set = set_list
+var parent : Control : set = _set_parent
+var list : Array[TextureRect] : get = _get_list, set = _set_list
 
 #var pattern : PackedScene = load()
 
@@ -24,11 +24,11 @@ func remove(index : int) -> void:
 	
 	texture_rect.queue_free()
 
-func set_parent(value : Control) -> void:
+func _set_parent(value : Control) -> void:
 	parent = value
 
-func get_list() -> Array[TextureRect]:
+func _get_list() -> Array[TextureRect]:
 	return list
 
-func set_list(value : Array[TextureRect]) -> void:
+func _set_list(value : Array[TextureRect]) -> void:
 	list = value

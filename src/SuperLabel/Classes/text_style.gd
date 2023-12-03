@@ -1,17 +1,17 @@
 extends Node
 class_name TextStyle
 
-var parent : Control : set = set_parent
-var start : int  : get = get_start, set = set_start
-var end : int : get = get_end, set = set_end
-var bold : bool : get = get_bold, set = set_bold
-var italic : bool : get = get_italic, set = set_italic
-var font_size : int : get = get_font_size, set = set_font_size
-var font_settings : Dictionary : get = get_font_settings, set = set_font_settings
-var color : Color : get = get_color, set = set_color
-var uppercase : bool : get = get_uppercase, set = set_uppercase
-var outlines : Array : get = get_outlines, set = set_outlines
-var shakes : Array : get = get_shakes, set = set_shakes
+var parent : Control : set = _set_parent
+var start : int  : get = _get_start, set = _set_start
+var end : int : get = _get_end, set = _set_end
+var bold : bool : get = _get_bold, set = _set_bold
+var italic : bool : get = _get_italic, set = _set_italic
+var font_size : int : get = _get_font_size, set = _set_font_size
+var font_settings : Dictionary : get = _get_font_settings, set = _set_font_settings
+var color : Color : get = _get_color, set = _set_color
+var uppercase : bool : get = _get_uppercase, set = _set_uppercase
+var outlines : Array : get = _get_outlines, set = _set_outlines
+var shakes : Array : get = _get_shakes, set = _set_shakes
 
 #var outline_scene : PackedScene = load()
 #var shake_scene : PackedScene = load()
@@ -56,69 +56,69 @@ func remove_shake(index : int) -> void:
 	
 	shake.queue_free()
 
-func set_parent(value : Control) -> void:
+func _set_parent(value : Control) -> void:
 	parent = value
 
-func get_start() -> int:
+func _get_start() -> int:
 	return start
 
-func set_start(value) -> void:
+func _set_start(value) -> void:
 	start = value
 	for outline in outlines:
 		outline.start = start
 
-func get_end() -> int:
+func _get_end() -> int:
 	return end
 
-func set_end(value) -> void:
+func _set_end(value) -> void:
 	end = value
 	for outline in outlines:
 		outline.end = end
 
-func get_bold() -> bool:
+func _get_bold() -> bool:
 	return bold
 
-func set_bold(value) -> void:
+func _set_bold(value) -> void:
 	bold = value
 
-func get_italic() -> bool:
+func _get_italic() -> bool:
 	return italic
 
-func set_italic(value) -> void:
+func _set_italic(value) -> void:
 	italic = value
 
-func get_font_size() -> int:
+func _get_font_size() -> int:
 	return font_size
 
-func set_font_size(value) -> void:
+func _set_font_size(value) -> void:
 	font_size = value
 
-func get_font_settings() -> Dictionary:
+func _get_font_settings() -> Dictionary:
 	return font_settings
 
-func set_font_settings(value) -> void:
+func _set_font_settings(value) -> void:
 	font_settings = value
 
-func get_color() -> Color:
+func _get_color() -> Color:
 	return color
 
-func set_color(value) -> void:
+func _set_color(value) -> void:
 	color = value
 
-func get_uppercase() -> bool:
+func _get_uppercase() -> bool:
 	return uppercase
 
-func set_uppercase(value) -> void:
+func _set_uppercase(value) -> void:
 	uppercase = value
 
-func get_outlines() -> Array:
+func _get_outlines() -> Array:
 	return outlines
 
-func set_outlines(value) -> void:
+func _set_outlines(value) -> void:
 	outlines = value
 
-func get_shakes() -> Array:
+func _get_shakes() -> Array:
 	return shakes
 
-func set_shakes(value) -> void:
+func _set_shakes(value) -> void:
 	shakes = value
