@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dlo8palxm4l2l"]
+
+[ext_resource type="Script" path="res://src/SuperLabel/outline.gd" id="1_31olw"]
+
+[node name="Outline" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_31olw")

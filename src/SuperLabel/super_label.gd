@@ -8,11 +8,16 @@ var text : String = "" : get = _get_text, set = _set_text
 var color : Color = Color.BLACK : get = _get_color, set = _set_color
 var letter_spacing : int = 0 : get = _get_letter_spacing, set = _set_letter_spacing
 var line_spacing : int = 0 : get = _get_line_spacing, set = _set_line_spacing
-var font_settings : Dictionary : get = _get_font_settings, set = _set_font_settings
 var font_size : int = 20 : get = _get_font_size, set = _set_font_size
 var bold : bool = false : get = _get_bold, set = _set_bold
 var italic : bool = false : get = _get_italic, set = _set_italic
 var uppercase : bool = false : get = is_uppercase, set = _set_uppercase
+var font_settings : Dictionary = {
+	'regular': null,
+	'bold': null,
+	'italic': null,
+	'bold_italic': null
+} : get = _get_font_settings, set = _set_font_settings
 
 var lights : Lights = Lights.new() : get = _get_lights, set = _set_lights
 var patterns : Patterns = Patterns.new() : get = _get_patterns, set = _set_patterns
@@ -26,11 +31,27 @@ var canvas_item : RID = get_canvas_item()
 
 var glyphs_to_render : Array[Dictionary] : get = get_glyphs_to_render
 
-#@onready var letters : Control = $Letters
-#@onready var outlines : Control = $Outliness
-#@onready var shakes : Control = $Shakes
+@onready var shakes : Control = $Shakes
+@onready var outlines : Control = $Outlines
+@onready var letters : Control = $Letters
 
 signal render
+
+func _ready():
+	text_styles.parent = self
+	shakes.parent = self
+	outlines.parent = self
+	letters.parent = self
+	var _font = FontFile.new()
+	_font.load_dynamic_font('/home/xandekk/Python/typeset/static/fonts/Bearskin/Bearskin-Regular.otf')
+	font_settings.regular = _font
+	text = "And what of the children? Surely they can't blamed for our mistakes?"
+	
+	outlines.add()
+	outlines.get_outlines()[0].color = Color.BROWN
+	
+	text_styles.add(0, 10)
+	text_styles.list[0].add_outline()
 
 func _prepare_glyphs_to_render() -> void:
 	glyphs_to_render.clear()
@@ -38,6 +59,7 @@ func _prepare_glyphs_to_render() -> void:
 	var rtl_layout : bool = is_layout_rtl()
 	
 	style_box.draw(canvas_item, Rect2(0, 0, size.x, size.y))
+	print(style_box.get_minimum_size())
 	
 	var total_h : float = 0.0
 	var lines_visible : int = 0
@@ -72,6 +94,11 @@ func _prepare_glyphs_to_render() -> void:
 	
 	var ofs : Vector2 = Vector2.ZERO
 	ofs.y = style_box.get_offset().y + vbegin
+	
+	# add curve2d
+	# How are you going to put curve2d?
+	# well, put two variables here, t and dt, so if it is activated, it will put xform in
+	# glyphs_to_render instead of ofs
 	
 	for i in range(last_line):
 		var line_size : Vector2 = TSManager.TS.shaped_text_get_size(lines_rid[i])
@@ -112,7 +139,6 @@ func _shape() -> void:
 	
 	TSManager.TS.shaped_text_set_spacing(text_rid, TextServer.SPACING_GLYPH, letter_spacing)
 	TSManager.TS.shaped_text_clear(text_rid)
-	
 	for i in range(text.length()):
 		var _bold : bool = bold
 		var _italic : bool = italic
@@ -129,19 +155,20 @@ func _shape() -> void:
 				_uppercase = text_style.uppercase
 				_font_size = text_style.font_size
 			
-			if _bold and _italic:
-				_current_font = _font_settings['bold_italic']
-			elif _bold:
-				_current_font = _font_settings['bold']
-			elif _italic:
-				_current_font = _font_settings['italic']
-			else:
-				_current_font = _font_settings['regular']
+		if _bold and _italic:
+			_current_font = _font_settings['bold_italic']
+		elif _bold:
+			_current_font = _font_settings['bold']
+		elif _italic:
+			_current_font = _font_settings['italic']
+		else:
+			_current_font = _font_settings['regular']
 			
-			assert(_current_font == null, 'Does not have the font.')
 			
-			var txt : String = TSManager.TS.string_to_upper(text[i]) if _uppercase else text[i]
-			TSManager.TS.shaped_text_add_string(text_rid, txt, _current_font.get_rids(), _font_size, _current_font.get_opentype_features())
+		assert(_current_font != null, 'Does not have the font.')
+		
+		var txt : String = TSManager.TS.string_to_upper(text[i]) if _uppercase else text[i]
+		TSManager.TS.shaped_text_add_string(text_rid, txt, _current_font.get_rids(), _font_size, _current_font.get_opentype_features())
 	
 	for i in range(lines_rid.size()):
 		TSManager.TS.free_rid(lines_rid[i])
@@ -163,78 +190,92 @@ func _shape() -> void:
 	for i in range(0, line_breaks.size(), 2):
 		var line : RID = TSManager.TS.shaped_text_substr(text_rid, line_breaks[i], line_breaks[i + 1] - line_breaks[i])
 		lines_rid.push_back(line)
+	
+	_prepare_glyphs_to_render()
 
 func _get_horizontal_alignment() -> HorizontalAlignment:
 	return horizontal_alignment
 
 func _set_horizontal_alignment(value : HorizontalAlignment) -> void:
 	horizontal_alignment = value
+	emit_signal('render')
 
 func _get_vertical_alignment() -> VerticalAlignment:
 	return vertical_alignment
 
 func _set_vertical_alignment(value : VerticalAlignment) -> void:
 	vertical_alignment = value
+	emit_signal('render')
 
 func _get_autowrap_mode() -> TextServer.AutowrapMode:
 	return autowrap_mode
 
 func _set_autowrap_mode(value : TextServer.AutowrapMode) -> void:
 	autowrap_mode = value
+	_shape()
 
 func _get_text() -> String:
 	return text
 
 func _set_text(value : String) -> void:
 	text = value
+	_shape()
 
 func _get_color() -> Color:
 	return color
 
 func _set_color(value : Color) -> void:
 	color = value
+	emit_signal('render')
 
 func _get_letter_spacing() -> int:
 	return letter_spacing
 
 func _set_letter_spacing(value : int) -> void:
 	letter_spacing = value
+	_shape()
 
 func _get_line_spacing() -> int:
 	return line_spacing
 
 func _set_line_spacing(value : int) -> void:
 	line_spacing = value
+	emit_signal('render')
 
 func _get_font_size() -> int:
 	return font_size
 
 func _set_font_size(value : int) -> void:
 	font_size = value
+	_shape()
 
 func _get_bold() -> bool:
 	return bold
 
 func _set_bold(value : bool) -> void:
 	bold = value
+	_shape()
 
 func _get_italic() -> bool:
 	return italic
 
 func _set_italic(value : bool) -> void:
 	italic = value
+	_shape()
 
 func is_uppercase() -> bool:
 	return uppercase
 
 func _set_uppercase(value : bool) -> void:
 	uppercase = value
+	_shape()
 
 func _get_font_settings() -> Dictionary:
 	return font_settings
 
 func _set_font_settings(value : Dictionary) -> void:
 	font_settings = value
+	_shape()
 
 func _get_lights() -> Lights:
 	return lights
@@ -253,12 +294,17 @@ func _get_text_styles() -> TextStyles:
 
 func _set_text_styles(value : TextStyles) -> void:
 	text_styles = value
+	_shape()
 
 func _get_style_box() -> StyleBox:
 	return style_box
 
 func _set_style_box(value : StyleBox) -> void:
 	style_box = value
+	_shape()
 
 func get_glyphs_to_render() -> Array[Dictionary]:
 	return glyphs_to_render
+
+func _on_text_edit_text_changed():
+	text = $TextEdit.text

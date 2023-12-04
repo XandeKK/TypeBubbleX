@@ -2,10 +2,11 @@ extends Node
 class_name TextStyles
 
 var parent : Control : set = _set_parent
-var list : Array[Dictionary] : get = _get_list, set = _set_list
+var list : Array[TextStyle] : get = _get_list, set = _set_list
 
 func add(start : int, end : int) -> void:
 	var text_style = TextStyle.new()
+	text_style.parent = parent
 	text_style.start = start
 	text_style.end = end
 	text_style.bold = parent.bold
@@ -26,8 +27,8 @@ func remove(index : int) -> void:
 func _set_parent(value : Control) -> void:
 	parent = value
 
-func _get_list() -> Array:
+func _get_list() -> Array[TextStyle]:
 	return list
 
-func _set_list(value : Array[Dictionary]) -> void:
+func _set_list(value : Array[TextStyle]) -> void:
 	list = value

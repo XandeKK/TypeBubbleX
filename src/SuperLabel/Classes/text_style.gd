@@ -13,16 +13,19 @@ var uppercase : bool : get = _get_uppercase, set = _set_uppercase
 var outlines : Array : get = _get_outlines, set = _set_outlines
 var shakes : Array : get = _get_shakes, set = _set_shakes
 
-#var outline_scene : PackedScene = load()
+var outline_scene : PackedScene = load("res://src/SuperLabel/outline.tscn")
 #var shake_scene : PackedScene = load()
 
 func add_outline() -> void:
-#	var outline = outline_scene.instantiate()
-#	outline.start = start
-#	outline.end = end
-#	outline.z_index = 1
-#	parent.outlines.add_child()
-	pass
+	var outline = outline_scene.instantiate()
+	outline.start = start
+	outline.end = end
+	outline.is_global = false
+	outline.z_index = 1
+	outline.parent = parent
+	parent.outlines.add_child(outline)
+	
+	outlines.append(outline)
 
 func remove_outline(index : int) -> void:
 	if index < 0 or index >= outlines.size():
@@ -62,63 +65,73 @@ func _set_parent(value : Control) -> void:
 func _get_start() -> int:
 	return start
 
-func _set_start(value) -> void:
+func _set_start(value : int) -> void:
 	start = value
 	for outline in outlines:
 		outline.start = start
+	
+	parent.emit_signal('render')
 
 func _get_end() -> int:
 	return end
 
-func _set_end(value) -> void:
+func _set_end(value : int) -> void:
 	end = value
 	for outline in outlines:
 		outline.end = end
+	
+	parent.emit_signal('render')
 
 func _get_bold() -> bool:
 	return bold
 
-func _set_bold(value) -> void:
+func _set_bold(value : bool) -> void:
 	bold = value
+	parent.emit_signal('render')
 
 func _get_italic() -> bool:
 	return italic
 
-func _set_italic(value) -> void:
+func _set_italic(value : bool) -> void:
 	italic = value
+	parent.emit_signal('render')
 
 func _get_font_size() -> int:
 	return font_size
 
-func _set_font_size(value) -> void:
+func _set_font_size(value : int) -> void:
 	font_size = value
+	parent.emit_signal('render')
 
 func _get_font_settings() -> Dictionary:
 	return font_settings
 
-func _set_font_settings(value) -> void:
-	font_settings = value
+func _set_font_settings(value : Dictionary) -> void:
+	font_settings = value.duplicate()
+	parent.emit_signal('render')
 
 func _get_color() -> Color:
 	return color
 
-func _set_color(value) -> void:
+func _set_color(value : Color) -> void:
 	color = value
+	parent.emit_signal('render')
 
 func _get_uppercase() -> bool:
 	return uppercase
 
-func _set_uppercase(value) -> void:
+func _set_uppercase(value : bool) -> void:
 	uppercase = value
+	parent.emit_signal('render')
 
 func _get_outlines() -> Array:
 	return outlines
 
-func _set_outlines(value) -> void:
-	outlines = value
+func _set_outlines(value : Array) ->  void:
+	outlines = value.duplicate()
 
 func _get_shakes() -> Array:
 	return shakes
 
-func _set_shakes(value) -> void:
-	shakes = value
+func _set_shakes(value : Array) -> void:
+	shakes = value.duplicate()
