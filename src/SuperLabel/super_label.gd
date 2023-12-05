@@ -46,12 +46,6 @@ func _ready():
 	_font.load_dynamic_font('/home/xandekk/Python/typeset/static/fonts/Bearskin/Bearskin-Regular.otf')
 	font_settings.regular = _font
 	text = "And what of the children? Surely they can't blamed for our mistakes?"
-	
-	outlines.add()
-	outlines.get_outlines()[0].color = Color.BROWN
-	
-	text_styles.add(0, 10)
-	text_styles.list[0].add_outline()
 
 func _prepare_glyphs_to_render() -> void:
 	glyphs_to_render.clear()
@@ -59,7 +53,6 @@ func _prepare_glyphs_to_render() -> void:
 	var rtl_layout : bool = is_layout_rtl()
 	
 	style_box.draw(canvas_item, Rect2(0, 0, size.x, size.y))
-	print(style_box.get_minimum_size())
 	
 	var total_h : float = 0.0
 	var lines_visible : int = 0

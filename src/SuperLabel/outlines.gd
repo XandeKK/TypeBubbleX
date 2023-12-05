@@ -12,11 +12,12 @@ func add() -> void:
 	_outline.is_global = true
 	add_child(_outline)
 
-func remove(index) -> void:
+func remove(index : int) -> void:
 	var outline = get_child(index)
 	if not outline:
 		return
 	remove_child(outline)
+	outline.queue_free()
 
 func set_parent(value : Control):
 	parent = value

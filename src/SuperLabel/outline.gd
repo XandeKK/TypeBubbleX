@@ -10,10 +10,7 @@ var outline_size : int = 8 : get = _get_outline_size, set = _set_outline_size
 var offset : Vector2 = Vector2.ZERO : get = _get_ofs, set = _set_ofs
 
 func _draw():
-	print(start != -1)
 	if start != -1:
-		print(start)
-		print(end)
 		var count = 0
 		for info in parent.glyphs_to_render:
 			if count >= start and count <= end:

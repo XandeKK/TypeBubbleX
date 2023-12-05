@@ -14,7 +14,7 @@ var outlines : Array : get = _get_outlines, set = _set_outlines
 var shakes : Array : get = _get_shakes, set = _set_shakes
 
 var outline_scene : PackedScene = load("res://src/SuperLabel/outline.tscn")
-#var shake_scene : PackedScene = load()
+var shake_scene : PackedScene = load('res://src/SuperLabel/shake.tscn')
 
 func add_outline() -> void:
 	var outline = outline_scene.instantiate()
@@ -40,12 +40,14 @@ func remove_outline(index : int) -> void:
 	outline.queue_free()
 
 func add_shake() -> void:
-#	var shake = shake_scene.instantiate()
-#	shake.start = start
-#	shake.end = end
-#	shake.z_index = 1
-#	parent.shakes.add_child()
-	pass
+	var shake = shake_scene.instantiate()
+	shake.start = start
+	shake.end = end
+	shake.is_global = false
+	shake.parent = parent
+	parent.shakes.add_child(shake)
+	
+	shakes.append(shake)
 
 func remove_shake(index : int) -> void:
 	if index < 0 or index >= shakes.size():
