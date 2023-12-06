@@ -10,11 +10,11 @@ func add() -> void:
 	add_child(_shake)
 
 func remove(index : int) -> void:
-	var shake = get_child(index)
-	if not shake:
+	var _shake = get_child(index)
+	if not _shake:
 		return
-	remove_child(shake)
-	shake.queue_free()
+	remove_child(_shake)
+	_shake.queue_free()
 
 func get_shakes() -> Array:
 	return get_children().filter(func(child): return child.is_global)

@@ -13,11 +13,11 @@ func add() -> void:
 	add_child(_outline)
 
 func remove(index : int) -> void:
-	var outline = get_child(index)
-	if not outline:
+	var _outline = get_child(index)
+	if not _outline:
 		return
-	remove_child(outline)
-	outline.queue_free()
+	remove_child(_outline)
+	_outline.queue_free()
 
 func set_parent(value : Control):
 	parent = value

@@ -8,8 +8,8 @@
 [node name="SuperLabel" type="Control"]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 501.0
-offset_bottom = 465.0
+offset_right = 240.0
+offset_bottom = 213.0
 script = ExtResource("1_rff2x")
 
 [node name="Shakes" type="Control" parent="."]
@@ -31,12 +31,3 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("2_fu0jm")
-
-[node name="TextEdit" type="TextEdit" parent="."]
-layout_mode = 0
-offset_left = 736.0
-offset_top = 196.0
-offset_right = 1143.0
-offset_bottom = 410.0
-
-[connection signal="text_changed" from="TextEdit" to="." method="_on_text_edit_text_changed"]
