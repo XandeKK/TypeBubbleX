@@ -4,13 +4,12 @@ class_name Patterns
 var parent : Control : set = _set_parent
 var list : Array[TextureRect] : get = _get_list, set = _set_list
 
-#var pattern : PackedScene = load()
+var pattern : PackedScene = load('res://src/SuperLabel/pattern.tscn')
 
 func add() -> void:
-#	var _pattern = light.instantiate()
-#	parent.add_child(_pattern)
-#	list.append(_pattern)
-	pass
+	var _pattern = pattern.instantiate()
+	parent.add_child(_pattern)
+	list.append(_pattern)
 
 func remove(index : int) -> void:
 	if index < 0 or index >= list.size():

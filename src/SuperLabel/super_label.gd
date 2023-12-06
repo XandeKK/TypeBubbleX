@@ -42,6 +42,10 @@ func _ready():
 	shakes.parent = self
 	outlines.parent = self
 	letters.parent = self
+	
+	lights.parent = letters
+	patterns.parent = letters
+	
 	var _font = FontFile.new()
 	_font.load_dynamic_font('/home/xandekk/Python/typeset/static/fonts/Bearskin/Bearskin-Regular.otf')
 	font_settings.regular = _font

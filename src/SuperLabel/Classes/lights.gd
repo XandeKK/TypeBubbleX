@@ -3,13 +3,12 @@ class_name Lights
 
 var parent : Control : set = _set_parent
 var list : Array[TextureRect] : get = _get_list, set = _set_list
-#var light : PackedScene = load()
+var light : PackedScene = load("res://src/SuperLabel/light.tscn")
 
 func add() -> void:
-#	var _light = light.instantiate()
-#	parent.add_child(_light)
-#	list.append(_light)
-	pass
+	var _light = light.instantiate()
+	parent.add_child(_light)
+	list.append(_light)
 
 func remove(index : int) -> void:
 	if index < 0 or index >= list.size():
