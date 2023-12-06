@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://dphoqpw3y2qwv"]
+
+[ext_resource type="Script" path="res://src/SuperLabel/text.gd" id="1_rff2x"]
+[ext_resource type="Script" path="res://src/SuperLabel/letters.gd" id="2_fu0jm"]
+[ext_resource type="Script" path="res://src/SuperLabel/outlines.gd" id="2_higsy"]
+[ext_resource type="Script" path="res://src/SuperLabel/shakes.gd" id="2_tq0bv"]
+
+[node name="Text" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 240.0
+offset_bottom = 213.0
+script = ExtResource("1_rff2x")
+
+[node name="Shakes" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_tq0bv")
+
+[node name="Outlines" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_higsy")
+
+[node name="Letters" type="Control" parent="."]
+clip_children = 2
+z_index = 2
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_fu0jm")

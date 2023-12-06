@@ -1,33 +1,39 @@
-[gd_scene load_steps=5 format=3 uid="uid://dphoqpw3y2qwv"]
+[gd_scene load_steps=6 format=3 uid="uid://c4nbuwn3qqdio"]
 
+[ext_resource type="PackedScene" uid="uid://dphoqpw3y2qwv" path="res://src/SuperLabel/text.tscn" id="1_6jvrh"]
 [ext_resource type="Script" path="res://src/SuperLabel/super_label.gd" id="1_rff2x"]
-[ext_resource type="Script" path="res://src/SuperLabel/letters.gd" id="2_fu0jm"]
-[ext_resource type="Script" path="res://src/SuperLabel/outlines.gd" id="2_higsy"]
-[ext_resource type="Script" path="res://src/SuperLabel/shakes.gd" id="2_tq0bv"]
+[ext_resource type="Shader" path="res://src/Shaders/2d_perspective.gdshader" id="2_vfoaw"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bbea2"]
+shader = ExtResource("2_vfoaw")
+shader_parameter/fov = 90.0
+shader_parameter/cull_back = true
+shader_parameter/y_rot = 0.0
+shader_parameter/x_rot = 0.0
+shader_parameter/inset = 0.0
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_axbwp"]
+viewport_path = NodePath("SubViewport")
 
 [node name="SuperLabel" type="Control"]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 240.0
-offset_bottom = 213.0
+offset_right = 282.0
+offset_bottom = 240.0
+rotation = -6.28319
 script = ExtResource("1_rff2x")
 
-[node name="Shakes" type="Control" parent="."]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("2_tq0bv")
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+render_target_update_mode = 4
 
-[node name="Outlines" type="Control" parent="."]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("2_higsy")
+[node name="Text" parent="SubViewport" instance=ExtResource("1_6jvrh")]
 
-[node name="Letters" type="Control" parent="."]
-clip_children = 2
-z_index = 2
-anchors_preset = 0
+[node name="TextureRect" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_bbea2")
+layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
-script = ExtResource("2_fu0jm")
+texture = SubResource("ViewportTexture_axbwp")
+
+[node name="Blurs" type="Node" parent="."]
