@@ -17,6 +17,7 @@ script = ExtResource("1_pa0ji")
 transparent_bg = true
 handle_input_locally = false
 size = Vector2i(1152, 648)
+render_target_update_mode = 4
 
 [node name="Camera2D" type="Camera2D" parent="SubViewport"]
 limit_smoothed = true
@@ -30,6 +31,7 @@ offset_bottom = 40.0
 [node name="SubViewport" type="SubViewport" parent="SubViewport/BottomCanvas"]
 transparent_bg = true
 handle_input_locally = false
+render_target_update_mode = 4
 
 [node name="RawImage" type="TextureRect" parent="SubViewport/BottomCanvas/SubViewport"]
 offset_right = 40.0

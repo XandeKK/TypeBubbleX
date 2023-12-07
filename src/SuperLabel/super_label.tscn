@@ -20,7 +20,6 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 282.0
 offset_bottom = 240.0
-rotation = -6.28319
 script = ExtResource("1_rff2x")
 
 [node name="SubViewport" type="SubViewport" parent="."]
