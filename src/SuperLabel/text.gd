@@ -51,6 +51,15 @@ func _ready():
 	font_settings.regular = _font
 	text = "And what of the children? Surely they can't blamed for our mistakes?"
 
+func _draw():
+	var left = style_box.get_margin(SIDE_LEFT)
+	var right = style_box.get_margin(SIDE_RIGHT)
+	var top = style_box.get_margin(SIDE_TOP)
+	var bottom = style_box.get_margin(SIDE_BOTTOM)
+	_shape()
+	draw_rect(Rect2(Vector2(left, top), size - Vector2(right + left, bottom + top)), Color.BLUE, false, 3)
+	draw_rect(Rect2(Vector2.ZERO, size), Color.REBECCA_PURPLE, false, 3)
+
 func _prepare_glyphs_to_render() -> void:
 	glyphs_to_render.clear()
 	
@@ -109,7 +118,8 @@ func _prepare_glyphs_to_render() -> void:
 				else:
 					ofs.x = style_box.get_offset().x
 			HORIZONTAL_ALIGNMENT_CENTER:
-				ofs.x = int(size.x - line_size.x) / 2
+				print(line_size.x)
+				ofs.x = int(size.x - line_size.x + style_box.get_margin(SIDE_LEFT) - style_box.get_margin(SIDE_RIGHT)) / 2
 			HORIZONTAL_ALIGNMENT_RIGHT:
 				if rtl_layout:
 					ofs.x = style_box.get_offset().x
