@@ -33,9 +33,8 @@ func input(event : InputEvent):
 		target.position = event.position + drag_offset
 
 func set_focus():
-	pass
-#	if not target.focus:
-#		target.set_focus()
+	if not target.focus:
+		target.set_focus()
 
 func _on_mouse_entered():
 	is_within = true
