@@ -118,7 +118,6 @@ func _prepare_glyphs_to_render() -> void:
 				else:
 					ofs.x = style_box.get_offset().x
 			HORIZONTAL_ALIGNMENT_CENTER:
-				print(line_size.x)
 				ofs.x = int(size.x - line_size.x + style_box.get_margin(SIDE_LEFT) - style_box.get_margin(SIDE_RIGHT)) / 2
 			HORIZONTAL_ALIGNMENT_RIGHT:
 				if rtl_layout:
