@@ -27,10 +27,18 @@ func input(event : InputEvent):
 				mouse_inital = event.position
 		if is_dragging and not event.is_pressed():
 			is_dragging = false
-
+	
 	if event is InputEventMouseMotion and is_dragging and is_draggable:
 		drag_offset = target_inital - mouse_inital
 		target.position = event.position + drag_offset
+	
+	set_mouse_cursor()
+
+func set_mouse_cursor():
+	if is_dragging:
+		target.mouse_default_cursor_shape = Control.CURSOR_MOVE
+	elif is_within:
+		target.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
 
 func set_focus():
 	if not target.focus:

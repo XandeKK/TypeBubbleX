@@ -30,6 +30,14 @@ func _input(event):
 
 	if event is InputEventMouseMotion and is_dragging:
 		target.set_rotation_text((target.pivot_offset + target.position).angle_to_point(get_global_mouse_position()) + deg_to_rad(90))
+	
+	set_mouse_cursor()
+
+func set_mouse_cursor():
+	if is_dragging:
+		mouse_default_cursor_shape = Control.CURSOR_MOVE
+	elif is_within:
+		mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
 
 func _on_mouse_entered():
 	is_within = true
