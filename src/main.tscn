@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://2r0gvw58wdbh"]
+[gd_scene load_steps=20 format=3 uid="uid://2r0gvw58wdbh"]
 
 [ext_resource type="Script" path="res://addons/dockable_container/dockable_container.gd" id="1_h1uv5"]
 [ext_resource type="Theme" uid="uid://ds37dvaj7sob8" path="res://Assets/Themes/main.tres" id="1_s8eie"]
@@ -8,6 +8,9 @@
 [ext_resource type="Script" path="res://addons/dockable_container/layout_split.gd" id="3_8ibwx"]
 [ext_resource type="Script" path="res://addons/dockable_container/layout.gd" id="3_8sp2d"]
 [ext_resource type="PackedScene" uid="uid://70ws3ecdqctq" path="res://src/Canvas/top_canvas.tscn" id="5_7c32o"]
+[ext_resource type="PackedScene" uid="uid://dmbvxdw1csjx6" path="res://src/UI/properties_docker.tscn" id="8_4wsqh"]
+[ext_resource type="PackedScene" uid="uid://c2epjjnugh0xq" path="res://src/UI/text_docker.tscn" id="9_qcy0h"]
+[ext_resource type="PackedScene" uid="uid://blvd0jvk8hugt" path="res://src/UI/layers_docker.tscn" id="11_rfhdm"]
 
 [sub_resource type="Resource" id="Resource_7k7ct"]
 resource_name = "Tabs"
@@ -165,9 +168,29 @@ layout = SubResource("Resource_82d3e")
 custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
 
+[node name="PropertiesDocker" parent="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/DockableContainer/Properties" instance=ExtResource("8_4wsqh")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="Texts" type="TabBar" parent="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/DockableContainer"]
 custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
+
+[node name="TextDocker" parent="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/DockableContainer/Texts" instance=ExtResource("9_qcy0h")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="HSplitContainer" type="HSplitContainer" parent="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer"]
 layout_mode = 2
@@ -178,15 +201,7 @@ custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Panel" type="Panel" parent="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/HSplitContainer/Canvas"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="TopCanvas" parent="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/HSplitContainer/Canvas/Panel" instance=ExtResource("5_7c32o")]
+[node name="TopCanvas" parent="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/HSplitContainer/Canvas" instance=ExtResource("5_7c32o")]
 layout_mode = 1
 
 [node name="DockableContainer" type="Container" parent="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/HSplitContainer"]
@@ -206,3 +221,13 @@ size_flags_horizontal = 3
 custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="LayersDocker" parent="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/HSplitContainer/DockableContainer/Layers" instance=ExtResource("11_rfhdm")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2

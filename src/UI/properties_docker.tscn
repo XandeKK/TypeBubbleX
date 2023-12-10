@@ -1,0 +1,148 @@
+[gd_scene load_steps=2 format=3 uid="uid://dmbvxdw1csjx6"]
+
+[ext_resource type="PackedScene" uid="uid://btdffss434kcc" path="res://src/UI/panel_docker.tscn" id="1_8t3i4"]
+
+[node name="PropertiesDocker" instance=ExtResource("1_8t3i4")]
+offset_right = 240.0
+offset_bottom = 500.0
+metadata/_edit_group_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="0"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer" index="0"]
+layout_mode = 2
+text = "Font"
+
+[node name="LineEdit" type="LineEdit" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer" index="1"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer" index="2"]
+layout_mode = 2
+
+[node name="LineEdit" type="LineEdit" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer" index="0"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer" index="1"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="1"]
+layout_mode = 2
+
+[node name="BoldCheckButton" type="CheckButton" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer" index="0"]
+layout_mode = 2
+text = "Bold"
+
+[node name="ItalicCheckButton" type="CheckButton" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer" index="1"]
+layout_mode = 2
+text = "italic"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2" index="0"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Leading"
+
+[node name="LineEdit" type="LineEdit" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2" index="1"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="3"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer3" index="0"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Tracking"
+
+[node name="LineEdit" type="LineEdit" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer3" index="1"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="4"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer4" index="0"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Alignment"
+
+[node name="LineEdit" type="LineEdit" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer4" index="1"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="5"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer5" index="0"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Rotation"
+
+[node name="LineEdit" type="LineEdit" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer5" index="1"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="6"]
+layout_mode = 2
+text = "Padding"
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="7"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_right = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer" index="0"]
+layout_mode = 2
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer" index="0"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer5" index="0"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Top"
+
+[node name="LineEdit" type="LineEdit" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer5" index="1"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer6" type="HBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer" index="1"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer6" index="0"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Bottom"
+
+[node name="LineEdit" type="LineEdit" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer6" index="1"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer7" type="HBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer" index="2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer7" index="0"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Left"
+
+[node name="LineEdit" type="LineEdit" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer7" index="1"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer8" type="HBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer" index="3"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer8" index="0"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Right"
+
+[node name="LineEdit" type="LineEdit" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer8" index="1"]
+layout_mode = 2
+size_flags_horizontal = 3

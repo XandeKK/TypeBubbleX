@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://blvd0jvk8hugt"]
+
+[ext_resource type="PackedScene" uid="uid://btdffss434kcc" path="res://src/UI/panel_docker.tscn" id="1_yb0yy"]
+
+[node name="LayersDocker" instance=ExtResource("1_yb0yy")]
+
+[node name="CheckButton" type="CheckButton" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="0"]
+layout_mode = 2
+text = "Show Raw"

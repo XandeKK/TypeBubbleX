@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=3 uid="uid://bnbfjh0vj0q0x"]
+
+[ext_resource type="Script" path="res://src/UI/Components/input.gd" id="1_mh8fm"]
+
+[node name="Input" type="LineEdit"]
+offset_right = 238.0
+offset_bottom = 31.0
+script = ExtResource("1_mh8fm")
+
+[node name="Label" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0.482353)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -11.5
+offset_right = -5.0
+offset_bottom = 11.5
+grow_horizontal = 0
+grow_vertical = 2
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[connection signal="text_changed" from="." to="." method="_on_text_changed"]
