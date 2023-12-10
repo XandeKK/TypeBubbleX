@@ -37,6 +37,7 @@ border_color = Color(0.175, 0.175, 0.175, 1)
 corner_detail = 1
 
 [resource]
+TabContainer/colors/font_selected_color = Color(0.678431, 0.678431, 0.678431, 1)
 TabContainer/constants/side_margin = 0
 TabContainer/styles/panel = SubResource("StyleBoxFlat_u85nx")
 TabContainer/styles/tab_focus = SubResource("StyleBoxFlat_kdkd3")
