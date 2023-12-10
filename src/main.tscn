@@ -1,0 +1,208 @@
+[gd_scene load_steps=17 format=3 uid="uid://2r0gvw58wdbh"]
+
+[ext_resource type="Script" path="res://addons/dockable_container/dockable_container.gd" id="1_h1uv5"]
+[ext_resource type="Theme" uid="uid://ds37dvaj7sob8" path="res://Assets/Themes/main.tres" id="1_s8eie"]
+[ext_resource type="Script" path="res://addons/dockable_container/layout_panel.gd" id="2_1axbj"]
+[ext_resource type="Theme" uid="uid://cudnsdf5nwnfo" path="res://Assets/Themes/menu_bar.tres" id="2_q156j"]
+[ext_resource type="Theme" uid="uid://cxq78k14m2105" path="res://Assets/Themes/dockable_container.tres" id="3_5suyl"]
+[ext_resource type="Script" path="res://addons/dockable_container/layout_split.gd" id="3_8ibwx"]
+[ext_resource type="Script" path="res://addons/dockable_container/layout.gd" id="3_8sp2d"]
+[ext_resource type="PackedScene" uid="uid://70ws3ecdqctq" path="res://src/Canvas/top_canvas.tscn" id="5_7c32o"]
+
+[sub_resource type="Resource" id="Resource_7k7ct"]
+resource_name = "Tabs"
+script = ExtResource("2_1axbj")
+names = PackedStringArray("Properties")
+current_tab = 0
+
+[sub_resource type="Resource" id="Resource_l5wtx"]
+resource_name = "Tabs"
+script = ExtResource("2_1axbj")
+names = PackedStringArray("Texts")
+current_tab = 0
+
+[sub_resource type="Resource" id="Resource_r1bqr"]
+resource_name = "Split"
+script = ExtResource("3_8ibwx")
+direction = 1
+percent = 0.5
+first = SubResource("Resource_7k7ct")
+second = SubResource("Resource_l5wtx")
+
+[sub_resource type="Resource" id="Resource_82d3e"]
+resource_name = "Layout"
+script = ExtResource("3_8sp2d")
+root = SubResource("Resource_r1bqr")
+hidden_tabs = {}
+
+[sub_resource type="Resource" id="Resource_gtfdq"]
+resource_name = "Tabs"
+script = ExtResource("2_1axbj")
+names = PackedStringArray("Styles")
+current_tab = 0
+
+[sub_resource type="Resource" id="Resource_e1xoq"]
+resource_name = "Tabs"
+script = ExtResource("2_1axbj")
+names = PackedStringArray("Layers")
+current_tab = 0
+
+[sub_resource type="Resource" id="Resource_hdb1q"]
+resource_name = "Split"
+script = ExtResource("3_8ibwx")
+direction = 1
+percent = 0.5
+first = SubResource("Resource_gtfdq")
+second = SubResource("Resource_e1xoq")
+
+[sub_resource type="Resource" id="Resource_vt5i7"]
+resource_name = "Layout"
+script = ExtResource("3_8sp2d")
+root = SubResource("Resource_hdb1q")
+hidden_tabs = {}
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_s8eie")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="MenuBar" type="MenuBar" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_q156j")
+
+[node name="File" type="PopupMenu" parent="MarginContainer/VBoxContainer/MenuBar"]
+item_count = 9
+item_0/text = "Open"
+item_0/id = 0
+item_1/text = ""
+item_1/id = 1
+item_1/separator = true
+item_2/text = "Save"
+item_2/id = 2
+item_3/text = "Save As"
+item_3/id = 3
+item_4/text = ""
+item_4/id = 4
+item_4/separator = true
+item_5/text = "Settings"
+item_5/id = 5
+item_6/text = "Fonts"
+item_6/id = 6
+item_7/text = ""
+item_7/id = 7
+item_7/separator = true
+item_8/text = "Exit"
+item_8/id = 8
+
+[node name="Edit" type="PopupMenu" parent="MarginContainer/VBoxContainer/MenuBar"]
+item_count = 4
+item_0/text = "Redo"
+item_0/id = 0
+item_1/text = "Undo"
+item_1/id = 1
+item_2/text = ""
+item_2/id = 2
+item_2/separator = true
+item_3/text = "Clear"
+item_3/id = 3
+
+[node name="View" type="PopupMenu" parent="MarginContainer/VBoxContainer/MenuBar"]
+item_count = 4
+item_0/text = "Zoom In"
+item_0/id = 0
+item_1/text = "Zoom Out"
+item_1/id = 1
+item_2/text = ""
+item_2/id = 2
+item_2/separator = true
+item_3/text = "Fullscreen"
+item_3/id = 3
+
+[node name="Help" type="PopupMenu" parent="MarginContainer/VBoxContainer/MenuBar"]
+item_count = 2
+item_0/text = "How To Use"
+item_0/id = 0
+item_1/text = "About"
+item_1/id = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_top = 5
+
+[node name="HSplitContainer" type="HSplitContainer" parent="MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="DockableContainer" type="Container" parent="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer"]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+theme = ExtResource("3_5suyl")
+script = ExtResource("1_h1uv5")
+tab_alignment = 0
+layout = SubResource("Resource_82d3e")
+
+[node name="Properties" type="TabBar" parent="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/DockableContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+
+[node name="Texts" type="TabBar" parent="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/DockableContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+
+[node name="HSplitContainer" type="HSplitContainer" parent="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Canvas" type="Control" parent="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/HSplitContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Panel" type="Panel" parent="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/HSplitContainer/Canvas"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TopCanvas" parent="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/HSplitContainer/Canvas/Panel" instance=ExtResource("5_7c32o")]
+layout_mode = 1
+
+[node name="DockableContainer" type="Container" parent="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/HSplitContainer"]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+theme = ExtResource("3_5suyl")
+script = ExtResource("1_h1uv5")
+tab_alignment = 0
+layout = SubResource("Resource_vt5i7")
+
+[node name="Styles" type="TabBar" parent="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/HSplitContainer/DockableContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Layers" type="TabBar" parent="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/HSplitContainer/DockableContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+size_flags_horizontal = 3
