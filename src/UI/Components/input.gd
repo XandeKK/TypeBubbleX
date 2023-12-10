@@ -6,7 +6,7 @@ enum Type {STRING, INTEGER, FLOAT}
 @export var step : float = 1.0
 @export var suffix : String = ''
 
-signal text_formatted
+signal changed
 
 func _ready():
 	if type == Type.STRING:
@@ -30,32 +30,36 @@ func _input(event):
 	elif type == Type.FLOAT:
 		number = text.to_float()
 	
-	if event.keycode == KEY_UP:
+	if event.keycode == KEY_UP and event.is_pressed():
 		number += step
-		formart_string(str(number))
+		text = formart_string(str(number))
 		caret_column = text.length()
-	elif event.keycode == KEY_DOWN:
+		emit_signal('changed')
+	elif event.keycode == KEY_DOWN and event.is_pressed():
 		number -= step
-		formart_string(str(number))
+		text = formart_string(str(number))
 		caret_column = text.length()
+		emit_signal('changed')
 
 func _on_text_changed(new_text : String):
 	var current_position = caret_column
 	
-	formart_string(new_text)
+	text = formart_string(new_text)
 	
 	caret_column = current_position
+	emit_signal('changed')
 
 func formart_string(new_text : String):
+	var number
+	var _text : String
 	if type == Type.INTEGER:
-		var _text : int = new_text.to_int()
-		text = str(_text if _text != 0 else '')
+		number = new_text.to_int()
+		_text = str(number if number != 0 else '')
 	elif type == Type.FLOAT:
-		var _text : float
 		if new_text.count('.') == 1 and new_text.ends_with('.'):
-			_text = new_text.to_float()
-			text = str(_text) + '.'
+			number = new_text.to_float()
+			_text = str(number) + '.'
 		else:
-			_text = new_text.to_float()
-			text = str(_text)
-	emit_signal('text_formatted')
+			number = new_text.to_float()
+			_text = str(number)
+	return _text

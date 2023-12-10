@@ -1,0 +1,70 @@
+[gd_scene load_steps=4 format=3 uid="uid://d224iq2bnuuvn"]
+
+[ext_resource type="Script" path="res://src/UI/Components/input_with_slider.gd" id="1_fy7nv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5sqaq"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 20.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2048j"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.227451, 0.227451, 0.227451, 0.6)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+corner_detail = 6
+
+[node name="InputWithSlider" type="LineEdit"]
+offset_right = 197.0
+offset_bottom = 31.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_5sqaq")
+text = "0"
+script = ExtResource("1_fy7nv")
+
+[node name="Label" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0.545098)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -38.0
+offset_top = -19.5
+offset_right = -6.0
+offset_bottom = 3.5
+grow_horizontal = 0
+grow_vertical = 2
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="HSlider" type="HSlider" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 6.0
+offset_top = -20.0
+offset_right = -9.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/slider = SubResource("StyleBoxFlat_2048j")
+
+[connection signal="text_submitted" from="." to="." method="_on_text_submitted"]
+[connection signal="value_changed" from="HSlider" to="." method="_on_h_slider_value_changed"]
