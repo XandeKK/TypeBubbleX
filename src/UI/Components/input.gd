@@ -18,7 +18,7 @@ func _ready():
 	
 	$Label.text = suffix
 
-func _input(event):
+func _on_gui_input(event):
 	if type == Type.STRING:
 		return
 	if not event is InputEventKey:

@@ -24,4 +24,5 @@ grow_vertical = 2
 horizontal_alignment = 2
 vertical_alignment = 1
 
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="text_changed" from="." to="." method="_on_text_changed"]

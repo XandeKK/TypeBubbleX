@@ -18,23 +18,6 @@ func _ready():
 	
 	$Label.text = suffix
 
-func _input(event):
-	if not event is InputEventKey:
-		return
-	
-	var number = text.to_float()
-	
-	if event.keycode == KEY_UP and event.is_pressed() and number < max:
-		number += step
-		text = formart_string(str(number))
-		caret_column = text.length()
-		emit_signal('changed')
-	elif event.keycode == KEY_DOWN and event.is_pressed() and number > min:
-		number -= step
-		text = formart_string(str(number))
-		caret_column = text.length()
-		emit_signal('changed')
-
 func _on_text_changed(new_text : String):
 	var current_position = caret_column
 	
@@ -57,6 +40,23 @@ func formart_string(new_text : String):
 		_text = str(number)
 	
 	return _text
+
+func _on_gui_input(event):
+	if not event is InputEventKey:
+		return
+	
+	var number = text.to_float()
+	
+	if event.keycode == KEY_UP and event.is_pressed() and number < max:
+		number += step
+		text = formart_string(str(number))
+		caret_column = text.length()
+		emit_signal('changed')
+	elif event.keycode == KEY_DOWN and event.is_pressed() and number > min:
+		number -= step
+		text = formart_string(str(number))
+		caret_column = text.length()
+		emit_signal('changed')
 
 func _on_h_slider_value_changed(value):
 	text = str(value)

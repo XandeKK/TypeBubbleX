@@ -66,5 +66,6 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_styles/slider = SubResource("StyleBoxFlat_2048j")
 
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="text_submitted" from="." to="." method="_on_text_submitted"]
 [connection signal="value_changed" from="HSlider" to="." method="_on_h_slider_value_changed"]
