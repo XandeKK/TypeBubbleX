@@ -19,30 +19,30 @@ layout_mode = 2
 layout_mode = 2
 text = "Font"
 
-[node name="InputWithDropDown" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/FontContainer" index="1" instance=ExtResource("3_fa6b8")]
+[node name="FontName" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/FontContainer" index="1" instance=ExtResource("3_fa6b8")]
 layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/FontContainer" index="2"]
 layout_mode = 2
 
-[node name="Input" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/FontContainer/HBoxContainer" index="0" instance=ExtResource("3_boxhw")]
+[node name="FontSize" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/FontContainer/HBoxContainer" index="0" instance=ExtResource("3_boxhw")]
 layout_mode = 2
 size_flags_horizontal = 3
 type = 1
 suffix = "px"
 
-[node name="ColorPickerButton" type="ColorPickerButton" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/FontContainer/HBoxContainer" index="1"]
+[node name="Color" type="ColorPickerButton" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/FontContainer/HBoxContainer" index="1"]
 layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="BoldItalicContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="1"]
 layout_mode = 2
 
-[node name="BoldCheckButton" type="CheckButton" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/BoldItalicContainer" index="0"]
+[node name="Bold" type="CheckButton" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/BoldItalicContainer" index="0"]
 layout_mode = 2
 text = "Bold"
 
-[node name="ItalicCheckButton" type="CheckButton" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/BoldItalicContainer" index="1"]
+[node name="Italic" type="CheckButton" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/BoldItalicContainer" index="1"]
 layout_mode = 2
 text = "italic"
 
@@ -54,7 +54,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "Leading"
 
-[node name="Input" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/LeadingContainer" index="1" instance=ExtResource("3_boxhw")]
+[node name="Leading" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/LeadingContainer" index="1" instance=ExtResource("3_boxhw")]
 layout_mode = 2
 size_flags_horizontal = 3
 type = 1
@@ -67,7 +67,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "Tracking"
 
-[node name="Input" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/TrackingContainer" index="1" instance=ExtResource("3_boxhw")]
+[node name="Tracking" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/TrackingContainer" index="1" instance=ExtResource("3_boxhw")]
 layout_mode = 2
 size_flags_horizontal = 3
 type = 1
@@ -80,9 +80,16 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "Alignment"
 
-[node name="OptionButton" type="OptionButton" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/AlignmentContainer" index="1"]
+[node name="Alignment" type="OptionButton" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/AlignmentContainer" index="1"]
 layout_mode = 2
 size_flags_horizontal = 3
+item_count = 3
+popup/item_0/text = "Left"
+popup/item_0/id = 0
+popup/item_1/text = "Center"
+popup/item_1/id = 1
+popup/item_2/text = "Right"
+popup/item_2/id = 2
 
 [node name="RotationContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="5"]
 layout_mode = 2
@@ -92,7 +99,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "Rotation"
 
-[node name="InputWithSlider" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/RotationContainer" index="1" instance=ExtResource("4_kjib7")]
+[node name="Rotation" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/RotationContainer" index="1" instance=ExtResource("4_kjib7")]
 layout_mode = 2
 size_flags_horizontal = 3
 max = 360.0
@@ -117,7 +124,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "Top"
 
-[node name="Input" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PaddingMarginContainer/VBoxContainer/TopContainer" index="1" instance=ExtResource("3_boxhw")]
+[node name="PaddingTop" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PaddingMarginContainer/VBoxContainer/TopContainer" index="1" instance=ExtResource("3_boxhw")]
 layout_mode = 2
 size_flags_horizontal = 3
 type = 1
@@ -130,7 +137,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "Bottom"
 
-[node name="Input" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PaddingMarginContainer/VBoxContainer/BottomContainer" index="1" instance=ExtResource("3_boxhw")]
+[node name="PaddingBottom" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PaddingMarginContainer/VBoxContainer/BottomContainer" index="1" instance=ExtResource("3_boxhw")]
 layout_mode = 2
 size_flags_horizontal = 3
 type = 1
@@ -143,7 +150,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "Left"
 
-[node name="Input" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PaddingMarginContainer/VBoxContainer/LeftContainer" index="1" instance=ExtResource("3_boxhw")]
+[node name="PaddingLeft" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PaddingMarginContainer/VBoxContainer/LeftContainer" index="1" instance=ExtResource("3_boxhw")]
 layout_mode = 2
 size_flags_horizontal = 3
 type = 1
@@ -156,7 +163,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "Right"
 
-[node name="Input" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PaddingMarginContainer/VBoxContainer/RightContainer" index="1" instance=ExtResource("3_boxhw")]
+[node name="PaddingRight" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PaddingMarginContainer/VBoxContainer/RightContainer" index="1" instance=ExtResource("3_boxhw")]
 layout_mode = 2
 size_flags_horizontal = 3
 type = 1

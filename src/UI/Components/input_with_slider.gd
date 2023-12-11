@@ -7,7 +7,7 @@ extends LineEdit
 
 @onready var slider : HSlider = $HSlider
 
-signal changed
+signal changed(value)
 
 func _ready():
 	text = '0.0' if text.is_empty() else text
@@ -27,7 +27,7 @@ func _on_text_changed(new_text : String):
 	
 	caret_column = current_position
 	
-	emit_signal('changed')
+	emit_signal('changed', text.to_float())
 
 func formart_string(new_text : String):
 	var number : float
@@ -51,19 +51,19 @@ func _on_gui_input(event):
 		number += step
 		text = formart_string(str(number))
 		caret_column = text.length()
-		emit_signal('changed')
+		emit_signal('changed', text.to_float())
 	elif event.keycode == KEY_DOWN and event.is_pressed() and number > min:
 		number -= step
 		text = formart_string(str(number))
 		caret_column = text.length()
-		emit_signal('changed')
+		emit_signal('changed', text.to_float())
 
 func _on_h_slider_value_changed(value):
 	text = str(value)
-	emit_signal('changed')
+	emit_signal('changed', text.to_float())
 
 func _on_text_submitted(new_text):
 	var current_position = caret_column
 	text = formart_string(new_text)
 	caret_column = current_position
-	emit_signal('changed')
+	emit_signal('changed', text.to_float())

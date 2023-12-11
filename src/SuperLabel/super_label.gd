@@ -10,6 +10,7 @@ var rotation_node : Rotation = Rotation.new()
 var focus : bool = false : get = _get_focus
 
 signal focused(node : Control)
+signal rotation_changed(value)
 
 func _ready():
 	move.target = self
@@ -71,4 +72,8 @@ func convert_to_degrees(value : float):
 func set_rotation_text(value : float):
 	value = convert_to_degrees(value)
 	rotation_degrees = value
-#	emit_signal('rotation_changed', value)
+	emit_signal('rotation_changed', value)
+
+func set_content_margin(margin : Side, offset : float):
+	text.set_content_margin(margin, offset)
+	queue_redraw()

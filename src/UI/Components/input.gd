@@ -6,7 +6,7 @@ enum Type {STRING, INTEGER, FLOAT}
 @export var step : float = 1.0
 @export var suffix : String = ''
 
-signal changed
+signal changed(value)
 
 func _ready():
 	if type == Type.STRING:
@@ -34,12 +34,12 @@ func _on_gui_input(event):
 		number += step
 		text = formart_string(str(number))
 		caret_column = text.length()
-		emit_signal('changed')
+		emit()
 	elif event.keycode == KEY_DOWN and event.is_pressed():
 		number -= step
 		text = formart_string(str(number))
 		caret_column = text.length()
-		emit_signal('changed')
+		emit()
 
 func _on_text_changed(new_text : String):
 	var current_position = caret_column
@@ -47,14 +47,14 @@ func _on_text_changed(new_text : String):
 	text = formart_string(new_text)
 	
 	caret_column = current_position
-	emit_signal('changed')
+	emit()
 
 func formart_string(new_text : String):
 	var number
 	var _text : String
 	if type == Type.INTEGER:
 		number = new_text.to_int()
-		_text = str(number if number != 0 else '')
+		_text = str(number)
 	elif type == Type.FLOAT:
 		if new_text.count('.') == 1 and new_text.ends_with('.'):
 			number = new_text.to_float()
@@ -63,3 +63,11 @@ func formart_string(new_text : String):
 			number = new_text.to_float()
 			_text = str(number)
 	return _text
+
+func emit():
+	if type == Type.STRING:
+		emit_signal('changed', text)
+	elif type == Type.INTEGER:
+		emit_signal('changed', text.to_int())
+	else:
+		emit_signal('changed', text.to_float())

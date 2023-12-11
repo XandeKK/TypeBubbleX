@@ -6,9 +6,8 @@ extends LineEdit
 var key : String : set = _set_key
 var callable_search : Callable : set = _set_callable_search
 var list : Dictionary : set = _set_list
-func search_font(font : Dictionary, new_text : String):
-	return font['font'].to_lower().contains(new_text) or \
-		font['nickname'] != null and font['nickname'].to_lower().contains(new_text)
+
+signal changed(value : String)
 
 func _on_text_changed(new_text):
 	item_list.clear()
@@ -38,6 +37,7 @@ func _on_item_list_item_selected(index):
 	text = item_list.get_item_text(index)
 	caret_column = text.length()
 	popup.hide()
+	emit_signal('changed', text)
 
 func _set_key(value : String) -> void:
 	key = value

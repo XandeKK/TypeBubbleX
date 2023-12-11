@@ -195,14 +195,14 @@ func _get_horizontal_alignment() -> HorizontalAlignment:
 
 func _set_horizontal_alignment(value : HorizontalAlignment) -> void:
 	horizontal_alignment = value
-	emit_signal('render')
+	_shape()
 
 func _get_vertical_alignment() -> VerticalAlignment:
 	return vertical_alignment
 
 func _set_vertical_alignment(value : VerticalAlignment) -> void:
 	vertical_alignment = value
-	emit_signal('render')
+	_shape()
 
 func _get_autowrap_mode() -> TextServer.AutowrapMode:
 	return autowrap_mode
@@ -237,7 +237,7 @@ func _get_line_spacing() -> int:
 
 func _set_line_spacing(value : int) -> void:
 	line_spacing = value
-	emit_signal('render')
+	_shape()
 
 func _get_font_size() -> int:
 	return font_size
@@ -303,5 +303,6 @@ func _set_style_box(value : StyleBox) -> void:
 func get_glyphs_to_render() -> Array[Dictionary]:
 	return glyphs_to_render
 
-func _on_text_edit_text_changed():
-	text = $TextEdit.text
+func set_content_margin(margin : Side, offset : float):
+	style_box.set_content_margin(margin, offset)
+	_shape()
