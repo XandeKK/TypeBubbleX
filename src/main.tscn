@@ -183,7 +183,7 @@ canvas = NodePath("../../../HSplitContainer/Canvas/TopCanvas")
 custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
 
-[node name="TextDocker" parent="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/DockableContainer/Texts" instance=ExtResource("9_qcy0h")]
+[node name="TextDocker" parent="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/DockableContainer/Texts" node_paths=PackedStringArray("canvas") instance=ExtResource("9_qcy0h")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -192,6 +192,7 @@ offset_right = 0.0
 offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 2
+canvas = NodePath("../../../HSplitContainer/Canvas/TopCanvas")
 
 [node name="HSplitContainer" type="HSplitContainer" parent="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer"]
 layout_mode = 2
