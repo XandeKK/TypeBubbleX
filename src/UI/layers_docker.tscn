@@ -1,9 +1,116 @@
-[gd_scene load_steps=2 format=3 uid="uid://blvd0jvk8hugt"]
+[gd_scene load_steps=8 format=3 uid="uid://blvd0jvk8hugt"]
 
 [ext_resource type="PackedScene" uid="uid://btdffss434kcc" path="res://src/UI/panel_docker.tscn" id="1_yb0yy"]
+[ext_resource type="Script" path="res://src/UI/layer.gd" id="2_3wcq6"]
+[ext_resource type="Script" path="res://src/UI/layers_docker.gd" id="2_4kr83"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d0wvq"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eqm7b"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 1, 1, 0.75)
+draw_center = false
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ygdwa"]
+content_margin_left = 4.0
+content_margin_right = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_be5ct"]
+content_margin_left = 4.0
+content_margin_right = 4.0
+bg_color = Color(1, 1, 1, 0.75)
+draw_center = false
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
 
 [node name="LayersDocker" instance=ExtResource("1_yb0yy")]
+script = ExtResource("2_4kr83")
 
 [node name="CheckButton" type="CheckButton" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="0"]
 layout_mode = 2
 text = "Show Raw"
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="1"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PanelContainer" index="0"]
+layout_mode = 2
+
+[node name="Layers" type="VBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/ScrollContainer" index="0"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 1
+
+[node name="Layer" type="Button" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/ScrollContainer/Layers" index="0"]
+visible = false
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_d0wvq")
+theme_override_styles/focus = SubResource("StyleBoxFlat_eqm7b")
+text = " "
+script = ExtResource("2_3wcq6")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/ScrollContainer/Layers/Layer" index="0"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/ScrollContainer/Layers/Layer/MarginContainer" index="0"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/ScrollContainer/Layers/Layer/MarginContainer/HBoxContainer" index="0"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "dasdasdsadsadsads"
+text_overrun_behavior = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/ScrollContainer/Layers/Layer/MarginContainer/HBoxContainer" index="1"]
+layout_mode = 2
+
+[node name="RemoveButton" type="Button" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/ScrollContainer/Layers/Layer/MarginContainer/HBoxContainer/HBoxContainer" index="0"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_ygdwa")
+theme_override_styles/focus = SubResource("StyleBoxFlat_be5ct")
+text = "X"
+
+[connection signal="pressed" from="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/ScrollContainer/Layers/Layer" to="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/ScrollContainer/Layers/Layer" method="_on_pressed"]
+[connection signal="pressed" from="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/ScrollContainer/Layers/Layer/MarginContainer/HBoxContainer/HBoxContainer/RemoveButton" to="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/ScrollContainer/Layers/Layer" method="_on_remove_button_pressed"]

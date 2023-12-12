@@ -11,6 +11,8 @@ extends SubViewportContainer
 var focused_object : Control = null : get = get_object
 
 signal object_focus_changed(node : Control)
+signal object_added(node : Control)
+signal object_removed(node : Control)
 
 func _ready() -> void:
 	draw_observer.target = self
@@ -37,6 +39,13 @@ func add_object(packed_scene : PackedScene, start_position : Vector2, end_positi
 	var min_pos = Vector2(min(start_position.x, end_position.x), min(start_position.y, end_position.y))
 	var max_pos = Vector2(max(start_position.x, end_position.x), max(start_position.y, end_position.y))
 	obj.init(min_pos, max_pos - min_pos)
+	
+	emit_signal('object_added', obj)
+
+func remove_object(node : Control):
+	focus(null)
+	node.queue_free()
+	emit_signal('object_removed', node)
 
 func focus(node : Control) -> void:
 	if focused_object:

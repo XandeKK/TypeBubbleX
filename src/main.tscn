@@ -224,7 +224,7 @@ custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="LayersDocker" parent="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/HSplitContainer/DockableContainer/Layers" instance=ExtResource("11_rfhdm")]
+[node name="LayersDocker" parent="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/HSplitContainer/DockableContainer/Layers" node_paths=PackedStringArray("canvas") instance=ExtResource("11_rfhdm")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -233,3 +233,4 @@ offset_right = 0.0
 offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 2
+canvas = NodePath("../../../Canvas/TopCanvas")

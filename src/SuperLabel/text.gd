@@ -36,6 +36,7 @@ var glyphs_to_render : Array[Dictionary] : get = get_glyphs_to_render
 @onready var letters : Control = $Letters
 
 signal render
+signal text_changed(value : String)
 
 func _ready():
 	text_styles.parent = self
@@ -217,6 +218,7 @@ func _get_text() -> String:
 func _set_text(value : String) -> void:
 	text = value
 	_shape()
+	emit_signal('text_changed', text)
 
 func _get_color() -> Color:
 	return color
