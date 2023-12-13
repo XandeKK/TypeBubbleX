@@ -1,10 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://brpmrfe8bjswa"]
+[gd_scene load_steps=11 format=3 uid="uid://brpmrfe8bjswa"]
 
 [ext_resource type="PackedScene" uid="uid://btdffss434kcc" path="res://src/UI/panel_docker.tscn" id="1_gnjlj"]
 [ext_resource type="Script" path="res://src/UI/Styles/body_outlines.gd" id="2_6qoje"]
 [ext_resource type="Script" path="res://src/UI/styles_docker.gd" id="2_phubn"]
 [ext_resource type="Script" path="res://src/UI/Styles/body_light.gd" id="3_h7b2q"]
-[ext_resource type="PackedScene" uid="uid://cfy5hehp1o5s2" path="res://src/UI/Styles/outline_item.tscn" id="4_2hri7"]
 [ext_resource type="Script" path="res://src/UI/Styles/body_perspective.gd" id="4_pnjwg"]
 [ext_resource type="Script" path="res://src/UI/Styles/body_patterns.gd" id="5_nfqau"]
 [ext_resource type="Script" path="res://src/UI/Styles/body_shakes.gd" id="6_4b0yh"]
@@ -80,9 +79,6 @@ theme_override_constants/margin_bottom = 3
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-
-[node name="OutlineItem" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/BodyOutlines/ScrollContainer/MarginContainer/VBoxContainer" index="0" instance=ExtResource("4_2hri7")]
-layout_mode = 2
 
 [node name="HeaderLight" type="HBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="2"]
 layout_mode = 2
