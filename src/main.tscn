@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://2r0gvw58wdbh"]
+[gd_scene load_steps=21 format=3 uid="uid://2r0gvw58wdbh"]
 
 [ext_resource type="Script" path="res://addons/dockable_container/dockable_container.gd" id="1_h1uv5"]
 [ext_resource type="Theme" uid="uid://ds37dvaj7sob8" path="res://Assets/Themes/main.tres" id="1_s8eie"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://70ws3ecdqctq" path="res://src/Canvas/top_canvas.tscn" id="5_7c32o"]
 [ext_resource type="PackedScene" uid="uid://dmbvxdw1csjx6" path="res://src/UI/properties_docker.tscn" id="8_4wsqh"]
 [ext_resource type="PackedScene" uid="uid://c2epjjnugh0xq" path="res://src/UI/text_docker.tscn" id="9_qcy0h"]
+[ext_resource type="PackedScene" uid="uid://brpmrfe8bjswa" path="res://src/UI/styles_docker.tscn" id="11_18n82"]
 [ext_resource type="PackedScene" uid="uid://blvd0jvk8hugt" path="res://src/UI/layers_docker.tscn" id="11_rfhdm"]
 
 [sub_resource type="Resource" id="Resource_7k7ct"]
@@ -218,6 +219,17 @@ layout = SubResource("Resource_vt5i7")
 custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="StylesDocker" parent="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/HSplitContainer/DockableContainer/Styles" node_paths=PackedStringArray("canvas") instance=ExtResource("11_18n82")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+canvas = NodePath("../../../Canvas/TopCanvas")
 
 [node name="Layers" type="TabBar" parent="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/HSplitContainer/DockableContainer"]
 custom_minimum_size = Vector2(0, 200)
