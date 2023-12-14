@@ -10,7 +10,6 @@ func blank_all() -> void:
 		vbox.remove_child(child)
 
 func set_values(_node : Control) -> void:
-	print('opca')
 	node = _node.text.shakes
 	for shake in node.get_shakes():
 		var _shake = shake_item.instantiate()
@@ -25,10 +24,8 @@ func remove_shake(shake : Control):
 	node.remove(shake)
 
 func _on_add_button_pressed():
-	print('wake me up')
 	if not node:
 		return
-	print('wake me down')
 	node.add()
 	var shake = node.get_shakes()[-1]
 	var _shake = shake_item.instantiate()
