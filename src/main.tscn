@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://2r0gvw58wdbh"]
+[gd_scene load_steps=22 format=3 uid="uid://2r0gvw58wdbh"]
 
 [ext_resource type="Script" path="res://addons/dockable_container/dockable_container.gd" id="1_h1uv5"]
 [ext_resource type="Theme" uid="uid://ds37dvaj7sob8" path="res://Assets/Themes/main.tres" id="1_s8eie"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://c2epjjnugh0xq" path="res://src/UI/text_docker.tscn" id="9_qcy0h"]
 [ext_resource type="PackedScene" uid="uid://brpmrfe8bjswa" path="res://src/UI/styles_docker.tscn" id="11_18n82"]
 [ext_resource type="PackedScene" uid="uid://blvd0jvk8hugt" path="res://src/UI/layers_docker.tscn" id="11_rfhdm"]
+[ext_resource type="PackedScene" uid="uid://c77at2skcq0u1" path="res://src/UI/selection_styles_docker.tscn" id="12_pdg4t"]
 
 [sub_resource type="Resource" id="Resource_7k7ct"]
 resource_name = "Tabs"
@@ -43,7 +44,7 @@ hidden_tabs = {}
 resource_name = "Tabs"
 script = ExtResource("2_1axbj")
 names = PackedStringArray("Styles", "Selection Styles")
-current_tab = 0
+current_tab = 1
 
 [sub_resource type="Resource" id="Resource_e1xoq"]
 resource_name = "Tabs"
@@ -217,6 +218,7 @@ tab_alignment = 0
 layout = SubResource("Resource_vt5i7")
 
 [node name="Styles" type="TabBar" parent="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/HSplitContainer/DockableContainer"]
+visible = false
 custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -233,8 +235,19 @@ grow_vertical = 2
 canvas = NodePath("../../../Canvas/TopCanvas")
 
 [node name="Selection Styles" type="TabBar" parent="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/HSplitContainer/DockableContainer"]
-visible = false
+custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
+
+[node name="SelectionStylesDocker" parent="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/HSplitContainer/DockableContainer/Selection Styles" node_paths=PackedStringArray("canvas") instance=ExtResource("12_pdg4t")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+canvas = NodePath("../../../Canvas/TopCanvas")
 
 [node name="Layers" type="TabBar" parent="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/HSplitContainer/DockableContainer"]
 custom_minimum_size = Vector2(0, 200)
