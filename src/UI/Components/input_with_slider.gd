@@ -67,3 +67,7 @@ func _on_text_submitted(new_text):
 	text = formart_string(new_text)
 	caret_column = current_position
 	emit_signal('changed', text.to_float())
+
+func set_value(value : float) -> void:
+	text = str(value)
+	slider.value = value

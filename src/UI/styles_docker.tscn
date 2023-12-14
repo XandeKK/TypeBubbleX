@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://brpmrfe8bjswa"]
+[gd_scene load_steps=12 format=3 uid="uid://brpmrfe8bjswa"]
 
 [ext_resource type="PackedScene" uid="uid://btdffss434kcc" path="res://src/UI/panel_docker.tscn" id="1_gnjlj"]
 [ext_resource type="Script" path="res://src/UI/Styles/body_outlines.gd" id="2_6qoje"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://src/UI/Styles/body_perspective.gd" id="4_pnjwg"]
 [ext_resource type="Script" path="res://src/UI/Styles/body_patterns.gd" id="5_nfqau"]
 [ext_resource type="Script" path="res://src/UI/Styles/body_shakes.gd" id="6_4b0yh"]
+[ext_resource type="PackedScene" uid="uid://datst2x2p8jdv" path="res://src/UI/Styles/perspective.tscn" id="6_ttqjl"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r6omi"]
 content_margin_left = 4.0
@@ -126,7 +127,7 @@ size_flags_horizontal = 3
 text = "Perspective"
 
 [node name="BodyPerspective" type="PanelContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="5"]
-custom_minimum_size = Vector2(0, 150)
+custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_4vlao")
 script = ExtResource("4_pnjwg")
@@ -143,10 +144,8 @@ theme_override_constants/margin_top = 3
 theme_override_constants/margin_right = 3
 theme_override_constants/margin_bottom = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/BodyPerspective/ScrollContainer/MarginContainer" index="0"]
+[node name="Perspective" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/BodyPerspective/ScrollContainer/MarginContainer" index="0" instance=ExtResource("6_ttqjl")]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
 
 [node name="HeaderPatterns" type="HBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="6"]
 layout_mode = 2

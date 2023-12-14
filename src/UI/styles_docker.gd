@@ -15,7 +15,7 @@ func _ready():
 func blank_all():
 	body_outlines.blank_all()
 	#body_light.blank_all()
-	#body_perspective.blank_all()
+	body_perspective.blank_all()
 	#body_patterns.blank_all()
 	#body_shakes.blank_all()
 
@@ -25,3 +25,4 @@ func set_values(node : Control):
 		return
 	
 	body_outlines.set_values(node)
+	body_perspective.set_values(node)

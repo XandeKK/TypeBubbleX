@@ -5,6 +5,7 @@
 [ext_resource type="Shader" path="res://src/Shaders/2d_perspective.gdshader" id="2_vfoaw"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bbea2"]
+resource_local_to_scene = true
 shader = ExtResource("2_vfoaw")
 shader_parameter/fov = 90.0
 shader_parameter/cull_back = true
