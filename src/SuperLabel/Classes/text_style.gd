@@ -16,6 +16,13 @@ var shakes : Array : get = _get_shakes, set = _set_shakes
 var outline_scene : PackedScene = load("res://src/SuperLabel/outline.tscn")
 var shake_scene : PackedScene = load('res://src/SuperLabel/shake.tscn')
 
+func remova_all() -> void:
+	for i in outlines.size():
+		remove_outline(0)
+	
+	for i in shakes.size():
+		remove_shake(0)
+
 func add_outline() -> void:
 	var outline = outline_scene.instantiate()
 	outline.start = start
@@ -72,7 +79,10 @@ func _set_start(value : int) -> void:
 	for outline in outlines:
 		outline.start = start
 	
-	parent.emit_signal('render')
+	for shake in shakes:
+		shake.start = start
+	
+	parent._shape()
 
 func _get_end() -> int:
 	return end
@@ -82,49 +92,52 @@ func _set_end(value : int) -> void:
 	for outline in outlines:
 		outline.end = end
 	
-	parent.emit_signal('render')
+	for shake in shakes:
+		shake.end = end
+	
+	parent._shape()
 
 func _get_bold() -> bool:
 	return bold
 
 func _set_bold(value : bool) -> void:
 	bold = value
-	parent.emit_signal('render')
+	parent._shape()
 
 func _get_italic() -> bool:
 	return italic
 
 func _set_italic(value : bool) -> void:
 	italic = value
-	parent.emit_signal('render')
+	parent._shape()
 
 func _get_font_size() -> int:
 	return font_size
 
 func _set_font_size(value : int) -> void:
 	font_size = value
-	parent.emit_signal('render')
+	parent._shape()
 
 func _get_font_settings() -> Dictionary:
 	return font_settings
 
 func _set_font_settings(value : Dictionary) -> void:
 	font_settings = value.duplicate()
-	parent.emit_signal('render')
+	parent._shape()
 
 func _get_color() -> Color:
 	return color
 
 func _set_color(value : Color) -> void:
 	color = value
-	parent.emit_signal('render')
+	parent._shape()
 
 func _get_uppercase() -> bool:
 	return uppercase
 
 func _set_uppercase(value : bool) -> void:
 	uppercase = value
-	parent.emit_signal('render')
+	parent._shape()
 
 func _get_outlines() -> Array:
 	return outlines

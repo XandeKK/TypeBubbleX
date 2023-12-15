@@ -1,8 +1,31 @@
-[gd_scene load_steps=7 format=3 uid="uid://dfuraxyvtrqks"]
+[gd_scene load_steps=11 format=3 uid="uid://dfuraxyvtrqks"]
 
 [ext_resource type="Script" path="res://src/UI/body_selection_styles.gd" id="1_c2tew"]
 [ext_resource type="PackedScene" uid="uid://de5x4r7qbv6uk" path="res://src/UI/Components/input_with_drop_down.tscn" id="1_uy3x2"]
 [ext_resource type="PackedScene" uid="uid://bnbfjh0vj0q0x" path="res://src/UI/Components/input.tscn" id="2_g6qd3"]
+[ext_resource type="Script" path="res://src/UI/SelectionStyles/body_outlines.gd" id="4_3l7eb"]
+[ext_resource type="Script" path="res://src/UI/SelectionStyles/body_shakes.gd" id="5_3oius"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g4spk"]
+content_margin_left = 4.0
+content_margin_right = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kgxrb"]
+content_margin_left = 4.0
+content_margin_right = 4.0
+bg_color = Color(1, 1, 1, 0.75)
+draw_center = false
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4idj4"]
 content_margin_left = 4.0
@@ -38,6 +61,16 @@ border_color = Color(0.109804, 0.109804, 0.109804, 1)
 offset_right = 158.0
 offset_bottom = 163.0
 script = ExtResource("1_c2tew")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+alignment = 2
+
+[node name="RemoveButton" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_g4spk")
+theme_override_styles/focus = SubResource("StyleBoxFlat_kgxrb")
+text = "X"
 
 [node name="StartContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
@@ -119,6 +152,7 @@ text = "+"
 custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_w8my2")
+script = ExtResource("4_3l7eb")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="BodyOutlines"]
 layout_mode = 2
@@ -155,6 +189,7 @@ text = "+"
 custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_w8my2")
+script = ExtResource("5_3oius")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="BodyShakes"]
 layout_mode = 2
@@ -172,3 +207,13 @@ theme_override_constants/margin_bottom = 3
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+
+[connection signal="pressed" from="HBoxContainer/RemoveButton" to="." method="_on_remove_button_pressed"]
+[connection signal="changed" from="StartContainer/StartInput" to="." method="_on_start_input_changed"]
+[connection signal="changed" from="EndContainer/EndInput" to="." method="_on_end_input_changed"]
+[connection signal="changed" from="FontContainer/HBoxContainer/FontSize" to="." method="_on_font_size_changed"]
+[connection signal="color_changed" from="FontContainer/HBoxContainer/Color" to="." method="_on_color_color_changed"]
+[connection signal="toggled" from="BoldItalicContainer/Bold" to="." method="_on_bold_toggled"]
+[connection signal="toggled" from="BoldItalicContainer/Italic" to="." method="_on_italic_toggled"]
+[connection signal="pressed" from="HeaderOutlines/AddButton" to="BodyOutlines" method="_on_add_button_pressed"]
+[connection signal="pressed" from="HeaderShakes/AddButton" to="BodyShakes" method="_on_add_button_pressed"]

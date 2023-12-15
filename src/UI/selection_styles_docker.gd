@@ -31,6 +31,7 @@ func set_values(_node : Control):
 		var _style_item = style_item.instantiate()
 		v_box.add_child(_style_item)
 		_style_item.node = text_style
+		_style_item.parent = self
 
 func _on_add_button_pressed():
 	var selection_from : int = rich_text_label.get_selection_from()
@@ -45,9 +46,15 @@ func _on_add_button_pressed():
 	var _style_item = style_item.instantiate()
 	v_box.add_child(_style_item)
 	_style_item.node = node.text.text_styles.list[-1]
+	_style_item.parent = self
 
 func _set_node(value : Control) -> void:
 	node = value
+
+func remove_selection_style(value : TextStyle):
+	var index = node.text.text_styles.list.find(value)
+	node.text.text_styles.remove(index)
+	node.text._shape()
 
 func _text_changed(value : String) -> void:
 	rich_text_label.text = value
