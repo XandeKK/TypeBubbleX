@@ -100,7 +100,8 @@ layout_mode = 2
 [node name="Label" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/ScrollContainer/Layers/Layer/MarginContainer/HBoxContainer" index="0"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "dasdasdsadsadsads"
+vertical_alignment = 1
+clip_text = true
 text_overrun_behavior = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/ScrollContainer/Layers/Layer/MarginContainer/HBoxContainer" index="1"]
