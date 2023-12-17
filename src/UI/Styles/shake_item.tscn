@@ -47,6 +47,7 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Two Direction"
+text_overrun_behavior = 3
 
 [node name="XContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
@@ -116,6 +117,7 @@ step = 0.1
 max = 1.0
 
 [connection signal="pressed" from="HBoxContainer/RemoveButton" to="." method="_on_remove_button_pressed"]
+[connection signal="toggled" from="TwoDirectionContainer/TwoDirectionCheckButton" to="." method="_on_two_direction_check_button_toggled"]
 [connection signal="changed" from="XContainer/XInput" to="." method="_on_x_input_changed"]
 [connection signal="changed" from="YContainer/YInput" to="." method="_on_y_input_changed"]
 [connection signal="changed" from="IntensityContainer/IntensityInput" to="." method="_on_intensity_input_changed"]

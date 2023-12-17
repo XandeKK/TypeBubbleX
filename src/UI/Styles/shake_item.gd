@@ -40,3 +40,6 @@ func _on_quantity_input_changed(value):
 
 func _on_alpha_input_changed(value):
 	node.alpha = value
+
+func _on_two_direction_check_button_toggled(toggled_on):
+	node.two_direction = toggled_on
