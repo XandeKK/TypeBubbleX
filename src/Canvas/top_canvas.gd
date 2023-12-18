@@ -60,3 +60,7 @@ func get_object() -> Control:
 func show_raw(status : bool) -> void:
 	raw_image.visible = status
 	draw_observer.can_draw = not status
+
+func clear_texts() -> void:
+	for child in objects.get_children():
+		child.text.text = ''

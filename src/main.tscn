@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://2r0gvw58wdbh"]
+[gd_scene load_steps=27 format=3 uid="uid://2r0gvw58wdbh"]
 
 [ext_resource type="Script" path="res://addons/dockable_container/dockable_container.gd" id="1_h1uv5"]
 [ext_resource type="Theme" uid="uid://ds37dvaj7sob8" path="res://Assets/Themes/main.tres" id="1_s8eie"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://addons/dockable_container/layout_split.gd" id="3_8ibwx"]
 [ext_resource type="Script" path="res://addons/dockable_container/layout.gd" id="3_8sp2d"]
 [ext_resource type="Script" path="res://src/UI/MenuBar/file.gd" id="3_pq15j"]
+[ext_resource type="Script" path="res://src/UI/MenuBar/edit.gd" id="5_6s0g1"]
 [ext_resource type="PackedScene" uid="uid://70ws3ecdqctq" path="res://src/Canvas/top_canvas.tscn" id="5_7c32o"]
 [ext_resource type="PackedScene" uid="uid://dmbvxdw1csjx6" path="res://src/UI/properties_docker.tscn" id="8_4wsqh"]
 [ext_resource type="PackedScene" uid="uid://c2epjjnugh0xq" path="res://src/UI/text_docker.tscn" id="9_qcy0h"]
@@ -103,10 +104,9 @@ theme = ExtResource("2_q156j")
 script = ExtResource("3_pq15j")
 confirmation_dialog = NodePath("../../../../Popups/FileConfirmationDialog")
 
-[node name="Edit" type="PopupMenu" parent="MarginContainer/VBoxContainer/MenuBar"]
-item_count = 1
-item_0/text = "Clear"
-item_0/id = 0
+[node name="Edit" type="PopupMenu" parent="MarginContainer/VBoxContainer/MenuBar" node_paths=PackedStringArray("canvas")]
+script = ExtResource("5_6s0g1")
+canvas = NodePath("../../MarginContainer/HSplitContainer/HSplitContainer/Canvas/TopCanvas")
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -250,6 +250,7 @@ canvas = NodePath("../../../../Canvas/TopCanvas")
 visible = false
 
 [connection signal="id_pressed" from="MarginContainer/VBoxContainer/MenuBar/File" to="MarginContainer/VBoxContainer/MenuBar/File" method="_on_id_pressed"]
+[connection signal="id_pressed" from="MarginContainer/VBoxContainer/MenuBar/Edit" to="MarginContainer/VBoxContainer/MenuBar/Edit" method="_on_id_pressed"]
 [connection signal="item_selected" from="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/HSplitContainer/VBoxContainer/PagesContainer/PagesOptionButton" to="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/HSplitContainer/VBoxContainer/PagesContainer" method="_on_pages_option_button_item_selected"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/HSplitContainer/VBoxContainer/PagesContainer/BackButton" to="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/HSplitContainer/VBoxContainer/PagesContainer" method="_on_back_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/HSplitContainer/VBoxContainer/PagesContainer/NextButton" to="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/HSplitContainer/VBoxContainer/PagesContainer" method="_on_next_button_pressed"]
