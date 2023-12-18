@@ -95,59 +95,26 @@ layout_mode = 2
 theme = ExtResource("2_q156j")
 
 [node name="File" type="PopupMenu" parent="MarginContainer/VBoxContainer/MenuBar"]
-item_count = 9
+item_count = 6
 item_0/text = "Open"
 item_0/id = 0
-item_1/text = ""
+item_1/text = "Save"
 item_1/id = 1
-item_1/separator = true
-item_2/text = "Save"
+item_2/text = ""
 item_2/id = 2
-item_3/text = "Save As"
+item_2/separator = true
+item_3/text = "Settings"
 item_3/id = 3
 item_4/text = ""
 item_4/id = 4
 item_4/separator = true
-item_5/text = "Settings"
-item_5/id = 5
-item_6/text = "Fonts"
-item_6/id = 6
-item_7/text = ""
-item_7/id = 7
-item_7/separator = true
-item_8/text = "Exit"
-item_8/id = 8
+item_5/text = "Exit"
+item_5/id = 8
 
 [node name="Edit" type="PopupMenu" parent="MarginContainer/VBoxContainer/MenuBar"]
-item_count = 4
-item_0/text = "Redo"
+item_count = 1
+item_0/text = "Clear"
 item_0/id = 0
-item_1/text = "Undo"
-item_1/id = 1
-item_2/text = ""
-item_2/id = 2
-item_2/separator = true
-item_3/text = "Clear"
-item_3/id = 3
-
-[node name="View" type="PopupMenu" parent="MarginContainer/VBoxContainer/MenuBar"]
-item_count = 4
-item_0/text = "Zoom In"
-item_0/id = 0
-item_1/text = "Zoom Out"
-item_1/id = 1
-item_2/text = ""
-item_2/id = 2
-item_2/separator = true
-item_3/text = "Fullscreen"
-item_3/id = 3
-
-[node name="Help" type="PopupMenu" parent="MarginContainer/VBoxContainer/MenuBar"]
-item_count = 2
-item_0/text = "How To Use"
-item_0/id = 0
-item_1/text = "About"
-item_1/id = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2

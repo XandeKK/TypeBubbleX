@@ -148,6 +148,7 @@ theme_override_constants/margin_bottom = 3
 layout_mode = 2
 
 [node name="HeaderPatterns" type="HBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="6"]
+visible = false
 layout_mode = 2
 
 [node name="Label" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HeaderPatterns" index="0"]
@@ -162,6 +163,7 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_ljlkc")
 text = "+"
 
 [node name="BodyPatterns" type="PanelContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="7"]
+visible = false
 custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_4vlao")
