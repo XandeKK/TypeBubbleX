@@ -4,6 +4,7 @@ var target : SubViewportContainer : set = _set_target
 
 const text_scene : PackedScene = preload("res://src/SuperLabel/super_label.tscn")
 
+var can_draw : bool = true : set = _set_can_draw
 var is_within : bool = false
 var is_drawable : bool = false
 var is_drawing : bool = false
@@ -15,6 +16,9 @@ func _draw():
 		draw_rect(rect, Color.AQUA, false, 3)
 
 func _input(event):
+	if not can_draw:
+		return
+
 	if event is InputEventKey and event.keycode == KEY_CTRL:
 		is_drawable = event.is_pressed()
 	
@@ -45,3 +49,6 @@ func _on_mouse_exited():
 
 func _set_target(value : SubViewportContainer) -> void:
 	target = value
+
+func _set_can_draw(value : bool) -> void:
+	can_draw = value

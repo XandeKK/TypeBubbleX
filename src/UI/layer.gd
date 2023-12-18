@@ -19,6 +19,8 @@ func _on_pressed():
 		return
 	node.set_focus(true)
 
+	parent.set_position_camera(node)
+
 func _on_remove_button_pressed():
 	parent.remove_object(node)
 

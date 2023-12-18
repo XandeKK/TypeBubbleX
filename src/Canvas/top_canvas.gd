@@ -56,3 +56,7 @@ func focus(node : Control) -> void:
 
 func get_object() -> Control:
 	return focused_object
+
+func show_raw(status : bool) -> void:
+	raw_image.visible = status
+	draw_observer.can_draw = not status

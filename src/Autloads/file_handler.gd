@@ -10,6 +10,7 @@ signal page_changed
 signal pages_add
 
 func open(obj : Dictionary):
+	current_page = 0
 	cleaned_images_path = Array(DirAccess.get_files_at(obj['cleaned']))
 	cleaned_images_path = remove_files_non_images(cleaned_images_path)
 	
@@ -91,7 +92,7 @@ func load_image(path : String) -> ImageTexture:
 func set_canvas(value : SubViewportContainer):
 	canvas = value
 
-func set_texts(path_texts : String) -> void:
+func set_texts(path_texts) -> void:
 	if not path_texts:
 		return
 	

@@ -32,3 +32,9 @@ func remove_layer(node : Control) -> void:
 
 func remove_object(node : Control) -> void:
 	canvas.remove_object(node)
+
+func _on_check_button_toggled(toggled_on):
+	canvas.show_raw(toggled_on)
+
+func set_position_camera(node : Control) -> void:
+	canvas.camera.position = node.global_position + node.size / 2

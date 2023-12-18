@@ -113,5 +113,6 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_ygdwa")
 theme_override_styles/focus = SubResource("StyleBoxFlat_be5ct")
 text = "X"
 
+[connection signal="toggled" from="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/CheckButton" to="." method="_on_check_button_toggled"]
 [connection signal="pressed" from="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/ScrollContainer/Layers/Layer" to="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/ScrollContainer/Layers/Layer" method="_on_pressed"]
 [connection signal="pressed" from="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/ScrollContainer/Layers/Layer/MarginContainer/HBoxContainer/HBoxContainer/RemoveButton" to="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/ScrollContainer/Layers/Layer" method="_on_remove_button_pressed"]
