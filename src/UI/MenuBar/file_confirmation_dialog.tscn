@@ -1,0 +1,104 @@
+[gd_scene load_steps=2 format=3 uid="uid://cn2srwer6532q"]
+
+[ext_resource type="Script" path="res://src/UI/MenuBar/file_confirmation_dialog.gd" id="1_7r4f8"]
+
+[node name="FileConfirmationDialog" type="ConfirmationDialog"]
+initial_position = 1
+size = Vector2i(500, 228)
+visible = true
+unresizable = true
+borderless = true
+script = ExtResource("1_7r4f8")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 492.0
+offset_bottom = 179.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Raw"
+
+[node name="RawLineEdit" type="LineEdit" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RawButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "open"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Cleaned"
+
+[node name="CleanedLineEdit" type="LineEdit" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CleanedButton" type="Button" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "open"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Texts"
+
+[node name="TextsLineEdit" type="LineEdit" parent="VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextsButton" type="Button" parent="VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = "open"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Styles"
+
+[node name="StylesOptionButton" type="OptionButton" parent="VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.24
+item_count = 2
+selected = 0
+popup/item_0/text = "Manga"
+popup/item_0/id = 0
+popup/item_1/text = "Manhwa"
+popup/item_1/id = 1
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "IA"
+
+[node name="IACheckBox" type="CheckBox" parent="VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+
+[connection signal="confirmed" from="." to="." method="_on_confirmed"]

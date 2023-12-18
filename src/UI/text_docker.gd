@@ -9,6 +9,8 @@ func _ready():
 	canvas.object_focus_changed.connect(set_values)
 	set_values(null)
 	connect_all()
+	
+	FileHandler.text_list = text_list
 
 func connect_all():
 	text.text_changed.connect(set_text)

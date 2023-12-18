@@ -1,18 +1,22 @@
-[gd_scene load_steps=22 format=3 uid="uid://2r0gvw58wdbh"]
+[gd_scene load_steps=26 format=3 uid="uid://2r0gvw58wdbh"]
 
 [ext_resource type="Script" path="res://addons/dockable_container/dockable_container.gd" id="1_h1uv5"]
 [ext_resource type="Theme" uid="uid://ds37dvaj7sob8" path="res://Assets/Themes/main.tres" id="1_s8eie"]
 [ext_resource type="Script" path="res://addons/dockable_container/layout_panel.gd" id="2_1axbj"]
+[ext_resource type="Script" path="res://src/main.gd" id="2_nagta"]
 [ext_resource type="Theme" uid="uid://cudnsdf5nwnfo" path="res://Assets/Themes/menu_bar.tres" id="2_q156j"]
 [ext_resource type="Theme" uid="uid://cxq78k14m2105" path="res://Assets/Themes/dockable_container.tres" id="3_5suyl"]
 [ext_resource type="Script" path="res://addons/dockable_container/layout_split.gd" id="3_8ibwx"]
 [ext_resource type="Script" path="res://addons/dockable_container/layout.gd" id="3_8sp2d"]
+[ext_resource type="Script" path="res://src/UI/MenuBar/file.gd" id="3_pq15j"]
 [ext_resource type="PackedScene" uid="uid://70ws3ecdqctq" path="res://src/Canvas/top_canvas.tscn" id="5_7c32o"]
 [ext_resource type="PackedScene" uid="uid://dmbvxdw1csjx6" path="res://src/UI/properties_docker.tscn" id="8_4wsqh"]
 [ext_resource type="PackedScene" uid="uid://c2epjjnugh0xq" path="res://src/UI/text_docker.tscn" id="9_qcy0h"]
 [ext_resource type="PackedScene" uid="uid://brpmrfe8bjswa" path="res://src/UI/styles_docker.tscn" id="11_18n82"]
 [ext_resource type="PackedScene" uid="uid://blvd0jvk8hugt" path="res://src/UI/layers_docker.tscn" id="11_rfhdm"]
 [ext_resource type="PackedScene" uid="uid://c77at2skcq0u1" path="res://src/UI/selection_styles_docker.tscn" id="12_pdg4t"]
+[ext_resource type="Script" path="res://src/UI/pages.gd" id="13_ngdfa"]
+[ext_resource type="PackedScene" uid="uid://cn2srwer6532q" path="res://src/UI/MenuBar/file_confirmation_dialog.tscn" id="15_jngg0"]
 
 [sub_resource type="Resource" id="Resource_7k7ct"]
 resource_name = "Tabs"
@@ -74,6 +78,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_s8eie")
+script = ExtResource("2_nagta")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -94,22 +99,9 @@ layout_mode = 2
 layout_mode = 2
 theme = ExtResource("2_q156j")
 
-[node name="File" type="PopupMenu" parent="MarginContainer/VBoxContainer/MenuBar"]
-item_count = 6
-item_0/text = "Open"
-item_0/id = 0
-item_1/text = "Save"
-item_1/id = 1
-item_2/text = ""
-item_2/id = 2
-item_2/separator = true
-item_3/text = "Settings"
-item_3/id = 3
-item_4/text = ""
-item_4/id = 4
-item_4/separator = true
-item_5/text = "Exit"
-item_5/id = 8
+[node name="File" type="PopupMenu" parent="MarginContainer/VBoxContainer/MenuBar" node_paths=PackedStringArray("confirmation_dialog")]
+script = ExtResource("3_pq15j")
+confirmation_dialog = NodePath("../../../../Popups/FileConfirmationDialog")
 
 [node name="Edit" type="PopupMenu" parent="MarginContainer/VBoxContainer/MenuBar"]
 item_count = 1
@@ -176,20 +168,40 @@ size_flags_horizontal = 3
 layout_mode = 1
 metadata/_edit_lock_ = true
 
-[node name="DockableContainer" type="Container" parent="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/HSplitContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/HSplitContainer"]
+layout_mode = 2
+
+[node name="PagesContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/HSplitContainer/VBoxContainer"]
+layout_mode = 2
+script = ExtResource("13_ngdfa")
+
+[node name="PagesOptionButton" type="OptionButton" parent="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/HSplitContainer/VBoxContainer/PagesContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BackButton" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/HSplitContainer/VBoxContainer/PagesContainer"]
+layout_mode = 2
+text = "<"
+
+[node name="NextButton" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/HSplitContainer/VBoxContainer/PagesContainer"]
+layout_mode = 2
+text = ">"
+
+[node name="DockableContainer" type="Container" parent="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/HSplitContainer/VBoxContainer"]
 custom_minimum_size = Vector2(180, 0)
 layout_mode = 2
+size_flags_vertical = 3
 theme = ExtResource("3_5suyl")
 script = ExtResource("1_h1uv5")
 tab_alignment = 0
 layout = SubResource("Resource_vt5i7")
 
-[node name="Styles" type="TabBar" parent="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/HSplitContainer/DockableContainer"]
+[node name="Styles" type="TabBar" parent="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/HSplitContainer/VBoxContainer/DockableContainer"]
 custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="StylesDocker" parent="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/HSplitContainer/DockableContainer/Styles" node_paths=PackedStringArray("canvas") instance=ExtResource("11_18n82")]
+[node name="StylesDocker" parent="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/HSplitContainer/VBoxContainer/DockableContainer/Styles" node_paths=PackedStringArray("canvas") instance=ExtResource("11_18n82")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -198,14 +210,14 @@ offset_right = 0.0
 offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 2
-canvas = NodePath("../../../Canvas/TopCanvas")
+canvas = NodePath("../../../../Canvas/TopCanvas")
 
-[node name="Selection Styles" type="TabBar" parent="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/HSplitContainer/DockableContainer"]
+[node name="Selection Styles" type="TabBar" parent="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/HSplitContainer/VBoxContainer/DockableContainer"]
 visible = false
 custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
 
-[node name="SelectionStylesDocker" parent="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/HSplitContainer/DockableContainer/Selection Styles" node_paths=PackedStringArray("canvas") instance=ExtResource("12_pdg4t")]
+[node name="SelectionStylesDocker" parent="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/HSplitContainer/VBoxContainer/DockableContainer/Selection Styles" node_paths=PackedStringArray("canvas") instance=ExtResource("12_pdg4t")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -214,14 +226,14 @@ offset_right = 0.0
 offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 2
-canvas = NodePath("../../../Canvas/TopCanvas")
+canvas = NodePath("../../../../Canvas/TopCanvas")
 
-[node name="Layers" type="TabBar" parent="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/HSplitContainer/DockableContainer"]
+[node name="Layers" type="TabBar" parent="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/HSplitContainer/VBoxContainer/DockableContainer"]
 custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="LayersDocker" parent="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/HSplitContainer/DockableContainer/Layers" node_paths=PackedStringArray("canvas") instance=ExtResource("11_rfhdm")]
+[node name="LayersDocker" parent="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/HSplitContainer/VBoxContainer/DockableContainer/Layers" node_paths=PackedStringArray("canvas") instance=ExtResource("11_rfhdm")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -230,4 +242,14 @@ offset_right = 0.0
 offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 2
-canvas = NodePath("../../../Canvas/TopCanvas")
+canvas = NodePath("../../../../Canvas/TopCanvas")
+
+[node name="Popups" type="Node" parent="."]
+
+[node name="FileConfirmationDialog" parent="Popups" instance=ExtResource("15_jngg0")]
+visible = false
+
+[connection signal="id_pressed" from="MarginContainer/VBoxContainer/MenuBar/File" to="MarginContainer/VBoxContainer/MenuBar/File" method="_on_id_pressed"]
+[connection signal="item_selected" from="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/HSplitContainer/VBoxContainer/PagesContainer/PagesOptionButton" to="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/HSplitContainer/VBoxContainer/PagesContainer" method="_on_pages_option_button_item_selected"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/HSplitContainer/VBoxContainer/PagesContainer/BackButton" to="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/HSplitContainer/VBoxContainer/PagesContainer" method="_on_back_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/HSplitContainer/VBoxContainer/PagesContainer/NextButton" to="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/HSplitContainer/VBoxContainer/PagesContainer" method="_on_next_button_pressed"]

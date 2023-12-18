@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 TSManager="*res://src/Autloads/ts_manager.gd"
+FileHandler="*res://src/Autloads/file_handler.gd"
 
 [editor_plugins]
 

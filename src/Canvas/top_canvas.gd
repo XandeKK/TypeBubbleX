@@ -23,9 +23,8 @@ func load_raw_image(texture : ImageTexture) -> void:
 
 func load_cleaned_image(texture : ImageTexture) -> void:
 	cleaned_image.texture = texture
-	cleaned_image.size = texture.get_size()
 	bottom_canvas.size = texture.get_size()
-	bottom_canvas_sub_viewport.size = texture.get_size()
+	cleaned_image.size = texture.get_size()
 	
 	camera.position = Vector2(texture.get_size().x / 2, get_viewport().size.y - 50)
 
