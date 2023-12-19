@@ -1,9 +1,5 @@
 extends ConfirmationDialog
 
-@onready var raw_dialog : NativeFileDialog = $RawNativeFolderDialog
-@onready var cleaned_dialog : NativeFileDialog = $CleanedNativeFolderDialog
-@onready var texts_dialog : NativeFileDialog = $TextsNativeFileDialog
-
 @onready var raw : LineEdit = $VBoxContainer/HBoxContainer/RawLineEdit
 @onready var cleaned : LineEdit = $VBoxContainer/HBoxContainer2/CleanedLineEdit
 @onready var texts : LineEdit = $VBoxContainer/HBoxContainer3/TextsLineEdit
@@ -38,25 +34,11 @@ func _on_confirmed():
 	hide()
 
 func _on_raw_button_pressed():
-	raw_dialog.show()
+	pass
 
 func _on_cleaned_button_pressed():
-	cleaned_dialog.show()
+	pass
 
 func _on_texts_button_pressed():
-	texts_dialog.show()
+	pass
 
-func _on_raw_native_folder_dialog_dir_selected(dir):
-	raw.text = dir
-	raw_dialog.root_subfolder = dir
-	cleaned_dialog.root_subfolder = dir
-	texts_dialog.root_subfolder = dir
-
-func _on_cleaned_native_folder_dialog_dir_selected(dir):
-	cleaned.text = dir
-	raw_dialog.root_subfolder = dir
-	cleaned_dialog.root_subfolder = dir
-	texts_dialog.root_subfolder = dir
-
-func _on_texts_native_file_dialog_file_selected(path):
-	texts.text = path

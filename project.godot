@@ -23,7 +23,7 @@ FileHandler="*res://src/Autloads/file_handler.gd"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/dockable_container/plugin.cfg", "res://addons/native_dialogs/plugin.cfg")
+enabled=PackedStringArray("res://addons/dockable_container/plugin.cfg")
 
 [rendering]
 
