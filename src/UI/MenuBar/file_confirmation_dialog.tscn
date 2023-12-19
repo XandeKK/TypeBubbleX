@@ -16,8 +16,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 8.0
 offset_top = 8.0
-offset_right = 492.0
-offset_bottom = 109.0
+offset_right = -8.0
+offset_bottom = -49.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -101,7 +101,40 @@ text = "IA"
 [node name="IACheckBox" type="CheckBox" parent="VBoxContainer/HBoxContainer5"]
 layout_mode = 2
 
+[node name="RawFileDialog" type="FileDialog" parent="."]
+title = "Open a Directory"
+initial_position = 1
+size = Vector2i(708, 159)
+ok_button_text = "Select Current Folder"
+file_mode = 2
+access = 2
+filters = PackedStringArray("*")
+use_native_dialog = true
+
+[node name="CleanedFileDialog" type="FileDialog" parent="."]
+title = "Open a Directory"
+initial_position = 1
+size = Vector2i(708, 500)
+ok_button_text = "Select Current Folder"
+file_mode = 2
+access = 2
+filters = PackedStringArray("*")
+use_native_dialog = true
+
+[node name="TextsFileDialog" type="FileDialog" parent="."]
+title = "Open a File"
+initial_position = 1
+size = Vector2i(708, 500)
+ok_button_text = "Open"
+file_mode = 0
+access = 2
+filters = PackedStringArray("*")
+use_native_dialog = true
+
 [connection signal="confirmed" from="." to="." method="_on_confirmed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/RawButton" to="." method="_on_raw_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer2/CleanedButton" to="." method="_on_cleaned_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer3/TextsButton" to="." method="_on_texts_button_pressed"]
+[connection signal="dir_selected" from="RawFileDialog" to="." method="_on_raw_file_dialog_dir_selected"]
+[connection signal="dir_selected" from="CleanedFileDialog" to="." method="_on_cleaned_file_dialog_dir_selected"]
+[connection signal="file_selected" from="TextsFileDialog" to="." method="_on_texts_file_dialog_file_selected"]

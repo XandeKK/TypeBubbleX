@@ -1,5 +1,9 @@
 extends ConfirmationDialog
 
+@onready var raw_file_dialog : FileDialog = $RawFileDialog
+@onready var cleaned_file_dialog : FileDialog = $CleanedFileDialog
+@onready var texts_file_dialog : FileDialog = $TextsFileDialog
+
 @onready var raw : LineEdit = $VBoxContainer/HBoxContainer/RawLineEdit
 @onready var cleaned : LineEdit = $VBoxContainer/HBoxContainer2/CleanedLineEdit
 @onready var texts : LineEdit = $VBoxContainer/HBoxContainer3/TextsLineEdit
@@ -34,11 +38,19 @@ func _on_confirmed():
 	hide()
 
 func _on_raw_button_pressed():
-	pass
+	raw_file_dialog.show()
 
 func _on_cleaned_button_pressed():
-	pass
+	cleaned_file_dialog.show()
 
 func _on_texts_button_pressed():
-	pass
+	texts_file_dialog.show()
 
+func _on_raw_file_dialog_dir_selected(dir):
+	raw.text = dir
+
+func _on_cleaned_file_dialog_dir_selected(dir):
+	cleaned.text = dir
+
+func _on_texts_file_dialog_file_selected(path):
+	texts.text = path
