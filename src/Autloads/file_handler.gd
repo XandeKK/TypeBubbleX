@@ -105,7 +105,6 @@ func set_texts(path_texts) -> void:
 				continue
 			text_list.add_item(line)
 
-
 func get_current_page():
 	return current_page
 

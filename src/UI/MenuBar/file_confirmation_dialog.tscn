@@ -4,7 +4,7 @@
 
 [node name="FileConfirmationDialog" type="ConfirmationDialog"]
 initial_position = 1
-size = Vector2i(500, 228)
+size = Vector2i(500, 158)
 visible = true
 unresizable = true
 borderless = true
@@ -16,8 +16,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 8.0
 offset_top = 8.0
-offset_right = 492.0
-offset_bottom = 179.0
+offset_right = -8.0
+offset_bottom = -49.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -101,4 +101,25 @@ text = "IA"
 [node name="IACheckBox" type="CheckBox" parent="VBoxContainer/HBoxContainer5"]
 layout_mode = 2
 
+[node name="RawNativeFolderDialog" type="NativeFileDialog" parent="."]
+title = "Open a Directory"
+file_mode = 2
+access = 2
+
+[node name="CleanedNativeFolderDialog" type="NativeFileDialog" parent="."]
+title = "Open a Directory"
+file_mode = 2
+access = 2
+
+[node name="TextsNativeFileDialog" type="NativeFileDialog" parent="."]
+title = "Open a File"
+file_mode = 0
+access = 2
+
 [connection signal="confirmed" from="." to="." method="_on_confirmed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/RawButton" to="." method="_on_raw_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/CleanedButton" to="." method="_on_cleaned_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer3/TextsButton" to="." method="_on_texts_button_pressed"]
+[connection signal="dir_selected" from="RawNativeFolderDialog" to="." method="_on_raw_native_folder_dialog_dir_selected"]
+[connection signal="dir_selected" from="CleanedNativeFolderDialog" to="." method="_on_cleaned_native_folder_dialog_dir_selected"]
+[connection signal="file_selected" from="TextsNativeFileDialog" to="." method="_on_texts_native_file_dialog_file_selected"]
