@@ -16,7 +16,18 @@ var items : Array[Dictionary] = [
 		'ctrl': true,
 		'callable': _on_save_selected,
 		'separator': false,
-	}
+	},
+	{
+		'name': '',
+		'separator': true
+	},
+	{
+		'name': 'Settings',
+		'keycode': null,
+		'ctrl': false,
+		'callable': _on_swttings_selected,
+		'separator': false,
+	},
 ]
 
 func _ready():
@@ -27,21 +38,25 @@ func _ready():
 		else:
 			add_item(item.name, count)
 			
-			var shortcut : Shortcut = Shortcut.new()
-			var shortcutKeyEvent : InputEventKey = InputEventKey.new()
-			shortcutKeyEvent.keycode = item.keycode
-			shortcutKeyEvent.command_or_control_autoremap = item.ctrl
-			shortcut.events.append(shortcutKeyEvent)
-			set_item_shortcut(count, shortcut, true)
+			if item.keycode:
+				var shortcut : Shortcut = Shortcut.new()
+				var shortcutKeyEvent : InputEventKey = InputEventKey.new()
+				shortcutKeyEvent.keycode = item.keycode
+				shortcutKeyEvent.command_or_control_autoremap = item.ctrl
+				shortcut.events.append(shortcutKeyEvent)
+				set_item_shortcut(count, shortcut, true)
 		
 		count+= 1
 
-func _on_open_selected():
+func _on_open_selected() -> void:
 	confirmation_dialog.show()
 
-func _on_save_selected():
+func _on_save_selected() -> void:
 	FileHandler.save()
 	print("Save selected")
+
+func _on_swttings_selected() -> void:
+	print("Settings selected")
 
 func _on_id_pressed(id):
 	items[id].callable.call()
