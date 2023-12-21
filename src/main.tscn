@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://2r0gvw58wdbh"]
+[gd_scene load_steps=28 format=3 uid="uid://2r0gvw58wdbh"]
 
 [ext_resource type="Script" path="res://addons/dockable_container/dockable_container.gd" id="1_h1uv5"]
 [ext_resource type="Theme" uid="uid://ds37dvaj7sob8" path="res://Assets/Themes/main.tres" id="1_s8eie"]
@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://c77at2skcq0u1" path="res://src/UI/selection_styles_docker.tscn" id="12_pdg4t"]
 [ext_resource type="Script" path="res://src/UI/pages.gd" id="13_ngdfa"]
 [ext_resource type="PackedScene" uid="uid://cn2srwer6532q" path="res://src/UI/MenuBar/file_confirmation_dialog.tscn" id="15_jngg0"]
+[ext_resource type="PackedScene" uid="uid://bhoq0trkym5ay" path="res://src/UI/MenuBar/font_config.tscn" id="19_d4akj"]
 
 [sub_resource type="Resource" id="Resource_7k7ct"]
 resource_name = "Tabs"
@@ -100,9 +101,10 @@ layout_mode = 2
 layout_mode = 2
 theme = ExtResource("2_q156j")
 
-[node name="File" type="PopupMenu" parent="MarginContainer/VBoxContainer/MenuBar" node_paths=PackedStringArray("confirmation_dialog")]
+[node name="File" type="PopupMenu" parent="MarginContainer/VBoxContainer/MenuBar" node_paths=PackedStringArray("confirmation_dialog", "font_config")]
 script = ExtResource("3_pq15j")
 confirmation_dialog = NodePath("../../../../Popups/FileConfirmationDialog")
+font_config = NodePath("../../../../Popups/FontConfig")
 
 [node name="Edit" type="PopupMenu" parent="MarginContainer/VBoxContainer/MenuBar" node_paths=PackedStringArray("canvas")]
 script = ExtResource("5_6s0g1")
@@ -247,6 +249,9 @@ canvas = NodePath("../../../../Canvas/TopCanvas")
 [node name="Popups" type="Node" parent="."]
 
 [node name="FileConfirmationDialog" parent="Popups" instance=ExtResource("15_jngg0")]
+visible = false
+
+[node name="FontConfig" parent="Popups" instance=ExtResource("19_d4akj")]
 visible = false
 
 [connection signal="id_pressed" from="MarginContainer/VBoxContainer/MenuBar/File" to="MarginContainer/VBoxContainer/MenuBar/File" method="_on_id_pressed"]

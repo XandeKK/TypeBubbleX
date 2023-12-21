@@ -1,6 +1,7 @@
 extends PopupMenu
 
 @export var confirmation_dialog : ConfirmationDialog
+@export var font_config : Window
 
 var items : Array[Dictionary] = [
 	{
@@ -22,10 +23,17 @@ var items : Array[Dictionary] = [
 		'separator': true
 	},
 	{
-		'name': 'Settings',
+		'name': 'Preference',
 		'keycode': null,
 		'ctrl': false,
-		'callable': _on_swttings_selected,
+		'callable': _on_preference_selected,
+		'separator': false,
+	},
+	{
+		'name': 'Fonts',
+		'keycode': null,
+		'ctrl': false,
+		'callable': _on_fonts_selected,
 		'separator': false,
 	},
 ]
@@ -55,8 +63,11 @@ func _on_save_selected() -> void:
 	FileHandler.save()
 	print("Save selected")
 
-func _on_swttings_selected() -> void:
-	print("Settings selected")
+func _on_preference_selected() -> void:
+	print("Preference selected")
+
+func _on_fonts_selected() -> void:
+	font_config.show()
 
 func _on_id_pressed(id):
 	items[id].callable.call()

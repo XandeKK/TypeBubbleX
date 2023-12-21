@@ -1,0 +1,266 @@
+[gd_scene load_steps=10 format=3 uid="uid://bhoq0trkym5ay"]
+
+[ext_resource type="Script" path="res://src/UI/MenuBar/font_config.gd" id="1_ooihp"]
+[ext_resource type="Theme" uid="uid://ds37dvaj7sob8" path="res://Assets/Themes/main.tres" id="1_q0jks"]
+[ext_resource type="PackedScene" uid="uid://bnbfjh0vj0q0x" path="res://src/UI/Components/input.tscn" id="2_co2ey"]
+[ext_resource type="Script" path="res://src/UI/MenuBar/FontConfig/directories.gd" id="3_tfwcp"]
+[ext_resource type="Script" path="res://src/UI/MenuBar/FontConfig/fonts.gd" id="4_or84n"]
+[ext_resource type="Script" path="res://src/UI/MenuBar/FontConfig/edit.gd" id="5_dktnk"]
+[ext_resource type="PackedScene" uid="uid://crpp7128oo18x" path="res://src/UI/MenuBar/FontConfig/style_box_container.tscn" id="7_s2ypa"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7gele"]
+content_margin_left = 50.0
+content_margin_top = 20.0
+content_margin_right = 50.0
+content_margin_bottom = 20.0
+bg_color = Color(0.129412, 0.129412, 0.129412, 1)
+border_width_top = 5
+border_color = Color(0.109804, 0.109804, 0.109804, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cdtvu"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 3.0
+content_margin_bottom = 5.0
+bg_color = Color(0.129412, 0.129412, 0.129412, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 4
+border_width_bottom = 5
+border_color = Color(0.109804, 0.109804, 0.109804, 1)
+
+[node name="FontConfig" type="Window"]
+initial_position = 2
+size = Vector2i(800, 450)
+transient = true
+exclusive = true
+unresizable = true
+theme = ExtResource("1_q0jks")
+script = ExtResource("1_ooihp")
+
+[node name="TabContainer" type="TabContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+tab_alignment = 1
+
+[node name="Directories" type="PanelContainer" parent="TabContainer" node_paths=PackedStringArray("file_dialog")]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_7gele")
+script = ExtResource("3_tfwcp")
+file_dialog = NodePath("../../DirFileDialog")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Directories"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Directories/VBoxContainer"]
+layout_mode = 2
+
+[node name="DirLineEdit" type="LineEdit" parent="TabContainer/Directories/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="OpenButton" type="Button" parent="TabContainer/Directories/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Open"
+
+[node name="AddButton" type="Button" parent="TabContainer/Directories/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Add"
+
+[node name="RemoveButton" type="Button" parent="TabContainer/Directories/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Remove"
+
+[node name="ItemList" type="ItemList" parent="TabContainer/Directories/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Fonts" type="PanelContainer" parent="TabContainer"]
+visible = false
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_7gele")
+script = ExtResource("4_or84n")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Fonts"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Fonts/VBoxContainer"]
+layout_mode = 2
+
+[node name="FontNameLineEdit" type="LineEdit" parent="TabContainer/Fonts/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Font name"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="TabContainer/Fonts/VBoxContainer"]
+layout_mode = 2
+
+[node name="SelectedFontsCheckBox" type="CheckBox" parent="TabContainer/Fonts/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Only Selected Fonts"
+
+[node name="ShowFontsCheckBox" type="CheckBox" parent="TabContainer/Fonts/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Show Fonts"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="TabContainer/Fonts/VBoxContainer"]
+layout_mode = 2
+
+[node name="ExampleLineEdit" type="LineEdit" parent="TabContainer/Fonts/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Hello, World!"
+
+[node name="PanelContainer" type="PanelContainer" parent="TabContainer/Fonts/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Fonts/VBoxContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Fonts/VBoxContainer/PanelContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="GridContainer" type="GridContainer" parent="TabContainer/Fonts/VBoxContainer/PanelContainer/ScrollContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 2
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="TabContainer/Fonts/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="BackButton" type="Button" parent="TabContainer/Fonts/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+text = "<"
+
+[node name="Pages" type="Label" parent="TabContainer/Fonts/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+text = "0/0"
+
+[node name="NextButton" type="Button" parent="TabContainer/Fonts/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+text = ">"
+
+[node name="Edit" type="PanelContainer" parent="TabContainer"]
+visible = false
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_7gele")
+script = ExtResource("5_dktnk")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Edit"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Edit/VBoxContainer"]
+layout_mode = 2
+
+[node name="FontNameLineEdit" type="LineEdit" parent="TabContainer/Edit/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Font name"
+
+[node name="FontList" type="ItemList" parent="TabContainer/Edit/VBoxContainer"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="TabContainer/Edit/VBoxContainer"]
+layout_mode = 2
+
+[node name="ExampleLineEdit" type="LineEdit" parent="TabContainer/Edit/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Example"
+
+[node name="ExampleFontSizeInput" parent="TabContainer/Edit/VBoxContainer/HBoxContainer3" instance=ExtResource("2_co2ey")]
+layout_mode = 2
+text = "20"
+type = 1
+suffix = "Px"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="TabContainer/Edit/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TabContainer/Edit/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Nickname"
+
+[node name="NicknameLineEdit" type="LineEdit" parent="TabContainer/Edit/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="StylesPanelContainer" type="PanelContainer" parent="TabContainer/Edit/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_cdtvu")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Edit/VBoxContainer/StylesPanelContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Edit/VBoxContainer/StylesPanelContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Edit/VBoxContainer/StylesPanelContainer/ScrollContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="RegularBoxContainer" parent="TabContainer/Edit/VBoxContainer/StylesPanelContainer/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("7_s2ypa")]
+layout_mode = 2
+
+[node name="BoldBoxContainer" parent="TabContainer/Edit/VBoxContainer/StylesPanelContainer/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("7_s2ypa")]
+layout_mode = 2
+style = 1
+
+[node name="ItalicBoxContainer" parent="TabContainer/Edit/VBoxContainer/StylesPanelContainer/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("7_s2ypa")]
+layout_mode = 2
+style = 2
+
+[node name="BoldItalicBoxContainer" parent="TabContainer/Edit/VBoxContainer/StylesPanelContainer/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("7_s2ypa")]
+layout_mode = 2
+style = 3
+
+[node name="DirFileDialog" type="FileDialog" parent="."]
+title = "Open a Directory"
+initial_position = 2
+ok_button_text = "Select Current Folder"
+file_mode = 2
+access = 2
+filters = PackedStringArray("*")
+show_hidden_files = true
+use_native_dialog = true
+
+[connection signal="close_requested" from="." to="." method="_on_close_requested"]
+[connection signal="pressed" from="TabContainer/Directories/VBoxContainer/HBoxContainer/OpenButton" to="TabContainer/Directories" method="_on_open_button_pressed"]
+[connection signal="pressed" from="TabContainer/Directories/VBoxContainer/HBoxContainer/AddButton" to="TabContainer/Directories" method="_on_add_button_pressed"]
+[connection signal="pressed" from="TabContainer/Directories/VBoxContainer/HBoxContainer/RemoveButton" to="TabContainer/Directories" method="_on_remove_button_pressed"]
+[connection signal="item_selected" from="TabContainer/Directories/VBoxContainer/ItemList" to="TabContainer/Directories" method="_on_item_list_item_selected"]
+[connection signal="text_changed" from="TabContainer/Fonts/VBoxContainer/HBoxContainer/FontNameLineEdit" to="TabContainer/Fonts" method="_on_font_name_line_edit_text_changed"]
+[connection signal="toggled" from="TabContainer/Fonts/VBoxContainer/HBoxContainer2/SelectedFontsCheckBox" to="TabContainer/Fonts" method="_on_selected_fonts_check_box_toggled"]
+[connection signal="toggled" from="TabContainer/Fonts/VBoxContainer/HBoxContainer2/ShowFontsCheckBox" to="TabContainer/Fonts" method="_on_show_fonts_check_box_toggled"]
+[connection signal="pressed" from="TabContainer/Fonts/VBoxContainer/HBoxContainer4/BackButton" to="TabContainer/Fonts" method="_on_back_button_pressed"]
+[connection signal="pressed" from="TabContainer/Fonts/VBoxContainer/HBoxContainer4/NextButton" to="TabContainer/Fonts" method="_on_next_button_pressed"]
+[connection signal="text_changed" from="TabContainer/Edit/VBoxContainer/HBoxContainer/FontNameLineEdit" to="TabContainer/Edit" method="_on_font_name_line_edit_text_changed"]
+[connection signal="item_selected" from="TabContainer/Edit/VBoxContainer/FontList" to="TabContainer/Edit" method="_on_font_list_item_selected"]
+[connection signal="text_changed" from="TabContainer/Edit/VBoxContainer/HBoxContainer3/ExampleLineEdit" to="TabContainer/Edit" method="_on_example_line_edit_text_changed"]
+[connection signal="changed" from="TabContainer/Edit/VBoxContainer/HBoxContainer3/ExampleFontSizeInput" to="TabContainer/Edit" method="_on_example_font_size_input_changed"]
+[connection signal="text_changed" from="TabContainer/Edit/VBoxContainer/HBoxContainer2/NicknameLineEdit" to="TabContainer/Edit" method="_on_nickname_line_edit_text_changed"]
+[connection signal="dir_selected" from="DirFileDialog" to="TabContainer/Directories" method="_on_dir_file_dialog_dir_selected"]

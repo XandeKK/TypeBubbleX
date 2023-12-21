@@ -23,6 +23,7 @@ var fonts_path : Dictionary : get = get_fonts_path, set = set_fonts_path
 var filename : String = "user://fonts_configuration.cfg"
 
 signal dirs_changed
+signal fonts_changed
 
 func _ready():
 	load_configuration()
@@ -210,6 +211,7 @@ func add_font(font : String) -> bool:
 			'italic': load_font(font_dict['italic']) if font_dict.has('italic') else load_faux_font(font, 'italic'),
 			'bold-italic': load_font(font_dict['bold-italic']) if font_dict.has('bold-italic') else load_faux_font(font, 'bold-italic'),
 		}
+		emit_signal('fonts_changed')
 		return true
 	
 	print("Font not found:", font)
@@ -218,12 +220,19 @@ func add_font(font : String) -> bool:
 func remove_font(font : String) -> bool:
 	if fonts.has(font):
 		fonts.erase(font)
+		emit_signal('fonts_changed')
 		return true
 	
 	print("Font not found:", font)
 	return false
 
-func edit_font(font_name : String, type : String, nickname : String, font_copy : FontVariation) -> void:
+func edit_nickname(font_name : String, nickname : String) -> void:
+	if not fonts.has(font_name):
+		print("Font not found:", font_name)
+		return
+	fonts[font_name]['nickname'] = null if nickname.is_empty() else nickname
+
+func edit_font(font_name : String, type : String, font_copy : FontVariation) -> void:
 	if not fonts.has(font_name):
 		print("Font not found:", font_name)
 		return
@@ -232,7 +241,6 @@ func edit_font(font_name : String, type : String, nickname : String, font_copy :
 		print("Invalid font type:", type)
 		return
 	
-	fonts[font_name]['nickname'] = nickname if nickname.is_empty() else fonts[font_name]['nickname']
 	fonts[font_name][type] = font_copy.duplicate()
 
 func load_regular_font(font : String) -> FontVariation:

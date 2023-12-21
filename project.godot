@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 
 TSManager="*res://src/Autloads/ts_manager.gd"
 FileHandler="*res://src/Autloads/file_handler.gd"
+FontConfigManager="*res://src/Autloads/font_config_manager.gd"
 
 [editor_plugins]
 
