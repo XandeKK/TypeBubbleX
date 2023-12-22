@@ -4,7 +4,7 @@
 
 [node name="FileConfirmationDialog" type="ConfirmationDialog"]
 initial_position = 1
-size = Vector2i(500, 158)
+size = Vector2i(500, 193)
 visible = true
 unresizable = true
 borderless = true
@@ -70,7 +70,6 @@ layout_mode = 2
 text = "open"
 
 [node name="HBoxContainer4" type="HBoxContainer" parent="VBoxContainer"]
-visible = false
 layout_mode = 2
 
 [node name="Label" type="Label" parent="VBoxContainer/HBoxContainer4"]
@@ -82,12 +81,7 @@ text = "Styles"
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 1.24
-item_count = 2
 selected = 0
-popup/item_0/text = "Manga"
-popup/item_0/id = 0
-popup/item_1/text = "Manhwa"
-popup/item_1/id = 1
 
 [node name="HBoxContainer5" type="HBoxContainer" parent="VBoxContainer"]
 visible = false
@@ -135,6 +129,7 @@ use_native_dialog = true
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/RawButton" to="." method="_on_raw_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer2/CleanedButton" to="." method="_on_cleaned_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer3/TextsButton" to="." method="_on_texts_button_pressed"]
+[connection signal="item_selected" from="VBoxContainer/HBoxContainer4/StylesOptionButton" to="." method="_on_styles_option_button_item_selected"]
 [connection signal="dir_selected" from="RawFileDialog" to="." method="_on_raw_file_dialog_dir_selected"]
 [connection signal="dir_selected" from="CleanedFileDialog" to="." method="_on_cleaned_file_dialog_dir_selected"]
 [connection signal="file_selected" from="TextsFileDialog" to="." method="_on_texts_file_dialog_file_selected"]

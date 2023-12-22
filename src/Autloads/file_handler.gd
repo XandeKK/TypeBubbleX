@@ -11,6 +11,7 @@ signal pages_add
 
 func open(obj : Dictionary):
 	current_page = 0
+	
 	cleaned_images_path = Array(DirAccess.get_files_at(obj['cleaned']))
 	cleaned_images_path = remove_files_non_images(cleaned_images_path)
 	
@@ -31,6 +32,8 @@ func open(obj : Dictionary):
 	set_texts(obj['texts'])
 	
 	load_image_in_canvas()
+	
+	canvas.style = obj['style']
 
 func save():
 	pass

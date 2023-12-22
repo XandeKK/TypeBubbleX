@@ -10,6 +10,10 @@ extends ConfirmationDialog
 @onready var styles : OptionButton = $VBoxContainer/HBoxContainer4/StylesOptionButton
 @onready var ia : CheckBox = $VBoxContainer/HBoxContainer5/IACheckBox
 
+func _ready():
+	for key in Preference.styles_string.keys():
+		styles.add_item(Preference.styles_string[key], key)
+
 func _on_confirmed():
 	cleaned.text = cleaned.text.strip_edges()
 	raw.text = raw.text.strip_edges()
@@ -32,7 +36,7 @@ func _on_confirmed():
 		'cleaned': cleaned.text,
 		'raw': null if raw.text.is_empty() else raw.text,
 		'texts': null if texts.text.is_empty() else texts.text,
-		'style': styles.get_item_text(styles.get_selected_id()),
+		'style': styles.selected,
 		'ia': ia.button_pressed,
 	})
 	hide()
@@ -54,3 +58,6 @@ func _on_cleaned_file_dialog_dir_selected(dir):
 
 func _on_texts_file_dialog_file_selected(path):
 	texts.text = path
+
+func _on_styles_option_button_item_selected(index):
+	pass # Replace with function body.

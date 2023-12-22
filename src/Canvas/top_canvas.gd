@@ -9,6 +9,7 @@ extends SubViewportContainer
 @onready var objects : Node = $SubViewport/BottomCanvas/SubViewport/Objects
 
 var focused_object : Control = null : get = get_object
+var style : Preference.Styles : get = _get_style, set = _set_style
 
 signal object_focus_changed(node : Control)
 signal object_added(node : Control)
@@ -37,7 +38,7 @@ func add_object(packed_scene : PackedScene, start_position : Vector2, end_positi
 	obj.focused.connect(focus)
 	var min_pos = Vector2(min(start_position.x, end_position.x), min(start_position.y, end_position.y))
 	var max_pos = Vector2(max(start_position.x, end_position.x), max(start_position.y, end_position.y))
-	obj.init(min_pos, max_pos - min_pos)
+	obj.init(min_pos, max_pos - min_pos, style)
 	
 	emit_signal('object_added', obj)
 
@@ -64,3 +65,9 @@ func show_raw(status : bool) -> void:
 func clear_texts() -> void:
 	for child in objects.get_children():
 		child.text.text = ''
+
+func _get_style() -> Preference.Styles:
+	return style
+
+func _set_style(value : Preference.Styles) -> void:
+	style = value
