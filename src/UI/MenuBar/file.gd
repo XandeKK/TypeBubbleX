@@ -2,6 +2,7 @@ extends PopupMenu
 
 @export var confirmation_dialog : ConfirmationDialog
 @export var font_config : Window
+@export var preference : Window
 
 var items : Array[Dictionary] = [
 	{
@@ -64,7 +65,7 @@ func _on_save_selected() -> void:
 	print("Save selected")
 
 func _on_preference_selected() -> void:
-	print("Preference selected")
+	preference.show()
 
 func _on_fonts_selected() -> void:
 	font_config.show()

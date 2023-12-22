@@ -1,0 +1,160 @@
+[gd_scene load_steps=8 format=3 uid="uid://dysv6jsajl5ro"]
+
+[ext_resource type="Script" path="res://src/UI/MenuBar/preference.gd" id="1_5ksak"]
+[ext_resource type="Theme" uid="uid://ds37dvaj7sob8" path="res://Assets/Themes/main.tres" id="1_o0cbx"]
+[ext_resource type="Script" path="res://src/UI/MenuBar/Preference/general.gd" id="2_db0pj"]
+[ext_resource type="PackedScene" uid="uid://bnbfjh0vj0q0x" path="res://src/UI/Components/input.tscn" id="3_g51ty"]
+[ext_resource type="Script" path="res://src/UI/MenuBar/Preference/canvas.gd" id="4_jomix"]
+[ext_resource type="PackedScene" uid="uid://vrrd8l5enokq" path="res://src/UI/MenuBar/Preference/style_panel_container.tscn" id="6_nqwsm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qdvbf"]
+content_margin_left = 50.0
+content_margin_top = 20.0
+content_margin_right = 50.0
+content_margin_bottom = 20.0
+bg_color = Color(0.129412, 0.129412, 0.129412, 1)
+border_width_top = 5
+border_color = Color(0.109804, 0.109804, 0.109804, 1)
+
+[node name="Preference" type="Window"]
+initial_position = 2
+size = Vector2i(800, 450)
+transient = true
+exclusive = true
+unresizable = true
+theme = ExtResource("1_o0cbx")
+script = ExtResource("1_5ksak")
+
+[node name="TabContainer" type="TabContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+tab_alignment = 1
+current_tab = 1
+
+[node name="General" type="PanelContainer" parent="TabContainer"]
+visible = false
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qdvbf")
+script = ExtResource("2_db0pj")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/General"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/General/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TabContainer/General/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Font Size"
+
+[node name="FontSizeInput" parent="TabContainer/General/VBoxContainer/HBoxContainer" instance=ExtResource("3_g51ty")]
+layout_mode = 2
+size_flags_horizontal = 3
+type = 1
+suffix = "Px"
+
+[node name="Canvas" type="PanelContainer" parent="TabContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qdvbf")
+script = ExtResource("4_jomix")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Canvas"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Canvas/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Canvas/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="MangaPanelContainer" parent="TabContainer/Canvas/ScrollContainer/VBoxContainer/VBoxContainer" instance=ExtResource("6_nqwsm")]
+layout_mode = 2
+
+[node name="ManhwaPanelContainer" parent="TabContainer/Canvas/ScrollContainer/VBoxContainer/VBoxContainer" instance=ExtResource("6_nqwsm")]
+layout_mode = 2
+style = 1
+
+[node name="ManhuaPanelContainer" parent="TabContainer/Canvas/ScrollContainer/VBoxContainer/VBoxContainer" instance=ExtResource("6_nqwsm")]
+layout_mode = 2
+style = 2
+
+[node name="ComicPanelContainer" parent="TabContainer/Canvas/ScrollContainer/VBoxContainer/VBoxContainer" instance=ExtResource("6_nqwsm")]
+layout_mode = 2
+style = 3
+
+[node name="MarginContainer3" type="MarginContainer" parent="TabContainer/Canvas/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_bottom = 10
+
+[node name="Label" type="Label" parent="TabContainer/Canvas/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Text Edge Color"
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Canvas/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_right = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Canvas/ScrollContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Canvas/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TabContainer/Canvas/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Active"
+
+[node name="TextEdgeActiveColor" type="ColorPickerButton" parent="TabContainer/Canvas/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="TabContainer/Canvas/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TabContainer/Canvas/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Deactivate"
+
+[node name="TextEdgeDeactiveColor" type="ColorPickerButton" parent="TabContainer/Canvas/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label2" type="Label" parent="TabContainer/Canvas/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Padding Color"
+
+[node name="MarginContainer2" type="MarginContainer" parent="TabContainer/Canvas/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Canvas/ScrollContainer/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Canvas/ScrollContainer/VBoxContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TabContainer/Canvas/ScrollContainer/VBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Active"
+
+[node name="PaddingActiveColor" type="ColorPickerButton" parent="TabContainer/Canvas/ScrollContainer/VBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[connection signal="close_requested" from="." to="." method="_on_close_requested"]
+[connection signal="changed" from="TabContainer/General/VBoxContainer/HBoxContainer/FontSizeInput" to="TabContainer/General" method="_on_font_size_input_changed"]
+[connection signal="color_changed" from="TabContainer/Canvas/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/TextEdgeActiveColor" to="TabContainer/Canvas" method="_on_text_edge_active_color_color_changed"]
+[connection signal="color_changed" from="TabContainer/Canvas/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2/TextEdgeDeactiveColor" to="TabContainer/Canvas" method="_on_text_edge_deactive_color_color_changed"]
+[connection signal="color_changed" from="TabContainer/Canvas/ScrollContainer/VBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/PaddingActiveColor" to="TabContainer/Canvas" method="_on_padding_active_color_color_changed"]

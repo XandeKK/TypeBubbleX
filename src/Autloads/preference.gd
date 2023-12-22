@@ -35,14 +35,11 @@ var styles : Dictionary = {
 
 var colors : Dictionary = {
 	'text_edge': {
-		'active': Color.RED,
-		'disabled': Color(Color.RED, 0.3),
-	},
-	'rect_rotation': {
-		'active': Color.RED
+		'active': Color(Color.RED, 0.7),
+		'deactive': Color(Color.RED, 0.3),
 	},
 	'padding': {
-		'active': Color.BLUE
+		'active': Color(Color.BLUE, 0.7)
 	}
 }
 

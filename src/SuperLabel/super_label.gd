@@ -32,14 +32,14 @@ func _draw():
 		var top = text.style_box.get_margin(SIDE_TOP)
 		var bottom = text.style_box.get_margin(SIDE_BOTTOM)
 		# draw content margin rect
-		draw_rect(Rect2(Vector2(left, top), size - Vector2(right + left, bottom + top)), Color.BLUE, false, 3)
+		draw_rect(Rect2(Vector2(left, top), size - Vector2(right + left, bottom + top)), Preference.colors.padding.active, false, 3)
 		# draw rotation rect
-		draw_rect(Rect2(rotation_node.position, rotation_node.size), Color.RED)
+		draw_rect(Rect2(rotation_node.position, rotation_node.size), Preference.colors.text_edge.active)
 		# draw text rect
-		draw_rect(Rect2(Vector2.ZERO, size), Color.RED, false, 3)
+		draw_rect(Rect2(Vector2.ZERO, size), Preference.colors.text_edge.active, false, 3)
 	else:
 		# draw text rect
-		draw_rect(Rect2(Vector2.ZERO, size), Color(Color.RED, 0.3), false, 3)
+		draw_rect(Rect2(Vector2.ZERO, size), Preference.colors.text_edge.deactive, false, 3)
 
 func init(_position : Vector2, _size : Vector2) -> void:
 	self.position = _position

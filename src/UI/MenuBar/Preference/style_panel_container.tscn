@@ -1,0 +1,57 @@
+[gd_scene load_steps=5 format=3 uid="uid://vrrd8l5enokq"]
+
+[ext_resource type="Script" path="res://src/UI/MenuBar/Preference/style_panel_container.gd" id="1_4hyd8"]
+[ext_resource type="PackedScene" uid="uid://de5x4r7qbv6uk" path="res://src/UI/Components/input_with_drop_down.tscn" id="1_i8wut"]
+[ext_resource type="PackedScene" uid="uid://bnbfjh0vj0q0x" path="res://src/UI/Components/input.tscn" id="2_w4jlg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2j6d8"]
+
+[node name="StylePanelContainer" type="PanelContainer"]
+offset_right = 618.0
+offset_bottom = 118.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_2j6d8")
+script = ExtResource("1_4hyd8")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="StyleLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Style"
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_right = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Default Font"
+
+[node name="DefaultFontInputWithDropDown" parent="VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("1_i8wut")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Font Size"
+
+[node name="FontSizeInput" parent="VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2" instance=ExtResource("2_w4jlg")]
+layout_mode = 2
+size_flags_horizontal = 3
+type = 1
+suffix = "Px"
+
+[connection signal="changed" from="VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/DefaultFontInputWithDropDown" to="." method="_on_default_font_input_with_drop_down_changed"]
+[connection signal="changed" from="VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2/FontSizeInput" to="." method="_on_font_size_input_changed"]
