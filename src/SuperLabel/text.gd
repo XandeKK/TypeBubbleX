@@ -12,11 +12,12 @@ var font_size : int = 20 : get = _get_font_size, set = _set_font_size
 var bold : bool = false : get = _get_bold, set = _set_bold
 var italic : bool = false : get = _get_italic, set = _set_italic
 var uppercase : bool = false : get = is_uppercase, set = _set_uppercase
+var font_name : String = '' : get = _get_font_name, set = _set_font_name
 var font_settings : Dictionary = {
-	'regular': null,
-	'bold': null,
-	'italic': null,
-	'bold_italic': null
+	'regular': FontVariation.new(),
+	'bold': FontVariation.new(),
+	'italic': FontVariation.new(),
+	'bold-italic': FontVariation.new()
 } : get = _get_font_settings, set = _set_font_settings
 
 var lights : Lights = Lights.new() : get = _get_lights, set = _set_lights
@@ -46,11 +47,6 @@ func _ready():
 	
 	lights.parent = letters
 	patterns.parent = letters
-	
-	var _font = FontFile.new()
-	_font.load_dynamic_font('/home/xandekk/Python/typeset/static/fonts/Bearskin/Bearskin-Regular.otf')
-	font_settings.regular = _font
-	text = "And what of the children? Surely they can't blamed for our mistakes?"
 
 func _prepare_glyphs_to_render() -> void:
 	glyphs_to_render.clear()
@@ -154,14 +150,13 @@ func _shape() -> void:
 				_font_size = text_style.font_size
 			
 		if _bold and _italic:
-			_current_font = _font_settings['bold_italic']
+			_current_font = _font_settings['bold-italic']
 		elif _bold:
 			_current_font = _font_settings['bold']
 		elif _italic:
 			_current_font = _font_settings['italic']
 		else:
 			_current_font = _font_settings['regular']
-			
 			
 		assert(_current_font != null, 'Does not have the font.')
 		
@@ -268,6 +263,12 @@ func is_uppercase() -> bool:
 func _set_uppercase(value : bool) -> void:
 	uppercase = value
 	_shape()
+
+func _get_font_name() -> String:
+	return font_name
+
+func _set_font_name(value : String) -> void:
+	font_name = value
 
 func _get_font_settings() -> Dictionary:
 	return font_settings

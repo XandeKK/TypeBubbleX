@@ -22,6 +22,10 @@ func _ready():
 	connect_all()
 
 func connect_all():
+	font_name.callable_search = search_font
+	font_name.list = FontConfigManager.fonts
+	font_name.key = 'font'
+	
 	font_name.changed.connect(set_font)
 	font_size.changed.connect(set_font_size)
 	color.color_changed.connect(set_color)
@@ -56,7 +60,7 @@ func set_values(node : Control):
 		blank_all()
 		return
 
-	#font_name.text = node.text.font
+	font_name.text = node.text.font_name
 	font_size.text = str(node.text.font_size)
 	color.color = node.text.color
 	bold.button_pressed = node.text.bold
@@ -73,8 +77,13 @@ func set_values(node : Control):
 	if not node.is_connected('rotation_changed', set_input_rotation_text):
 		node.rotation_changed.connect(set_input_rotation_text)
 
+func search_font(font : Dictionary, new_text : String):
+	return font['font'].to_lower().contains(new_text) or \
+		font['nickname'] != null and font['nickname'].to_lower().contains(new_text)
+
 func set_font(value : String) -> void:
-	print(value)
+	canvas.focused_object.text.font_name = value
+	canvas.focused_object.text.font_settings = FontConfigManager.fonts[value]
 
 func set_font_size(value) -> void:
 	if not canvas.focused_object:
