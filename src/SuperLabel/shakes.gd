@@ -30,3 +30,8 @@ func remove_shake_global() -> void:
 
 func _set_parent(value : Control):
 	parent = value
+
+func to_dictionary() -> Dictionary:
+	return {
+		'list': get_shakes().map(func(shake): return shake.to_dictionary())
+	}

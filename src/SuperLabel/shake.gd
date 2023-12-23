@@ -116,3 +116,16 @@ func _get_alpha() -> float:
 func _set_alpha(value : float) -> void:
 	alpha = value
 	queue_redraw()
+
+func to_dictionary() -> Dictionary:
+	return {
+		'start': start,
+		'end': end,
+		'is_global': is_global,
+		'two_direction': two_direction,
+		'x': x,
+		'y': y,
+		'intensity': intensity,
+		'quantity': quantity,
+		'alpha': alpha
+	}

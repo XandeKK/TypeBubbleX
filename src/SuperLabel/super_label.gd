@@ -85,3 +85,18 @@ func set_rotation_text(value : float):
 func set_content_margin(margin : Side, offset : float):
 	text.set_content_margin(margin, offset)
 	queue_redraw()
+
+func to_dictionary() -> Dictionary:
+	return {
+		'position': position,
+		'size': size,
+		'rotation_degrees': rotation_degrees,
+		'text': text.to_dictionary(),
+		'perspective': {
+			'fov': texture_rect.material.get_shader_parameter('fov'),
+			'x_rot': texture_rect.material.get_shader_parameter('x_rot'),
+			'y_rot': texture_rect.material.get_shader_parameter('y_rot'),
+			'inset': texture_rect.material.get_shader_parameter('inset'),
+			'cull_back': texture_rect.material.get_shader_parameter('cull_back'),
+		}
+	}

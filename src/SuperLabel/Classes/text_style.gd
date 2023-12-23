@@ -150,3 +150,17 @@ func _get_shakes() -> Array:
 
 func _set_shakes(value : Array) -> void:
 	shakes = value.duplicate()
+
+func to_dictionary() -> Dictionary:
+	return {
+		'start': start,
+		'end': end,
+		'bold': bold,
+		'italic': italic,
+		'font_size': font_size,
+		'font_settings': font_settings,
+		'color': color,
+		'uppercase': uppercase,
+		'outlines': outlines.map(func(outline): return outline.to_dictionary()),
+		'shakes': shakes.map(func(shake): return shake.to_dictionary()),
+	}

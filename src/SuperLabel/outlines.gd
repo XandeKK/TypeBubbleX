@@ -18,3 +18,8 @@ func remove(node : Control) -> void:
 
 func set_parent(value : Control):
 	parent = value
+
+func to_dictionary() -> Dictionary:
+	return {
+		'list': get_outlines().map(func(outline): return outline.to_dictionary())
+	}

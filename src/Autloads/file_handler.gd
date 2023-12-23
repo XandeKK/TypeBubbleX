@@ -36,7 +36,8 @@ func open(obj : Dictionary):
 	canvas.style = obj['style']
 
 func save():
-	pass
+	var file = FileAccess.open("/home/xandekk/Documents/image.typex", FileAccess.WRITE)
+	file.store_var(canvas.to_dictionary(), true)
 
 func next():
 	if current_page == cleaned_images_path.size() - 1:

@@ -32,3 +32,8 @@ func _get_list() -> Array[TextStyle]:
 
 func _set_list(value : Array[TextStyle]) -> void:
 	list = value
+
+func to_dictionary() -> Dictionary:
+	return {
+		'list': list.map(func(text_style): return text_style.to_dictionary())
+	}

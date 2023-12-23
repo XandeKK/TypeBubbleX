@@ -67,3 +67,13 @@ func _get_ofs() -> Vector2:
 func _set_ofs(value : Vector2) -> void:
 	offset = value
 	queue_redraw()
+
+func to_dictionary() -> Dictionary:
+	return {
+		'start': start,
+		'end': end,
+		'is_global': is_global,
+		'color': color,
+		'outline_size': outline_size,
+		'offset': offset
+	}

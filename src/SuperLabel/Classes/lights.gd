@@ -30,3 +30,8 @@ func _get_list() -> Array[TextureRect]:
 
 func _set_list(value : Array[TextureRect]) -> void:
 	list = value
+
+func to_dictionary() -> Dictionary:
+	return {
+		#'list': list.map(func(light): return light.to_dictionary())
+	}

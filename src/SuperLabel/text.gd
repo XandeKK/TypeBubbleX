@@ -309,3 +309,28 @@ func get_glyphs_to_render() -> Array[Dictionary]:
 func set_content_margin(margin : Side, offset : float):
 	style_box.set_content_margin(margin, offset)
 	_shape()
+
+func to_dictionary() -> Dictionary:
+	return {
+		'text': text,
+		'color': color,
+		'letter_spacing': letter_spacing,
+		'line_spacing': line_spacing,
+		'font_size': font_size,
+		'bold': bold,
+		'italic': italic,
+		'uppercase': uppercase,
+		'font_name': font_name,
+		#'font_settings': font_settings,
+		#'lights': lights.to_dictionary(),
+		#'patterns': patterns.to_dictionary(),
+		'text_styles': text_styles.to_dictionary(),
+		'content_margins': {
+			SIDE_LEFT: style_box.get_margin(SIDE_LEFT),
+			SIDE_TOP: style_box.get_margin(SIDE_TOP),
+			SIDE_BOTTOM: style_box.get_margin(SIDE_BOTTOM),
+			SIDE_RIGHT: style_box.get_margin(SIDE_RIGHT)
+		},
+		'shakes': shakes.to_dictionary(),
+		'outlines': outlines.to_dictionary()
+	}
