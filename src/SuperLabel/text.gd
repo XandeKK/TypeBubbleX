@@ -321,7 +321,6 @@ func to_dictionary() -> Dictionary:
 		'italic': italic,
 		'uppercase': uppercase,
 		'font_name': font_name,
-		#'font_settings': font_settings,
 		#'lights': lights.to_dictionary(),
 		#'patterns': patterns.to_dictionary(),
 		'text_styles': text_styles.to_dictionary(),

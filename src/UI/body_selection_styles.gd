@@ -13,6 +13,15 @@ extends VBoxContainer
 var node : TextStyle : set = _set_node
 var parent :  : set = _set_parent
 
+func _ready():
+	font_input.callable_search = search_font
+	font_input.list = FontConfigManager.fonts
+	font_input.key = 'font'
+
+func search_font(font : Dictionary, new_text : String):
+	return font['font'].to_lower().contains(new_text) or \
+		font['nickname'] != null and font['nickname'].to_lower().contains(new_text)
+
 func _set_node(value : TextStyle) -> void:
 	if not value:
 		return
@@ -20,7 +29,7 @@ func _set_node(value : TextStyle) -> void:
 	
 	start_input.text = str(node.start)
 	end_input.text = str(node.end)
-	#font_input.text = str(node.font)
+	font_input.text = node.font_name
 	font_size_input.text = str(node.font_size)
 	color_input.color = node.color
 	bold_check_button.button_pressed = node.bold
@@ -80,3 +89,10 @@ func _on_italic_toggled(toggled_on):
 		return
 	
 	node.italic = toggled_on
+
+func _on_font_name_changed(value):
+	if not node:
+		return
+	
+	node.font_name = value
+	node.font_settings = FontConfigManager.fonts[value]

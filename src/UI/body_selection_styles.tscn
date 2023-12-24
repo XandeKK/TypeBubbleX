@@ -211,6 +211,7 @@ size_flags_vertical = 3
 [connection signal="pressed" from="HBoxContainer/RemoveButton" to="." method="_on_remove_button_pressed"]
 [connection signal="changed" from="StartContainer/StartInput" to="." method="_on_start_input_changed"]
 [connection signal="changed" from="EndContainer/EndInput" to="." method="_on_end_input_changed"]
+[connection signal="changed" from="FontContainer/FontName" to="." method="_on_font_name_changed"]
 [connection signal="changed" from="FontContainer/HBoxContainer/FontSize" to="." method="_on_font_size_changed"]
 [connection signal="color_changed" from="FontContainer/HBoxContainer/Color" to="." method="_on_color_color_changed"]
 [connection signal="toggled" from="BoldItalicContainer/Bold" to="." method="_on_bold_toggled"]
