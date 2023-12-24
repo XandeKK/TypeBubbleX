@@ -38,8 +38,30 @@ func open(obj : Dictionary):
 func save():
 	var data : Dictionary = canvas.to_dictionary()
 	
+	handler_fonts(data)
+	handler_images(data)
+	
+	# Now, all that’s left to do is get to where the user wants to save.
 	var file = FileAccess.open("/home/xandekk/Documents/image.typex", FileAccess.WRITE)
 	file.store_var(data, true)
+
+func handler_fonts(data : Dictionary) -> void:
+	data.fonts = {}
+	for text in data.texts:
+		if not data.fonts.has(text.text.font_name):
+			data.fonts[text.text.font_name] = FontConfigManager.fonts[text.text.font_name]
+		for text_style in text.text.text_styles.list:
+			if not data.fonts.has(text_style.font_name):
+				data.fonts[text_style.font_name] = FontConfigManager.fonts[text_style.font_name]
+
+func handler_images(data : Dictionary) -> void:
+	if cleaned_images_path[current_page].ends_with('.png'):
+		data.raw_image = data.raw_image.save_png_to_buffer()
+		data.cleaned_image = data.cleaned_image.save_png_to_buffer()
+	elif cleaned_images_path[current_page].ends_with('.jpg') or cleaned_images_path[current_page].ends_with('.jpeg'):
+		data.raw_image = data.raw_image.save_jpg_to_buffer()
+		data.cleaned_image = data.cleaned_image.save_jpg_to_buffer()
+	# add webp
 
 func next():
 	if current_page == cleaned_images_path.size() - 1:
@@ -76,7 +98,8 @@ func load_image_in_canvas():
 	emit_signal('page_changed')
 
 func remove_files_non_images(files : Array):
-	return files.filter(func(file): return file.ends_with('.png') or file.ends_with('.jpg') or file.ends_with('.jpeg') or file.ends_with('.gif'))
+	# add webp
+	return files.filter(func(file): return file.ends_with('.png') or file.ends_with('.jpg') or file.ends_with('.jpeg'))
 
 func organize_files(files : Array):
 	files.sort_custom(compare_files)

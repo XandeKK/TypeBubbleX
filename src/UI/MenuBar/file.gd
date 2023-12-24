@@ -62,7 +62,6 @@ func _on_open_selected() -> void:
 
 func _on_save_selected() -> void:
 	FileHandler.save()
-	print("Save selected")
 
 func _on_preference_selected() -> void:
 	preference.show()
