@@ -73,7 +73,6 @@ func _set_style(value : Preference.Styles) -> void:
 	style = value
 
 func to_dictionary() -> Dictionary:
-	# remember to convert texture according to image extension
 	return {
 		'texts': objects.get_children().map(func(text): return text.to_dictionary()),
 		'raw_image': raw_image.texture.get_image(),

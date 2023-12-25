@@ -32,10 +32,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 tab_alignment = 1
-current_tab = 1
 
 [node name="General" type="PanelContainer" parent="TabContainer"]
-visible = false
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_qdvbf")
 script = ExtResource("2_db0pj")
@@ -58,6 +56,7 @@ type = 1
 suffix = "Px"
 
 [node name="Canvas" type="PanelContainer" parent="TabContainer"]
+visible = false
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_qdvbf")
 script = ExtResource("4_jomix")

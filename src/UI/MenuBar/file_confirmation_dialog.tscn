@@ -1,101 +1,83 @@
-[gd_scene load_steps=2 format=3 uid="uid://cn2srwer6532q"]
+[gd_scene load_steps=4 format=3 uid="uid://cn2srwer6532q"]
 
+[ext_resource type="Theme" uid="uid://ds37dvaj7sob8" path="res://Assets/Themes/main.tres" id="1_1ylmr"]
 [ext_resource type="Script" path="res://src/UI/MenuBar/file_confirmation_dialog.gd" id="1_7r4f8"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_luge8"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.160784, 0.160784, 0.160784, 0.866667)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
 [node name="FileConfirmationDialog" type="ConfirmationDialog"]
+title = ""
 initial_position = 1
-size = Vector2i(500, 193)
+size = Vector2i(500, 120)
 visible = true
 unresizable = true
-borderless = true
+theme = ExtResource("1_1ylmr")
 script = ExtResource("1_7r4f8")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="PanelContainer" type="PanelContainer" parent="."]
 offset_left = 8.0
 offset_top = 8.0
-offset_right = -8.0
-offset_bottom = -49.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_right = 492.0
+offset_bottom = 77.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_luge8")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
-text = "Raw"
 
-[node name="RawLineEdit" type="LineEdit" parent="VBoxContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+text = "Path"
 
-[node name="RawButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PathLineEdit" type="LineEdit" parent="PanelContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PathButton" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "open"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer2"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Cleaned"
-
-[node name="CleanedLineEdit" type="LineEdit" parent="VBoxContainer/HBoxContainer2"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="CleanedButton" type="Button" parent="VBoxContainer/HBoxContainer2"]
-layout_mode = 2
-text = "open"
-
-[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer3"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Texts"
-
-[node name="TextsLineEdit" type="LineEdit" parent="VBoxContainer/HBoxContainer3"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="TextsButton" type="Button" parent="VBoxContainer/HBoxContainer3"]
-layout_mode = 2
-text = "open"
-
-[node name="HBoxContainer4" type="HBoxContainer" parent="VBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer4"]
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Styles"
 
-[node name="StylesOptionButton" type="OptionButton" parent="VBoxContainer/HBoxContainer4"]
+[node name="StylesOptionButton" type="OptionButton" parent="PanelContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_stretch_ratio = 1.24
-selected = 0
 
-[node name="HBoxContainer5" type="HBoxContainer" parent="VBoxContainer"]
+[node name="HBoxContainer3" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
 visible = false
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer5"]
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "IA"
 
-[node name="IACheckBox" type="CheckBox" parent="VBoxContainer/HBoxContainer5"]
+[node name="IACheckBox" type="CheckBox" parent="PanelContainer/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
 
-[node name="RawFileDialog" type="FileDialog" parent="."]
+[node name="PathFileDialog" type="FileDialog" parent="."]
 title = "Open a Directory"
 initial_position = 1
 size = Vector2i(708, 159)
@@ -105,31 +87,13 @@ access = 2
 filters = PackedStringArray("*")
 use_native_dialog = true
 
-[node name="CleanedFileDialog" type="FileDialog" parent="."]
-title = "Open a Directory"
-initial_position = 1
-size = Vector2i(708, 500)
-ok_button_text = "Select Current Folder"
-file_mode = 2
-access = 2
-filters = PackedStringArray("*")
-use_native_dialog = true
-
-[node name="TextsFileDialog" type="FileDialog" parent="."]
-title = "Open a File"
-initial_position = 1
-size = Vector2i(708, 500)
-ok_button_text = "Open"
-file_mode = 0
-access = 2
-filters = PackedStringArray("*")
-use_native_dialog = true
+[node name="Panel" type="Panel" parent="."]
+visible = false
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 492.0
+offset_bottom = 77.0
 
 [connection signal="confirmed" from="." to="." method="_on_confirmed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/RawButton" to="." method="_on_raw_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer2/CleanedButton" to="." method="_on_cleaned_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer3/TextsButton" to="." method="_on_texts_button_pressed"]
-[connection signal="item_selected" from="VBoxContainer/HBoxContainer4/StylesOptionButton" to="." method="_on_styles_option_button_item_selected"]
-[connection signal="dir_selected" from="RawFileDialog" to="." method="_on_raw_file_dialog_dir_selected"]
-[connection signal="dir_selected" from="CleanedFileDialog" to="." method="_on_cleaned_file_dialog_dir_selected"]
-[connection signal="file_selected" from="TextsFileDialog" to="." method="_on_texts_file_dialog_file_selected"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/HBoxContainer/HBoxContainer/PathButton" to="." method="_on_path_button_pressed"]
+[connection signal="dir_selected" from="PathFileDialog" to="." method="_on_path_file_dialog_dir_selected"]
