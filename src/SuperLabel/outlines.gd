@@ -23,3 +23,8 @@ func to_dictionary() -> Dictionary:
 	return {
 		'list': get_outlines().map(func(outline): return outline.to_dictionary())
 	}
+
+func load(data : Dictionary) -> void:
+	for outline in data['list']:
+		add()
+		get_outlines()[-1].load(outline)

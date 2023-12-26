@@ -333,3 +333,27 @@ func to_dictionary() -> Dictionary:
 		'shakes': shakes.to_dictionary(),
 		'outlines': outlines.to_dictionary()
 	}
+
+func load(data : Dictionary) -> void:
+	text = data['text']
+	color = data['color']
+	letter_spacing = data['letter_spacing']
+	line_spacing = data['line_spacing']
+	font_size = data['font_size']
+	bold = data['bold']
+	italic = data['italic']
+	uppercase = data['uppercase']
+	font_name = data['font_name']
+	# I will change it to make it shareable.
+	if FontConfigManager.fonts.has(font_name):
+		font_settings = FontConfigManager.fonts[font_name]
+
+	text_styles.load(data['text_styles'])
+	
+	set_content_margin(SIDE_LEFT, data['content_margins'][SIDE_LEFT])
+	set_content_margin(SIDE_TOP, data['content_margins'][SIDE_TOP])
+	set_content_margin(SIDE_BOTTOM, data['content_margins'][SIDE_BOTTOM])
+	set_content_margin(SIDE_LEFT, data['content_margins'][SIDE_LEFT])
+	
+	shakes.load(data['shakes'])
+	outlines.load(data['outlines'])

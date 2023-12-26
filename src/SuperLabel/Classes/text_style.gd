@@ -129,7 +129,7 @@ func _get_font_settings() -> Dictionary:
 	return font_settings
 
 func _set_font_settings(value : Dictionary) -> void:
-	font_settings = value.duplicate()
+	font_settings = value
 	parent._shape()
 
 func _get_color() -> Color:
@@ -171,3 +171,23 @@ func to_dictionary() -> Dictionary:
 		'outlines': outlines.map(func(outline): return outline.to_dictionary()),
 		'shakes': shakes.map(func(shake): return shake.to_dictionary()),
 	}
+
+func load(data : Dictionary) -> void:
+	bold = data['bold']
+	italic = data['italic']
+	font_size = data['font_size']
+	font_name = data['font_name']
+	# I will change it to make it shareable.
+	if FontConfigManager.fonts.has(font_name):
+		font_settings = FontConfigManager.fonts[font_name]
+	color = data['color']
+	uppercase = data['uppercase']
+	
+	for outline in data['outlines']:
+		add_outline()
+		outlines[-1].load(outline)
+	
+	for shake in data['shakes']:
+		add_shake()
+		shakes[-1].load(shake)
+	

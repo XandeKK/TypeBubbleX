@@ -3,11 +3,13 @@ extends Node
 var canvas : SubViewportContainer : set = set_canvas
 var cleaned_images_path : Array : get = get_cleaned_images_path
 var raw_images_path : Array
+var load_images_path : Array
 var current_page : int = 0 : get = get_current_page
 var text_list : ItemList : set = _set_text_list
 var default_path : String
 var cleaned_path : String
 var raw_path : String
+var load_path : String
 
 signal page_changed
 signal pages_add
@@ -19,6 +21,7 @@ func open(obj : Dictionary):
 	
 	cleaned_path = default_path.path_join('cleaned')
 	raw_path = default_path.path_join('raw')
+	load_path = default_path.path_join('saves')
 	var text_path : String = default_path.path_join('text.txt')
 	
 	if not DirAccess.dir_exists_absolute(cleaned_path):
@@ -36,6 +39,12 @@ func open(obj : Dictionary):
 		
 		organize_files(raw_images_path)
 	
+	if DirAccess.dir_exists_absolute(load_path):
+		load_images_path = Array(DirAccess.get_files_at(load_path))
+		load_images_path.filter(func(file): return file.ends_with('.typex'))
+		
+		organize_files(load_images_path)
+	
 	set_texts(text_path)
 	
 	emit_signal('pages_add')
@@ -46,8 +55,7 @@ func open(obj : Dictionary):
 
 func save() -> void:
 	var data : Dictionary = canvas.to_dictionary()
-	
-	handler_fonts(data)
+
 	handler_images(data)
 	
 	var save_path : String = default_path.path_join('saves')
@@ -55,8 +63,14 @@ func save() -> void:
 		DirAccess.make_dir_recursive_absolute(save_path)
 	save_path = save_path.path_join(cleaned_images_path[current_page]).get_basename()
 	
-	var file = FileAccess.open(save_path, FileAccess.WRITE)
-	file.store_var(data, true)
+	var file = FileAccess.open(save_path + '.typex', FileAccess.WRITE)
+	file.store_var(data)
+	
+	var filename_load : String = cleaned_images_path[current_page].get_basename() + '.typex'
+	
+	if not load_images_path.has(filename_load):
+		load_images_path.append(filename_load)
+		organize_files(load_images_path)
 	
 	save_image()
 
@@ -76,25 +90,19 @@ func save_image() -> void:
 	elif cleaned_images_path[current_page].ends_with('.webp'):
 		image.save_webp(save_path)
 
-func handler_fonts(data : Dictionary) -> void:
-	data.fonts = {}
-	for text in data.texts:
-		if not data.fonts.has(text.text.font_name) and text.text.font_name:
-			data.fonts[text.text.font_name] = FontConfigManager.fonts[text.text.font_name]
-		for text_style in text.text.text_styles.list:
-			if not data.fonts.has(text_style.font_name):
-				data.fonts[text_style.font_name] = FontConfigManager.fonts[text_style.font_name]
-
 func handler_images(data : Dictionary) -> void:
 	if cleaned_images_path[current_page].ends_with('.png'):
 		data.raw_image = data.raw_image.save_png_to_buffer()
 		data.cleaned_image = data.cleaned_image.save_png_to_buffer()
+		data['extension'] = 'png'
 	elif cleaned_images_path[current_page].ends_with('.jpg') or cleaned_images_path[current_page].ends_with('.jpeg'):
 		data.raw_image = data.raw_image.save_jpg_to_buffer()
 		data.cleaned_image = data.cleaned_image.save_jpg_to_buffer()
+		data['extension'] = 'jpg'
 	elif cleaned_images_path[current_page].ends_with('.webp'):
 		data.raw_image = data.raw_image.save_webp_to_buffer()
 		data.cleaned_image = data.cleaned_image.save_webp_to_buffer()
+		data['extension'] = 'webp'
 
 func next():
 	if current_page == cleaned_images_path.size() - 1:
@@ -124,14 +132,22 @@ func add_path_absolute(files : Array, path : String):
 	return files.map(func(file): return path.path_join(file))
 
 func load_image_in_canvas():
-	if cleaned_images_path.is_empty():
+	if cleaned_images_path.is_empty() and load_images_path.is_empty():
 		print('there are no images')
 		return
 	
-	canvas.load_cleaned_image(load_image(cleaned_path.path_join(cleaned_images_path[current_page])))
-	if not raw_images_path.is_empty():
-		canvas.load_raw_image(load_image(raw_path.path_join(raw_images_path[current_page])))
+	canvas.remove_texts()
 	
+	if current_page < load_images_path.size() and load_images_path[current_page].get_basename() == cleaned_images_path[current_page].get_basename():
+		var path = load_path.path_join(load_images_path[current_page])
+		var file = FileAccess.open(path, FileAccess.READ)
+		var data = file.get_var()
+		canvas.load(data)
+	else:
+		canvas.load_cleaned_image(load_image(cleaned_path.path_join(cleaned_images_path[current_page])))
+		if not raw_images_path.is_empty():
+			canvas.load_raw_image(load_image(raw_path.path_join(raw_images_path[current_page])))
+		
 	emit_signal('page_changed')
 
 func remove_files_non_images(files : Array):

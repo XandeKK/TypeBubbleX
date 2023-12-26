@@ -39,7 +39,7 @@ func _input(event):
 		queue_redraw()
 
 func add_text(drawing_start_position : Vector2, mouse_position : Vector2):
-	target.add_object(text_scene, drawing_start_position , mouse_position, {'text': ''})
+	target.add_object(text_scene, drawing_start_position , mouse_position)
 
 func _on_mouse_entered():
 	is_within = true

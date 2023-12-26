@@ -37,3 +37,8 @@ func to_dictionary() -> Dictionary:
 	return {
 		'list': list.map(func(text_style): return text_style.to_dictionary())
 	}
+
+func load(data : Dictionary) -> void:
+	for text_style in data['list']:
+		add(text_style['start'], text_style['end'])
+		list[-1].load(text_style)

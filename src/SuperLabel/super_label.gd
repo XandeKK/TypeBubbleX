@@ -107,3 +107,14 @@ func to_dictionary() -> Dictionary:
 			'cull_back': texture_rect.material.get_shader_parameter('cull_back'),
 		}
 	}
+
+func load(data : Dictionary) -> void:
+	rotation_degrees = data['rotation_degrees']
+	
+	texture_rect.material.set_shader_parameter('fov', data['perspective']['fov'])
+	texture_rect.material.set_shader_parameter('x_rot', data['perspective']['x_rot'])
+	texture_rect.material.set_shader_parameter('y_rot', data['perspective']['y_rot'])
+	texture_rect.material.set_shader_parameter('inset', data['perspective']['inset'])
+	texture_rect.material.set_shader_parameter('cull_back', data['perspective']['cull_back'])
+	
+	text.load(data['text'])

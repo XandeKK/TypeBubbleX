@@ -35,3 +35,8 @@ func to_dictionary() -> Dictionary:
 	return {
 		'list': get_shakes().map(func(shake): return shake.to_dictionary())
 	}
+
+func load(data : Dictionary) -> void:
+	for shake in data['list']:
+		add()
+		get_shakes()[-1].load(shake)

@@ -29,7 +29,7 @@ func load_cleaned_image(texture : ImageTexture) -> void:
 	
 	camera.position = Vector2(texture.get_size().x / 2, get_viewport().size.y - 50)
 
-func add_object(packed_scene : PackedScene, start_position : Vector2, end_position : Vector2, porperties : Dictionary = {}) -> void:
+func add_object(packed_scene : PackedScene, start_position : Vector2, end_position : Vector2) -> void:
 	if not packed_scene:
 		return
 
@@ -66,6 +66,10 @@ func clear_texts() -> void:
 	for child in objects.get_children():
 		child.text.text = ''
 
+func remove_texts() -> void:
+	for child in objects.get_children():
+		remove_object(child)
+
 func _get_style() -> Preference.Styles:
 	return style
 
@@ -81,6 +85,30 @@ func to_dictionary() -> Dictionary:
 		'raw_image': raw_image.texture.get_image(),
 		'cleaned_image': cleaned_image.texture.get_image()
 	}
+
+func load(data : Dictionary) -> void:
+	var raw_image : Image = Image.new()
+	var cleaned_image : Image = Image.new()
+	
+	match data['extension']:
+		'png':
+			raw_image.load_png_from_buffer(data['raw_image'])
+			cleaned_image.load_png_from_buffer(data['cleaned_image'])
+		'jpg':
+			raw_image.load_jpg_from_buffer(data['raw_image'])
+			cleaned_image.load_jpg_from_buffer(data['cleaned_image'])
+		'webp':
+			raw_image.load_webp_from_buffer(data['raw_image'])
+			cleaned_image.load_webp_from_buffer(data['cleaned_image'])
+	
+	load_raw_image(ImageTexture.create_from_image(raw_image))
+	load_cleaned_image(ImageTexture.create_from_image(cleaned_image))
+	
+	var text_scene : PackedScene = load("res://src/SuperLabel/super_label.tscn")
+	
+	for text in data['texts']:
+		add_object(text_scene, text['position'], text['position'] + text['size'])
+		objects.get_child(-1).load(text)
 
 func get_image() -> Image:
 	var raw_visible : bool = raw_image.visible

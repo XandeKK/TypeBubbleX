@@ -77,3 +77,8 @@ func to_dictionary() -> Dictionary:
 		'outline_size': outline_size,
 		'offset': offset
 	}
+
+func load(data : Dictionary) -> void:
+	color = data['color']
+	outline_size = data['outline_size']
+	offset = data['offset']

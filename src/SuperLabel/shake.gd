@@ -129,3 +129,11 @@ func to_dictionary() -> Dictionary:
 		'quantity': quantity,
 		'alpha': alpha
 	}
+
+func load(data : Dictionary) -> void:
+	two_direction = data['two_direction']
+	x = data['x']
+	y = data['y']
+	intensity = data['intensity']
+	quantity = data['quantity']
+	alpha = data['alpha']
