@@ -44,7 +44,7 @@ func open(obj : Dictionary):
 	
 	canvas.style = obj['style']
 
-func save():
+func save() -> void:
 	var data : Dictionary = canvas.to_dictionary()
 	
 	handler_fonts(data)
@@ -57,6 +57,24 @@ func save():
 	
 	var file = FileAccess.open(save_path, FileAccess.WRITE)
 	file.store_var(data, true)
+	
+	save_image()
+
+func save_image() -> void:
+	var image : Image = await canvas.get_image()
+	
+	var save_path : String = default_path.path_join('images')
+	if not DirAccess.dir_exists_absolute(save_path):
+		DirAccess.make_dir_recursive_absolute(save_path)
+	
+	save_path = save_path.path_join(cleaned_images_path[current_page])
+
+	if cleaned_images_path[current_page].ends_with('.png'):
+		image.save_png(save_path)
+	elif cleaned_images_path[current_page].ends_with('.jpg') or cleaned_images_path[current_page].ends_with('.jpeg'):
+		image.save_jpg(save_path)
+	elif cleaned_images_path[current_page].ends_with('.webp'):
+		image.save_webp(save_path)
 
 func handler_fonts(data : Dictionary) -> void:
 	data.fonts = {}

@@ -8,6 +8,7 @@ var move : Move = Move.new()
 var rotation_node : Rotation = Rotation.new()
 
 var focus : bool = false : get = _get_focus
+var can_draw : bool = true : set = _set_can_draw
 
 signal focused(node : Control)
 signal rotation_changed(value)
@@ -26,6 +27,9 @@ func _input(event):
 	move.input(event)
 
 func _draw():
+	if not can_draw:
+		return
+
 	if focus:
 		var left = text.style_box.get_margin(SIDE_LEFT)
 		var right = text.style_box.get_margin(SIDE_RIGHT)
@@ -70,6 +74,9 @@ func set_focus(value : bool = true, emit : bool = true) -> void:
 	focus = value
 	queue_redraw()
 	emit_signal('focused', self) if emit else null
+
+func _set_can_draw(value : bool) -> void:
+	can_draw = value
 
 func convert_to_degrees(value : float):
 	value = int(rad_to_deg(value))

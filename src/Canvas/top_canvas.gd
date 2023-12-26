@@ -72,9 +72,32 @@ func _get_style() -> Preference.Styles:
 func _set_style(value : Preference.Styles) -> void:
 	style = value
 
+func _get_bottom_canvas_sub_viewport() -> SubViewport:
+	return bottom_canvas_sub_viewport
+
 func to_dictionary() -> Dictionary:
 	return {
 		'texts': objects.get_children().map(func(text): return text.to_dictionary()),
 		'raw_image': raw_image.texture.get_image(),
 		'cleaned_image': cleaned_image.texture.get_image()
 	}
+
+func get_image() -> Image:
+	var raw_visible : bool = raw_image.visible
+	raw_image.hide()
+	
+	for object : Control in objects.get_children():
+		object.can_draw = false
+		object.queue_redraw()
+	
+	await RenderingServer.frame_post_draw
+
+	var image : Image = bottom_canvas_sub_viewport.get_texture().get_image()
+	
+	for object in objects.get_children():
+		object.can_draw = true
+		object.queue_redraw()
+	
+	raw_image.visible = raw_visible
+	
+	return image
