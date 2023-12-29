@@ -2,6 +2,7 @@
 // License: MIT
 
 shader_type canvas_item;
+render_mode blend_premul_alpha;
 
 // Camera FOV
 uniform float fov : hint_range(1, 179) = 90;

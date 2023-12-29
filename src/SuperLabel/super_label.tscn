@@ -30,10 +30,11 @@ render_target_update_mode = 4
 [node name="Text" parent="SubViewport" instance=ExtResource("1_6jvrh")]
 
 [node name="TextureRect" type="TextureRect" parent="."]
+texture_filter = 6
 material = SubResource("ShaderMaterial_bbea2")
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 512.0
+offset_bottom = 512.0
 texture = SubResource("ViewportTexture_axbwp")
 
 [node name="Blurs" type="Node" parent="."]
