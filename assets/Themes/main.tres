@@ -1,0 +1,20 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://ds37dvaj7sob8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3xxsh"]
+content_margin_left = 3.0
+content_margin_top = 0.0
+content_margin_right = 3.0
+content_margin_bottom = 0.0
+bg_color = Color(0.278431, 0.278431, 0.278431, 0.6)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 6
+
+[resource]
+default_font_size = 12
+CheckButton/colors/font_color = Color(0.603922, 0.603922, 0.603922, 1)
+CheckButton/colors/font_pressed_color = Color(0.866667, 0.866667, 0.866667, 1)
+Label/colors/font_color = Color(0.603922, 0.603922, 0.603922, 1)
+VScrollBar/styles/scroll = SubResource("StyleBoxFlat_3xxsh")
