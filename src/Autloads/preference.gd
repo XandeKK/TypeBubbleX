@@ -1,33 +1,33 @@
 extends Node
 
-enum Styles {
+enum HQStyles {
 	MANGA,
 	MANHWA,
 	MANHUA,
 	COMIC
 }
 
-var styles_string : Dictionary = {
-	Styles.MANGA: 'Manga',
-	Styles.MANHWA: 'Manhwa',
-	Styles.MANHUA: 'Manhua',
-	Styles.COMIC: 'Comic'
+var hq_styles_string : Dictionary = {
+	HQStyles.MANGA: 'Manga',
+	HQStyles.MANHWA: 'Manhwa',
+	HQStyles.MANHUA: 'Manhua',
+	HQStyles.COMIC: 'Comic'
 }
 
-var styles : Dictionary = {
-	Styles.MANGA: {
+var hq_styles : Dictionary = {
+	HQStyles.MANGA: {
 		'default_font': null,
 		'font_size': 20
 	},
-	Styles.MANHWA: {
+	HQStyles.MANHWA: {
 		'default_font': null,
 		'font_size': 20
 	},
-	Styles.MANHUA: {
+	HQStyles.MANHUA: {
 		'default_font': null,
 		'font_size': 20
 	},
-	Styles.COMIC: {
+	HQStyles.COMIC: {
 		'default_font': null,
 		'font_size': 20
 	}
@@ -51,26 +51,26 @@ var filename : String = "user://preference_configuration.cfg"
 
 var theme : Theme = ResourceLoader.load('res://Assets/Themes/main.tres')
 
-func _ready():
+func _ready() -> void:
 	load_configuration()
 
-func save_configuration():
+func save_configuration() -> void:
 	var config = ConfigFile.new()
 	
-	config.set_value("styles", "styles", styles)
+	config.set_value("hq_styles", "hq_styles", hq_styles)
 	config.set_value("colors", "colors", colors)
 	config.set_value("general", "general", general)
 	
 	config.save(filename)
 
-func load_configuration():
+func load_configuration() -> void:
 	var config = ConfigFile.new()
 	
 	var error = config.load(filename)
 	
 	if error == OK:
-		if config.has_section_key("styles", "styles"):
-			styles = config.get_value("styles", "styles")
+		if config.has_section_key("hq_styles", "hq_styles"):
+			hq_styles = config.get_value("hq_styles", "hq_styles")
 		
 		if config.has_section_key("colors", "colors"):
 			colors = config.get_value("colors", "colors")

@@ -3,12 +3,12 @@ extends ConfirmationDialog
 @onready var path_file_dialog : FileDialog = $PathFileDialog
 
 @onready var path : LineEdit = $PanelContainer/VBoxContainer/HBoxContainer/HBoxContainer/PathLineEdit
-@onready var styles : OptionButton = $PanelContainer/VBoxContainer/HBoxContainer2/StylesOptionButton
+@onready var hq_styles : OptionButton = $PanelContainer/VBoxContainer/HBoxContainer2/StylesOptionButton
 @onready var ia : CheckBox = $PanelContainer/VBoxContainer/HBoxContainer3/IACheckBox
 
 func _ready():
-	for key in Preference.styles_string.keys():
-		styles.add_item(Preference.styles_string[key], key)
+	for key in Preference.hq_styles_string.keys():
+		hq_styles.add_item(Preference.hq_styles_string[key], key)
 
 func _on_confirmed():
 	path.text = path.text.strip_edges()
@@ -25,7 +25,7 @@ func _on_confirmed():
 		
 	FileHandler.open({
 		'path': path.text,
-		'style': styles.selected,
+		'style': hq_styles.selected,
 		'ia': ia.button_pressed,
 	})
 	hide()

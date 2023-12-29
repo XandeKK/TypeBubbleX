@@ -45,17 +45,17 @@ func _draw():
 		# draw text rect
 		draw_rect(Rect2(Vector2.ZERO, size), Preference.colors.text_edge.deactive, false, 3)
 
-func init(_position : Vector2, _size : Vector2, style : Preference.Styles) -> void:
+func init(_position : Vector2, _size : Vector2, style : Preference.HQStyles) -> void:
 	self.position = _position
 	size = _size
 	
-	var font_name = Preference.styles[style]['default_font']
+	var font_name = Preference.hq_styles[style]['default_font']
 	
 	if font_name and FontConfigManager.fonts.has(font_name):
 		text.font_name = font_name
 		text.font_settings = FontConfigManager.fonts[font_name]
 	
-	text.font_size = Preference.styles[style]['font_size']
+	text.font_size = Preference.hq_styles[style]['font_size']
 
 func readjust_size():
 	sub_viewport.size = size

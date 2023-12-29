@@ -9,7 +9,7 @@ extends SubViewportContainer
 @onready var objects : Node = $SubViewport/BottomCanvas/SubViewport/Objects
 
 var focused_object : Control = null : get = get_object
-var style : Preference.Styles : get = _get_style, set = _set_style
+var style : Preference.HQStyles : get = _get_style, set = _set_style
 
 signal object_focus_changed(node : Control)
 signal object_added(node : Control)
@@ -70,10 +70,10 @@ func remove_texts() -> void:
 	for child in objects.get_children():
 		remove_object(child)
 
-func _get_style() -> Preference.Styles:
+func _get_style() -> Preference.HQStyles:
 	return style
 
-func _set_style(value : Preference.Styles) -> void:
+func _set_style(value : Preference.HQStyles) -> void:
 	style = value
 
 func _get_bottom_canvas_sub_viewport() -> SubViewport:
