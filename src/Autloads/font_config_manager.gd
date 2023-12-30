@@ -165,7 +165,7 @@ func process_font_file(font_file_path : String) -> void:
 
 	var font_style = parse_font_style(font_name)
 	
-	if !fonts_path.has(font_style['font']):
+	if not fonts_path.has(font_style['font']):
 		fonts_path[font_style['font']] = {}
 	
 	fonts_path[font_style['font']][font_style['type']] = font_file_path
