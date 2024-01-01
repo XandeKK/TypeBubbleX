@@ -13,9 +13,4 @@ func _draw():
 		for text_style in parent.text_styles.list:
 			if info['glyph']['start'] >= text_style['start'] and info['glyph']['start'] <= text_style['end']:
 				_color = text_style['color']
-#		if parent.curve:
-#			rotation
-#			ofs
-#			TSManager.TS.font_draw_glyph(info['glyph'].font_rid, canvas_item, info['glyph'].font_size, info['ofs'] + info['glyph'].offset, info['glyph'].index, _color)
-#		else:
 		TSManager.TS.font_draw_glyph(info['glyph'].font_rid, canvas_item, info['glyph'].font_size, info['ofs'] + info['glyph'].offset, info['glyph'].index, _color)

@@ -52,7 +52,7 @@ func set_fonts(font_dict : Dictionary) -> void:
 	italic_body.font_name = font_dict['font']
 	bold_italic_body.font_name = font_dict['font']
 
-func _on_font_name_line_edit_text_changed(new_text):
+func _on_font_name_line_edit_text_changed(_new_text):
 	filter_fonts()
 	restock()
 

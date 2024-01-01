@@ -8,6 +8,15 @@ offset_right = 200.0
 offset_bottom = 155.0
 script = ExtResource("1_fw41e")
 
+[node name="CullBackContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="CullBackCheckButton" type="CheckButton" parent="CullBackContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+button_pressed = true
+text = "Cull Back"
+
 [node name="FOVContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
 
@@ -22,8 +31,8 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "90"
 step = 0.001
-max = 179.0
-min = 1.0
+max_value = 179.0
+min_value = 1.0
 
 [node name="XContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
@@ -38,8 +47,8 @@ text = "X
 layout_mode = 2
 size_flags_horizontal = 3
 step = 0.001
-max = 180.0
-min = -180.0
+max_value = 180.0
+min_value = -180.0
 
 [node name="YContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
@@ -53,8 +62,8 @@ text = "Y"
 layout_mode = 2
 size_flags_horizontal = 3
 step = 0.001
-max = 180.0
-min = -180.0
+max_value = 180.0
+min_value = -180.0
 
 [node name="InsertContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
@@ -68,19 +77,10 @@ text = "Insert"
 layout_mode = 2
 size_flags_horizontal = 3
 step = 0.001
-max = 1.0
+max_value = 1.0
 
-[node name="CullBackContainer" type="HBoxContainer" parent="."]
-layout_mode = 2
-
-[node name="CullBackCheckButton" type="CheckButton" parent="CullBackContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-button_pressed = true
-text = "Cull Back"
-
+[connection signal="toggled" from="CullBackContainer/CullBackCheckButton" to="." method="_on_cull_back_check_button_toggled"]
 [connection signal="changed" from="FOVContainer/FOVInput" to="." method="_on_fov_input_changed"]
 [connection signal="changed" from="XContainer/XInput" to="." method="_on_x_input_changed"]
 [connection signal="changed" from="YContainer/YInput" to="." method="_on_y_input_changed"]
 [connection signal="changed" from="InsertContainer/InsertInput" to="." method="_on_insert_input_changed"]
-[connection signal="toggled" from="CullBackContainer/CullBackCheckButton" to="." method="_on_cull_back_check_button_toggled"]

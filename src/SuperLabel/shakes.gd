@@ -33,10 +33,10 @@ func _set_parent(value : Control):
 
 func to_dictionary() -> Dictionary:
 	return {
-		'list': get_shakes().map(func(shake): return shake.to_dictionary())
+		'list': get_shakes().map(func(_shake): return _shake.to_dictionary())
 	}
 
 func load(data : Dictionary) -> void:
-	for shake in data['list']:
+	for _shake in data['list']:
 		add()
-		get_shakes()[-1].load(shake)
+		get_shakes()[-1].load(_shake)

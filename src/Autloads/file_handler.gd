@@ -60,6 +60,10 @@ func process_app_files(path : String) -> void:
 		organize_files(app_files_images_path)
 
 func save() -> void:
+	if cleaned_images_path.is_empty():
+		print("You can't save!")
+		return
+
 	var data : Dictionary = canvas.to_dictionary()
 	handler_images(data)
 	

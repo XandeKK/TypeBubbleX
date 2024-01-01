@@ -13,9 +13,6 @@ func _ready():
 	set_values(null)
 	connect_all()
 	
-	for i in range(100):
-		text_list.add_item(str(i))
-	
 	FileHandler.text_list = text_list
 	
 	scroll_text_list = text_list.get_v_scroll_bar()
@@ -23,6 +20,8 @@ func _ready():
 func _unhandled_input(event):
 	if event is InputEventKey and event.keycode == KEY_SPACE and event.ctrl_pressed and event.is_pressed():
 		if text_list.item_count > 0 and index_text + 1 < text_list.item_count:
+			if not canvas.focused_object:
+				return
 			text_list.select(index_text + 1)
 			_on_text_list_item_selected(index_text + 1)
 
@@ -46,6 +45,9 @@ func set_text() -> void:
 	canvas.focused_object.text.text = text.text
 
 func _on_text_list_item_selected(index):
+	if not canvas.focused_object:
+		return
+
 	index_text = index
 	text.text = text_list.get_item_text(index)
 	set_text()

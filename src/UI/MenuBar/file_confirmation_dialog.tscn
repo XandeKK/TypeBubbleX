@@ -51,7 +51,7 @@ size_flags_horizontal = 3
 
 [node name="PathButton" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
 layout_mode = 2
-text = "open"
+text = "..."
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2

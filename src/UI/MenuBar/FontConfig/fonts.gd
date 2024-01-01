@@ -60,7 +60,7 @@ func filter_fonts() -> void:
 			continue
 		filtered_fonts.append(font)
 
-func _on_font_name_line_edit_text_changed(new_text):
+func _on_font_name_line_edit_text_changed(_new_text):
 	filter_fonts()
 	current_page = 0
 	restock()

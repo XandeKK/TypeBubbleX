@@ -102,7 +102,7 @@ text = "Rotation"
 [node name="Rotation" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/RotationContainer" index="1" instance=ExtResource("4_kjib7")]
 layout_mode = 2
 size_flags_horizontal = 3
-max = 360.0
+max_value = 360.0
 
 [node name="PaddingLabel" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="6"]
 layout_mode = 2

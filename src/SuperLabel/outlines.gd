@@ -25,6 +25,6 @@ func to_dictionary() -> Dictionary:
 	}
 
 func load(data : Dictionary) -> void:
-	for outline in data['list']:
+	for _outline in data['list']:
 		add()
-		get_outlines()[-1].load(outline)
+		get_outlines()[-1].load(_outline)

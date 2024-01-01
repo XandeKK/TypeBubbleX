@@ -1,8 +1,8 @@
 extends LineEdit
 
 @export var step : float = 1.0
-@export var max : float = 100.0
-@export var min : float = 0.0
+@export var max_value : float = 100.0
+@export var min_value : float = 0.0
 @export var suffix : String = ''
 
 @onready var slider : HSlider = $HSlider
@@ -12,8 +12,8 @@ signal changed(value)
 func _ready():
 	text = '0.0' if text.is_empty() else text
 	
-	slider.max_value = max
-	slider.min_value = min
+	slider.max_value = max_value
+	slider.min_value = min_value
 	slider.step = step
 	
 	$Label.text = suffix
@@ -47,27 +47,21 @@ func _on_gui_input(event):
 	
 	var number = text.to_float()
 	
-	if event.keycode == KEY_UP and event.is_pressed() and number < max:
+	if event.keycode == KEY_UP and event.is_pressed() and number < max_value:
 		number += step
-		text = formart_string(str(number))
+		set_value(number)
 		caret_column = text.length()
 		emit_signal('changed', text.to_float())
-	elif event.keycode == KEY_DOWN and event.is_pressed() and number > min:
+	elif event.keycode == KEY_DOWN and event.is_pressed() and number > min_value:
 		number -= step
-		text = formart_string(str(number))
+		set_value(number)
 		caret_column = text.length()
 		emit_signal('changed', text.to_float())
 
 func _on_h_slider_value_changed(value):
-	text = str(value)
-	emit_signal('changed', text.to_float())
-
-func _on_text_submitted(new_text):
-	var current_position = caret_column
-	text = formart_string(new_text)
-	caret_column = current_position
+	set_value(value)
 	emit_signal('changed', text.to_float())
 
 func set_value(value : float) -> void:
-	text = str(value)
+	text = formart_string(str(value))
 	slider.value = value

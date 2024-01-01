@@ -64,15 +64,15 @@ size_flags_horizontal = 3
 
 [node name="OpenButton" type="Button" parent="TabContainer/Directories/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-text = "Open"
+text = "..."
 
 [node name="AddButton" type="Button" parent="TabContainer/Directories/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-text = "Add"
+text = "+"
 
 [node name="RemoveButton" type="Button" parent="TabContainer/Directories/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-text = "Remove"
+text = "X"
 
 [node name="ItemList" type="ItemList" parent="TabContainer/Directories/VBoxContainer"]
 layout_mode = 2

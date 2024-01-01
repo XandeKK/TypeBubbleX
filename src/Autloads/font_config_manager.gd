@@ -230,7 +230,7 @@ func edit_nickname(font_name : String, nickname : String) -> void:
 	if not fonts.has(font_name):
 		print("Font not found:", font_name)
 		return
-	fonts[font_name]['nickname'] = null if nickname.is_empty() else nickname
+	fonts[font_name]['nickname'] = '' if nickname.is_empty() else nickname
 
 func edit_font(font_name : String, type : String, font_copy : FontVariation) -> void:
 	if not fonts.has(font_name):

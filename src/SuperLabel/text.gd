@@ -20,8 +20,6 @@ var font_settings : Dictionary = {
 	'bold-italic': FontVariation.new()
 } : get = _get_font_settings, set = _set_font_settings
 
-var lights : Lights = Lights.new() : get = _get_lights, set = _set_lights
-var patterns : Patterns = Patterns.new() : get = _get_patterns, set = _set_patterns
 var text_styles : TextStyles = TextStyles.new() : get = _get_text_styles, set = _set_text_styles
 
 var style_box : StyleBox = StyleBoxEmpty.new() : get = _get_style_box, set = _set_style_box
@@ -44,9 +42,6 @@ func _ready():
 	shakes.parent = self
 	outlines.parent = self
 	letters.parent = self
-	
-	lights.parent = letters
-	patterns.parent = letters
 
 func _prepare_glyphs_to_render() -> void:
 	glyphs_to_render.clear()
@@ -88,11 +83,6 @@ func _prepare_glyphs_to_render() -> void:
 	
 	var ofs : Vector2 = Vector2.ZERO
 	ofs.y = style_box.get_offset().y + vbegin
-	
-	# add curve2d
-	# How are you going to put curve2d?
-	# well, put two variables here, t and dt, so if it is activated, it will put xform in
-	# glyphs_to_render instead of ofs
 	
 	for i in range(last_line):
 		var line_size : Vector2 = TSManager.TS.shaped_text_get_size(lines_rid[i])
@@ -277,18 +267,6 @@ func _set_font_settings(value : Dictionary) -> void:
 	font_settings = value
 	_shape()
 
-func _get_lights() -> Lights:
-	return lights
-
-func _set_lights(value : Lights) -> void:
-	lights = value
-
-func _get_patterns() -> Patterns:
-	return patterns
-
-func _set_patterns(value : Patterns) -> void:
-	patterns = value
-
 func _get_text_styles() -> TextStyles:
 	return text_styles
 
@@ -321,8 +299,6 @@ func to_dictionary() -> Dictionary:
 		'italic': italic,
 		'uppercase': uppercase,
 		'font_name': font_name,
-		#'lights': lights.to_dictionary(),
-		#'patterns': patterns.to_dictionary(),
 		'text_styles': text_styles.to_dictionary(),
 		'content_margins': {
 			SIDE_LEFT: style_box.get_margin(SIDE_LEFT),

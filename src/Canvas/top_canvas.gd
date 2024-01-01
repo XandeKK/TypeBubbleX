@@ -87,22 +87,22 @@ func to_dictionary() -> Dictionary:
 	}
 
 func load(data : Dictionary) -> void:
-	var raw_image : Image = Image.new()
-	var cleaned_image : Image = Image.new()
+	var _raw_image : Image = Image.new()
+	var _cleaned_image : Image = Image.new()
 	
 	match data['extension']:
 		'png':
-			raw_image.load_png_from_buffer(data['raw_image'])
-			cleaned_image.load_png_from_buffer(data['cleaned_image'])
+			_raw_image.load_png_from_buffer(data['raw_image'])
+			_cleaned_image.load_png_from_buffer(data['cleaned_image'])
 		'jpg':
-			raw_image.load_jpg_from_buffer(data['raw_image'])
-			cleaned_image.load_jpg_from_buffer(data['cleaned_image'])
+			_raw_image.load_jpg_from_buffer(data['raw_image'])
+			_cleaned_image.load_jpg_from_buffer(data['cleaned_image'])
 		'webp':
-			raw_image.load_webp_from_buffer(data['raw_image'])
-			cleaned_image.load_webp_from_buffer(data['cleaned_image'])
+			_raw_image.load_webp_from_buffer(data['raw_image'])
+			_cleaned_image.load_webp_from_buffer(data['cleaned_image'])
 	
-	load_raw_image(ImageTexture.create_from_image(raw_image))
-	load_cleaned_image(ImageTexture.create_from_image(cleaned_image))
+	load_raw_image(ImageTexture.create_from_image(_raw_image))
+	load_cleaned_image(ImageTexture.create_from_image(_cleaned_image))
 	
 	var text_scene : PackedScene = load("res://src/SuperLabel/super_label.tscn")
 	
