@@ -13,12 +13,14 @@ offset_bottom = 213.0
 script = ExtResource("1_rff2x")
 
 [node name="Shakes" type="Control" parent="."]
+texture_filter = 6
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("2_tq0bv")
 
 [node name="Outlines" type="Control" parent="."]
+texture_filter = 6
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -27,6 +29,7 @@ script = ExtResource("2_higsy")
 [node name="Letters" type="Control" parent="."]
 clip_children = 2
 z_index = 2
+texture_filter = 6
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0

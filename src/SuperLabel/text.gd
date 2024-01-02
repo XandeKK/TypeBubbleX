@@ -329,7 +329,7 @@ func load(data : Dictionary) -> void:
 	set_content_margin(SIDE_LEFT, data['content_margins'][SIDE_LEFT])
 	set_content_margin(SIDE_TOP, data['content_margins'][SIDE_TOP])
 	set_content_margin(SIDE_BOTTOM, data['content_margins'][SIDE_BOTTOM])
-	set_content_margin(SIDE_LEFT, data['content_margins'][SIDE_LEFT])
+	set_content_margin(SIDE_RIGHT, data['content_margins'][SIDE_RIGHT])
 	
 	shakes.load(data['shakes'])
 	outlines.load(data['outlines'])

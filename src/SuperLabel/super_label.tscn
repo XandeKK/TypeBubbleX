@@ -17,6 +17,7 @@ shader_parameter/inset = 0.0
 viewport_path = NodePath("SubViewport")
 
 [node name="SuperLabel" type="Control"]
+texture_filter = 6
 layout_mode = 3
 anchors_preset = 0
 offset_right = 282.0
@@ -28,6 +29,7 @@ transparent_bg = true
 render_target_update_mode = 4
 
 [node name="Text" parent="SubViewport" instance=ExtResource("1_6jvrh")]
+texture_filter = 6
 
 [node name="TextureRect" type="TextureRect" parent="."]
 texture_filter = 6
