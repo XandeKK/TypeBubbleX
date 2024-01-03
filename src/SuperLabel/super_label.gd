@@ -11,6 +11,7 @@ var focus : bool = false : get = _get_focus
 var can_draw : bool = true : set = _set_can_draw
 
 signal focused(node : Control)
+signal focus_changed
 signal rotation_changed(value)
 
 func _ready():
@@ -74,6 +75,7 @@ func set_focus(value : bool = true, emit : bool = true) -> void:
 	focus = value
 	queue_redraw()
 	emit_signal('focused', self) if emit else null
+	emit_signal('focus_changed')
 
 func _set_can_draw(value : bool) -> void:
 	can_draw = value
