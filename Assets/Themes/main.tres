@@ -1,4 +1,16 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://ds37dvaj7sob8"]
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://ds37dvaj7sob8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wea4w"]
+content_margin_left = 8.0
+content_margin_top = 2.0
+content_margin_right = 8.0
+content_margin_bottom = 2.0
+bg_color = Color(0.180392, 0.180392, 0.203922, 0.984314)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3xxsh"]
 content_margin_left = 3.0
@@ -17,4 +29,5 @@ default_font_size = 12
 CheckButton/colors/font_color = Color(0.603922, 0.603922, 0.603922, 1)
 CheckButton/colors/font_pressed_color = Color(0.866667, 0.866667, 0.866667, 1)
 Label/colors/font_color = Color(0.603922, 0.603922, 0.603922, 1)
+TooltipPanel/styles/panel = SubResource("StyleBoxFlat_wea4w")
 VScrollBar/styles/scroll = SubResource("StyleBoxFlat_3xxsh")

@@ -33,6 +33,9 @@ offset_right = 197.0
 offset_bottom = 31.0
 theme_override_styles/normal = SubResource("StyleBoxFlat_5sqaq")
 text = "0"
+context_menu_enabled = false
+virtual_keyboard_enabled = false
+select_all_on_focus = true
 script = ExtResource("1_fy7nv")
 
 [node name="Label" type="Label" parent="."]

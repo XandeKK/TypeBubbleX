@@ -59,6 +59,7 @@ script = ExtResource("2_4kr83")
 
 [node name="CheckButton" type="CheckButton" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="0"]
 layout_mode = 2
+tooltip_text = "Show the original image with texts, if any."
 text = "Show Raw"
 
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="1"]

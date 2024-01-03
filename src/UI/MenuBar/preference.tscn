@@ -93,7 +93,7 @@ theme_override_constants/margin_bottom = 10
 
 [node name="Label" type="Label" parent="TabContainer/Canvas/ScrollContainer/VBoxContainer"]
 layout_mode = 2
-text = "Text Edge Color"
+text = "Text Box Color"
 
 [node name="MarginContainer" type="MarginContainer" parent="TabContainer/Canvas/ScrollContainer/VBoxContainer"]
 layout_mode = 2

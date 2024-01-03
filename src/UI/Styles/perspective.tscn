@@ -14,6 +14,7 @@ layout_mode = 2
 [node name="CullBackCheckButton" type="CheckButton" parent="CullBackContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+tooltip_text = "If cull back is activated, the back of the text will not be shown if x or y is greater than 90 or less than -90."
 button_pressed = true
 text = "Cull Back"
 
@@ -23,6 +24,8 @@ layout_mode = 2
 [node name="Label" type="Label" parent="FOVContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+tooltip_text = "Field of View (FOV)."
+mouse_filter = 1
 text = "FOV
 "
 
@@ -71,6 +74,9 @@ layout_mode = 2
 [node name="Label" type="Label" parent="InsertContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+tooltip_text = "At 0, the image retains its size when unrotated.
+At 1, the image is resized so that it can do a full rotation without clipping inside its rect."
+mouse_filter = 1
 text = "Insert"
 
 [node name="InsertInput" parent="InsertContainer" instance=ExtResource("1_46tf1")]

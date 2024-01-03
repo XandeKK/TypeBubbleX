@@ -61,6 +61,7 @@ layout_mode = 2
 [node name="DirLineEdit" type="LineEdit" parent="TabContainer/Directories/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+placeholder_text = "Directory"
 
 [node name="OpenButton" type="Button" parent="TabContainer/Directories/VBoxContainer/HBoxContainer"]
 layout_mode = 2

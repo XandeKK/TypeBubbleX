@@ -28,12 +28,14 @@ layout_mode = 2
 [node name="FontSize" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/FontContainer/HBoxContainer" index="0" instance=ExtResource("3_boxhw")]
 layout_mode = 2
 size_flags_horizontal = 3
+tooltip_text = "Font Size"
 type = 1
 suffix = "px"
 
 [node name="Color" type="ColorPickerButton" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/FontContainer/HBoxContainer" index="1"]
 layout_mode = 2
 size_flags_horizontal = 3
+tooltip_text = "Font Color"
 
 [node name="BoldItalicContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="1"]
 layout_mode = 2
@@ -52,6 +54,8 @@ layout_mode = 2
 [node name="Label" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/LeadingContainer" index="0"]
 layout_mode = 2
 size_flags_horizontal = 3
+tooltip_text = "Leading, also known as line spacing, is the distance between the baselines of lines of type."
+mouse_filter = 1
 text = "Leading"
 
 [node name="Leading" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/LeadingContainer" index="1" instance=ExtResource("3_boxhw")]
@@ -65,6 +69,8 @@ layout_mode = 2
 [node name="Label" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/TrackingContainer" index="0"]
 layout_mode = 2
 size_flags_horizontal = 3
+tooltip_text = "Tracking, also known as letter-spacing, is the adjustment of space for groups of letters and entire blocks of text."
+mouse_filter = 1
 text = "Tracking"
 
 [node name="Tracking" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/TrackingContainer" index="1" instance=ExtResource("3_boxhw")]
@@ -106,6 +112,8 @@ max_value = 360.0
 
 [node name="PaddingLabel" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="6"]
 layout_mode = 2
+tooltip_text = "Padding refers to the space that’s created around the content inside a box."
+mouse_filter = 1
 text = "Padding"
 
 [node name="PaddingMarginContainer" type="MarginContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="7"]

@@ -36,7 +36,7 @@ var hq_styles : Dictionary = {
 var colors : Dictionary = {
 	'text_edge': {
 		'active': Color(Color.RED, 0.7),
-		'deactive': Color(Color.RED, 0.3),
+		'deactive': Color(Color.BLACK, 0.3),
 	},
 	'padding': {
 		'active': Color(Color.BLUE, 0.7)
