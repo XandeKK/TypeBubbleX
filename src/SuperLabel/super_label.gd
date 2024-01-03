@@ -100,23 +100,10 @@ func to_dictionary() -> Dictionary:
 		'position': position,
 		'size': size,
 		'rotation_degrees': rotation_degrees,
-		'text': text.to_dictionary(),
-		'perspective': {
-			'fov': sub_viewport_container.material.get_shader_parameter('fov'),
-			'x_rot': sub_viewport_container.material.get_shader_parameter('x_rot'),
-			'y_rot': sub_viewport_container.material.get_shader_parameter('y_rot'),
-			'inset': sub_viewport_container.material.get_shader_parameter('inset'),
-			'cull_back': sub_viewport_container.material.get_shader_parameter('cull_back'),
-		}
+		'text': text.to_dictionary()
 	}
 
 func load(data : Dictionary) -> void:
 	rotation_degrees = data['rotation_degrees']
-	
-	sub_viewport_container.material.set_shader_parameter('fov', data['perspective']['fov'])
-	sub_viewport_container.material.set_shader_parameter('x_rot', data['perspective']['x_rot'])
-	sub_viewport_container.material.set_shader_parameter('y_rot', data['perspective']['y_rot'])
-	sub_viewport_container.material.set_shader_parameter('inset', data['perspective']['inset'])
-	sub_viewport_container.material.set_shader_parameter('cull_back', data['perspective']['cull_back'])
 	
 	text.load(data['text'])

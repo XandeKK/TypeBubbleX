@@ -3,7 +3,6 @@ extends Panel
 @export var canvas : SubViewportContainer
 
 @onready var body_outlines : PanelContainer = $MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/BodyOutlines
-@onready var body_perspective : PanelContainer = $MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/BodyPerspective
 @onready var body_shakes : PanelContainer = $MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/BodyShakes
 
 func _ready():
@@ -12,7 +11,6 @@ func _ready():
 
 func blank_all():
 	body_outlines.blank_all()
-	body_perspective.blank_all()
 	body_shakes.blank_all()
 
 func set_values(node : Control):
@@ -21,5 +19,4 @@ func set_values(node : Control):
 		return
 	
 	body_outlines.set_values(node)
-	body_perspective.set_values(node)
 	body_shakes.set_values(node)
