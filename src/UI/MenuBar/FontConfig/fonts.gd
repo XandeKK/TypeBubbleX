@@ -6,6 +6,7 @@ extends PanelContainer
 
 @onready var font_name_line_edit : LineEdit = $VBoxContainer/HBoxContainer/FontNameLineEdit
 @onready var example_line_edit : LineEdit = $VBoxContainer/HBoxContainer3/ExampleLineEdit
+@onready var font_size_input : LineEdit = $VBoxContainer/HBoxContainer3/FontSizeInput
 @onready var scroll_container : ScrollContainer = $VBoxContainer/PanelContainer/ScrollContainer
 @onready var grid_container : GridContainer = $VBoxContainer/PanelContainer/ScrollContainer/MarginContainer/GridContainer
 @onready var pages : Label = $VBoxContainer/HBoxContainer4/Pages
@@ -33,7 +34,9 @@ func restock() -> void:
 		font_item_dup.selected = FontConfigManager.fonts.has(filtered_fonts[i])
 		font_item_dup.show_fonts = show_fonts
 		font_item_dup.example.text = example_line_edit.text
+		font_item_dup.example.add_theme_font_size_override('font_size', int(font_size_input.text))
 		example_line_edit.text_changed.connect(font_item_dup.on_text_changed)
+		font_size_input.changed.connect(font_item_dup.on_font_size_changed)
 	
 	update_pages_label()
 	scroll_container.scroll_vertical = 0

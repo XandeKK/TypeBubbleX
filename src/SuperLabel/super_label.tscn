@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://c4nbuwn3qqdio"]
+[gd_scene load_steps=5 format=3 uid="uid://c4nbuwn3qqdio"]
 
 [ext_resource type="PackedScene" uid="uid://dphoqpw3y2qwv" path="res://src/SuperLabel/text.tscn" id="1_6jvrh"]
 [ext_resource type="Script" path="res://src/SuperLabel/super_label.gd" id="1_rff2x"]
@@ -13,9 +13,6 @@ shader_parameter/y_rot = 0.0
 shader_parameter/x_rot = 0.0
 shader_parameter/inset = 0.0
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_axbwp"]
-viewport_path = NodePath("SubViewport")
-
 [node name="SuperLabel" type="Control"]
 texture_filter = 6
 layout_mode = 3
@@ -24,20 +21,19 @@ offset_right = 282.0
 offset_bottom = 240.0
 script = ExtResource("1_rff2x")
 
-[node name="SubViewport" type="SubViewport" parent="."]
-disable_3d = true
-transparent_bg = true
-render_target_update_mode = 4
-
-[node name="Text" parent="SubViewport" instance=ExtResource("1_6jvrh")]
-texture_filter = 6
-
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 texture_filter = 6
 material = SubResource("ShaderMaterial_bbea2")
 layout_mode = 0
-offset_right = 512.0
-offset_bottom = 512.0
-texture = SubResource("ViewportTexture_axbwp")
+offset_right = 40.0
+offset_bottom = 40.0
+stretch = true
 
-[node name="Blurs" type="Node" parent="."]
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+disable_3d = true
+transparent_bg = true
+size = Vector2i(40, 40)
+render_target_update_mode = 4
+
+[node name="Text" parent="SubViewportContainer/SubViewport" instance=ExtResource("1_6jvrh")]
+texture_filter = 6

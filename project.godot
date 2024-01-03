@@ -10,7 +10,8 @@ config_version=5
 
 [application]
 
-config/name="Type X"
+config/name="TypeX"
+config/version="0.1"
 run/main_scene="res://src/main.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 run/low_processor_mode=true
@@ -22,6 +23,10 @@ TSManager="*res://src/Autloads/ts_manager.gd"
 FileHandler="*res://src/Autloads/file_handler.gd"
 FontConfigManager="*res://src/Autloads/font_config_manager.gd"
 Preference="*res://src/Autloads/preference.gd"
+
+[display]
+
+window/vsync/vsync_mode=0
 
 [editor_plugins]
 

@@ -34,7 +34,7 @@ initial_position = 2
 size = Vector2i(800, 450)
 transient = true
 exclusive = true
-unresizable = true
+min_size = Vector2i(800, 450)
 theme = ExtResource("1_q0jks")
 script = ExtResource("1_ooihp")
 
@@ -116,6 +116,12 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Hello, World!"
+
+[node name="FontSizeInput" parent="TabContainer/Fonts/VBoxContainer/HBoxContainer3" instance=ExtResource("2_co2ey")]
+layout_mode = 2
+text = "20"
+type = 1
+suffix = "Px"
 
 [node name="PanelContainer" type="PanelContainer" parent="TabContainer/Fonts/VBoxContainer"]
 layout_mode = 2

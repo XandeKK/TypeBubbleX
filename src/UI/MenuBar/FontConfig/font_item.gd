@@ -26,6 +26,9 @@ func _set_show_fonts(value : bool) -> void:
 func on_text_changed(text : String) -> void:
 	example.text = text
 
+func on_font_size_changed(value : int) -> void:
+	example.add_theme_font_size_override('font_size', value)
+
 func _on_check_box_pressed():
 	if check_box.button_pressed:
 		FontConfigManager.add_font(font_name)

@@ -19,11 +19,11 @@ func blank_all():
 
 func set_values(value : Control) -> void:
 	node = value
-	fov.set_value(node.texture_rect.material.get_shader_parameter('fov'))
-	x.set_value(node.texture_rect.material.get_shader_parameter('x_rot'))
-	y.set_value(node.texture_rect.material.get_shader_parameter('y_rot'))
-	insert.set_value(node.texture_rect.material.get_shader_parameter('inset'))
-	cull_back.button_pressed = node.texture_rect.material.get_shader_parameter('cull_back')
+	fov.set_value(node.sub_viewport_container.material.get_shader_parameter('fov'))
+	x.set_value(node.sub_viewport_container.material.get_shader_parameter('x_rot'))
+	y.set_value(node.sub_viewport_container.material.get_shader_parameter('y_rot'))
+	insert.set_value(node.sub_viewport_container.material.get_shader_parameter('inset'))
+	cull_back.button_pressed = node.sub_viewport_container.material.get_shader_parameter('cull_back')
 
 func _set_parent(value : Control) -> void:
 	parent = value
@@ -31,24 +31,24 @@ func _set_parent(value : Control) -> void:
 func _on_fov_input_changed(value):
 	if not node:
 		return
-	node.texture_rect.material.set_shader_parameter("fov", value)
+	node.sub_viewport_container.material.set_shader_parameter("fov", value)
 
 func _on_x_input_changed(value):
 	if not node:
 		return
-	node.texture_rect.material.set_shader_parameter("x_rot", value)
+	node.sub_viewport_container.material.set_shader_parameter("x_rot", value)
 
 func _on_y_input_changed(value):
 	if not node:
 		return
-	node.texture_rect.material.set_shader_parameter("y_rot", value)
+	node.sub_viewport_container.material.set_shader_parameter("y_rot", value)
 
 func _on_insert_input_changed(value):
 	if not node:
 		return
-	node.texture_rect.material.set_shader_parameter("inset", value)
+	node.sub_viewport_container.material.set_shader_parameter("inset", value)
 
 func _on_cull_back_check_button_toggled(toggled_on):
 	if not node:
 		return
-	node.texture_rect.material.set_shader_parameter("cull_back", toggled_on)
+	node.sub_viewport_container.material.set_shader_parameter("cull_back", toggled_on)

@@ -1,8 +1,8 @@
 extends Control
 
-@onready var sub_viewport : SubViewport = $SubViewport
-@onready var text : Control = $SubViewport/Text
-@onready var texture_rect : TextureRect = $TextureRect
+@onready var sub_viewport : SubViewport = $SubViewportContainer/SubViewport
+@onready var text : Control = $SubViewportContainer/SubViewport/Text
+@onready var sub_viewport_container : SubViewportContainer = $SubViewportContainer
 
 var move : Move = Move.new()
 var rotation_node : Rotation = Rotation.new()
@@ -58,9 +58,9 @@ func init(_position : Vector2, _size : Vector2, style : Preference.HQStyles) -> 
 	text.font_size = Preference.hq_styles[style]['font_size']
 
 func readjust_size():
-	sub_viewport.size = size
+	sub_viewport_container.size = size
+	#sub_viewport.size = size
 	text.size = size
-	texture_rect.size = size
 	
 	pivot_offset = size / 2
 	rotation_node.readjust_size()
@@ -100,21 +100,21 @@ func to_dictionary() -> Dictionary:
 		'rotation_degrees': rotation_degrees,
 		'text': text.to_dictionary(),
 		'perspective': {
-			'fov': texture_rect.material.get_shader_parameter('fov'),
-			'x_rot': texture_rect.material.get_shader_parameter('x_rot'),
-			'y_rot': texture_rect.material.get_shader_parameter('y_rot'),
-			'inset': texture_rect.material.get_shader_parameter('inset'),
-			'cull_back': texture_rect.material.get_shader_parameter('cull_back'),
+			'fov': sub_viewport_container.material.get_shader_parameter('fov'),
+			'x_rot': sub_viewport_container.material.get_shader_parameter('x_rot'),
+			'y_rot': sub_viewport_container.material.get_shader_parameter('y_rot'),
+			'inset': sub_viewport_container.material.get_shader_parameter('inset'),
+			'cull_back': sub_viewport_container.material.get_shader_parameter('cull_back'),
 		}
 	}
 
 func load(data : Dictionary) -> void:
 	rotation_degrees = data['rotation_degrees']
 	
-	texture_rect.material.set_shader_parameter('fov', data['perspective']['fov'])
-	texture_rect.material.set_shader_parameter('x_rot', data['perspective']['x_rot'])
-	texture_rect.material.set_shader_parameter('y_rot', data['perspective']['y_rot'])
-	texture_rect.material.set_shader_parameter('inset', data['perspective']['inset'])
-	texture_rect.material.set_shader_parameter('cull_back', data['perspective']['cull_back'])
+	sub_viewport_container.material.set_shader_parameter('fov', data['perspective']['fov'])
+	sub_viewport_container.material.set_shader_parameter('x_rot', data['perspective']['x_rot'])
+	sub_viewport_container.material.set_shader_parameter('y_rot', data['perspective']['y_rot'])
+	sub_viewport_container.material.set_shader_parameter('inset', data['perspective']['inset'])
+	sub_viewport_container.material.set_shader_parameter('cull_back', data['perspective']['cull_back'])
 	
 	text.load(data['text'])

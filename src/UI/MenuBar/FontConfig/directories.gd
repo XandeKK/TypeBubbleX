@@ -18,6 +18,8 @@ func _on_dir_file_dialog_dir_selected(dir) -> void:
 	dir_line_edit.text = dir
 
 func _on_add_button_pressed():
+	if dir_line_edit.text.is_empty():
+		return
 	FontConfigManager.add_dir(dir_line_edit.text)
 	dir_line_edit.text = ''
 	FontConfigManager.save_configuration()
