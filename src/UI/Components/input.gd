@@ -52,7 +52,9 @@ func _on_text_changed(new_text : String):
 func formart_string(new_text : String):
 	var number
 	var _text : String
-	if type == Type.INTEGER:
+	if new_text.is_empty() or type == Type.STRING:
+		_text = new_text
+	elif type == Type.INTEGER:
 		number = new_text.to_int()
 		_text = str(number)
 	elif type == Type.FLOAT:

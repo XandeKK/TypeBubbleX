@@ -13,7 +13,7 @@ func _ready():
 func _on_confirmed():
 	path.text = path.text.strip_edges()
 	
-	var dir_acess = DirAccess.open('')
+	var dir_acess = DirAccess.open('.')
 	
 	if path.text.is_empty():
 		print('path is empty')

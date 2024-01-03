@@ -6,6 +6,7 @@ extends PanelContainer
 
 @onready var font_name_line_edit : LineEdit = $VBoxContainer/HBoxContainer/FontNameLineEdit
 @onready var example_line_edit : LineEdit = $VBoxContainer/HBoxContainer3/ExampleLineEdit
+@onready var scroll_container : ScrollContainer = $VBoxContainer/PanelContainer/ScrollContainer
 @onready var grid_container : GridContainer = $VBoxContainer/PanelContainer/ScrollContainer/MarginContainer/GridContainer
 @onready var pages : Label = $VBoxContainer/HBoxContainer4/Pages
 @onready var font_item : PackedScene = load('res://src/UI/MenuBar/FontConfig/font_item.tscn')
@@ -35,6 +36,7 @@ func restock() -> void:
 		example_line_edit.text_changed.connect(font_item_dup.on_text_changed)
 	
 	update_pages_label()
+	scroll_container.scroll_vertical = 0
 
 func update_pages_label() -> void:
 	var total_pages : int = ceil(filtered_fonts.size() / float(max_items))

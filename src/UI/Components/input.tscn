@@ -5,6 +5,10 @@
 [node name="Input" type="LineEdit"]
 offset_right = 238.0
 offset_bottom = 31.0
+context_menu_enabled = false
+virtual_keyboard_enabled = false
+drag_and_drop_selection_enabled = false
+select_all_on_focus = true
 script = ExtResource("1_mh8fm")
 
 [node name="Label" type="Label" parent="."]
