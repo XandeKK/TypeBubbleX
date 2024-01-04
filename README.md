@@ -51,11 +51,17 @@ TypeX is an application designed to streamline the typesetting process in *Manga
 
 ## Videos
 
-<video src="docs/videos/01.mp4"></video>
 
-<video src="docs/videos/02.mp4"></video>
 
-<video src="docs/videos/03.mp4"></video>
+https://github.com/XandeKK/TypeX/assets/80427458/8c8d7c90-d692-4097-956b-1826dc9bf8c0
+
+
+
+https://github.com/XandeKK/TypeX/assets/80427458/78958caf-8019-4d00-b5de-7e52cb0a4dd2
+
+
+
+https://github.com/XandeKK/TypeX/assets/80427458/f6078f5c-57d7-4e90-b83d-5a167f4b891c
 
 
 ## Installation
