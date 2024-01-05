@@ -83,7 +83,8 @@ func _set_start(value : int) -> void:
 	for shake in shakes:
 		shake.start = start
 	
-	parent._shape()
+	if parent:
+		parent._shape()
 
 func _get_end() -> int:
 	return end
@@ -96,28 +97,32 @@ func _set_end(value : int) -> void:
 	for shake in shakes:
 		shake.end = end
 	
-	parent._shape()
+	if parent:
+		parent._shape()
 
 func _get_bold() -> bool:
 	return bold
 
 func _set_bold(value : bool) -> void:
 	bold = value
-	parent._shape()
+	if parent:
+		parent._shape()
 
 func _get_italic() -> bool:
 	return italic
 
 func _set_italic(value : bool) -> void:
 	italic = value
-	parent._shape()
+	if parent:
+		parent._shape()
 
 func _get_font_size() -> int:
 	return font_size
 
 func _set_font_size(value : int) -> void:
 	font_size = value
-	parent._shape()
+	if parent:
+		parent._shape()
 
 func _get_font_name() -> String:
 	return font_name
@@ -130,21 +135,24 @@ func _get_font_settings() -> Dictionary:
 
 func _set_font_settings(value : Dictionary) -> void:
 	font_settings = value
-	parent._shape()
+	if parent:
+		parent._shape()
 
 func _get_color() -> Color:
 	return color
 
 func _set_color(value : Color) -> void:
 	color = value
-	parent._shape()
+	if parent:
+		parent._shape()
 
 func _get_uppercase() -> bool:
 	return uppercase
 
 func _set_uppercase(value : bool) -> void:
 	uppercase = value
-	parent._shape()
+	if parent:
+		parent._shape()
 
 func _get_outlines() -> Array:
 	return outlines

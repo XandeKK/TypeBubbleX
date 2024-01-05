@@ -123,36 +123,38 @@ func _shape() -> void:
 	
 	TSManager.TS.shaped_text_set_spacing(text_rid, TextServer.SPACING_GLYPH, letter_spacing)
 	TSManager.TS.shaped_text_clear(text_rid)
+	
+	var _text : String = ''
+	var text_style_current : Variant
+	var text_style_normal : TextStyle = TextStyle.new()
+	var _text_styles = [text_style_normal]
+	
+	text_style_normal.end = text.length()
+	text_style_normal.bold = bold
+	text_style_normal.italic = italic
+	text_style_normal.font_settings = font_settings
+	text_style_normal.uppercase = uppercase
+	text_style_normal.font_size = font_size
+	
+	text_style_current = text_style_normal
+	
 	for i in range(text.length()):
-		var _bold : bool = bold
-		var _italic : bool = italic
-		var _font_size : int = font_size
-		var _uppercase : bool = uppercase
-		var _font_settings : Dictionary = font_settings
-		var _current_font : Font
-	
-		for text_style in text_styles.list:
-			if i >= text_style.start and i <= text_style.end:
-				_bold = text_style.bold
-				_italic = text_style.italic
-				_font_settings = text_style.font_settings
-				_uppercase = text_style.uppercase
-				_font_size = text_style.font_size
-			
-		if _bold and _italic:
-			_current_font = _font_settings['bold-italic']
-		elif _bold:
-			_current_font = _font_settings['bold']
-		elif _italic:
-			_current_font = _font_settings['italic']
-		else:
-			_current_font = _font_settings['regular']
-			
-		assert(_current_font != null, 'Does not have the font.')
+		_text_styles += text_styles.list.filter(func(text_style): return text_style.start == i)
 		
-		var txt : String = TSManager.TS.string_to_upper(text[i]) if _uppercase else text[i]
-		TSManager.TS.shaped_text_add_string(text_rid, txt, _current_font.get_rids(), _font_size, _current_font.get_opentype_features())
+		if text_style_current != _text_styles[-1]:
+			add_formatted_text(_text, text_style_current)
+		
+			text_style_current = _text_styles[-1]
+			_text = ''
+		
+		_text += text[i]
+		
+		if i != text.length() - 1:
+			_text_styles = _text_styles.filter(func(text_style): return text_style.end != i)
 	
+	if not _text.is_empty():
+		add_formatted_text(_text, text_style_current)
+		
 	for i in range(lines_rid.size()):
 		TSManager.TS.free_rid(lines_rid[i])
 	lines_rid.clear()
@@ -175,6 +177,22 @@ func _shape() -> void:
 		lines_rid.push_back(line)
 	
 	_prepare_glyphs_to_render()
+
+func add_formatted_text(_text, text_style):
+	var _current_font : Font
+
+	if text_style.bold and text_style.italic:
+		_current_font = text_style.font_settings['bold-italic']
+	elif text_style.bold:
+		_current_font = text_style.font_settings['bold']
+	elif text_style.italic:
+		_current_font = text_style.font_settings['italic']
+	else:
+		_current_font = text_style.font_settings['regular']
+
+	_text = TSManager.TS.string_to_upper(_text) if text_style.uppercase else _text
+	TSManager.TS.shaped_text_add_string(text_rid, _text, _current_font.get_rids(), text_style.font_size, _current_font.get_opentype_features())
+
 
 func _get_horizontal_alignment() -> HorizontalAlignment:
 	return horizontal_alignment
