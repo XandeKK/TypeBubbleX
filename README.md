@@ -70,7 +70,7 @@ https://github.com/XandeKK/TypeX/assets/80427458/f6078f5c-57d7-4e90-b83d-5a167f4
 
 ## How to Use
 
-**Coming soon**
+[**Click Here**](https://github.com/XandeKK/TypeX/wiki/How-to-Use-the-TypeX)
 
 ## Contribution
 
