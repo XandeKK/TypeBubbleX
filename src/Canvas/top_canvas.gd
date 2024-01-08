@@ -129,3 +129,8 @@ func get_image() -> Image:
 	raw_image.visible = raw_visible
 	
 	return image
+
+func clear() -> void:
+	for object in objects.get_children():
+		object.queue_free()
+	

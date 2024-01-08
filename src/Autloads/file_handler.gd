@@ -18,6 +18,9 @@ func open(obj : Dictionary) -> void:
 	current_page = 0
 	default_path = obj['path']
 	
+	canvas.clear()
+	text_list.clear()
+	
 	set_paths(default_path)
 	
 	if not DirAccess.dir_exists_absolute(cleaned_path):
@@ -235,3 +238,7 @@ func get_cleaned_images_path() -> Array:
 
 func _set_text_list(value : ItemList) -> void:
 	text_list = value
+
+func _exit_tree():
+	canvas.clear()
+	text_list.clear()
