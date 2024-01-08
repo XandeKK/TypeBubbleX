@@ -107,3 +107,6 @@ func load(data : Dictionary) -> void:
 	rotation_degrees = data['rotation_degrees']
 	
 	text.load(data['text'])
+
+func _exit_tree():
+	move.free()
