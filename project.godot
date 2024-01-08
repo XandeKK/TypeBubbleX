@@ -15,7 +15,9 @@ config/version="0.1"
 run/main_scene="res://src/main.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 run/low_processor_mode=true
-config/icon="res://icon.svg"
+config/icon="res://icon.png"
+config/macos_native_icon="res://icon.png"
+config/windows_native_icon="res://icon.ico"
 
 [autoload]
 
