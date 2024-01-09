@@ -60,7 +60,7 @@ func init(_position : Vector2, _size : Vector2, style : Preference.HQStyles) -> 
 
 func readjust_size():
 	sub_viewport_container.size = size
-	#sub_viewport.size = size
+	sub_viewport.size = size
 	text.size = size
 	
 	pivot_offset = size / 2
