@@ -59,8 +59,8 @@ func init(_position : Vector2, _size : Vector2, style : Preference.HQStyles) -> 
 	text.font_size = Preference.hq_styles[style]['font_size']
 
 func readjust_size():
-	sub_viewport_container.size = size
 	sub_viewport.size = size
+	sub_viewport_container.size = size
 	text.size = size
 	
 	pivot_offset = size / 2
