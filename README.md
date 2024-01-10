@@ -1,6 +1,6 @@
 # TypeX
 
-(PT-BR)[README_PT_BR.md]
+[PT-BR](README_PT_BR.md)
 
 **[Description](#description) | [Key Features](#key-features) | [Upcoming Features](#upcoming-features) | [Screenshots](#screenshots) | [Videos](#videos) | [Installation](#installation) | [How to Use](#how-to-use) | [Contribution](#contribution) | [License](#license)** 
 

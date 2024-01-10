@@ -1,6 +1,6 @@
 # TypeX
 
-(English)[README.md]
+[English](README.md)
 
 **[Descrição](#descrição) | [Recursos Principais](#recursos-principais) | [Em breve](#em-breve) | [Capturas de Tela](#capturas-de-tela) | [Vídeos](#vídeos) | [Instalação](#Instalação) | [Como Usar](#como-usar) | [Contribuição](#contribuição) | [Licença](#licença)**
 
