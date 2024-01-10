@@ -1,6 +1,6 @@
 # TypeX
 
-**Coming soon in PT-BR**
+(PT-BR)[README_PT_BR.md]
 
 **[Description](#description) | [Key Features](#key-features) | [Upcoming Features](#upcoming-features) | [Screenshots](#screenshots) | [Videos](#videos) | [Installation](#installation) | [How to Use](#how-to-use) | [Contribution](#contribution) | [License](#license)** 
 
@@ -68,7 +68,7 @@ https://github.com/XandeKK/TypeX/assets/80427458/f6078f5c-57d7-4e90-b83d-5a167f4
 
 ## Installation
 
-[**Click Here**](https://github.com/XandeKK/TypeX/releases/tag/v0.1.0-alpha)
+[**Click Here**](https://github.com/XandeKK/TypeX/releases/tag/v0.1.0-alpha) to be redirected to the download area.
 
 Dear users,
 When downloading the alpha release of TypeX, please choose the file that matches your system's architecture:
@@ -87,7 +87,6 @@ Thank you for your support!
 ## How to Use
 
 [**Click Here**](https://github.com/XandeKK/TypeX/wiki/How-to-Use-the-TypeX)
-
 ## Contribution
 
 **Coming soon**
