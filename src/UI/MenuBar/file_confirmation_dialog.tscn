@@ -21,6 +21,8 @@ size = Vector2i(500, 120)
 visible = true
 unresizable = true
 theme = ExtResource("1_1ylmr")
+ok_button_text = "KEY_OK"
+cancel_button_text = "KEY_CANCEL"
 script = ExtResource("1_7r4f8")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
@@ -39,7 +41,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Path"
+text = "KEY_PATH"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -59,7 +61,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Styles"
+text = "KEY_STYLES"
 
 [node name="StylesOptionButton" type="OptionButton" parent="PanelContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2

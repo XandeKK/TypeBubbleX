@@ -46,91 +46,91 @@ grow_horizontal = 2
 grow_vertical = 2
 tab_alignment = 1
 
-[node name="Directories" type="PanelContainer" parent="TabContainer" node_paths=PackedStringArray("file_dialog")]
+[node name="KEY_DIRECTORIES" type="PanelContainer" parent="TabContainer" node_paths=PackedStringArray("file_dialog")]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_7gele")
 script = ExtResource("3_tfwcp")
 file_dialog = NodePath("../../DirFileDialog")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Directories"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/KEY_DIRECTORIES"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Directories/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/KEY_DIRECTORIES/VBoxContainer"]
 layout_mode = 2
 
-[node name="DirLineEdit" type="LineEdit" parent="TabContainer/Directories/VBoxContainer/HBoxContainer"]
+[node name="DirLineEdit" type="LineEdit" parent="TabContainer/KEY_DIRECTORIES/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-placeholder_text = "Directory"
+placeholder_text = "KEY_DIRECTORY"
 
-[node name="OpenButton" type="Button" parent="TabContainer/Directories/VBoxContainer/HBoxContainer"]
+[node name="OpenButton" type="Button" parent="TabContainer/KEY_DIRECTORIES/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "..."
 
-[node name="AddButton" type="Button" parent="TabContainer/Directories/VBoxContainer/HBoxContainer"]
+[node name="AddButton" type="Button" parent="TabContainer/KEY_DIRECTORIES/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "+"
 
-[node name="RemoveButton" type="Button" parent="TabContainer/Directories/VBoxContainer/HBoxContainer"]
+[node name="RemoveButton" type="Button" parent="TabContainer/KEY_DIRECTORIES/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "X"
 
-[node name="ItemList" type="ItemList" parent="TabContainer/Directories/VBoxContainer"]
+[node name="ItemList" type="ItemList" parent="TabContainer/KEY_DIRECTORIES/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Fonts" type="PanelContainer" parent="TabContainer"]
+[node name="KEY_FONTS" type="PanelContainer" parent="TabContainer"]
 visible = false
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_7gele")
 script = ExtResource("4_or84n")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Fonts"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/KEY_FONTS"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Fonts/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/KEY_FONTS/VBoxContainer"]
 layout_mode = 2
 
-[node name="FontNameLineEdit" type="LineEdit" parent="TabContainer/Fonts/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-placeholder_text = "Font name"
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="TabContainer/Fonts/VBoxContainer"]
-layout_mode = 2
-
-[node name="SelectedFontsCheckBox" type="CheckBox" parent="TabContainer/Fonts/VBoxContainer/HBoxContainer2"]
+[node name="FontNameLineEdit" type="LineEdit" parent="TabContainer/KEY_FONTS/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Only Selected Fonts"
+placeholder_text = "KEY_FONT_NAME"
 
-[node name="ShowFontsCheckBox" type="CheckBox" parent="TabContainer/Fonts/VBoxContainer/HBoxContainer2"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="TabContainer/KEY_FONTS/VBoxContainer"]
+layout_mode = 2
+
+[node name="SelectedFontsCheckBox" type="CheckBox" parent="TabContainer/KEY_FONTS/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Show Fonts"
+text = "KEY_ONLY_SELECTED_FONTS"
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="TabContainer/Fonts/VBoxContainer"]
+[node name="ShowFontsCheckBox" type="CheckBox" parent="TabContainer/KEY_FONTS/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "KEY_SHOW_FONTS"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="TabContainer/KEY_FONTS/VBoxContainer"]
 layout_mode = 2
 
-[node name="ExampleLineEdit" type="LineEdit" parent="TabContainer/Fonts/VBoxContainer/HBoxContainer3"]
+[node name="ExampleLineEdit" type="LineEdit" parent="TabContainer/KEY_FONTS/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Hello, World!"
 
-[node name="FontSizeInput" parent="TabContainer/Fonts/VBoxContainer/HBoxContainer3" instance=ExtResource("2_co2ey")]
+[node name="FontSizeInput" parent="TabContainer/KEY_FONTS/VBoxContainer/HBoxContainer3" instance=ExtResource("2_co2ey")]
 layout_mode = 2
 text = "20"
 type = 1
 suffix = "Px"
 
-[node name="PanelContainer" type="PanelContainer" parent="TabContainer/Fonts/VBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="TabContainer/KEY_FONTS/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Fonts/VBoxContainer/PanelContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/KEY_FONTS/VBoxContainer/PanelContainer"]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Fonts/VBoxContainer/PanelContainer/ScrollContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/KEY_FONTS/VBoxContainer/PanelContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -139,86 +139,86 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="GridContainer" type="GridContainer" parent="TabContainer/Fonts/VBoxContainer/PanelContainer/ScrollContainer/MarginContainer"]
+[node name="GridContainer" type="GridContainer" parent="TabContainer/KEY_FONTS/VBoxContainer/PanelContainer/ScrollContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 columns = 2
 
-[node name="HBoxContainer4" type="HBoxContainer" parent="TabContainer/Fonts/VBoxContainer"]
+[node name="HBoxContainer4" type="HBoxContainer" parent="TabContainer/KEY_FONTS/VBoxContainer"]
 layout_mode = 2
 alignment = 1
 
-[node name="BackButton" type="Button" parent="TabContainer/Fonts/VBoxContainer/HBoxContainer4"]
+[node name="BackButton" type="Button" parent="TabContainer/KEY_FONTS/VBoxContainer/HBoxContainer4"]
 layout_mode = 2
 text = "<"
 
-[node name="Pages" type="Label" parent="TabContainer/Fonts/VBoxContainer/HBoxContainer4"]
+[node name="Pages" type="Label" parent="TabContainer/KEY_FONTS/VBoxContainer/HBoxContainer4"]
 layout_mode = 2
 text = "0/0"
 
-[node name="NextButton" type="Button" parent="TabContainer/Fonts/VBoxContainer/HBoxContainer4"]
+[node name="NextButton" type="Button" parent="TabContainer/KEY_FONTS/VBoxContainer/HBoxContainer4"]
 layout_mode = 2
 text = ">"
 
-[node name="Edit" type="PanelContainer" parent="TabContainer"]
+[node name="KEY_EDIT" type="PanelContainer" parent="TabContainer"]
 visible = false
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_7gele")
 script = ExtResource("5_dktnk")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Edit"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/KEY_EDIT"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Edit/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/KEY_EDIT/VBoxContainer"]
 layout_mode = 2
 
-[node name="FontNameLineEdit" type="LineEdit" parent="TabContainer/Edit/VBoxContainer/HBoxContainer"]
+[node name="FontNameLineEdit" type="LineEdit" parent="TabContainer/KEY_EDIT/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-placeholder_text = "Font name"
+placeholder_text = "KEY_FONT_NAME"
 
-[node name="FontList" type="ItemList" parent="TabContainer/Edit/VBoxContainer"]
+[node name="FontList" type="ItemList" parent="TabContainer/KEY_EDIT/VBoxContainer"]
 custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="TabContainer/Edit/VBoxContainer"]
+[node name="HBoxContainer3" type="HBoxContainer" parent="TabContainer/KEY_EDIT/VBoxContainer"]
 layout_mode = 2
 
-[node name="ExampleLineEdit" type="LineEdit" parent="TabContainer/Edit/VBoxContainer/HBoxContainer3"]
+[node name="ExampleLineEdit" type="LineEdit" parent="TabContainer/KEY_EDIT/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "Example"
 
-[node name="ExampleFontSizeInput" parent="TabContainer/Edit/VBoxContainer/HBoxContainer3" instance=ExtResource("2_co2ey")]
+[node name="ExampleFontSizeInput" parent="TabContainer/KEY_EDIT/VBoxContainer/HBoxContainer3" instance=ExtResource("2_co2ey")]
 layout_mode = 2
 text = "20"
 type = 1
 suffix = "Px"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="TabContainer/Edit/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="TabContainer/KEY_EDIT/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="TabContainer/Edit/VBoxContainer/HBoxContainer2"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Nickname"
-
-[node name="NicknameLineEdit" type="LineEdit" parent="TabContainer/Edit/VBoxContainer/HBoxContainer2"]
+[node name="Label" type="Label" parent="TabContainer/KEY_EDIT/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
+text = "KEY_NICKNAME"
 
-[node name="StylesPanelContainer" type="PanelContainer" parent="TabContainer/Edit/VBoxContainer"]
+[node name="NicknameLineEdit" type="LineEdit" parent="TabContainer/KEY_EDIT/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="StylesPanelContainer" type="PanelContainer" parent="TabContainer/KEY_EDIT/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_cdtvu")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Edit/VBoxContainer/StylesPanelContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/KEY_EDIT/VBoxContainer/StylesPanelContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Edit/VBoxContainer/StylesPanelContainer/ScrollContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/KEY_EDIT/VBoxContainer/StylesPanelContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -227,21 +227,21 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 5
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Edit/VBoxContainer/StylesPanelContainer/ScrollContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/KEY_EDIT/VBoxContainer/StylesPanelContainer/ScrollContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="RegularBoxContainer" parent="TabContainer/Edit/VBoxContainer/StylesPanelContainer/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("7_s2ypa")]
+[node name="RegularBoxContainer" parent="TabContainer/KEY_EDIT/VBoxContainer/StylesPanelContainer/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("7_s2ypa")]
 layout_mode = 2
 
-[node name="BoldBoxContainer" parent="TabContainer/Edit/VBoxContainer/StylesPanelContainer/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("7_s2ypa")]
+[node name="BoldBoxContainer" parent="TabContainer/KEY_EDIT/VBoxContainer/StylesPanelContainer/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("7_s2ypa")]
 layout_mode = 2
 style = 1
 
-[node name="ItalicBoxContainer" parent="TabContainer/Edit/VBoxContainer/StylesPanelContainer/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("7_s2ypa")]
+[node name="ItalicBoxContainer" parent="TabContainer/KEY_EDIT/VBoxContainer/StylesPanelContainer/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("7_s2ypa")]
 layout_mode = 2
 style = 2
 
-[node name="BoldItalicBoxContainer" parent="TabContainer/Edit/VBoxContainer/StylesPanelContainer/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("7_s2ypa")]
+[node name="BoldItalicBoxContainer" parent="TabContainer/KEY_EDIT/VBoxContainer/StylesPanelContainer/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("7_s2ypa")]
 layout_mode = 2
 style = 3
 
@@ -256,18 +256,18 @@ show_hidden_files = true
 use_native_dialog = true
 
 [connection signal="close_requested" from="." to="." method="_on_close_requested"]
-[connection signal="pressed" from="TabContainer/Directories/VBoxContainer/HBoxContainer/OpenButton" to="TabContainer/Directories" method="_on_open_button_pressed"]
-[connection signal="pressed" from="TabContainer/Directories/VBoxContainer/HBoxContainer/AddButton" to="TabContainer/Directories" method="_on_add_button_pressed"]
-[connection signal="pressed" from="TabContainer/Directories/VBoxContainer/HBoxContainer/RemoveButton" to="TabContainer/Directories" method="_on_remove_button_pressed"]
-[connection signal="item_selected" from="TabContainer/Directories/VBoxContainer/ItemList" to="TabContainer/Directories" method="_on_item_list_item_selected"]
-[connection signal="text_changed" from="TabContainer/Fonts/VBoxContainer/HBoxContainer/FontNameLineEdit" to="TabContainer/Fonts" method="_on_font_name_line_edit_text_changed"]
-[connection signal="toggled" from="TabContainer/Fonts/VBoxContainer/HBoxContainer2/SelectedFontsCheckBox" to="TabContainer/Fonts" method="_on_selected_fonts_check_box_toggled"]
-[connection signal="toggled" from="TabContainer/Fonts/VBoxContainer/HBoxContainer2/ShowFontsCheckBox" to="TabContainer/Fonts" method="_on_show_fonts_check_box_toggled"]
-[connection signal="pressed" from="TabContainer/Fonts/VBoxContainer/HBoxContainer4/BackButton" to="TabContainer/Fonts" method="_on_back_button_pressed"]
-[connection signal="pressed" from="TabContainer/Fonts/VBoxContainer/HBoxContainer4/NextButton" to="TabContainer/Fonts" method="_on_next_button_pressed"]
-[connection signal="text_changed" from="TabContainer/Edit/VBoxContainer/HBoxContainer/FontNameLineEdit" to="TabContainer/Edit" method="_on_font_name_line_edit_text_changed"]
-[connection signal="item_selected" from="TabContainer/Edit/VBoxContainer/FontList" to="TabContainer/Edit" method="_on_font_list_item_selected"]
-[connection signal="text_changed" from="TabContainer/Edit/VBoxContainer/HBoxContainer3/ExampleLineEdit" to="TabContainer/Edit" method="_on_example_line_edit_text_changed"]
-[connection signal="changed" from="TabContainer/Edit/VBoxContainer/HBoxContainer3/ExampleFontSizeInput" to="TabContainer/Edit" method="_on_example_font_size_input_changed"]
-[connection signal="text_changed" from="TabContainer/Edit/VBoxContainer/HBoxContainer2/NicknameLineEdit" to="TabContainer/Edit" method="_on_nickname_line_edit_text_changed"]
-[connection signal="dir_selected" from="DirFileDialog" to="TabContainer/Directories" method="_on_dir_file_dialog_dir_selected"]
+[connection signal="pressed" from="TabContainer/KEY_DIRECTORIES/VBoxContainer/HBoxContainer/OpenButton" to="TabContainer/KEY_DIRECTORIES" method="_on_open_button_pressed"]
+[connection signal="pressed" from="TabContainer/KEY_DIRECTORIES/VBoxContainer/HBoxContainer/AddButton" to="TabContainer/KEY_DIRECTORIES" method="_on_add_button_pressed"]
+[connection signal="pressed" from="TabContainer/KEY_DIRECTORIES/VBoxContainer/HBoxContainer/RemoveButton" to="TabContainer/KEY_DIRECTORIES" method="_on_remove_button_pressed"]
+[connection signal="item_selected" from="TabContainer/KEY_DIRECTORIES/VBoxContainer/ItemList" to="TabContainer/KEY_DIRECTORIES" method="_on_item_list_item_selected"]
+[connection signal="text_changed" from="TabContainer/KEY_FONTS/VBoxContainer/HBoxContainer/FontNameLineEdit" to="TabContainer/KEY_FONTS" method="_on_font_name_line_edit_text_changed"]
+[connection signal="toggled" from="TabContainer/KEY_FONTS/VBoxContainer/HBoxContainer2/SelectedFontsCheckBox" to="TabContainer/KEY_FONTS" method="_on_selected_fonts_check_box_toggled"]
+[connection signal="toggled" from="TabContainer/KEY_FONTS/VBoxContainer/HBoxContainer2/ShowFontsCheckBox" to="TabContainer/KEY_FONTS" method="_on_show_fonts_check_box_toggled"]
+[connection signal="pressed" from="TabContainer/KEY_FONTS/VBoxContainer/HBoxContainer4/BackButton" to="TabContainer/KEY_FONTS" method="_on_back_button_pressed"]
+[connection signal="pressed" from="TabContainer/KEY_FONTS/VBoxContainer/HBoxContainer4/NextButton" to="TabContainer/KEY_FONTS" method="_on_next_button_pressed"]
+[connection signal="text_changed" from="TabContainer/KEY_EDIT/VBoxContainer/HBoxContainer/FontNameLineEdit" to="TabContainer/KEY_EDIT" method="_on_font_name_line_edit_text_changed"]
+[connection signal="item_selected" from="TabContainer/KEY_EDIT/VBoxContainer/FontList" to="TabContainer/KEY_EDIT" method="_on_font_list_item_selected"]
+[connection signal="text_changed" from="TabContainer/KEY_EDIT/VBoxContainer/HBoxContainer3/ExampleLineEdit" to="TabContainer/KEY_EDIT" method="_on_example_line_edit_text_changed"]
+[connection signal="changed" from="TabContainer/KEY_EDIT/VBoxContainer/HBoxContainer3/ExampleFontSizeInput" to="TabContainer/KEY_EDIT" method="_on_example_font_size_input_changed"]
+[connection signal="text_changed" from="TabContainer/KEY_EDIT/VBoxContainer/HBoxContainer2/NicknameLineEdit" to="TabContainer/KEY_EDIT" method="_on_nickname_line_edit_text_changed"]
+[connection signal="dir_selected" from="DirFileDialog" to="TabContainer/KEY_DIRECTORIES" method="_on_dir_file_dialog_dir_selected"]

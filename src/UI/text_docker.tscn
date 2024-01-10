@@ -10,7 +10,7 @@ script = ExtResource("2_rcj7r")
 
 [node name="TextLabel" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="0"]
 layout_mode = 2
-text = "Text"
+text = "KEY_TEXT"
 
 [node name="TextEdit" type="TextEdit" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="1"]
 custom_minimum_size = Vector2(0, 100)
@@ -20,7 +20,7 @@ autowrap_mode = 2
 
 [node name="TextListLabel" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="2"]
 layout_mode = 2
-text = "Text List"
+text = "KEY_TEXT_LIST"
 
 [node name="TextList" type="ItemList" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="3"]
 custom_minimum_size = Vector2(0, 100)

@@ -33,7 +33,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Default Font"
+text = "KEY_DEFAULT_FONT"
 
 [node name="DefaultFontInputWithDropDown" parent="VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("1_i8wut")]
 layout_mode = 2
@@ -45,7 +45,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Font Size"
+text = "KEY_FONT_SIZE"
 
 [node name="FontSizeInput" parent="VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2" instance=ExtResource("2_w4jlg")]
 layout_mode = 2

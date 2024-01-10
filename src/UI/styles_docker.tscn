@@ -46,7 +46,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HeaderOutlines" index="0"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Outlines"
+text = "KEY_OUTLINES"
 
 [node name="AddButton" type="Button" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HeaderOutlines" index="1"]
 layout_mode = 2
@@ -83,7 +83,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HeaderShakes" index="0"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Shakes"
+text = "KEY_SHAKES"
 
 [node name="AddButton" type="Button" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HeaderShakes" index="1"]
 layout_mode = 2

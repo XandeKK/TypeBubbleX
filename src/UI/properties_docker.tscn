@@ -17,7 +17,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/FontContainer" index="0"]
 layout_mode = 2
-text = "Font"
+text = "KEY_FONT"
 
 [node name="FontName" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/FontContainer" index="1" instance=ExtResource("3_fa6b8")]
 layout_mode = 2
@@ -42,11 +42,15 @@ layout_mode = 2
 
 [node name="Bold" type="CheckButton" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/BoldItalicContainer" index="0"]
 layout_mode = 2
-text = "Bold"
+size_flags_horizontal = 3
+text = "KEY_BOLD"
+text_overrun_behavior = 4
 
 [node name="Italic" type="CheckButton" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/BoldItalicContainer" index="1"]
 layout_mode = 2
-text = "italic"
+size_flags_horizontal = 3
+text = "KEY_ITALIC"
+text_overrun_behavior = 3
 
 [node name="LeadingContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="2"]
 layout_mode = 2
@@ -54,9 +58,10 @@ layout_mode = 2
 [node name="Label" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/LeadingContainer" index="0"]
 layout_mode = 2
 size_flags_horizontal = 3
-tooltip_text = "Leading, also known as line spacing, is the distance between the baselines of lines of type."
+tooltip_text = "KEY_ABOUT_LEADING"
 mouse_filter = 1
-text = "Leading"
+text = "KEY_LEADING"
+text_overrun_behavior = 3
 
 [node name="Leading" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/LeadingContainer" index="1" instance=ExtResource("3_boxhw")]
 layout_mode = 2
@@ -69,9 +74,10 @@ layout_mode = 2
 [node name="Label" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/TrackingContainer" index="0"]
 layout_mode = 2
 size_flags_horizontal = 3
-tooltip_text = "Tracking, also known as letter-spacing, is the adjustment of space for groups of letters and entire blocks of text."
+tooltip_text = "KEY_ABOUT_TRACKING"
 mouse_filter = 1
-text = "Tracking"
+text = "KEY_TRACKING"
+text_overrun_behavior = 3
 
 [node name="Tracking" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/TrackingContainer" index="1" instance=ExtResource("3_boxhw")]
 layout_mode = 2
@@ -84,17 +90,19 @@ layout_mode = 2
 [node name="Label" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/AlignmentContainer" index="0"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Alignment"
+text = "KEY_ALIGNMENT"
+text_overrun_behavior = 3
 
 [node name="Alignment" type="OptionButton" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/AlignmentContainer" index="1"]
 layout_mode = 2
 size_flags_horizontal = 3
 item_count = 3
-popup/item_0/text = "Left"
+fit_to_longest_item = false
+popup/item_0/text = "KEY_LEFT"
 popup/item_0/id = 0
-popup/item_1/text = "Center"
+popup/item_1/text = "KEY_CENTER"
 popup/item_1/id = 1
-popup/item_2/text = "Right"
+popup/item_2/text = "KEY_RIGHT"
 popup/item_2/id = 2
 
 [node name="RotationContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="5"]
@@ -103,7 +111,8 @@ layout_mode = 2
 [node name="Label" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/RotationContainer" index="0"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Rotation"
+text = "KEY_ROTATION"
+text_overrun_behavior = 3
 
 [node name="Rotation" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/RotationContainer" index="1" instance=ExtResource("4_kjib7")]
 layout_mode = 2
@@ -112,9 +121,9 @@ max_value = 360.0
 
 [node name="PaddingLabel" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="6"]
 layout_mode = 2
-tooltip_text = "Padding refers to the space that’s created around the content inside a box."
+tooltip_text = "KEY_ABOUT_PADDING"
 mouse_filter = 1
-text = "Padding"
+text = "KEY_PADDING"
 
 [node name="PaddingMarginContainer" type="MarginContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="7"]
 layout_mode = 2
@@ -130,7 +139,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PaddingMarginContainer/VBoxContainer/TopContainer" index="0"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Top"
+text = "KEY_TOP"
 
 [node name="PaddingTop" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PaddingMarginContainer/VBoxContainer/TopContainer" index="1" instance=ExtResource("3_boxhw")]
 layout_mode = 2
@@ -143,7 +152,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PaddingMarginContainer/VBoxContainer/BottomContainer" index="0"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Bottom"
+text = "KEY_BOTTOM"
 
 [node name="PaddingBottom" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PaddingMarginContainer/VBoxContainer/BottomContainer" index="1" instance=ExtResource("3_boxhw")]
 layout_mode = 2
@@ -156,7 +165,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PaddingMarginContainer/VBoxContainer/LeftContainer" index="0"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Left"
+text = "KEY_LEFT"
 
 [node name="PaddingLeft" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PaddingMarginContainer/VBoxContainer/LeftContainer" index="1" instance=ExtResource("3_boxhw")]
 layout_mode = 2
@@ -169,7 +178,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PaddingMarginContainer/VBoxContainer/RightContainer" index="0"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Right"
+text = "KEY_RIGHT"
 
 [node name="PaddingRight" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PaddingMarginContainer/VBoxContainer/RightContainer" index="1" instance=ExtResource("3_boxhw")]
 layout_mode = 2

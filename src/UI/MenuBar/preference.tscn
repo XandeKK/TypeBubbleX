@@ -33,27 +33,44 @@ grow_horizontal = 2
 grow_vertical = 2
 tab_alignment = 1
 
-[node name="General" type="PanelContainer" parent="TabContainer"]
+[node name="KEY_GENERAL" type="PanelContainer" parent="TabContainer"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_qdvbf")
 script = ExtResource("2_db0pj")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/General"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/KEY_GENERAL"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/General/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/KEY_GENERAL/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="TabContainer/General/VBoxContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="TabContainer/KEY_GENERAL/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Font Size"
+text = "KEY_FONT_SIZE"
 
-[node name="FontSizeInput" parent="TabContainer/General/VBoxContainer/HBoxContainer" instance=ExtResource("3_g51ty")]
+[node name="FontSizeInput" parent="TabContainer/KEY_GENERAL/VBoxContainer/HBoxContainer" instance=ExtResource("3_g51ty")]
 layout_mode = 2
 size_flags_horizontal = 3
 type = 1
 suffix = "Px"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="TabContainer/KEY_GENERAL/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TabContainer/KEY_GENERAL/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "KEY_LANGUAGE"
+
+[node name="LanguageOptionButton" type="OptionButton" parent="TabContainer/KEY_GENERAL/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+item_count = 2
+popup/item_0/text = "KEY_ENGLISH"
+popup/item_0/id = 0
+popup/item_1/text = "KEY_BRAZILIAN_PORTUGUESE"
+popup/item_1/id = 1
 
 [node name="Canvas" type="PanelContainer" parent="TabContainer"]
 visible = false
@@ -93,7 +110,7 @@ theme_override_constants/margin_bottom = 10
 
 [node name="Label" type="Label" parent="TabContainer/Canvas/ScrollContainer/VBoxContainer"]
 layout_mode = 2
-text = "Text Box Color"
+text = "KEY_TEXT_BOX_COLOR"
 
 [node name="MarginContainer" type="MarginContainer" parent="TabContainer/Canvas/ScrollContainer/VBoxContainer"]
 layout_mode = 2
@@ -109,7 +126,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="TabContainer/Canvas/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Active"
+text = "KEY_ACTIVE"
 
 [node name="TextEdgeActiveColor" type="ColorPickerButton" parent="TabContainer/Canvas/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -121,7 +138,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="TabContainer/Canvas/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Deactivate"
+text = "KEY_INACTIVE"
 
 [node name="TextEdgeDeactiveColor" type="ColorPickerButton" parent="TabContainer/Canvas/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
@@ -129,7 +146,7 @@ size_flags_horizontal = 3
 
 [node name="Label2" type="Label" parent="TabContainer/Canvas/ScrollContainer/VBoxContainer"]
 layout_mode = 2
-text = "Padding Color"
+text = "KEY_PADDING_COLOR"
 
 [node name="MarginContainer2" type="MarginContainer" parent="TabContainer/Canvas/ScrollContainer/VBoxContainer"]
 layout_mode = 2
@@ -146,14 +163,15 @@ layout_mode = 2
 [node name="Label" type="Label" parent="TabContainer/Canvas/ScrollContainer/VBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Active"
+text = "KEY_ACTIVE"
 
 [node name="PaddingActiveColor" type="ColorPickerButton" parent="TabContainer/Canvas/ScrollContainer/VBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
 [connection signal="close_requested" from="." to="." method="_on_close_requested"]
-[connection signal="changed" from="TabContainer/General/VBoxContainer/HBoxContainer/FontSizeInput" to="TabContainer/General" method="_on_font_size_input_changed"]
+[connection signal="changed" from="TabContainer/KEY_GENERAL/VBoxContainer/HBoxContainer/FontSizeInput" to="TabContainer/KEY_GENERAL" method="_on_font_size_input_changed"]
+[connection signal="item_selected" from="TabContainer/KEY_GENERAL/VBoxContainer/HBoxContainer2/LanguageOptionButton" to="TabContainer/KEY_GENERAL" method="_on_option_button_item_selected"]
 [connection signal="color_changed" from="TabContainer/Canvas/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/TextEdgeActiveColor" to="TabContainer/Canvas" method="_on_text_edge_active_color_color_changed"]
 [connection signal="color_changed" from="TabContainer/Canvas/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2/TextEdgeDeactiveColor" to="TabContainer/Canvas" method="_on_text_edge_deactive_color_color_changed"]
 [connection signal="color_changed" from="TabContainer/Canvas/ScrollContainer/VBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/PaddingActiveColor" to="TabContainer/Canvas" method="_on_padding_active_color_color_changed"]

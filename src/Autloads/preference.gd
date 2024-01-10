@@ -44,7 +44,8 @@ var colors : Dictionary = {
 }
 
 var general : Dictionary = {
-	'font_size': 12
+	'font_size': 12,
+	'language': 0
 }
 
 var filename : String = "user://preference_configuration.cfg"
@@ -81,3 +82,23 @@ func load_configuration() -> void:
  
 func load_general() -> void:
 	theme.default_font_size = general.font_size
+	if general.has('language'):
+		TranslationServer.set_locale(general.language)
+	else:
+		general.language = 'en'
+
+func index_to_language(index : int) -> String:
+	match index:
+		0:
+			return 'en'
+		1:
+			return 'pt_BR'
+	return 'en'
+
+func language_to_index(language : String) -> int:
+	match language:
+		'en':
+			return 0
+		'pt_BR':
+			return 1
+	return 0

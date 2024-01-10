@@ -4,7 +4,6 @@ extends PopupMenu
 
 var items : Array[Dictionary] = [
 	{
-		'name': 'Clear',
 		'keycode': null,
 		'ctrl': false,
 		'callable': _on_clear_selected,
@@ -14,19 +13,18 @@ var items : Array[Dictionary] = [
 
 func _ready():
 	var count = 0 
+	
 	for item in items:
-		if item.separator:
-			add_separator(item.name)
-		else:
-			add_item(item.name, count)
-			
-			if item.keycode:
-				var shortcut : Shortcut = Shortcut.new()
-				var shortcutKeyEvent : InputEventKey = InputEventKey.new()
-				shortcutKeyEvent.keycode = item.keycode
-				shortcutKeyEvent.command_or_control_autoremap = item.ctrl
-				shortcut.events.append(shortcutKeyEvent)
-				set_item_shortcut(count, shortcut, true)
+		if not item.has('keycode'):
+			continue
+		
+		if item.keycode:
+			var shortcut : Shortcut = Shortcut.new()
+			var shortcutKeyEvent : InputEventKey = InputEventKey.new()
+			shortcutKeyEvent.keycode = item.keycode
+			shortcutKeyEvent.command_or_control_autoremap = item.ctrl
+			shortcut.events.append(shortcutKeyEvent)
+			set_item_shortcut(count, shortcut, true)
 		
 		count+= 1
 

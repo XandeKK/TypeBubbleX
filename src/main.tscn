@@ -24,13 +24,13 @@
 [sub_resource type="Resource" id="Resource_7k7ct"]
 resource_name = "Tabs"
 script = ExtResource("2_1axbj")
-names = PackedStringArray("Properties")
+names = PackedStringArray("KEY_PROPERTIES")
 current_tab = 0
 
 [sub_resource type="Resource" id="Resource_l5wtx"]
 resource_name = "Tabs"
 script = ExtResource("2_1axbj")
-names = PackedStringArray("Texts")
+names = PackedStringArray("KEY_TEXTS")
 current_tab = 0
 
 [sub_resource type="Resource" id="Resource_r1bqr"]
@@ -50,13 +50,13 @@ hidden_tabs = {}
 [sub_resource type="Resource" id="Resource_gtfdq"]
 resource_name = "Tabs"
 script = ExtResource("2_1axbj")
-names = PackedStringArray("Styles", "Selection Styles")
+names = PackedStringArray("KEY_STYLES", "KEY_STYLE_GROUPS")
 current_tab = 0
 
 [sub_resource type="Resource" id="Resource_e1xoq"]
 resource_name = "Tabs"
 script = ExtResource("2_1axbj")
-names = PackedStringArray("Layers")
+names = PackedStringArray("KEY_LAYERS")
 current_tab = 0
 
 [sub_resource type="Resource" id="Resource_hdb1q"]
@@ -102,13 +102,28 @@ layout_mode = 2
 layout_mode = 2
 theme = ExtResource("2_q156j")
 
-[node name="File" type="PopupMenu" parent="MarginContainer/VBoxContainer/MenuBar" node_paths=PackedStringArray("confirmation_dialog", "font_config", "preference")]
+[node name="KEY_FILE" type="PopupMenu" parent="MarginContainer/VBoxContainer/MenuBar" node_paths=PackedStringArray("confirmation_dialog", "font_config", "preference")]
+item_count = 5
+item_0/text = "KEY_OPEN"
+item_0/id = 0
+item_1/text = "KEY_SAVE"
+item_1/id = 1
+item_2/text = ""
+item_2/id = 2
+item_2/separator = true
+item_3/text = "KEY_PREFERENCE"
+item_3/id = 3
+item_4/text = "KEY_FONTS"
+item_4/id = 4
 script = ExtResource("3_pq15j")
 confirmation_dialog = NodePath("../../../../Popups/FileConfirmationDialog")
 font_config = NodePath("../../../../Popups/FontConfig")
 preference = NodePath("../../../../Popups/Preference")
 
-[node name="Edit" type="PopupMenu" parent="MarginContainer/VBoxContainer/MenuBar" node_paths=PackedStringArray("canvas")]
+[node name="KEY_EDIT" type="PopupMenu" parent="MarginContainer/VBoxContainer/MenuBar" node_paths=PackedStringArray("canvas")]
+item_count = 1
+item_0/text = "KEY_CLEAR"
+item_0/id = 0
 script = ExtResource("5_6s0g1")
 canvas = NodePath("../../MarginContainer/HSplitContainer/HSplitContainer/Canvas/TopCanvas")
 
@@ -129,11 +144,11 @@ script = ExtResource("1_h1uv5")
 tab_alignment = 0
 layout = SubResource("Resource_82d3e")
 
-[node name="Properties" type="TabBar" parent="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/DockableContainer"]
+[node name="KEY_PROPERTIES" type="TabBar" parent="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/DockableContainer"]
 custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
 
-[node name="PropertiesDocker" parent="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/DockableContainer/Properties" node_paths=PackedStringArray("canvas") instance=ExtResource("8_4wsqh")]
+[node name="PropertiesDocker" parent="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/DockableContainer/KEY_PROPERTIES" node_paths=PackedStringArray("canvas") instance=ExtResource("8_4wsqh")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -144,11 +159,11 @@ grow_horizontal = 2
 grow_vertical = 2
 canvas = NodePath("../../../HSplitContainer/Canvas/TopCanvas")
 
-[node name="Texts" type="TabBar" parent="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/DockableContainer"]
+[node name="KEY_TEXTS" type="TabBar" parent="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/DockableContainer"]
 custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
 
-[node name="TextDocker" parent="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/DockableContainer/Texts" node_paths=PackedStringArray("canvas") instance=ExtResource("9_qcy0h")]
+[node name="TextDocker" parent="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/DockableContainer/KEY_TEXTS" node_paths=PackedStringArray("canvas") instance=ExtResource("9_qcy0h")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -200,12 +215,12 @@ script = ExtResource("1_h1uv5")
 tab_alignment = 0
 layout = SubResource("Resource_vt5i7")
 
-[node name="Styles" type="TabBar" parent="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/HSplitContainer/VBoxContainer/DockableContainer"]
+[node name="KEY_STYLES" type="TabBar" parent="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/HSplitContainer/VBoxContainer/DockableContainer"]
 custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="StylesDocker" parent="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/HSplitContainer/VBoxContainer/DockableContainer/Styles" node_paths=PackedStringArray("canvas") instance=ExtResource("11_18n82")]
+[node name="StylesDocker" parent="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/HSplitContainer/VBoxContainer/DockableContainer/KEY_STYLES" node_paths=PackedStringArray("canvas") instance=ExtResource("11_18n82")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -216,12 +231,12 @@ grow_horizontal = 2
 grow_vertical = 2
 canvas = NodePath("../../../../Canvas/TopCanvas")
 
-[node name="Selection Styles" type="TabBar" parent="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/HSplitContainer/VBoxContainer/DockableContainer"]
+[node name="KEY_STYLE_GROUPS" type="TabBar" parent="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/HSplitContainer/VBoxContainer/DockableContainer"]
 visible = false
 custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
 
-[node name="SelectionStylesDocker" parent="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/HSplitContainer/VBoxContainer/DockableContainer/Selection Styles" node_paths=PackedStringArray("canvas") instance=ExtResource("12_pdg4t")]
+[node name="SelectionStylesDocker" parent="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/HSplitContainer/VBoxContainer/DockableContainer/KEY_STYLE_GROUPS" node_paths=PackedStringArray("canvas") instance=ExtResource("12_pdg4t")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -232,12 +247,12 @@ grow_horizontal = 2
 grow_vertical = 2
 canvas = NodePath("../../../../Canvas/TopCanvas")
 
-[node name="Layers" type="TabBar" parent="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/HSplitContainer/VBoxContainer/DockableContainer"]
+[node name="KEY_LAYERS" type="TabBar" parent="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/HSplitContainer/VBoxContainer/DockableContainer"]
 custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="LayersDocker" parent="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/HSplitContainer/VBoxContainer/DockableContainer/Layers" node_paths=PackedStringArray("canvas") instance=ExtResource("11_rfhdm")]
+[node name="LayersDocker" parent="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/HSplitContainer/VBoxContainer/DockableContainer/KEY_LAYERS" node_paths=PackedStringArray("canvas") instance=ExtResource("11_rfhdm")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -259,8 +274,8 @@ visible = false
 [node name="Preference" parent="Popups" instance=ExtResource("20_5srkf")]
 visible = false
 
-[connection signal="id_pressed" from="MarginContainer/VBoxContainer/MenuBar/File" to="MarginContainer/VBoxContainer/MenuBar/File" method="_on_id_pressed"]
-[connection signal="id_pressed" from="MarginContainer/VBoxContainer/MenuBar/Edit" to="MarginContainer/VBoxContainer/MenuBar/Edit" method="_on_id_pressed"]
+[connection signal="id_pressed" from="MarginContainer/VBoxContainer/MenuBar/KEY_FILE" to="MarginContainer/VBoxContainer/MenuBar/KEY_FILE" method="_on_id_pressed"]
+[connection signal="id_pressed" from="MarginContainer/VBoxContainer/MenuBar/KEY_EDIT" to="MarginContainer/VBoxContainer/MenuBar/KEY_EDIT" method="_on_id_pressed"]
 [connection signal="item_selected" from="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/HSplitContainer/VBoxContainer/PagesContainer/PagesOptionButton" to="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/HSplitContainer/VBoxContainer/PagesContainer" method="_on_pages_option_button_item_selected"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/HSplitContainer/VBoxContainer/PagesContainer/BackButton" to="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/HSplitContainer/VBoxContainer/PagesContainer" method="_on_back_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/HSplitContainer/VBoxContainer/PagesContainer/NextButton" to="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/HSplitContainer/VBoxContainer/PagesContainer" method="_on_next_button_pressed"]

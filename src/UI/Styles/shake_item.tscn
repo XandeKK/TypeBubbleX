@@ -46,7 +46,7 @@ layout_mode = 2
 [node name="TwoDirectionCheckButton" type="CheckButton" parent="TwoDirectionContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Two Direction"
+text = "KEY_TWO_DIRECTION"
 text_overrun_behavior = 3
 
 [node name="XContainer" type="HBoxContainer" parent="."]
@@ -81,7 +81,8 @@ layout_mode = 2
 [node name="Label" type="Label" parent="IntensityContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Intensity"
+text = "KEY_INTENSITY"
+text_overrun_behavior = 3
 
 [node name="IntensityInput" parent="IntensityContainer" instance=ExtResource("1_63x0g")]
 layout_mode = 2
@@ -95,7 +96,8 @@ layout_mode = 2
 [node name="Label" type="Label" parent="QuantityContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Quantity"
+text = "KEY_QUANTITY"
+text_overrun_behavior = 3
 
 [node name="QuantityInput" parent="QuantityContainer" instance=ExtResource("1_63x0g")]
 layout_mode = 2
@@ -108,7 +110,8 @@ layout_mode = 2
 [node name="Label" type="Label" parent="AlphaContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Alpha"
+text = "KEY_ALPHA"
+text_overrun_behavior = 3
 
 [node name="AlphaInput" parent="AlphaContainer" instance=ExtResource("3_bt7m6")]
 layout_mode = 2

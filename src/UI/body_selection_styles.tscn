@@ -78,7 +78,8 @@ layout_mode = 2
 [node name="Label" type="Label" parent="StartContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Start"
+text = "KEY_START"
+text_overrun_behavior = 3
 
 [node name="StartInput" parent="StartContainer" instance=ExtResource("2_g6qd3")]
 layout_mode = 2
@@ -91,7 +92,8 @@ layout_mode = 2
 [node name="Label" type="Label" parent="EndContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "End"
+text = "KEY_END"
+text_overrun_behavior = 3
 
 [node name="EndInput" parent="EndContainer" instance=ExtResource("2_g6qd3")]
 layout_mode = 2
@@ -103,7 +105,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="FontContainer"]
 layout_mode = 2
-text = "Font"
+text = "KEY_FONT"
 
 [node name="FontName" parent="FontContainer" instance=ExtResource("1_uy3x2")]
 layout_mode = 2
@@ -127,12 +129,14 @@ layout_mode = 2
 [node name="Bold" type="CheckButton" parent="BoldItalicContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Bold"
+text = "KEY_BOLD"
+text_overrun_behavior = 3
 
 [node name="Italic" type="CheckButton" parent="BoldItalicContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "italic"
+text = "KEY_ITALIC"
+text_overrun_behavior = 3
 
 [node name="HeaderOutlines" type="HBoxContainer" parent="."]
 layout_mode = 2
@@ -140,7 +144,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="HeaderOutlines"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Outlines"
+text = "KEY_OUTLINES"
 
 [node name="AddButton" type="Button" parent="HeaderOutlines"]
 layout_mode = 2
@@ -177,7 +181,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="HeaderShakes"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Shakes "
+text = "KEY_SHAKES"
 
 [node name="AddButton" type="Button" parent="HeaderShakes"]
 layout_mode = 2

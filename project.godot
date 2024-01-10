@@ -34,6 +34,10 @@ window/vsync/vsync_mode=0
 
 enabled=PackedStringArray("res://addons/dockable_container/plugin.cfg", "res://addons/gut/plugin.cfg")
 
+[internationalization]
+
+locale/translations=PackedStringArray("res://Assets/Translations/translations.en.translation", "res://Assets/Translations/translations.pt_BR.translation")
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=2

@@ -59,8 +59,9 @@ script = ExtResource("2_4kr83")
 
 [node name="CheckButton" type="CheckButton" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="0"]
 layout_mode = 2
-tooltip_text = "Show the original image with texts, if any."
-text = "Show Raw"
+tooltip_text = "KEY_ABOUT_SHOW_RAW"
+text = "KEY_SHOW_RAW"
+text_overrun_behavior = 3
 
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="1"]
 custom_minimum_size = Vector2(0, 150)

@@ -71,7 +71,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="SizeContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Size"
+text = "KEY_SIZE"
 
 [node name="SizeInput" parent="SizeContainer" instance=ExtResource("1_fccep")]
 layout_mode = 2
@@ -84,7 +84,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="ColorContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Color"
+text = "KEY_COLOR"
 
 [node name="ColorPickerButton" type="ColorPickerButton" parent="ColorContainer"]
 layout_mode = 2
