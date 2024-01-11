@@ -68,25 +68,12 @@ https://github.com/XandeKK/TypeX/assets/80427458/f6078f5c-57d7-4e90-b83d-5a167f4
 
 ## Installation
 
-[**Click Here**](https://github.com/XandeKK/TypeX/releases/tag/v0.1.0-alpha) to be redirected to the download area.
-
-Dear users,
-When downloading the alpha release of TypeX, please choose the file that matches your system's architecture:
-
-- **TypeX.arm32**: For systems using a 32-bit ARM architecture.
-- **TypeX.arm64**: For systems using a 64-bit ARM architecture.
-- **TypeX.x86_32**: For systems using a 32-bit x86 architecture.
-- **TypeX.x86_64**: For systems using a 64-bit x86 architecture.
-- **TypeX_x86_32.exe**: For Windows systems using a 32-bit x86 architecture.
-- **TypeX_x86_64.exe**: For Windows systems using a 64-bit x86 architecture.
-
-Please download the file that corresponds to your system. If you're unsure about your system's architecture, you may need to check your system information.
-
-Thank you for your support!
+**Coming soon**
 
 ## How to Use
 
-[**Click Here**](https://github.com/XandeKK/TypeX/wiki/How-to-Use-the-TypeX)
+**Coming soon**
+
 ## Contribution
 
 **Coming soon**
