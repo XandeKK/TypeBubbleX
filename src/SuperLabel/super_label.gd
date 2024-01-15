@@ -6,6 +6,7 @@ extends Control
 
 var move : Move = Move.new()
 var rotation_node : Rotation = Rotation.new()
+var perspective : Perspective = Perspective.new()
 
 var focus : bool = false : get = _get_focus
 var can_draw : bool = true : set = _set_can_draw
@@ -17,8 +18,10 @@ signal rotation_changed(value)
 func _ready():
 	move.target = self
 	rotation_node.target = self
+	perspective.target = self
 	
 	add_child(rotation_node)
+	add_child(perspective)
 	
 	resized.connect(readjust_size)
 
@@ -65,6 +68,7 @@ func readjust_size():
 	
 	pivot_offset = size / 2
 	rotation_node.readjust_size()
+	perspective.reset()
 	
 	text._shape()
 
@@ -73,12 +77,14 @@ func _get_focus() -> bool:
 
 func set_focus(value : bool = true, emit : bool = true) -> void:
 	focus = value
-	queue_redraw()
+	can_draw = true
 	emit_signal('focused', self) if emit else null
 	emit_signal('focus_changed')
 
 func _set_can_draw(value : bool) -> void:
 	can_draw = value
+	perspective.can_draw = can_draw
+	queue_redraw()
 
 func convert_to_degrees(value : float):
 	value = int(rad_to_deg(value))
@@ -100,11 +106,13 @@ func to_dictionary() -> Dictionary:
 		'position': position,
 		'size': size,
 		'rotation_degrees': rotation_degrees,
+		'perspective': perspective.to_dictionary(),
 		'text': text.to_dictionary()
 	}
 
 func load(data : Dictionary) -> void:
 	rotation_degrees = data['rotation_degrees']
+	perspective.load(data['perspective'])
 	
 	text.load(data['text'])
 

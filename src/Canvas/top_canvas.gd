@@ -116,7 +116,6 @@ func get_image() -> Image:
 	
 	for object : Control in objects.get_children():
 		object.can_draw = false
-		object.queue_redraw()
 	
 	await RenderingServer.frame_post_draw
 
@@ -124,7 +123,6 @@ func get_image() -> Image:
 	
 	for object in objects.get_children():
 		object.can_draw = true
-		object.queue_redraw()
 	
 	raw_image.visible = raw_visible
 	

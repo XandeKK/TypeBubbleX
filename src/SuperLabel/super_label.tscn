@@ -1,10 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://c4nbuwn3qqdio"]
+[gd_scene load_steps=5 format=3 uid="uid://c4nbuwn3qqdio"]
 
 [ext_resource type="PackedScene" uid="uid://dphoqpw3y2qwv" path="res://src/SuperLabel/text.tscn" id="1_6jvrh"]
 [ext_resource type="Script" path="res://src/SuperLabel/super_label.gd" id="1_rff2x"]
+[ext_resource type="Shader" path="res://src/Shaders/perspective.gdshader" id="2_jwnhj"]
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_x7mnt"]
-blend_mode = 4
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_afl7v"]
+resource_local_to_scene = true
+shader = ExtResource("2_jwnhj")
+shader_parameter/top_left = Vector2(0, 0)
+shader_parameter/top_right = Vector2(0, 0)
+shader_parameter/bottom_left = Vector2(0, 0)
+shader_parameter/bottom_right = Vector2(0, 0)
 
 [node name="SuperLabel" type="Control"]
 texture_filter = 6
@@ -16,7 +22,7 @@ script = ExtResource("1_rff2x")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 texture_filter = 6
-material = SubResource("CanvasItemMaterial_x7mnt")
+material = SubResource("ShaderMaterial_afl7v")
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
