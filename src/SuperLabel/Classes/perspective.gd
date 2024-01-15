@@ -4,7 +4,7 @@ class_name Perspective
 var target : Control : set = _set_target
 
 var can_draw : bool = true : set = _set_can_draw
-var active : bool = false : set = _set_active
+var active : bool = false : get = _get_active, set = _set_active
 
 var top_left : Point = Point.new()
 var top_right : Point = Point.new()
@@ -92,6 +92,9 @@ func _set_can_draw(value : bool) -> void:
 	top_right.queue_redraw()
 	bottom_left.queue_redraw()
 	bottom_right.queue_redraw()
+
+func _get_active() -> bool:
+	return active
 
 func _set_active(value : bool) -> void:
 	active = value

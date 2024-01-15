@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://brpmrfe8bjswa"]
+[gd_scene load_steps=9 format=3 uid="uid://brpmrfe8bjswa"]
 
 [ext_resource type="PackedScene" uid="uid://btdffss434kcc" path="res://src/UI/panel_docker.tscn" id="1_gnjlj"]
 [ext_resource type="Script" path="res://src/UI/Styles/body_outlines.gd" id="2_6qoje"]
 [ext_resource type="Script" path="res://src/UI/styles_docker.gd" id="2_phubn"]
+[ext_resource type="Script" path="res://src/UI/Styles/perspective_check_button.gd" id="3_mwq0g"]
 [ext_resource type="Script" path="res://src/UI/Styles/body_shakes.gd" id="6_4b0yh"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r6omi"]
@@ -40,7 +41,17 @@ offset_right = 200.0
 offset_bottom = 300.0
 script = ExtResource("2_phubn")
 
-[node name="HeaderOutlines" type="HBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="0"]
+[node name="HeaderPerspective" type="HBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="0"]
+layout_mode = 2
+
+[node name="PerspectiveCheckButton" type="CheckButton" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HeaderPerspective" index="0"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "KEY_PERSPECTIVE"
+text_overrun_behavior = 3
+script = ExtResource("3_mwq0g")
+
+[node name="HeaderOutlines" type="HBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="1"]
 layout_mode = 2
 
 [node name="Label" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HeaderOutlines" index="0"]
@@ -54,7 +65,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_r6omi")
 theme_override_styles/focus = SubResource("StyleBoxFlat_ljlkc")
 text = "+"
 
-[node name="BodyOutlines" type="PanelContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="1"]
+[node name="BodyOutlines" type="PanelContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="2"]
 custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_4vlao")
@@ -77,7 +88,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="HeaderShakes" type="HBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="2"]
+[node name="HeaderShakes" type="HBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="3"]
 layout_mode = 2
 
 [node name="Label" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HeaderShakes" index="0"]
@@ -91,7 +102,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_r6omi")
 theme_override_styles/focus = SubResource("StyleBoxFlat_ljlkc")
 text = "+"
 
-[node name="BodyShakes" type="PanelContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="3"]
+[node name="BodyShakes" type="PanelContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="4"]
 custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_4vlao")
@@ -114,5 +125,6 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
+[connection signal="pressed" from="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HeaderPerspective/PerspectiveCheckButton" to="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HeaderPerspective/PerspectiveCheckButton" method="_on_pressed"]
 [connection signal="pressed" from="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HeaderOutlines/AddButton" to="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/BodyOutlines" method="_on_add_button_pressed"]
 [connection signal="pressed" from="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HeaderShakes/AddButton" to="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/BodyShakes" method="_on_add_button_pressed"]
