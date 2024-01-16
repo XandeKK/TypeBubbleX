@@ -21,6 +21,7 @@ var font_settings : Dictionary = {
 } : get = _get_font_settings, set = _set_font_settings
 
 var text_styles : TextStyles = TextStyles.new() : get = _get_text_styles, set = _set_text_styles
+var gradient_text : GradientText = GradientText.new() : get = _get_gradient_text, set = _set_gradient_text
 
 var style_box : StyleBox = StyleBoxEmpty.new() : get = _get_style_box, set = _set_style_box
 
@@ -42,6 +43,8 @@ func _ready():
 	shakes.parent = self
 	outlines.parent = self
 	letters.parent = self
+	
+	gradient_text.letters = letters
 
 func _prepare_glyphs_to_render() -> void:
 	glyphs_to_render.clear()
@@ -299,6 +302,12 @@ func _get_style_box() -> StyleBox:
 func _set_style_box(value : StyleBox) -> void:
 	style_box = value
 	_shape()
+
+func _get_gradient_text() -> GradientText:
+	return gradient_text
+
+func _set_gradient_text(value : GradientText) -> void:
+	gradient_text = value
 
 func get_glyphs_to_render() -> Array[Dictionary]:
 	return glyphs_to_render

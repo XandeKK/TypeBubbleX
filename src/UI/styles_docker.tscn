@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://brpmrfe8bjswa"]
+[gd_scene load_steps=10 format=3 uid="uid://brpmrfe8bjswa"]
 
 [ext_resource type="PackedScene" uid="uid://btdffss434kcc" path="res://src/UI/panel_docker.tscn" id="1_gnjlj"]
 [ext_resource type="Script" path="res://src/UI/Styles/body_outlines.gd" id="2_6qoje"]
 [ext_resource type="Script" path="res://src/UI/styles_docker.gd" id="2_phubn"]
 [ext_resource type="Script" path="res://src/UI/Styles/perspective_check_button.gd" id="3_mwq0g"]
 [ext_resource type="Script" path="res://src/UI/Styles/body_shakes.gd" id="6_4b0yh"]
+[ext_resource type="PackedScene" uid="uid://feawar53wfbd" path="res://src/UI/Styles/body_gradient.tscn" id="6_l1ma8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r6omi"]
 content_margin_left = 4.0
@@ -125,6 +126,20 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
+[node name="HeaderGradient" type="HBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="5"]
+layout_mode = 2
+
+[node name="GradientCheckButton" type="CheckButton" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HeaderGradient" index="0"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "KEY_GRADIENT"
+text_overrun_behavior = 3
+
+[node name="BodyGradient" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="6" node_paths=PackedStringArray("gradient_check_button") instance=ExtResource("6_l1ma8")]
+layout_mode = 2
+gradient_check_button = NodePath("../HeaderGradient/GradientCheckButton")
+
 [connection signal="pressed" from="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HeaderPerspective/PerspectiveCheckButton" to="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HeaderPerspective/PerspectiveCheckButton" method="_on_pressed"]
 [connection signal="pressed" from="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HeaderOutlines/AddButton" to="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/BodyOutlines" method="_on_add_button_pressed"]
 [connection signal="pressed" from="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HeaderShakes/AddButton" to="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/BodyShakes" method="_on_add_button_pressed"]
+[connection signal="toggled" from="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HeaderGradient/GradientCheckButton" to="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/BodyGradient" method="_on_gradient_check_button_toggled"]

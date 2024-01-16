@@ -1,0 +1,126 @@
+[gd_scene load_steps=10 format=3 uid="uid://feawar53wfbd"]
+
+[ext_resource type="Script" path="res://src/UI/Styles/gradient/point_gradient_2d.gd" id="1_3tw81"]
+[ext_resource type="Script" path="res://src/UI/Styles/gradient/gradient_1d_texture_rect.gd" id="1_7kah5"]
+[ext_resource type="Script" path="res://src/UI/Styles/body_gradient.gd" id="1_8iecl"]
+[ext_resource type="Script" path="res://src/UI/Styles/gradient/point_gradient_1d.gd" id="1_fk76v"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f3x4u"]
+content_margin_right = 6.0
+draw_center = false
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.109804, 0.109804, 0.109804, 1)
+
+[sub_resource type="Gradient" id="Gradient_4ipmr"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_mhjdg"]
+gradient = SubResource("Gradient_4ipmr")
+
+[sub_resource type="Gradient" id="Gradient_ve6c2"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_rvite"]
+gradient = SubResource("Gradient_ve6c2")
+fill = 1
+fill_from = Vector2(0.534591, 0.481132)
+
+[node name="BodyGradient" type="PanelContainer"]
+custom_minimum_size = Vector2(0, 225)
+offset_right = 191.0
+offset_bottom = 233.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_f3x4u")
+script = ExtResource("1_8iecl")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 15
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+text = "KEY_SHAPE"
+text_overrun_behavior = 3
+
+[node name="ShapeOptionButton" type="OptionButton" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text_overrun_behavior = 3
+item_count = 3
+selected = 0
+popup/item_0/text = "KEY_LINEAR"
+popup/item_0/id = 0
+popup/item_1/text = "KEY_RADIAL"
+popup/item_1/id = 1
+popup/item_2/text = "KEY_SQUARE"
+popup/item_2/id = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Gradient1DTextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer" node_paths=PackedStringArray("color_picker_button")]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = SubResource("GradientTexture1D_mhjdg")
+expand_mode = 1
+script = ExtResource("1_7kah5")
+color_picker_button = NodePath("../ColorPickerButton")
+
+[node name="PointGradient1D" type="Control" parent="MarginContainer/VBoxContainer/HBoxContainer/Gradient1DTextureRect"]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -5.0
+offset_top = -20.0
+offset_right = 3.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("1_fk76v")
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+
+[node name="Gradient2DTextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+texture = SubResource("GradientTexture2D_rvite")
+
+[node name="PointGradient2D1" type="Control" parent="MarginContainer/VBoxContainer/Gradient2DTextureRect"]
+layout_mode = 1
+anchors_preset = 0
+offset_right = 10.0
+offset_bottom = 10.0
+script = ExtResource("1_3tw81")
+
+[node name="PointGradient2D2" type="Control" parent="MarginContainer/VBoxContainer/Gradient2DTextureRect"]
+layout_mode = 1
+anchors_preset = 0
+offset_right = 10.0
+offset_bottom = 10.0
+script = ExtResource("1_3tw81")
+
+[connection signal="item_selected" from="MarginContainer/VBoxContainer/HBoxContainer2/ShapeOptionButton" to="." method="_on_shape_option_button_item_selected"]
+[connection signal="gui_input" from="MarginContainer/VBoxContainer/HBoxContainer/Gradient1DTextureRect" to="MarginContainer/VBoxContainer/HBoxContainer/Gradient1DTextureRect" method="_on_gui_input"]
+[connection signal="color_changed" from="MarginContainer/VBoxContainer/HBoxContainer/ColorPickerButton" to="MarginContainer/VBoxContainer/HBoxContainer/Gradient1DTextureRect" method="_on_color_picker_button_color_changed"]
