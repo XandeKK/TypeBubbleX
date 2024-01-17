@@ -1,0 +1,35 @@
+extends TextureRect
+
+@onready var from_point : Control = $PointGradient2D1
+@onready var to_point : Control = $PointGradient2D2
+
+var gradient_texture_2d : GradientTexture2D
+
+func _ready():
+	from_point.position_changed.connect(_on_from_point_position_changed)
+	to_point.position_changed.connect(_on_to_point_position_changed)
+
+func clear() -> void:
+	gradient_texture_2d = null
+	texture.gradient = Gradient.new()
+
+func set_gradient_text(value : GradientText) -> void:
+	gradient_texture_2d = value.get_gradient_texture_2d()
+	
+	texture.gradient = gradient_texture_2d.get_gradient()
+	
+	from_point.position = gradient_texture_2d.fill_from * size - from_point.size / 2
+	to_point.position = gradient_texture_2d.fill_to * size - to_point.size / 2
+	
+	set_fill(gradient_texture_2d.fill)
+
+func set_fill(value : int) -> void:
+	texture.fill = value
+
+func _on_from_point_position_changed() -> void:
+	gradient_texture_2d.fill_from = (from_point.position + from_point.size / 2) / size
+	texture.fill_from = gradient_texture_2d.fill_from
+
+func _on_to_point_position_changed() -> void:
+	gradient_texture_2d.fill_to = (to_point.position + to_point.size / 2) / size
+	texture.fill_to = gradient_texture_2d.fill_to

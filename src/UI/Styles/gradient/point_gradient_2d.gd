@@ -9,6 +9,8 @@ var is_within : float = false
 var target_inital : Vector2
 var mouse_inital : Vector2
 
+signal position_changed
+
 func _ready():
 	parent = get_parent()
 	
@@ -36,6 +38,8 @@ func _input(event : InputEvent):
 		var half_size = size.x / 2
 		position.x = min(max(position.x, -half_size), parent.size.x - half_size)
 		position.y = min(max(position.y, -half_size), parent.size.y - half_size)
+		
+		emit_signal('position_changed')
 
 func _on_mouse_entered():
 	is_within = true

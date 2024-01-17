@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://feawar53wfbd"]
+[gd_scene load_steps=11 format=3 uid="uid://feawar53wfbd"]
 
 [ext_resource type="Script" path="res://src/UI/Styles/gradient/point_gradient_2d.gd" id="1_3tw81"]
 [ext_resource type="Script" path="res://src/UI/Styles/gradient/gradient_1d_texture_rect.gd" id="1_7kah5"]
 [ext_resource type="Script" path="res://src/UI/Styles/body_gradient.gd" id="1_8iecl"]
 [ext_resource type="Script" path="res://src/UI/Styles/gradient/point_gradient_1d.gd" id="1_fk76v"]
+[ext_resource type="Script" path="res://src/UI/Styles/gradient/gradient_2d_texture_rect.gd" id="4_l3hcj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f3x4u"]
 content_margin_right = 6.0
@@ -23,8 +24,6 @@ gradient = SubResource("Gradient_4ipmr")
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_rvite"]
 gradient = SubResource("Gradient_ve6c2")
-fill = 1
-fill_from = Vector2(0.534591, 0.481132)
 
 [node name="BodyGradient" type="PanelContainer"]
 custom_minimum_size = Vector2(0, 225)
@@ -106,6 +105,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
 texture = SubResource("GradientTexture2D_rvite")
+script = ExtResource("4_l3hcj")
 
 [node name="PointGradient2D1" type="Control" parent="MarginContainer/VBoxContainer/Gradient2DTextureRect"]
 layout_mode = 1
