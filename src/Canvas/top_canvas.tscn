@@ -37,6 +37,11 @@ handle_input_locally = false
 size = Vector2i(40, 40)
 render_target_update_mode = 4
 
+[node name="ColorRect" type="ColorRect" parent="SubViewport/BottomCanvas/SubViewport"]
+custom_minimum_size = Vector2(512, 512)
+offset_right = 512.0
+offset_bottom = 512.0
+
 [node name="CleanedImage" type="TextureRect" parent="SubViewport/BottomCanvas/SubViewport"]
 offset_right = 40.0
 offset_bottom = 40.0

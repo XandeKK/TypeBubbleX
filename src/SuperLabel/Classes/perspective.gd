@@ -18,6 +18,22 @@ var bottom_right_position_initial : Vector2
 
 func _ready():
 	active = false
+	mouse_filter = Control.MOUSE_FILTER_IGNORE
+	
+	target.add_child(top_left)
+	target.add_child(top_right)
+	target.add_child(bottom_left)
+	target.add_child(bottom_right)
+	
+	top_left.target = target
+	top_right.target = target
+	bottom_left.target = target
+	bottom_right.target = target
+	
+	top_left.position_changed.connect(_on_top_left_position_changed)
+	top_right.position_changed.connect(_on_top_right_position_changed)
+	bottom_left.position_changed.connect(_on_bottom_left_position_changed)
+	bottom_right.position_changed.connect(_on_bottom_right_position_changed)
 
 func _draw():
 	if not can_draw or not active:
@@ -43,6 +59,11 @@ func reset() -> void:
 	top_right_position_initial = top_right.position
 	bottom_left_position_initial = bottom_left.position
 	bottom_right_position_initial = bottom_right.position
+	
+	_on_top_left_position_changed()
+	_on_top_right_position_changed()
+	_on_bottom_left_position_changed()
+	_on_bottom_right_position_changed()
 
 func _on_top_left_position_changed() -> void:
 	var _position : Vector2 = top_left.position - top_left_position_initial
@@ -67,21 +88,6 @@ func _on_bottom_right_position_changed() -> void:
 func _set_target(value : Control) -> void:
 	target = value
 	
-	target.add_child(top_left)
-	target.add_child(top_right)
-	target.add_child(bottom_left)
-	target.add_child(bottom_right)
-	
-	top_left.target = target
-	top_right.target = target
-	bottom_left.target = target
-	bottom_right.target = target
-	
-	top_left.position_changed.connect(_on_top_left_position_changed)
-	top_right.position_changed.connect(_on_top_right_position_changed)
-	bottom_left.position_changed.connect(_on_bottom_left_position_changed)
-	bottom_right.position_changed.connect(_on_bottom_right_position_changed)
-	
 	reset()
 
 func _set_can_draw(value : bool) -> void:
@@ -98,6 +104,8 @@ func _get_active() -> bool:
 
 func _set_active(value : bool) -> void:
 	active = value
+	
+	target.lock(value)
 	
 	queue_redraw()
 	

@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://btdffss434kcc" path="res://src/UI/panel_docker.tscn" id="1_gnjlj"]
 [ext_resource type="Script" path="res://src/UI/Styles/body_outlines.gd" id="2_6qoje"]
 [ext_resource type="Script" path="res://src/UI/styles_docker.gd" id="2_phubn"]
-[ext_resource type="Script" path="res://src/UI/Styles/perspective_check_button.gd" id="3_mwq0g"]
+[ext_resource type="PackedScene" uid="uid://dj6oassp2kefw" path="res://src/UI/Styles/body_perspective.tscn" id="3_id8d4"]
 [ext_resource type="Script" path="res://src/UI/Styles/body_shakes.gd" id="6_4b0yh"]
 [ext_resource type="PackedScene" uid="uid://feawar53wfbd" path="res://src/UI/Styles/body_gradient.tscn" id="6_l1ma8"]
 [ext_resource type="PackedScene" uid="uid://v2uq8yjc1gs6" path="res://src/UI/Styles/body_mask.tscn" id="7_vck18"]
@@ -51,9 +51,12 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "KEY_PERSPECTIVE"
 text_overrun_behavior = 3
-script = ExtResource("3_mwq0g")
 
-[node name="HeaderOutlines" type="HBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="1"]
+[node name="BodyPerspective" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="1" node_paths=PackedStringArray("active_check_button") instance=ExtResource("3_id8d4")]
+layout_mode = 2
+active_check_button = NodePath("../HeaderPerspective/PerspectiveCheckButton")
+
+[node name="HeaderOutlines" type="HBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="2"]
 layout_mode = 2
 
 [node name="Label" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HeaderOutlines" index="0"]
@@ -67,7 +70,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_r6omi")
 theme_override_styles/focus = SubResource("StyleBoxFlat_ljlkc")
 text = "+"
 
-[node name="BodyOutlines" type="PanelContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="2"]
+[node name="BodyOutlines" type="PanelContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="3"]
 custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_4vlao")
@@ -90,7 +93,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="HeaderShakes" type="HBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="3"]
+[node name="HeaderShakes" type="HBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="4"]
 layout_mode = 2
 
 [node name="Label" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HeaderShakes" index="0"]
@@ -104,7 +107,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_r6omi")
 theme_override_styles/focus = SubResource("StyleBoxFlat_ljlkc")
 text = "+"
 
-[node name="BodyShakes" type="PanelContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="4"]
+[node name="BodyShakes" type="PanelContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="5"]
 custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_4vlao")
@@ -127,7 +130,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="HeaderGradient" type="HBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="5"]
+[node name="HeaderGradient" type="HBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="6"]
 layout_mode = 2
 
 [node name="GradientCheckButton" type="CheckButton" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HeaderGradient" index="0"]
@@ -136,11 +139,11 @@ size_flags_horizontal = 3
 text = "KEY_GRADIENT"
 text_overrun_behavior = 3
 
-[node name="BodyGradient" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="6" node_paths=PackedStringArray("gradient_check_button") instance=ExtResource("6_l1ma8")]
+[node name="BodyGradient" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="7" node_paths=PackedStringArray("gradient_check_button") instance=ExtResource("6_l1ma8")]
 layout_mode = 2
 gradient_check_button = NodePath("../HeaderGradient/GradientCheckButton")
 
-[node name="HeaderMask" type="HBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="7"]
+[node name="HeaderMask" type="HBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="8"]
 layout_mode = 2
 
 [node name="MaskCheckButton" type="CheckButton" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HeaderMask" index="0"]
@@ -149,11 +152,11 @@ size_flags_horizontal = 3
 text = "KEY_MASK"
 text_overrun_behavior = 3
 
-[node name="BodyMask" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="8" node_paths=PackedStringArray("active_check_button") instance=ExtResource("7_vck18")]
+[node name="BodyMask" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="9" node_paths=PackedStringArray("active_check_button") instance=ExtResource("7_vck18")]
 layout_mode = 2
 active_check_button = NodePath("../HeaderMask/MaskCheckButton")
 
-[connection signal="pressed" from="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HeaderPerspective/PerspectiveCheckButton" to="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HeaderPerspective/PerspectiveCheckButton" method="_on_pressed"]
+[connection signal="toggled" from="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HeaderPerspective/PerspectiveCheckButton" to="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/BodyPerspective" method="_on_perspective_check_button_toggled"]
 [connection signal="pressed" from="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HeaderOutlines/AddButton" to="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/BodyOutlines" method="_on_add_button_pressed"]
 [connection signal="pressed" from="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HeaderShakes/AddButton" to="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/BodyShakes" method="_on_add_button_pressed"]
 [connection signal="toggled" from="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HeaderGradient/GradientCheckButton" to="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/BodyGradient" method="_on_gradient_check_button_toggled"]

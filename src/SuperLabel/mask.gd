@@ -43,8 +43,6 @@ func _input(event):
 			MODE.ADD:
 				if event.button_index == MOUSE_BUTTON_LEFT:
 					add_point(event)
-				if event.button_index == MOUSE_BUTTON_RIGHT:
-					delete_point()
 			MODE.EDIT:
 				if event.button_index == MOUSE_BUTTON_LEFT:
 					if not is_dragging:
@@ -90,6 +88,10 @@ func delete_point() -> void:
 	mask.polygon = polygon
 	
 	lifted_point_idx = -1
+	queue_redraw()
+
+func clear_all() -> void:
+	mask.polygon = []
 	queue_redraw()
 
 func _set_target(value : Control) -> void:

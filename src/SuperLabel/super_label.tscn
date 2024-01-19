@@ -21,6 +21,11 @@ offset_right = 282.0
 offset_bottom = 240.0
 script = ExtResource("1_rff2x")
 
+[node name="MaskDraw" type="Control" parent="." node_paths=PackedStringArray("mask")]
+anchors_preset = 0
+script = ExtResource("2_p1y50")
+mask = NodePath("../Mask")
+
 [node name="Mask" type="Polygon2D" parent="."]
 clip_children = 1
 
@@ -38,8 +43,3 @@ render_target_update_mode = 4
 
 [node name="Text" parent="Mask/SubViewportContainer/SubViewport" instance=ExtResource("1_6jvrh")]
 texture_filter = 6
-
-[node name="MaskDraw" type="Control" parent="." node_paths=PackedStringArray("mask")]
-anchors_preset = 0
-script = ExtResource("2_p1y50")
-mask = NodePath("../Mask")

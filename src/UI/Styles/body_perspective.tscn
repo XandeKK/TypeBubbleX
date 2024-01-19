@@ -1,0 +1,39 @@
+[gd_scene load_steps=3 format=3 uid="uid://dj6oassp2kefw"]
+
+[ext_resource type="Script" path="res://src/UI/Styles/body_perspective.gd" id="1_nl2dd"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4vlao"]
+content_margin_right = 6.0
+draw_center = false
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.109804, 0.109804, 0.109804, 1)
+
+[node name="BodyPerspective" type="PanelContainer"]
+custom_minimum_size = Vector2(0, 60)
+offset_right = 150.0
+offset_bottom = 60.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_4vlao")
+script = ExtResource("1_nl2dd")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ResetButton" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "KEY_RESET"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ResetButton" to="." method="_on_reset_button_pressed"]

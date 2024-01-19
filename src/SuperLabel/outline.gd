@@ -11,11 +11,9 @@ var offset : Vector2 = Vector2.ZERO : get = _get_ofs, set = _set_ofs
 
 func _draw():
 	if start != -1:
-		var count = 0
 		for info in parent.glyphs_to_render:
-			if count >= start and count <= end:
+			if info['glyph']['start'] >= start and info['glyph']['end'] - 1 <= end:
 				draw_glypgh(info)
-			count += 1
 	else:
 		for info in parent.glyphs_to_render:
 			draw_glypgh(info)

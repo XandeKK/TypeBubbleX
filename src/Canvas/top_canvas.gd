@@ -19,6 +19,7 @@ signal object_removed(node : Control)
 
 func _ready() -> void:
 	draw_observer.target = self
+	bottom_canvas.size = Vector2(512,512)
 
 func load_raw_image(texture : ImageTexture) -> void:
 	raw_image.texture = texture
@@ -35,11 +36,17 @@ func add_object(packed_scene : PackedScene, start_position : Vector2, end_positi
 	if not packed_scene:
 		return
 
-	var obj = packed_scene.instantiate()
-	objects.add_child(obj)
-	obj.focused.connect(focus)
 	var min_pos = Vector2(min(start_position.x, end_position.x), min(start_position.y, end_position.y))
 	var max_pos = Vector2(max(start_position.x, end_position.x), max(start_position.y, end_position.y))
+	
+	if max_pos - min_pos < Vector2(10,10):
+		return
+	
+	var obj = packed_scene.instantiate()
+	
+	objects.add_child(obj)
+	
+	obj.focused.connect(focus)
 	obj.init(min_pos, max_pos - min_pos, style)
 	obj.canvas = self
 	

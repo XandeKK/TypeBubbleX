@@ -12,7 +12,7 @@ border_width_bottom = 4
 border_color = Color(0.109804, 0.109804, 0.109804, 1)
 
 [node name="BodyMask" type="PanelContainer"]
-custom_minimum_size = Vector2(0, 80)
+custom_minimum_size = Vector2(0, 120)
 offset_right = 200.0
 offset_bottom = 80.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_4vlao")
@@ -58,5 +58,10 @@ layout_mode = 2
 text = "KEY_DRAW"
 text_overrun_behavior = 3
 
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "KEY_CLEAN_ALL"
+
 [connection signal="item_selected" from="MarginContainer/VBoxContainer/HBoxContainer/ModeOptionButton" to="." method="_on_mode_option_button_item_selected"]
 [connection signal="toggled" from="MarginContainer/VBoxContainer/DrawCheckButton" to="." method="_on_draw_check_button_toggled"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]

@@ -35,3 +35,9 @@ func _on_mask_check_button_toggled(toggled_on):
 		return
 	
 	node.active = toggled_on
+
+func _on_button_pressed():
+	if not node:
+		return
+	
+	node.clear_all()

@@ -36,11 +36,9 @@ func color_and_draw(info : Dictionary, color : Color):
 func _draw():
 	var color : Color = parent.color
 	if start != -1:
-		var count = 0
 		for info in parent.glyphs_to_render:
-			if count >= start and count <= end:
+			if info['glyph']['start'] >= start and info['glyph']['end'] - 1 <= end:
 				color_and_draw(info, color)
-			count += 1
 	else:
 		for info in parent.glyphs_to_render:
 			color_and_draw(info, color)

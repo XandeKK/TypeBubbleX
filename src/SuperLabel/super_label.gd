@@ -20,11 +20,12 @@ signal rotation_changed(value)
 func _ready():
 	move.target = self
 	rotation_node.target = self
-	perspective.target = self
 	mask_draw.target = self
+	perspective.target = self
 	
 	add_child(rotation_node)
 	add_child(perspective)
+	
 	
 	resized.connect(readjust_size)
 
@@ -68,6 +69,8 @@ func readjust_size():
 	sub_viewport.size = size
 	sub_viewport_container.size = size
 	text.size = size
+	mask_draw.size = size
+	perspective.size = size
 	
 	pivot_offset = size / 2
 	rotation_node.readjust_size()
@@ -91,6 +94,9 @@ func set_focus(value : bool = true, emit : bool = true) -> void:
 	can_draw = true
 	emit_signal('focused', self) if emit else null
 	emit_signal('focus_changed')
+	
+	if focus:
+		get_parent().move_child(self, -1)
 
 func _set_can_draw(value : bool) -> void:
 	can_draw = value
