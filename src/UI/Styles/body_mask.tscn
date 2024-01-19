@@ -36,6 +36,8 @@ layout_mode = 2
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+tooltip_text = "KEY_ABOUT_MODE_MASK"
+mouse_filter = 1
 text = "KEY_MODE"
 text_overrun_behavior = 3
 

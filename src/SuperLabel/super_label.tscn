@@ -23,7 +23,6 @@ script = ExtResource("1_rff2x")
 
 [node name="Mask" type="Polygon2D" parent="."]
 clip_children = 1
-polygon = PackedVector2Array(157, 163, 123, 130, 190, 120)
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="Mask"]
 texture_filter = 6

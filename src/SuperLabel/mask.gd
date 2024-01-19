@@ -11,10 +11,10 @@ enum MODE {
 var target : Control : set = _set_target
 
 var is_dragging : bool = false
-var active : bool = true : set = _set_active
+var active : bool = false : set = _set_active
 var can_draw : bool = true : set = _set_can_draw
 var lifted_point_idx : int = -1
-var mode : MODE = MODE.EDIT : set = _set_mode
+var mode : MODE = MODE.IDLE : set = _set_mode
 
 func _draw():
 	if not can_draw or not target.focus or not active:
@@ -115,3 +115,13 @@ func _set_active(value : bool) -> void:
 		mask.polygon.clear()
 	
 	queue_redraw()
+
+func to_dictionary() -> Dictionary:
+	return {
+		'active': active,
+		'polygon': mask.polygon
+	}
+
+func load(data : Dictionary) -> void:
+	active = data['active']
+	mask.polygon = data['polygon']

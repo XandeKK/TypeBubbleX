@@ -122,12 +122,14 @@ func to_dictionary() -> Dictionary:
 		'size': size,
 		'rotation_degrees': rotation_degrees,
 		'perspective': perspective.to_dictionary(),
+		'mask_draw': mask_draw.to_dictionary(),
 		'text': text.to_dictionary()
 	}
 
 func load(data : Dictionary) -> void:
 	rotation_degrees = data['rotation_degrees']
 	perspective.load(data['perspective'])
+	mask_draw.load(data['mask_draw'])
 	
 	text.load(data['text'])
 
