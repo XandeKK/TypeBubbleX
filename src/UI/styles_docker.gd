@@ -6,6 +6,7 @@ extends Panel
 @onready var body_outlines : PanelContainer = $MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/BodyOutlines
 @onready var body_shakes : PanelContainer = $MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/BodyShakes
 @onready var body_gradient : PanelContainer = $MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/BodyGradient
+@onready var body_mask : PanelContainer = $MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/BodyMask
 
 func _ready():
 	canvas.object_focus_changed.connect(set_values)
@@ -16,6 +17,7 @@ func blank_all():
 	body_outlines.blank_all()
 	body_shakes.blank_all()
 	body_gradient.blank_all()
+	body_mask.blank_all()
 
 func set_values(node : Control):
 	blank_all()
@@ -26,3 +28,4 @@ func set_values(node : Control):
 	body_outlines.set_values(node)
 	body_shakes.set_values(node)
 	body_gradient.set_values(node)
+	body_mask.set_values(node)

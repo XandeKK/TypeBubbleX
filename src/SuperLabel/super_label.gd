@@ -1,8 +1,9 @@
 extends Control
 
-@onready var sub_viewport : SubViewport = $SubViewportContainer/SubViewport
-@onready var text : Control = $SubViewportContainer/SubViewport/Text
-@onready var sub_viewport_container : SubViewportContainer = $SubViewportContainer
+@onready var sub_viewport : SubViewport = $Mask/SubViewportContainer/SubViewport
+@onready var text : Control = $Mask/SubViewportContainer/SubViewport/Text
+@onready var sub_viewport_container : SubViewportContainer = $Mask/SubViewportContainer
+@onready var mask_draw : Control = $MaskDraw
 
 var move : Move = Move.new()
 var rotation_node : Rotation = Rotation.new()
@@ -10,6 +11,7 @@ var perspective : Perspective = Perspective.new()
 
 var focus : bool = false : get = _get_focus
 var can_draw : bool = true : set = _set_can_draw
+var canvas : SubViewportContainer : set = _set_canvas
 
 signal focused(node : Control)
 signal focus_changed
@@ -19,6 +21,7 @@ func _ready():
 	move.target = self
 	rotation_node.target = self
 	perspective.target = self
+	mask_draw.target = self
 	
 	add_child(rotation_node)
 	add_child(perspective)
@@ -72,10 +75,18 @@ func readjust_size():
 	
 	text._shape()
 
+func lock(value : bool) -> void:
+	if focus:
+		canvas.locked = value
+		rotation_node.set_process_input(not value)
+
 func _get_focus() -> bool:
 	return focus
 
 func set_focus(value : bool = true, emit : bool = true) -> void:
+	if canvas.locked:
+		return
+
 	focus = value
 	can_draw = true
 	emit_signal('focused', self) if emit else null
@@ -84,7 +95,11 @@ func set_focus(value : bool = true, emit : bool = true) -> void:
 func _set_can_draw(value : bool) -> void:
 	can_draw = value
 	perspective.can_draw = can_draw
+	mask_draw.can_draw = can_draw
 	queue_redraw()
+
+func _set_canvas(value : SubViewportContainer) -> void:
+	canvas = value
 
 func convert_to_degrees(value : float):
 	value = int(rad_to_deg(value))

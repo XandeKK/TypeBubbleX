@@ -11,6 +11,8 @@ extends SubViewportContainer
 var focused_object : Control = null : get = get_object
 var style : Preference.HQStyles : get = _get_style, set = _set_style
 
+var locked : bool = false : set = _set_locked
+
 signal object_focus_changed(node : Control)
 signal object_added(node : Control)
 signal object_removed(node : Control)
@@ -39,15 +41,22 @@ func add_object(packed_scene : PackedScene, start_position : Vector2, end_positi
 	var min_pos = Vector2(min(start_position.x, end_position.x), min(start_position.y, end_position.y))
 	var max_pos = Vector2(max(start_position.x, end_position.x), max(start_position.y, end_position.y))
 	obj.init(min_pos, max_pos - min_pos, style)
+	obj.canvas = self
 	
 	emit_signal('object_added', obj)
 
 func remove_object(node : Control):
+	if locked:
+		return
+
 	focus(null)
 	node.queue_free()
 	emit_signal('object_removed', node)
 
 func focus(node : Control) -> void:
+	if locked:
+		return
+
 	if focused_object:
 		focused_object.set_focus(false, false)
 	if focused_object == node:
@@ -69,6 +78,9 @@ func clear_texts() -> void:
 func remove_texts() -> void:
 	for child in objects.get_children():
 		remove_object(child)
+
+func _set_locked(value : bool) -> void:
+	locked = value
 
 func _get_style() -> Preference.HQStyles:
 	return style

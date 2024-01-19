@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://brpmrfe8bjswa"]
+[gd_scene load_steps=11 format=3 uid="uid://brpmrfe8bjswa"]
 
 [ext_resource type="PackedScene" uid="uid://btdffss434kcc" path="res://src/UI/panel_docker.tscn" id="1_gnjlj"]
 [ext_resource type="Script" path="res://src/UI/Styles/body_outlines.gd" id="2_6qoje"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://src/UI/Styles/perspective_check_button.gd" id="3_mwq0g"]
 [ext_resource type="Script" path="res://src/UI/Styles/body_shakes.gd" id="6_4b0yh"]
 [ext_resource type="PackedScene" uid="uid://feawar53wfbd" path="res://src/UI/Styles/body_gradient.tscn" id="6_l1ma8"]
+[ext_resource type="PackedScene" uid="uid://v2uq8yjc1gs6" path="res://src/UI/Styles/body_mask.tscn" id="7_vck18"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r6omi"]
 content_margin_left = 4.0
@@ -39,7 +40,7 @@ border_color = Color(0.109804, 0.109804, 0.109804, 1)
 
 [node name="StylesDocker" instance=ExtResource("1_gnjlj")]
 offset_right = 200.0
-offset_bottom = 300.0
+offset_bottom = 1000.0
 script = ExtResource("2_phubn")
 
 [node name="HeaderPerspective" type="HBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="0"]
@@ -139,7 +140,21 @@ text_overrun_behavior = 3
 layout_mode = 2
 gradient_check_button = NodePath("../HeaderGradient/GradientCheckButton")
 
+[node name="HeaderMask" type="HBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="7"]
+layout_mode = 2
+
+[node name="MaskCheckButton" type="CheckButton" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HeaderMask" index="0"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "KEY_MASK"
+text_overrun_behavior = 3
+
+[node name="BodyMask" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="8" node_paths=PackedStringArray("active_check_button") instance=ExtResource("7_vck18")]
+layout_mode = 2
+active_check_button = NodePath("../HeaderMask/MaskCheckButton")
+
 [connection signal="pressed" from="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HeaderPerspective/PerspectiveCheckButton" to="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HeaderPerspective/PerspectiveCheckButton" method="_on_pressed"]
 [connection signal="pressed" from="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HeaderOutlines/AddButton" to="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/BodyOutlines" method="_on_add_button_pressed"]
 [connection signal="pressed" from="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HeaderShakes/AddButton" to="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/BodyShakes" method="_on_add_button_pressed"]
 [connection signal="toggled" from="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HeaderGradient/GradientCheckButton" to="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/BodyGradient" method="_on_gradient_check_button_toggled"]
+[connection signal="toggled" from="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HeaderMask/MaskCheckButton" to="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/BodyMask" method="_on_mask_check_button_toggled"]
