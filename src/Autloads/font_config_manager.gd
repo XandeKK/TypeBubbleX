@@ -153,7 +153,6 @@ func scan_fonts(path : String) -> void:
 			if dir.current_is_dir():
 				scan_fonts(full_path)
 			elif file_name.ends_with(".otf") or file_name.ends_with(".ttf"):
-				pass
 				process_font_file(full_path)
 
 			file_name = dir.get_next()

@@ -1,0 +1,82 @@
+[gd_scene load_steps=5 format=3 uid="uid://7v5n3o8ygu2u"]
+
+[ext_resource type="Theme" uid="uid://ds37dvaj7sob8" path="res://Assets/Themes/main.tres" id="1_5nhk7"]
+[ext_resource type="Script" path="res://src/UI/MenuBar/pattern_config.gd" id="1_boaiy"]
+[ext_resource type="Script" path="res://src/UI/MenuBar/PatternConfig/directories.gd" id="3_4rr16"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m77k1"]
+content_margin_left = 50.0
+content_margin_top = 20.0
+content_margin_right = 50.0
+content_margin_bottom = 20.0
+bg_color = Color(0.129412, 0.129412, 0.129412, 1)
+border_width_top = 5
+border_color = Color(0.109804, 0.109804, 0.109804, 1)
+
+[node name="PatternConfig" type="Window"]
+initial_position = 2
+size = Vector2i(800, 450)
+transient = true
+exclusive = true
+min_size = Vector2i(800, 450)
+script = ExtResource("1_boaiy")
+
+[node name="TabContainer" type="TabContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_5nhk7")
+tab_alignment = 1
+
+[node name="KEY_DIRECTORIES" type="PanelContainer" parent="TabContainer" node_paths=PackedStringArray("file_dialog")]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_m77k1")
+script = ExtResource("3_4rr16")
+file_dialog = NodePath("../../DirFileDialog")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/KEY_DIRECTORIES"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/KEY_DIRECTORIES/VBoxContainer"]
+layout_mode = 2
+
+[node name="DirLineEdit" type="LineEdit" parent="TabContainer/KEY_DIRECTORIES/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "KEY_DIRECTORY"
+
+[node name="OpenButton" type="Button" parent="TabContainer/KEY_DIRECTORIES/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "..."
+
+[node name="AddButton" type="Button" parent="TabContainer/KEY_DIRECTORIES/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "+"
+
+[node name="RemoveButton" type="Button" parent="TabContainer/KEY_DIRECTORIES/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "X"
+
+[node name="ItemList" type="ItemList" parent="TabContainer/KEY_DIRECTORIES/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="DirFileDialog" type="FileDialog" parent="."]
+title = "Open a Directory"
+initial_position = 2
+size = Vector2i(708, 159)
+ok_button_text = "Select Current Folder"
+file_mode = 2
+access = 2
+filters = PackedStringArray("*")
+show_hidden_files = true
+use_native_dialog = true
+
+[connection signal="close_requested" from="." to="." method="_on_close_requested"]
+[connection signal="pressed" from="TabContainer/KEY_DIRECTORIES/VBoxContainer/HBoxContainer/OpenButton" to="TabContainer/KEY_DIRECTORIES" method="_on_open_button_pressed"]
+[connection signal="pressed" from="TabContainer/KEY_DIRECTORIES/VBoxContainer/HBoxContainer/AddButton" to="TabContainer/KEY_DIRECTORIES" method="_on_add_button_pressed"]
+[connection signal="pressed" from="TabContainer/KEY_DIRECTORIES/VBoxContainer/HBoxContainer/RemoveButton" to="TabContainer/KEY_DIRECTORIES" method="_on_remove_button_pressed"]
+[connection signal="item_selected" from="TabContainer/KEY_DIRECTORIES/VBoxContainer/ItemList" to="TabContainer/KEY_DIRECTORIES" method="_on_item_list_item_selected"]
+[connection signal="dir_selected" from="DirFileDialog" to="TabContainer/KEY_DIRECTORIES" method="_on_dir_file_dialog_dir_selected"]
