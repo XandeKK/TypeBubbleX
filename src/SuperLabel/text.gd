@@ -366,6 +366,8 @@ func load(data : Dictionary) -> void:
 
 func _exit_tree():
 	text_styles.free()
+	gradient_text.free()
 	TSManager.TS.free_rid(text_rid)
 	for i in range(lines_rid.size()):
 		TSManager.TS.free_rid(lines_rid[i])
+		

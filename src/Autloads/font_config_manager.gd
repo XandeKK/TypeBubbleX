@@ -157,7 +157,7 @@ func scan_fonts(path : String) -> void:
 
 			file_name = dir.get_next()
 	else:
-		print("An error occurred when trying to access the path.")
+		print("Font Config Managed: An error occurred when trying to access the path.")
 
 func process_font_file(font_file_path : String) -> void:
 	var font_name = font_file_path.get_file().get_basename()

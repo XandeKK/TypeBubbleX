@@ -149,3 +149,9 @@ func load(data : Dictionary) -> void:
 	top_right.emit_signal('position_changed')
 	bottom_left.emit_signal('position_changed')
 	bottom_right.emit_signal('position_changed')
+
+func _exit_tree():
+	top_left.queue_free()
+	top_right.queue_free()
+	bottom_left.queue_free()
+	bottom_right.queue_free()

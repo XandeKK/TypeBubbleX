@@ -141,3 +141,4 @@ func load(data : Dictionary) -> void:
 
 func _exit_tree():
 	move.free()
+	perspective.free()

@@ -77,7 +77,7 @@ func scan_patterns(path : String) -> void:
 
 			file_name = dir.get_next()
 	else:
-		print("An error occurred when trying to access the path.")
+		print("Pattern Config Managed: An error occurred when trying to access the path.")
 
 func get_dirs() -> Array[String]:
 	return dirs

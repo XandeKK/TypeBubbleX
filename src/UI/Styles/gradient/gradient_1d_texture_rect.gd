@@ -104,3 +104,6 @@ func _on_color_picker_button_color_changed(color):
 		point_focused.color = color
 		point_focused.queue_redraw()
 		set_color(point_focused.point, color)
+
+func _exit_tree():
+	point_gradient_1d.queue_free()

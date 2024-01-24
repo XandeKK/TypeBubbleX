@@ -57,3 +57,6 @@ func load(value : Dictionary) -> void:
 	
 	texture_rect.texture.fill_from = value['fill_from']
 	texture_rect.texture.fill_to = value['fill_to']
+
+func _exit_tree():
+	texture_rect.queue_free()
