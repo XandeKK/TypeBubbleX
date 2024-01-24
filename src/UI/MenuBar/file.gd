@@ -28,12 +28,12 @@ var items : Array[Dictionary] = [
 		'callable': _on_preference_selected,
 		'separator': false,
 	},
-	{
-		'keycode': null,
-		'ctrl': false,
-		'callable': _on_patternss_selected,
-		'separator': false,
-	},
+	#{
+		#'keycode': null,
+		#'ctrl': false,
+		#'callable': _on_patternss_selected,
+		#'separator': false,
+	#},
 	{
 		'keycode': null,
 		'ctrl': false,

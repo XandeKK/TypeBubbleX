@@ -104,7 +104,7 @@ layout_mode = 2
 theme = ExtResource("2_q156j")
 
 [node name="KEY_FILE" type="PopupMenu" parent="MarginContainer/VBoxContainer/MenuBar" node_paths=PackedStringArray("confirmation_dialog", "font_config", "preference", "pattern_config")]
-item_count = 6
+item_count = 5
 item_0/text = "KEY_OPEN"
 item_0/id = 0
 item_1/text = "KEY_SAVE"
@@ -114,10 +114,8 @@ item_2/id = 2
 item_2/separator = true
 item_3/text = "KEY_PREFERENCE"
 item_3/id = 3
-item_4/text = "KEY_PATTERNS"
+item_4/text = "KEY_FONTS"
 item_4/id = 4
-item_5/text = "KEY_FONTS"
-item_5/id = 5
 script = ExtResource("3_pq15j")
 confirmation_dialog = NodePath("../../../../Popups/FileConfirmationDialog")
 font_config = NodePath("../../../../Popups/FontConfig")
