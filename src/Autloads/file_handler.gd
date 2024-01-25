@@ -1,5 +1,7 @@
 extends Node
 
+var thread: Thread
+
 var canvas : SubViewportContainer : set = set_canvas
 var cleaned_images_path : Array : get = get_cleaned_images_path
 var raw_images_path : Array
@@ -13,6 +15,9 @@ var app_files_path : String
 
 signal page_changed
 signal pages_add
+
+func _ready():
+	thread = Thread.new()
 
 func open(obj : Dictionary) -> void:
 	current_page = 0
@@ -110,6 +115,11 @@ func save_image() -> void:
 	
 	save_path = save_path.path_join(cleaned_images_path[current_page])
 
+	if thread.is_started():
+		thread.wait_to_finish()
+	thread.start(_thread_save_image.bind(image, save_path))
+
+func _thread_save_image(image : Image, save_path : String) -> void:
 	if cleaned_images_path[current_page].ends_with('.png'):
 		image.save_png(save_path)
 	elif cleaned_images_path[current_page].ends_with('.jpg') or cleaned_images_path[current_page].ends_with('.jpeg'):
@@ -219,3 +229,4 @@ func _set_text_list(value : ItemList) -> void:
 func _exit_tree():
 	canvas.clear()
 	text_list.clear()
+	thread.wait_to_finish()
