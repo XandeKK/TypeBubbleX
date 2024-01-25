@@ -68,7 +68,6 @@ func save() -> void:
 		return
 
 	var data : Dictionary = canvas.to_dictionary()
-	handler_images(data)
 	
 	save_to_file(data)
 	update_app_file()
@@ -118,29 +117,6 @@ func save_image() -> void:
 	elif cleaned_images_path[current_page].ends_with('.webp'):
 		image.save_webp(save_path)
 
-func handler_images(data: Dictionary) -> void:
-	if cleaned_images_path.is_empty():
-		print("Unable to handle images")
-		return
-
-	var extension: String = get_image_extension(cleaned_images_path[current_page])
-	
-	match extension:
-		"png":
-			data.raw_image = data.raw_image.save_png_to_buffer()
-			data.cleaned_image = data.cleaned_image.save_png_to_buffer()
-		"jpg":
-			data.raw_image = data.raw_image.save_jpg_to_buffer()
-			data.cleaned_image = data.cleaned_image.save_jpg_to_buffer()
-		"webp":
-			data.raw_image = data.raw_image.save_webp_to_buffer()
-			data.cleaned_image = data.cleaned_image.save_webp_to_buffer()
-		_:
-			print("Unsupported image format:", extension)
-			return
-
-	data['extension'] = extension
-
 func get_image_extension(file_path: String) -> String:
 	if file_path.ends_with('.png'):
 		return 'png'
@@ -176,21 +152,22 @@ func to_go(index : int) -> void:
 	load_image_in_canvas()
 
 func load_image_in_canvas() -> void:
-	if cleaned_images_path.is_empty() and app_files_images_path.is_empty():
+	if cleaned_images_path.is_empty():
 		print('there are no images')
 		return
 	
 	canvas.remove_texts()
-	
-	if current_page < app_files_images_path.size() and app_files_images_path[current_page].get_basename() == cleaned_images_path[current_page].get_basename():
-		var path = app_files_path.path_join(app_files_images_path[current_page])
+
+	var filtered = app_files_images_path.filter(func(path : String): return cleaned_images_path[current_page].get_basename() == path.get_basename())
+	if not filtered.is_empty():
+		var path = app_files_path.path_join(filtered[0])
 		var file = FileAccess.open(path, FileAccess.READ)
 		var data = file.get_var()
 		canvas.load(data)
-	else:
-		canvas.load_cleaned_image(load_image(cleaned_path.path_join(cleaned_images_path[current_page])))
-		if not raw_images_path.is_empty():
-			canvas.load_raw_image(load_image(raw_path.path_join(raw_images_path[current_page])))
+	
+	canvas.load_cleaned_image(load_image(cleaned_path.path_join(cleaned_images_path[current_page])))
+	if not raw_images_path.is_empty():
+		canvas.load_raw_image(load_image(raw_path.path_join(raw_images_path[current_page])))
 		
 	emit_signal('page_changed')
 

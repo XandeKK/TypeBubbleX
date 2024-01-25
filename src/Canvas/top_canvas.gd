@@ -100,29 +100,10 @@ func _get_bottom_canvas_sub_viewport() -> SubViewport:
 
 func to_dictionary() -> Dictionary:
 	return {
-		'texts': objects.get_children().map(func(text): return text.to_dictionary()),
-		'raw_image': raw_image.texture.get_image(),
-		'cleaned_image': cleaned_image.texture.get_image()
+		'texts': objects.get_children().map(func(text): return text.to_dictionary())
 	}
 
 func load(data : Dictionary) -> void:
-	var _raw_image : Image = Image.new()
-	var _cleaned_image : Image = Image.new()
-	
-	match data['extension']:
-		'png':
-			_raw_image.load_png_from_buffer(data['raw_image'])
-			_cleaned_image.load_png_from_buffer(data['cleaned_image'])
-		'jpg':
-			_raw_image.load_jpg_from_buffer(data['raw_image'])
-			_cleaned_image.load_jpg_from_buffer(data['cleaned_image'])
-		'webp':
-			_raw_image.load_webp_from_buffer(data['raw_image'])
-			_cleaned_image.load_webp_from_buffer(data['cleaned_image'])
-	
-	load_raw_image(ImageTexture.create_from_image(_raw_image))
-	load_cleaned_image(ImageTexture.create_from_image(_cleaned_image))
-	
 	var text_scene : PackedScene = load("res://src/SuperLabel/super_label.tscn")
 	
 	for text in data['texts']:
@@ -150,4 +131,3 @@ func get_image() -> Image:
 func clear() -> void:
 	for object in objects.get_children():
 		object.queue_free()
-	
