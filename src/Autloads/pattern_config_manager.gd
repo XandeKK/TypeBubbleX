@@ -35,11 +35,11 @@ func load_configuration():
 
 func add_dir(dir : String) -> void:
 	if dirs.find(dir) != -1:
-		print('already have this directory')
+		Notification.message(tr('KEY_ALREADY_HAVE_THIS_DIRECTORY'))
 		return
 	
 	if not DirAccess.dir_exists_absolute(dir):
-		print('directory does not exist')
+		Notification.message(tr('KEY_DIRECTORY_DOES_NOT_EXIST'))
 		return
 	
 	dirs.append(dir)
@@ -48,7 +48,7 @@ func add_dir(dir : String) -> void:
 
 func remove_dir(index : int) -> void:
 	if index < 0 or index >= dirs.size():
-		print('index out of range')
+		Notification.message(tr('KEY_INDEX_OUT_OF_RANGE'))
 		return
 	
 	dirs.remove_at(index)
@@ -77,7 +77,7 @@ func scan_patterns(path : String) -> void:
 
 			file_name = dir.get_next()
 	else:
-		print("Pattern Config Managed: An error occurred when trying to access the path.")
+		Notification.call_deferred('message', "Pattern Config Managed: An error occurred when trying to access the path.")
 
 func get_dirs() -> Array[String]:
 	return dirs

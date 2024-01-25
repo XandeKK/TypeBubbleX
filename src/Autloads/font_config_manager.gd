@@ -111,11 +111,11 @@ func deserialize_font(font : Dictionary, font_name : String, type : String) -> F
 
 func add_dir(dir : String) -> void:
 	if dirs.find(dir) != -1:
-		print('already have this directory')
+		Notification.message(tr('KEY_ALREADY_HAVE_THIS_DIRECTORY'))
 		return
 	
 	if not DirAccess.dir_exists_absolute(dir):
-		print('directory does not exist')
+		Notification.message(tr('KEY_DIRECTORY_DOES_NOT_EXIST'))
 		return
 	
 	dirs.append(dir)
@@ -124,7 +124,7 @@ func add_dir(dir : String) -> void:
 
 func remove_dir(index : int) -> void:
 	if index < 0 or index >= dirs.size():
-		print('index out of range')
+		Notification.message(tr('KEY_INDEX_OUT_OF_RANGE'))
 		return
 	
 	dirs.remove_at(index)
@@ -157,7 +157,7 @@ func scan_fonts(path : String) -> void:
 
 			file_name = dir.get_next()
 	else:
-		print("Font Config Managed: An error occurred when trying to access the path.")
+		Notification.call_deferred('message', "Font Config Managed: An error occurred when trying to access the path.")
 
 func process_font_file(font_file_path : String) -> void:
 	var font_name = font_file_path.get_file().get_basename()
@@ -213,7 +213,7 @@ func add_font(font : String) -> bool:
 		emit_signal('fonts_changed')
 		return true
 	
-	print("Font not found:", font)
+	Notification.message(tr('KEY_FONT_NOT_FOUND') + font)
 	return false
 
 func remove_font(font : String) -> bool:
@@ -222,29 +222,29 @@ func remove_font(font : String) -> bool:
 		emit_signal('fonts_changed')
 		return true
 	
-	print("Font not found:", font)
+	Notification.message(tr('KEY_FONT_NOT_FOUND') + font)
 	return false
 
 func edit_nickname(font_name : String, nickname : String) -> void:
 	if not fonts.has(font_name):
-		print("Font not found:", font_name)
+		Notification.message(tr('KEY_FONT_NOT_FOUND') + font_name)
 		return
 	fonts[font_name]['nickname'] = '' if nickname.is_empty() else nickname
 
 func edit_font(font_name : String, type : String, font_copy : FontVariation) -> void:
 	if not fonts.has(font_name):
-		print("Font not found:", font_name)
+		Notification.message(tr('KEY_FONT_NOT_FOUND') + font_name)
 		return
 	
 	if not ["regular", "bold", "italic", "bold-italic"].has(type):
-		print("Invalid font type:", type)
+		Notification.message(tr('KEY_INVALID_FONT_TYPE') + type)
 		return
 	
 	fonts[font_name][type] = font_copy.duplicate()
 
 func load_regular_font(font : String) -> FontVariation:
 	if not fonts_path.has(font):
-		print("Font not found:", font)
+		Notification.message(tr('KEY_FONT_NOT_FOUND') + font)
 		return load_font('')
 
 	var font_dict : Dictionary = fonts_path[font]

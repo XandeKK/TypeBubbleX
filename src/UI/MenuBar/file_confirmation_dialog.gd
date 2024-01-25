@@ -16,11 +16,11 @@ func _on_confirmed():
 	var dir_acess = DirAccess.open('.')
 	
 	if path.text.is_empty():
-		print('path is empty')
+		Notification.message(tr('KEY_PATH_IS_EMPTY'))
 		return
 	
 	if not dir_acess.dir_exists(path.text):
-		print("path don't exist")
+		Notification.message(tr('KEY_PATH_DONT_EXIST'))
 		return
 		
 	FileHandler.open({

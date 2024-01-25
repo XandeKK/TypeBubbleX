@@ -279,6 +279,22 @@ visible = false
 [node name="PatternConfig" parent="Popups" instance=ExtResource("21_h5edw")]
 visible = false
 
+[node name="NotificationsBox" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -207.0
+offset_top = 10.0
+offset_right = -7.0
+offset_bottom = -10.0
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+alignment = 2
+
 [connection signal="id_pressed" from="MarginContainer/VBoxContainer/MenuBar/KEY_FILE" to="MarginContainer/VBoxContainer/MenuBar/KEY_FILE" method="_on_id_pressed"]
 [connection signal="id_pressed" from="MarginContainer/VBoxContainer/MenuBar/KEY_EDIT" to="MarginContainer/VBoxContainer/MenuBar/KEY_EDIT" method="_on_id_pressed"]
 [connection signal="item_selected" from="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/HSplitContainer/VBoxContainer/PagesContainer/PagesOptionButton" to="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/HSplitContainer/VBoxContainer/PagesContainer" method="_on_pages_option_button_item_selected"]

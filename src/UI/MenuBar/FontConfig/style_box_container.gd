@@ -65,5 +65,5 @@ func _on_skew_input_changed(value):
 
 func _on_save_button_pressed():
 	FontConfigManager.edit_font(font_name, style_name, font)
-	print("Font saved successfully!")
+	Notification.message(tr('KEY_FONT_SAVED_SUCCESSFULLY'))
 	FontConfigManager.save_configuration()

@@ -29,7 +29,7 @@ func open(obj : Dictionary) -> void:
 	set_paths(default_path)
 	
 	if not DirAccess.dir_exists_absolute(cleaned_path):
-		print('there are no cleaned path')
+		Notification.message(tr('KEY_THERE_ARE_NO_CLEANED_PATH'))
 		return
 	
 	process_cleaned_images(cleaned_path)
@@ -69,7 +69,7 @@ func process_app_files(path : String) -> void:
 
 func save() -> void:
 	if cleaned_images_path.is_empty():
-		print("You can't save!")
+		Notification.message(tr('KEY_YOU_CANT_SAVE_IMAGE'))
 		return
 
 	var data : Dictionary = canvas.to_dictionary()
@@ -80,7 +80,7 @@ func save() -> void:
 
 func save_to_file(data: Dictionary) -> void:
 	if cleaned_images_path.is_empty():
-		print("You can't save!")
+		Notification.message(tr('KEY_YOU_CANT_SAVE_IMAGE'))
 		return
 
 	var save_path : String = app_files_path
@@ -93,7 +93,6 @@ func save_to_file(data: Dictionary) -> void:
 
 func update_app_file() -> void:
 	if cleaned_images_path.is_empty():
-		print("You can't update app file!")
 		return
 
 	var filename_load : String = cleaned_images_path[current_page].get_basename() + '.typex'
@@ -104,7 +103,7 @@ func update_app_file() -> void:
 
 func save_image() -> void:
 	if cleaned_images_path.is_empty():
-		print("You can't save image!")
+		Notification.message(tr('KEY_YOU_CANT_SAVE_IMAGE'))
 		return
 
 	var image : Image = await canvas.get_image()
@@ -113,6 +112,7 @@ func save_image() -> void:
 	if not DirAccess.dir_exists_absolute(save_path):
 		DirAccess.make_dir_recursive_absolute(save_path)
 	
+	Notification.message(tr('KEY_SAVING_THE_IMAGE_PLEASE_WAIT_A_MOMENT'))
 	save_path = save_path.path_join(cleaned_images_path[current_page])
 
 	if thread.is_started():
@@ -126,6 +126,8 @@ func _thread_save_image(image : Image, save_path : String) -> void:
 		image.save_jpg(save_path)
 	elif cleaned_images_path[current_page].ends_with('.webp'):
 		image.save_webp(save_path)
+	
+	Notification.call_deferred_thread_group('message', "Saved image")
 
 func get_image_extension(file_path: String) -> String:
 	if file_path.ends_with('.png'):
@@ -163,7 +165,7 @@ func to_go(index : int) -> void:
 
 func load_image_in_canvas() -> void:
 	if cleaned_images_path.is_empty():
-		print('there are no images')
+		Notification.message(tr('KEY_THERE_ARE_NO_IMAGES'))
 		return
 	
 	canvas.remove_texts()
