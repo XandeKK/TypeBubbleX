@@ -231,4 +231,5 @@ func _set_text_list(value : ItemList) -> void:
 func _exit_tree():
 	canvas.clear()
 	text_list.clear()
-	thread.wait_to_finish()
+	if thread.is_started():
+		thread.wait_to_finish()
