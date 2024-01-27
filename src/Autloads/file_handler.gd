@@ -13,6 +13,8 @@ var cleaned_path : String
 var raw_path : String
 var app_files_path : String
 
+var can_change_page : bool = true
+
 signal page_changed
 signal pages_add
 
@@ -143,6 +145,13 @@ func next() -> void:
 	if current_page == cleaned_images_path.size() - 1 or cleaned_images_path.size() == 0:
 		return
 	
+	if not can_change_page:
+		Notification.message(tr('KEY_CALM_DOWN'))
+		return
+	else:
+		can_change_page = false
+		get_tree().create_timer(0.5).timeout.connect(set_can_change_page_true)
+	
 	current_page += 1
 	
 	load_image_in_canvas()
@@ -150,6 +159,13 @@ func next() -> void:
 func back() -> void:
 	if current_page == 0:
 		return
+	
+	if not can_change_page:
+		Notification.message(tr('KEY_CALM_DOWN'))
+		return
+	else:
+		can_change_page = false
+		get_tree().create_timer(0.5).timeout.connect(set_can_change_page_true)
 	
 	current_page -= 1
 	
@@ -159,9 +175,19 @@ func to_go(index : int) -> void:
 	if index < 0 or index > cleaned_images_path.size() - 1:
 		return
 	
+	if not can_change_page:
+		Notification.message(tr('KEY_CALM_DOWN'))
+		return
+	else:
+		can_change_page = false
+		get_tree().create_timer(0.5).timeout.connect(set_can_change_page_true)
+	
 	current_page = index
 	
 	load_image_in_canvas()
+
+func set_can_change_page_true() -> void:
+	can_change_page = true
 
 func load_image_in_canvas() -> void:
 	if cleaned_images_path.is_empty():
