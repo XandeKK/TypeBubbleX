@@ -1,83 +1,43 @@
 # TypeX
 
-[PT-BR](README_PT_BR.md)
+**[Descrição](#descrição) | [Recursos](#recursos) | [Licença](#licença)** 
 
-**[Description](#description) | [Key Features](#key-features) | [Upcoming Features](#upcoming-features) | [Screenshots](#screenshots) | [Videos](#videos) | [Installation](#installation) | [How to Use](#how-to-use) | [Contribution](#contribution) | [License](#license)** 
+## Descrição
 
-## Description
+O TypeX é um aplicativo desenvolvido para otimizar o processo de typeset em *Manga*, *Manhwa*, *Manhua* e *Comics*, oferecendo uma experiência leve e eficiente.
 
-TypeX is an application designed to streamline the typesetting process in *Manga*, *Manhwa*, *Manhua*, and *Comics*, providing a lightweight and efficient experience.
+[Tutorial](https://github.com/XandeKK/TypeX/wiki/Tutorial)
 
-## Key Features
+## Recursos
 
-### Font Management
+### Lista de Texto
 
-- Customize your font choices and adjust properties according to your preference.
+Este recurso elimina a necessidade de alternar entre janelas para acessar o editor de texto.
 
-### Text List
+### Gerenciamento de Fontes
 
-- Access a text list to simplify the process, eliminating the need to switch between different applications.
+Permite gerenciar as fontes necessárias, oferecendo um visualizador para escolher a fonte ideal no momento, além de contar com um editor de fontes.
 
-### Other Features
+### Perspectiva
 
-- Incorporates advanced features such as outlines and shakes, offering a powerful set of tools to enhance your work.
+Conforme o próprio nome sugere, proporciona a capacidade de adicionar uma dimensão tridimensional ao texto.
 
-### Upcoming Features:
+### Contornos
 
-- Transform
-- Gradient
-- Blur
-- Pattern
-- Mask
-- AI
-- Curve text
-- And much more...
+Como o nome indica, permite adicionar contornos às letras.
 
-## Screenshots
+### Tremores
 
-### Overview
+Proporciona um efeito de tremor às letras, como o próprio nome sugere.
 
-*this manga below is Akuninzura shita B-kyuu Boukensha – Shujinkou to Sono Osananajimi-tachi no Papa ni naru.*
+### Gradiente
 
-![01](docs/images/01.png)
+Adiciona um efeito de gradiente ao texto.
 
-![02](docs/images/02.png)
+### Máscara
 
-### Font Management
+Cria uma máscara para o texto, possibilitando "apagar" parte do texto quando há um obstáculo à frente.
 
-![03](docs/images/03.png)
+## Licença
 
-![04](docs/images/04.png)
-
-![05](docs/images/05.png)
-
-## Videos
-
-*this manga below is Akuninzura shita B-kyuu Boukensha – Shujinkou to Sono Osananajimi-tachi no Papa ni naru.*
-
-https://github.com/XandeKK/TypeX/assets/80427458/8c8d7c90-d692-4097-956b-1826dc9bf8c0
-
-
-
-https://github.com/XandeKK/TypeX/assets/80427458/78958caf-8019-4d00-b5de-7e52cb0a4dd2
-
-*This manhwa below is Underworld Restaurant.*
-
-https://github.com/XandeKK/TypeX/assets/80427458/f6078f5c-57d7-4e90-b83d-5a167f4b891c
-
-
-## Installation
-
-**Coming soon**
-
-## How to Use
-
-**Coming soon**
-
-## Contribution
-
-**Coming soon**
-
-## License
-
-This project is licensed under the GPL-3.0 license - see the [LICENSE](https://github.com/XandeKK/TypeX#GPL-3.0-1-ov-file) file for details.
+Este projeto é licenciado sob a licença GPL-3.0 - consulte o arquivo [LICENSE](https://github.com/XandeKK/TypeX#GPL-3.0-1-ov-file) para mais detalhes.
