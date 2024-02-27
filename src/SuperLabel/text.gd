@@ -35,6 +35,9 @@ var glyphs_to_render : Array[Dictionary] : get = get_glyphs_to_render
 @onready var outlines : Control = $Outlines
 @onready var letters : Control = $Letters
 
+@onready var blur_outline : Control = $BlurOutline
+@onready var blur : Control = $Blur
+
 signal render
 signal text_changed(value : String)
 
@@ -329,6 +332,8 @@ func to_dictionary() -> Dictionary:
 		'font_name': font_name,
 		'text_styles': text_styles.to_dictionary(),
 		'gradient_text': gradient_text.to_dictionary(),
+		'blur_outline': blur_outline.to_dictionary(),
+		'blur': blur.to_dictionary(),
 		'content_margins': {
 			SIDE_LEFT: style_box.get_margin(SIDE_LEFT),
 			SIDE_TOP: style_box.get_margin(SIDE_TOP),
@@ -355,6 +360,9 @@ func load(data : Dictionary) -> void:
 
 	text_styles.load(data['text_styles'])
 	gradient_text.load(data['gradient_text'])
+	
+	blur_outline.load(data['blur_outline'])
+	blur.load(data['blur'])
 	
 	set_content_margin(SIDE_LEFT, data['content_margins'][SIDE_LEFT])
 	set_content_margin(SIDE_TOP, data['content_margins'][SIDE_TOP])

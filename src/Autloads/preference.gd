@@ -45,7 +45,7 @@ var colors : Dictionary = {
 
 var general : Dictionary = {
 	'font_size': 12,
-	'language': 0
+	'language': 'en'
 }
 
 var filename : String = "user://preference_configuration.cfg"

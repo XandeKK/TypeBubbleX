@@ -1,9 +1,16 @@
-[gd_scene load_steps=7 format=3 uid="uid://dphoqpw3y2qwv"]
+[gd_scene load_steps=11 format=3 uid="uid://dphoqpw3y2qwv"]
 
 [ext_resource type="Script" path="res://src/SuperLabel/text.gd" id="1_rff2x"]
 [ext_resource type="Script" path="res://src/SuperLabel/letters.gd" id="2_fu0jm"]
 [ext_resource type="Script" path="res://src/SuperLabel/outlines.gd" id="2_higsy"]
 [ext_resource type="Script" path="res://src/SuperLabel/shakes.gd" id="2_tq0bv"]
+[ext_resource type="Shader" path="res://src/Shaders/blur.gdshader" id="4_eg8lq"]
+[ext_resource type="PackedScene" uid="uid://c7uarvtyk5qnv" path="res://src/SuperLabel/blur.tscn" id="4_l27wv"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hk07b"]
+resource_local_to_scene = true
+shader = ExtResource("4_eg8lq")
+shader_parameter/blur_size = null
 
 [sub_resource type="Gradient" id="Gradient_lkk2y"]
 resource_local_to_scene = true
@@ -11,6 +18,11 @@ resource_local_to_scene = true
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_8365p"]
 resource_local_to_scene = true
 gradient = SubResource("Gradient_lkk2y")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ataj4"]
+resource_local_to_scene = true
+shader = ExtResource("4_eg8lq")
+shader_parameter/blur_size = null
 
 [node name="Text" type="Control"]
 layout_mode = 3
@@ -33,9 +45,21 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("2_higsy")
 
+[node name="BlurOutline" parent="." instance=ExtResource("4_l27wv")]
+visible = false
+material = SubResource("ShaderMaterial_hk07b")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
 [node name="Letters" type="Control" parent="."]
 clip_children = 2
-z_index = 2
 texture_filter = 6
 layout_mode = 1
 anchors_preset = 15
@@ -54,3 +78,14 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("GradientTexture2D_8365p")
+
+[node name="Blur" parent="." instance=ExtResource("4_l27wv")]
+material = SubResource("ShaderMaterial_ataj4")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
