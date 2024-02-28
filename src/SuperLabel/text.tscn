@@ -12,12 +12,12 @@ resource_local_to_scene = true
 shader = ExtResource("4_eg8lq")
 shader_parameter/blur_size = null
 
-[sub_resource type="Gradient" id="Gradient_lkk2y"]
+[sub_resource type="Gradient" id="Gradient_oj2mx"]
 resource_local_to_scene = true
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_8365p"]
 resource_local_to_scene = true
-gradient = SubResource("Gradient_lkk2y")
+gradient = SubResource("Gradient_oj2mx")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ataj4"]
 resource_local_to_scene = true
@@ -40,9 +40,12 @@ script = ExtResource("2_tq0bv")
 
 [node name="Outlines" type="Control" parent="."]
 texture_filter = 6
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("2_higsy")
 
 [node name="BlurOutline" parent="." instance=ExtResource("4_l27wv")]

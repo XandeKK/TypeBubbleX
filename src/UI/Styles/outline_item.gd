@@ -2,10 +2,12 @@ extends VBoxContainer
 
 var node : Control : set = _set_node
 var parent : Control : set = _set_parent
+
 @onready var x_input : LineEdit = $XContainer/XInput
 @onready var y_input : LineEdit = $YContainer/YInput
 @onready var size_input : LineEdit = $SizeContainer/SizeInput
 @onready var color_picker : ColorPickerButton = $ColorContainer/ColorPickerButton
+@onready var body_gradient : PanelContainer = $BodyGradient
 
 func _set_node(value : Control) -> void:
 	node = value
@@ -13,6 +15,8 @@ func _set_node(value : Control) -> void:
 	y_input.text = str(node.offset.y)
 	size_input.text = str(node.outline_size)
 	color_picker.color = node.color
+	await get_tree().create_timer(0.5).timeout
+	body_gradient.set_values(node.gradient_text)
 
 func _set_parent(value : Control) -> void:
 	parent = value

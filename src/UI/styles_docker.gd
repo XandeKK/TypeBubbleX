@@ -30,5 +30,5 @@ func set_values(node : Control):
 	body_outlines.set_values(node)
 	body_shakes.set_values(node)
 	body_blur.set_values(node)
-	body_gradient.set_values(node)
+	body_gradient.set_values(node.text.gradient_text)
 	body_mask.set_values(node)

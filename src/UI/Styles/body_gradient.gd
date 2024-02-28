@@ -18,8 +18,8 @@ func blank_all() -> void:
 	shape_option_button.select(0)
 	gradient_2d_texture_rect.clear()
 
-func set_values(_node : Control) -> void:
-	node = _node.text.gradient_text
+func set_values(_node : GradientText) -> void:
+	node = _node
 	
 	gradient_check_button.button_pressed = node.active
 	shape_option_button.select(node.get_gradient_texture_2d().fill)
@@ -28,10 +28,6 @@ func set_values(_node : Control) -> void:
 
 func _set_node(value : GradientText) -> void:
 	node = value
-
-func _on_add_button_pressed():
-	if not node:
-		return
 
 func _on_shape_option_button_item_selected(index):
 	if not node:

@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cfy5hehp1o5s2"]
+[gd_scene load_steps=6 format=3 uid="uid://cfy5hehp1o5s2"]
 
 [ext_resource type="PackedScene" uid="uid://bnbfjh0vj0q0x" path="res://src/UI/Components/input.tscn" id="1_fccep"]
 [ext_resource type="Script" path="res://src/UI/Styles/outline_item.gd" id="1_yjfpj"]
+[ext_resource type="PackedScene" uid="uid://feawar53wfbd" path="res://src/UI/Styles/body_gradient.tscn" id="3_3hiqt"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f2o50"]
 content_margin_left = 4.0
@@ -90,8 +91,17 @@ text = "KEY_COLOR"
 layout_mode = 2
 size_flags_horizontal = 3
 
+[node name="GradientCheckButton" type="CheckButton" parent="."]
+layout_mode = 2
+text = "KEY_GRADIENT"
+
+[node name="BodyGradient" parent="." node_paths=PackedStringArray("gradient_check_button") instance=ExtResource("3_3hiqt")]
+layout_mode = 2
+gradient_check_button = NodePath("../GradientCheckButton")
+
 [connection signal="pressed" from="HBoxContainer/RemoveButton" to="." method="_on_remove_button_pressed"]
 [connection signal="changed" from="XContainer/XInput" to="." method="_on_x_input_changed"]
 [connection signal="changed" from="YContainer/YInput" to="." method="_on_y_input_changed"]
 [connection signal="changed" from="SizeContainer/SizeInput" to="." method="_on_size_input_changed"]
 [connection signal="color_changed" from="ColorContainer/ColorPickerButton" to="." method="_on_color_picker_button_color_changed"]
+[connection signal="toggled" from="GradientCheckButton" to="BodyGradient" method="_on_gradient_check_button_toggled"]

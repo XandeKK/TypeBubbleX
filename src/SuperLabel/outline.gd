@@ -8,6 +8,10 @@ var canvas_item : RID = get_canvas_item()
 var color : Color = Color.WHITE : get = _get_color, set = _set_color
 var outline_size : int = 8 : get = _get_outline_size, set = _set_outline_size
 var offset : Vector2 = Vector2.ZERO : get = _get_ofs, set = _set_ofs
+var gradient_text : GradientText = GradientText.new() : get = _get_gradient_text, set = _set_gradient_text
+
+func _ready():
+	gradient_text.letters = self
 
 func _draw():
 	if start != -1:
@@ -66,6 +70,12 @@ func _set_ofs(value : Vector2) -> void:
 	offset = value
 	queue_redraw()
 
+func _get_gradient_text() -> GradientText:
+	return gradient_text
+
+func _set_gradient_text(value : GradientText) -> void:
+	gradient_text = value
+
 func to_dictionary() -> Dictionary:
 	return {
 		'start': start,
@@ -73,10 +83,15 @@ func to_dictionary() -> Dictionary:
 		'is_global': is_global,
 		'color': color,
 		'outline_size': outline_size,
-		'offset': offset
+		'offset': offset,
+		'gradient_text': gradient_text.to_dictionary()
 	}
 
 func load(data : Dictionary) -> void:
 	color = data['color']
 	outline_size = data['outline_size']
 	offset = data['offset']
+	gradient_text.load(data['gradient_text'])
+
+func _exit_tree():
+	gradient_text.free()
