@@ -8,6 +8,10 @@ extends PanelContainer
 
 var node : GradientText : set = _set_node
 
+func _ready():
+	gradient_1d_texture_rect.texture = GradientTexture1D.new()
+	gradient_2d_texture_rect.texture = GradientTexture2D.new()
+
 func blank_all() -> void:
 	if not node:
 		return
