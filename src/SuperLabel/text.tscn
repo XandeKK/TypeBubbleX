@@ -63,6 +63,7 @@ color = Color(0, 0, 0, 1)
 
 [node name="Letters" type="Control" parent="."]
 clip_children = 2
+z_index = 1
 texture_filter = 6
 layout_mode = 1
 anchors_preset = 15
@@ -83,6 +84,7 @@ grow_vertical = 2
 texture = SubResource("GradientTexture2D_8365p")
 
 [node name="Blur" parent="." instance=ExtResource("4_l27wv")]
+z_index = 2
 material = SubResource("ShaderMaterial_ataj4")
 layout_mode = 1
 anchors_preset = 15
