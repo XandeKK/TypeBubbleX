@@ -2,18 +2,14 @@ extends TextureRect
 
 @export var color_picker_button : ColorPickerButton
 
-@onready var point_gradient_1d : Control = $PointGradient1D
+@onready var point_gradient_1d : PackedScene = load('res://src/UI/Styles/gradient/point_gradient_1d.tscn')
 
 var points : Array[Control]
 var point_focused : Control : set = _set_point_focused
 
-func _ready():
-	point_gradient_1d = point_gradient_1d.duplicate()
-	$PointGradient1D.queue_free()
-
 func _on_gui_input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed():
-		var _point_gradient_1d : Control = point_gradient_1d.duplicate()
+		var _point_gradient_1d : Control = point_gradient_1d.instantiate()
 		
 		add_child(_point_gradient_1d)
 		points.append(_point_gradient_1d)
@@ -44,7 +40,7 @@ func set_gradient(value : Gradient) -> void:
 	texture.gradient = value
 	
 	for i in range(texture.gradient.get_point_count()):
-		var _point_gradient_1d : Control = point_gradient_1d.duplicate()
+		var _point_gradient_1d : Control = point_gradient_1d.instantiate()
 		
 		add_child(_point_gradient_1d)
 		points.append(_point_gradient_1d)
@@ -104,6 +100,3 @@ func _on_color_picker_button_color_changed(color):
 		point_focused.color = color
 		point_focused.queue_redraw()
 		set_color(point_focused.point, color)
-
-func _exit_tree():
-	point_gradient_1d.queue_free()

@@ -15,8 +15,8 @@ func _set_node(value : Control) -> void:
 	y_input.text = str(node.offset.y)
 	size_input.text = str(node.outline_size)
 	color_picker.color = node.color
-	await get_tree().create_timer(0.5).timeout
-	body_gradient.set_values(node.gradient_text)
+	var screen_timer = get_tree().create_timer(0.5)
+	screen_timer.connect('timeout', _set_body_gradient.bind(node.gradient_text))
 
 func _set_parent(value : Control) -> void:
 	parent = value
@@ -36,3 +36,6 @@ func _on_color_picker_button_color_changed(color):
 func _on_remove_button_pressed():
 	parent.remove_outline(node)
 	queue_free()
+
+func _set_body_gradient(gradient_text):
+	body_gradient.set_values(gradient_text)

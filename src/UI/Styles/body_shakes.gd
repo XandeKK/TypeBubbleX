@@ -8,6 +8,7 @@ var node : Control : set = _set_node
 func blank_all() -> void:
 	for child in vbox.get_children():
 		vbox.remove_child(child)
+		child.queue_free()
 
 func set_values(_node : Control) -> void:
 	node = _node.text.shakes
