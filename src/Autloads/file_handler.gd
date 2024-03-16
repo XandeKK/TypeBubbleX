@@ -80,6 +80,23 @@ func save() -> void:
 	update_app_file()
 	save_image()
 
+func export_to_json() -> void:
+	if cleaned_images_path.is_empty():
+		Notification.message(tr('KEY_YOU_CANT_EXPORT'))
+		return
+
+	var data : Dictionary = canvas.to_dictionary()
+	
+	var save_path : String = app_files_path.replace('app_files', 'json')
+	if not DirAccess.dir_exists_absolute(save_path):
+		DirAccess.make_dir_recursive_absolute(save_path)
+	save_path = save_path.path_join(cleaned_images_path[current_page]).get_basename()
+	
+	var file = FileAccess.open(save_path + '.json', FileAccess.WRITE)
+	file.store_string(JSON.stringify(data))
+	file.close()
+	Notification.message(tr('KEY_JSON_EXPORTED'))
+
 func save_to_file(data: Dictionary) -> void:
 	if cleaned_images_path.is_empty():
 		Notification.message(tr('KEY_YOU_CANT_SAVE_IMAGE'))
@@ -92,6 +109,7 @@ func save_to_file(data: Dictionary) -> void:
 	
 	var file = FileAccess.open(save_path + '.typex', FileAccess.WRITE)
 	file.store_var(data)
+	file.close()
 
 func update_app_file() -> void:
 	if cleaned_images_path.is_empty():

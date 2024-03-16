@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://2r0gvw58wdbh"]
+[gd_scene load_steps=29 format=3 uid="uid://2r0gvw58wdbh"]
 
 [ext_resource type="Script" path="res://addons/dockable_container/dockable_container.gd" id="1_h1uv5"]
 [ext_resource type="Theme" uid="uid://ds37dvaj7sob8" path="res://Assets/Themes/main.tres" id="1_s8eie"]
@@ -20,7 +20,6 @@
 [ext_resource type="PackedScene" uid="uid://cn2srwer6532q" path="res://src/UI/MenuBar/file_confirmation_dialog.tscn" id="15_jngg0"]
 [ext_resource type="PackedScene" uid="uid://bhoq0trkym5ay" path="res://src/UI/MenuBar/font_config.tscn" id="19_d4akj"]
 [ext_resource type="PackedScene" uid="uid://dysv6jsajl5ro" path="res://src/UI/MenuBar/preference.tscn" id="20_5srkf"]
-[ext_resource type="PackedScene" uid="uid://7v5n3o8ygu2u" path="res://src/UI/MenuBar/pattern_config.tscn" id="21_h5edw"]
 
 [sub_resource type="Resource" id="Resource_7k7ct"]
 resource_name = "Tabs"
@@ -103,24 +102,26 @@ layout_mode = 2
 layout_mode = 2
 theme = ExtResource("2_q156j")
 
-[node name="KEY_FILE" type="PopupMenu" parent="MarginContainer/VBoxContainer/MenuBar" node_paths=PackedStringArray("confirmation_dialog", "font_config", "preference", "pattern_config")]
-item_count = 5
+[node name="KEY_FILE" type="PopupMenu" parent="MarginContainer/VBoxContainer/MenuBar" node_paths=PackedStringArray("confirmation_dialog", "font_config", "preference")]
+size = Vector2i(122, 100)
+item_count = 6
 item_0/text = "KEY_OPEN"
 item_0/id = 0
 item_1/text = "KEY_SAVE"
 item_1/id = 1
-item_2/text = ""
+item_2/text = "KEY_EXPORT_TO_JSON"
 item_2/id = 2
-item_2/separator = true
-item_3/text = "KEY_PREFERENCE"
+item_3/text = ""
 item_3/id = 3
-item_4/text = "KEY_FONTS"
+item_3/separator = true
+item_4/text = "KEY_PREFERENCE"
 item_4/id = 4
+item_5/text = "KEY_FONTS"
+item_5/id = 5
 script = ExtResource("3_pq15j")
 confirmation_dialog = NodePath("../../../../Popups/FileConfirmationDialog")
 font_config = NodePath("../../../../Popups/FontConfig")
 preference = NodePath("../../../../Popups/Preference")
-pattern_config = NodePath("../../../../Popups/PatternConfig")
 
 [node name="KEY_EDIT" type="PopupMenu" parent="MarginContainer/VBoxContainer/MenuBar" node_paths=PackedStringArray("canvas")]
 item_count = 1
@@ -274,9 +275,6 @@ visible = false
 visible = false
 
 [node name="Preference" parent="Popups" instance=ExtResource("20_5srkf")]
-visible = false
-
-[node name="PatternConfig" parent="Popups" instance=ExtResource("21_h5edw")]
 visible = false
 
 [node name="NotificationsBox" type="VBoxContainer" parent="."]

@@ -23,6 +23,8 @@ var font_settings : Dictionary = {
 var text_styles : TextStyles = TextStyles.new() : get = _get_text_styles, set = _set_text_styles
 var gradient_text : GradientText = GradientText.new() : get = _get_gradient_text, set = _set_gradient_text
 
+var extra_info_for_photoshop : Dictionary = {}
+
 var style_box : StyleBox = StyleBoxEmpty.new() : get = _get_style_box, set = _set_style_box
 
 var text_rid : RID = TSManager.TS.create_shaped_text()
@@ -72,6 +74,7 @@ func _prepare_glyphs_to_render() -> void:
 	for i in range(last_line):
 		total_h += TSManager.TS.shaped_text_get_size(lines_rid[i]).y + line_spacing
 	total_h += style_box.get_margin(SIDE_TOP) + style_box.get_margin(SIDE_BOTTOM)
+	extra_info_for_photoshop['height'] = total_h
 	
 	var vbegin : int = 0
 	var vsep : int = 0
@@ -89,6 +92,7 @@ func _prepare_glyphs_to_render() -> void:
 	
 	var ofs : Vector2 = Vector2.ZERO
 	ofs.y = style_box.get_offset().y + vbegin
+	extra_info_for_photoshop['y'] = ofs.y
 	
 	for i in range(last_line):
 		var line_size : Vector2 = TSManager.TS.shaped_text_get_size(lines_rid[i])
@@ -121,6 +125,7 @@ func _prepare_glyphs_to_render() -> void:
 				})
 				ofs.x += glyphs[j].advance
 		ofs.y += TSManager.TS.shaped_text_get_descent(lines_rid[i]) + vsep + line_spacing
+		extra_info_for_photoshop['leading'] = TSManager.TS.shaped_text_get_descent(lines_rid[i]) + vsep + line_spacing + TSManager.TS.shaped_text_get_ascent(lines_rid[i])
 	
 	emit_signal('render')
 
@@ -290,6 +295,7 @@ func _get_font_settings() -> Dictionary:
 
 func _set_font_settings(value : Dictionary) -> void:
 	font_settings = value
+	extra_info_for_photoshop['fonts'] = FontConfigManager.fonts_path[font_settings.font]
 	_shape()
 
 func _get_text_styles() -> TextStyles:
@@ -341,7 +347,8 @@ func to_dictionary() -> Dictionary:
 			SIDE_RIGHT: style_box.get_margin(SIDE_RIGHT)
 		},
 		'shakes': shakes.to_dictionary(),
-		'outlines': outlines.to_dictionary()
+		'outlines': outlines.to_dictionary(),
+		'extra_info_for_photoshop': extra_info_for_photoshop
 	}
 
 func load(data : Dictionary) -> void:

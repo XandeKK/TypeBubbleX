@@ -3,7 +3,6 @@ extends PopupMenu
 @export var confirmation_dialog : ConfirmationDialog
 @export var font_config : Window
 @export var preference : Window
-@export var pattern_config : Window
 
 var items : Array[Dictionary] = [
 	{
@@ -19,6 +18,12 @@ var items : Array[Dictionary] = [
 		'separator': false,
 	},
 	{
+		'keycode': KEY_E,
+		'ctrl': true,
+		'callable': _on_export_to_json_selected,
+		'separator': false,
+	},
+	{
 		'name': '',
 		'separator': true
 	},
@@ -28,12 +33,6 @@ var items : Array[Dictionary] = [
 		'callable': _on_preference_selected,
 		'separator': false,
 	},
-	#{
-		#'keycode': null,
-		#'ctrl': false,
-		#'callable': _on_patternss_selected,
-		#'separator': false,
-	#},
 	{
 		'keycode': null,
 		'ctrl': false,
@@ -70,8 +69,8 @@ func _on_preference_selected() -> void:
 func _on_fonts_selected() -> void:
 	font_config.show()
 
-func _on_patternss_selected() -> void:
-	pattern_config.show()
+func _on_export_to_json_selected() -> void:
+	FileHandler.export_to_json()
 
 func _on_id_pressed(id):
 	items[id].callable.call()
