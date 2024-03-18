@@ -96,6 +96,29 @@ func export_to_json() -> void:
 	file.store_string(JSON.stringify(data))
 	file.close()
 	Notification.message(tr('KEY_JSON_EXPORTED'))
+	copy_font(data, app_files_path.replace('app_files', 'fonts'))
+
+func copy_font(data : Dictionary, output : String) -> void:
+	if not DirAccess.dir_exists_absolute(output):
+		DirAccess.make_dir_recursive_absolute(output)
+	
+	for text in data.texts:
+		var bold = text.text.bold
+		var italic = text.text.italic
+		var filename : String
+		
+		if bold and italic:
+			filename = text.text.extra_info_for_photoshop.fonts['bold-italic'].split('/')[-1]
+			DirAccess.copy_absolute(text.text.extra_info_for_photoshop.fonts['bold-italic'], output.path_join(filename))
+		elif bold:
+			filename = text.text.extra_info_for_photoshop.fonts['bold'].split('/')[-1]
+			DirAccess.copy_absolute(text.text.extra_info_for_photoshop.fonts['bold'], output.path_join(filename))
+		elif italic:
+			filename = text.text.extra_info_for_photoshop.fonts['italic'].split('/')[-1]
+			DirAccess.copy_absolute(text.text.extra_info_for_photoshop.fonts['italic'], output.path_join(filename))
+		else:
+			filename = text.text.extra_info_for_photoshop.fonts['regular'].split('/')[-1]
+			DirAccess.copy_absolute(text.text.extra_info_for_photoshop.fonts['regular'], output.path_join(filename))
 
 func save_to_file(data: Dictionary) -> void:
 	if cleaned_images_path.is_empty():
