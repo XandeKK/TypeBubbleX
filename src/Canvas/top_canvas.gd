@@ -110,6 +110,14 @@ func load(data : Dictionary) -> void:
 		add_object(text_scene, text['position'], text['position'] + text['size'])
 		objects.get_child(-1).load(text)
 
+func add_boxes(boxes : Array) -> void:
+	var text_scene : PackedScene = load("res://src/SuperLabel/super_label.tscn")
+	
+	for box in boxes:
+		var width = abs((box['x2'] - box['x1']))
+		var height = abs((box['y2'] - box['y1']))
+		add_object(text_scene, Vector2(box['x1'], box['y1']), Vector2(box['x1'], box['y1']) + Vector2(width, height))
+
 func get_image() -> Image:
 	var raw_visible : bool = raw_image.visible
 	raw_image.hide()

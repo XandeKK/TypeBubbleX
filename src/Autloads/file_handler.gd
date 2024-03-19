@@ -13,6 +13,9 @@ var cleaned_path : String
 var raw_path : String
 var app_files_path : String
 
+var http_request : HTTPRequest : set = _set_http_request
+var boxes : Array
+
 var can_change_page : bool = true
 
 signal page_changed
@@ -45,6 +48,20 @@ func open(obj : Dictionary) -> void:
 	load_image_in_canvas()
 	
 	canvas.style = obj['style']
+	
+	request_boxes()
+
+func request_boxes() -> void:
+	var url = 'http://localhost:5000/detect_boxes'
+	var headers = ["Content-Type: application/json"]
+	
+	if raw_images_path.size() > 0:
+		var json = JSON.stringify({'directory_path': raw_path, 'style': Preference.hq_styles_string[canvas.style]})
+		http_request.request(url, headers, HTTPClient.METHOD_POST, json)
+	else:
+		var json = JSON.stringify({'directory_path': cleaned_path, 'style': Preference.hq_styles_string[canvas.style]})
+		http_request.request(url, headers, HTTPClient.METHOD_POST, json)
+	Notification.message(tr("KEY_STARTED_BOXES"))
 
 func set_paths(path : String) -> void:
 	cleaned_path = path.path_join('cleaned')
@@ -243,6 +260,10 @@ func load_image_in_canvas() -> void:
 		var file = FileAccess.open(path, FileAccess.READ)
 		var data = file.get_var()
 		canvas.load(data)
+	elif not boxes.is_empty():
+		var page = boxes[current_page]['filename']
+		if page == cleaned_images_path[current_page].get_basename():
+			canvas.add_boxes(boxes[current_page]['boxes'])
 	
 	canvas.load_cleaned_image(load_image(cleaned_path.path_join(cleaned_images_path[current_page])))
 	if not raw_images_path.is_empty():
@@ -292,6 +313,10 @@ func get_current_page() -> int:
 func get_cleaned_images_path() -> Array:
 	return cleaned_images_path
 
+func _set_http_request(value : HTTPRequest) -> void:
+	http_request = value
+	http_request.request_completed.connect(_on_request_completed)
+
 func _set_text_list(value : ItemList) -> void:
 	text_list = value
 
@@ -300,3 +325,20 @@ func _exit_tree():
 	text_list.clear()
 	if thread.is_started():
 		thread.wait_to_finish()
+
+func compare_files_boxes(a : Dictionary, b : Dictionary) -> bool:
+	var a_number = int(a['filename'])
+	var b_number = int(b['filename'])
+	return a_number < b_number
+
+func _on_request_completed(result, response_code, headers, body) -> void:
+	var json = JSON.parse_string(body.get_string_from_utf8())
+	Notification.message(tr("KEY_FINISHED_BOXES"))
+	if not json.has('images'):
+		return
+	
+	for box in json['images']:
+		box['filename'] = box['filename'].get_file().get_basename()
+	
+	json['images'].sort_custom(compare_files_boxes)
+	boxes = json['images']

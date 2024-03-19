@@ -6,3 +6,4 @@ extends Control
 func _ready():
 	FileHandler.canvas = canvas
 	Notification.v_box_container = notifications_box
+	FileHandler.http_request = $HTTPRequest

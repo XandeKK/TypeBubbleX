@@ -293,6 +293,8 @@ grow_vertical = 2
 mouse_filter = 2
 alignment = 2
 
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
 [connection signal="id_pressed" from="MarginContainer/VBoxContainer/MenuBar/KEY_FILE" to="MarginContainer/VBoxContainer/MenuBar/KEY_FILE" method="_on_id_pressed"]
 [connection signal="id_pressed" from="MarginContainer/VBoxContainer/MenuBar/KEY_EDIT" to="MarginContainer/VBoxContainer/MenuBar/KEY_EDIT" method="_on_id_pressed"]
 [connection signal="item_selected" from="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/HSplitContainer/VBoxContainer/PagesContainer/PagesOptionButton" to="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/HSplitContainer/VBoxContainer/PagesContainer" method="_on_pages_option_button_item_selected"]

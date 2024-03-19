@@ -1,4 +1,6 @@
 "key","en","pt_BR"
+"KEY_STARTED_BOXES","Speech bubble detection has started.","Começou a detecção das balões de fala."
+"KEY_FINISHED_BOXES","Speech bubble detection finished.","Terminou a detecção das balões de fala."
 "KEY_THERE_ARE_NO_CLEANED_PATH","There are no cleaned path","Não há caminho cleaned"
 "KEY_YOU_CANT_SAVE_IMAGE","You can't save image","Você não pode salvar a imagem"
 "KEY_YOU_CANT_EXPORT","You can't export","Você não pode exportar"
