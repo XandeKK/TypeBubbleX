@@ -7,6 +7,9 @@ extends Panel
 @onready var color : ColorPickerButton = $MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/FontContainer/HBoxContainer/Color
 @onready var bold : CheckButton = $MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/BoldItalicContainer/Bold
 @onready var italic : CheckButton = $MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/BoldItalicContainer/Italic
+@onready var flip_x : CheckButton = $MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/FlipContainer/FlipX
+@onready var flip_y : CheckButton = $MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/FlipContainer/FlipY
+@onready var uppercase : CheckButton = $MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/UppercaseContainer/Uppercase
 @onready var leading : LineEdit = $MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/LeadingContainer/Leading
 @onready var tracking : LineEdit = $MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/TrackingContainer/Tracking
 @onready var alignment : OptionButton = $MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/AlignmentContainer/Alignment 
@@ -31,6 +34,9 @@ func connect_all():
 	color.color_changed.connect(set_color)
 	bold.toggled.connect(set_bold)
 	italic.toggled.connect(set_italic)
+	flip_x.toggled.connect(set_flip_x)
+	flip_y.toggled.connect(set_flip_y)
+	uppercase.toggled.connect(set_uppercase)
 	tracking.changed.connect(set_tracking)
 	leading.changed.connect(set_leading)
 	alignment.item_selected.connect(set_alignment)
@@ -46,6 +52,9 @@ func blank_all():
 	color.color = Color.BLACK
 	bold.button_pressed = false
 	italic.button_pressed = false
+	flip_x.button_pressed = false
+	flip_y.button_pressed = false
+	uppercase.button_pressed = false
 	tracking.text = '0'
 	leading.text = '0'
 	alignment.selected = -1
@@ -65,6 +74,9 @@ func set_values(node : Control):
 	color.color = node.text.color
 	bold.button_pressed = node.text.bold
 	italic.button_pressed = node.text.italic
+	flip_x.button_pressed = node.text.flip_x
+	flip_y.button_pressed = node.text.flip_y
+	uppercase.button_pressed = node.text.uppercase
 	tracking.text = str(node.text.letter_spacing)
 	leading.text = str(node.text.line_spacing)
 	alignment.selected = node.text.horizontal_alignment
@@ -108,6 +120,24 @@ func set_italic(value) -> void:
 		return
 	
 	canvas.focused_object.text.italic = value
+
+func set_flip_x(value) -> void:
+	if not canvas.focused_object:
+		return
+	
+	canvas.focused_object.text.flip_x = value
+
+func set_flip_y(value) -> void:
+	if not canvas.focused_object:
+		return
+	
+	canvas.focused_object.text.flip_y = value
+
+func set_uppercase(value) -> void:
+	if not canvas.focused_object:
+		return
+	
+	canvas.focused_object.text.uppercase = value
 
 func set_tracking(value) -> void:
 	if not canvas.focused_object:

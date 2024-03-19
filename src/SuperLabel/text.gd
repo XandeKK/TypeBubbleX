@@ -12,6 +12,8 @@ var font_size : int = 20 : get = _get_font_size, set = _set_font_size
 var bold : bool = false : get = _get_bold, set = _set_bold
 var italic : bool = false : get = _get_italic, set = _set_italic
 var uppercase : bool = false : get = is_uppercase, set = _set_uppercase
+var flip_x : bool = false : get = _get_flip_x, set = _set_flip_x
+var flip_y : bool = false : get = _get_flip_y, set = _set_flip_y
 var font_name : String = '' : get = _get_font_name, set = _set_font_name
 var font_settings : Dictionary = {
 	'regular': FontVariation.new(),
@@ -112,6 +114,9 @@ func _prepare_glyphs_to_render() -> void:
 					ofs.x = style_box.get_offset().x
 				else:
 					ofs.x = int(size.x - style_box.get_margin(SIDE_RIGHT) - line_size.x)
+		
+		if flip_x:
+			ofs.x = size.x - ofs.x
 
 		var glyphs : Array[Dictionary] = TSManager.TS.shaped_text_get_glyphs(lines_rid[i])
 		var gl_size : int = TSManager.TS.shaped_text_get_glyph_count(lines_rid[i])
@@ -123,7 +128,10 @@ func _prepare_glyphs_to_render() -> void:
 					'glyph': glyphs[j],
 					'ofs': ofs
 				})
-				ofs.x += glyphs[j].advance
+				if flip_x:
+					ofs.x -= glyphs[j].advance
+				else:
+					ofs.x += glyphs[j].advance
 		ofs.y += TSManager.TS.shaped_text_get_descent(lines_rid[i]) + vsep + line_spacing
 		extra_info_for_photoshop['leading'] = TSManager.TS.shaped_text_get_descent(lines_rid[i]) + vsep + line_spacing + TSManager.TS.shaped_text_get_ascent(lines_rid[i])
 	
@@ -282,6 +290,20 @@ func is_uppercase() -> bool:
 
 func _set_uppercase(value : bool) -> void:
 	uppercase = value
+	_shape()
+
+func _get_flip_x() -> bool:
+	return flip_x
+
+func _set_flip_x(value : bool) -> void:
+	flip_x = value
+	_shape()
+
+func _get_flip_y() -> bool:
+	return flip_y
+
+func _set_flip_y(value : bool) -> void:
+	flip_y = value
 	_shape()
 
 func _get_font_name() -> String:

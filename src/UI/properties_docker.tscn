@@ -52,7 +52,32 @@ size_flags_horizontal = 3
 text = "KEY_ITALIC"
 text_overrun_behavior = 3
 
-[node name="LeadingContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="2"]
+[node name="FlipContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="2"]
+layout_mode = 2
+
+[node name="FlipX" type="CheckButton" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/FlipContainer" index="0"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "KEY_FLIPX"
+text_overrun_behavior = 4
+
+[node name="FlipY" type="CheckButton" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/FlipContainer" index="1"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+text = "KEY_FLIPY"
+text_overrun_behavior = 3
+
+[node name="UppercaseContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="3"]
+layout_mode = 2
+
+[node name="Uppercase" type="CheckButton" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/UppercaseContainer" index="0"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "KEY_UPPERCASE"
+text_overrun_behavior = 4
+
+[node name="LeadingContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="4"]
 layout_mode = 2
 
 [node name="Label" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/LeadingContainer" index="0"]
@@ -68,7 +93,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 type = 1
 
-[node name="TrackingContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="3"]
+[node name="TrackingContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="5"]
 layout_mode = 2
 
 [node name="Label" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/TrackingContainer" index="0"]
@@ -84,7 +109,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 type = 1
 
-[node name="AlignmentContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="4"]
+[node name="AlignmentContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="6"]
 layout_mode = 2
 
 [node name="Label" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/AlignmentContainer" index="0"]
@@ -105,7 +130,7 @@ popup/item_1/id = 1
 popup/item_2/text = "KEY_RIGHT"
 popup/item_2/id = 2
 
-[node name="RotationContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="5"]
+[node name="RotationContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="7"]
 layout_mode = 2
 
 [node name="Label" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/RotationContainer" index="0"]
@@ -119,13 +144,13 @@ layout_mode = 2
 size_flags_horizontal = 3
 max_value = 360.0
 
-[node name="PaddingLabel" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="6"]
+[node name="PaddingLabel" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="8"]
 layout_mode = 2
 tooltip_text = "KEY_ABOUT_PADDING"
 mouse_filter = 1
 text = "KEY_PADDING"
 
-[node name="PaddingMarginContainer" type="MarginContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="7"]
+[node name="PaddingMarginContainer" type="MarginContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="9"]
 layout_mode = 2
 theme_override_constants/margin_left = 12
 theme_override_constants/margin_right = 0
