@@ -260,7 +260,7 @@ func load_image_in_canvas() -> void:
 		var file = FileAccess.open(path, FileAccess.READ)
 		var data = file.get_var()
 		canvas.load(data)
-	elif not boxes.is_empty():
+	elif not boxes.is_empty() and current_page < boxes.size():
 		var page = boxes[current_page]['filename']
 		if page == cleaned_images_path[current_page].get_basename():
 			canvas.add_boxes(boxes[current_page]['boxes'])

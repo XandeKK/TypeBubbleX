@@ -9,6 +9,7 @@ var color : Color = Color.WHITE : get = _get_color, set = _set_color
 var outline_size : int = 8 : get = _get_outline_size, set = _set_outline_size
 var offset : Vector2 = Vector2.ZERO : get = _get_ofs, set = _set_ofs
 var gradient_text : GradientText = GradientText.new() : get = _get_gradient_text, set = _set_gradient_text
+var only_outline : bool = true : get = _get_only_outline, set = _set_only_outline
 
 func _ready():
 	gradient_text.letters = self
@@ -23,7 +24,8 @@ func _draw():
 			draw_glypgh(info)
 
 func draw_glypgh(info : Dictionary):
-	TSManager.TS.font_draw_glyph(info['glyph'].font_rid, canvas_item, info['glyph'].font_size, info['ofs'] + info['glyph'].offset + offset, info['glyph'].index, color)
+	if not only_outline:
+		TSManager.TS.font_draw_glyph(info['glyph'].font_rid, canvas_item, info['glyph'].font_size, info['ofs'] + info['glyph'].offset + offset, info['glyph'].index, color)
 	TSManager.TS.font_draw_glyph_outline(info['glyph'].font_rid, canvas_item, info['glyph'].font_size, outline_size, info['ofs'] + info['glyph'].offset + offset, info['glyph'].index, color)
 
 func _get_start() -> int:
@@ -75,6 +77,13 @@ func _get_gradient_text() -> GradientText:
 
 func _set_gradient_text(value : GradientText) -> void:
 	gradient_text = value
+
+func _get_only_outline() -> bool:
+	return only_outline
+
+func _set_only_outline(value : bool) -> void:
+	only_outline = value
+	queue_redraw()
 
 func to_dictionary() -> Dictionary:
 	return {

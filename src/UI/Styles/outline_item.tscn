@@ -91,6 +91,10 @@ text = "KEY_COLOR"
 layout_mode = 2
 size_flags_horizontal = 3
 
+[node name="OnlyOutlineCheckButton" type="CheckButton" parent="."]
+layout_mode = 2
+text = "KEY_ONLY_OUTLINE"
+
 [node name="GradientCheckButton" type="CheckButton" parent="."]
 layout_mode = 2
 text = "KEY_GRADIENT"
@@ -104,4 +108,5 @@ gradient_check_button = NodePath("../GradientCheckButton")
 [connection signal="changed" from="YContainer/YInput" to="." method="_on_y_input_changed"]
 [connection signal="changed" from="SizeContainer/SizeInput" to="." method="_on_size_input_changed"]
 [connection signal="color_changed" from="ColorContainer/ColorPickerButton" to="." method="_on_color_picker_button_color_changed"]
+[connection signal="toggled" from="OnlyOutlineCheckButton" to="." method="_on_only_outline_check_button_toggled"]
 [connection signal="toggled" from="GradientCheckButton" to="BodyGradient" method="_on_gradient_check_button_toggled"]

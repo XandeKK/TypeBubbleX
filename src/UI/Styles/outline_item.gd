@@ -7,6 +7,7 @@ var parent : Control : set = _set_parent
 @onready var y_input : LineEdit = $YContainer/YInput
 @onready var size_input : LineEdit = $SizeContainer/SizeInput
 @onready var color_picker : ColorPickerButton = $ColorContainer/ColorPickerButton
+@onready var only_outline : CheckButton = $OnlyOutlineCheckButton
 @onready var body_gradient : PanelContainer = $BodyGradient
 
 func _set_node(value : Control) -> void:
@@ -15,6 +16,7 @@ func _set_node(value : Control) -> void:
 	y_input.text = str(node.offset.y)
 	size_input.text = str(node.outline_size)
 	color_picker.color = node.color
+	only_outline.button_pressed = node.only_outline
 	var screen_timer = get_tree().create_timer(0.5)
 	screen_timer.connect('timeout', _set_body_gradient.bind(node.gradient_text))
 
@@ -39,3 +41,6 @@ func _on_remove_button_pressed():
 
 func _set_body_gradient(gradient_text):
 	body_gradient.set_values(gradient_text)
+
+func _on_only_outline_check_button_toggled(toggled_on):
+	node.only_outline = toggled_on
