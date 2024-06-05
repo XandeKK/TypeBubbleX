@@ -11,7 +11,7 @@
 "KEY_DIRECTORY_DOES_NOT_EXIST","Directory does not exist","Diretório não existe"
 "KEY_INDEX_OUT_OF_RANGE","Index out of range","Index out of range"
 "KEY_FONT_NOT_FOUND","Font not found","Font não encontrado"
-"KEY_INVALID_FONT_TYPE","Invalid font type","Tipo de font inválido"
+"KEY_INVALID_FONT_STYLE","Invalid font style","Estilo de font inválido"
 "KEY_PATH_IS_EMPTY","Path is empty","O caminho está vazio"
 "KEY_PATH_DONT_EXIST","Path don't exist","O caminho não existe"
 "KEY_FONT_SAVED_SUCCESSFULLY","Font saved successfully","Font salva com sucesso"

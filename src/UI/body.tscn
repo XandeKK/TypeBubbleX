@@ -1,0 +1,97 @@
+[gd_scene load_steps=8 format=3 uid="uid://ctu6jvlh35yti"]
+
+[ext_resource type="PackedScene" uid="uid://d0hus1d758di" path="res://src/UI/Body/properties_docker.tscn" id="1_7ag6q"]
+[ext_resource type="PackedScene" uid="uid://d0njyr04u3c3d" path="res://src/Canvas/top_canvas.tscn" id="1_ss0we"]
+[ext_resource type="PackedScene" uid="uid://duxh41trfd0ec" path="res://src/UI/Body/texts_docker.tscn" id="2_ma56v"]
+[ext_resource type="Script" path="res://src/UI/Body/Scripts/pages_container.gd" id="4_6kq4a"]
+[ext_resource type="PackedScene" uid="uid://cup1vbnn124g5" path="res://src/UI/Body/global_styles_docker.tscn" id="4_ibf44"]
+[ext_resource type="PackedScene" uid="uid://dgcqhrqfjsrgk" path="res://src/UI/Body/local_styles_docker.tscn" id="5_588pq"]
+[ext_resource type="PackedScene" uid="uid://0va11t7e40bn" path="res://src/UI/Body/layers_docker.tscn" id="5_ggo1k"]
+
+[node name="Body" type="HSplitContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VSplitContainer" type="VSplitContainer" parent="."]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+
+[node name="TabContainer" type="TabContainer" parent="VSplitContainer"]
+custom_minimum_size = Vector2(0, 260)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="KEY_PROPERTIES" parent="VSplitContainer/TabContainer" instance=ExtResource("1_7ag6q")]
+layout_mode = 2
+
+[node name="TabContainer2" type="TabContainer" parent="VSplitContainer"]
+custom_minimum_size = Vector2(0, 250)
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.5
+
+[node name="KEY_TEXTS" parent="VSplitContainer/TabContainer2" instance=ExtResource("2_ma56v")]
+layout_mode = 2
+
+[node name="HSplitContainer" type="HSplitContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Control" type="Control" parent="HSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TopCanvas" parent="HSplitContainer/Control" instance=ExtResource("1_ss0we")]
+layout_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HSplitContainer"]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+
+[node name="PagesContainer" type="HBoxContainer" parent="HSplitContainer/VBoxContainer"]
+layout_mode = 2
+script = ExtResource("4_6kq4a")
+
+[node name="PagesOptionButton" type="OptionButton" parent="HSplitContainer/VBoxContainer/PagesContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BackButton" type="Button" parent="HSplitContainer/VBoxContainer/PagesContainer"]
+layout_mode = 2
+text = "<"
+
+[node name="FowardButton" type="Button" parent="HSplitContainer/VBoxContainer/PagesContainer"]
+layout_mode = 2
+text = ">"
+
+[node name="VSplitContainer" type="VSplitContainer" parent="HSplitContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TabContainer" type="TabContainer" parent="HSplitContainer/VBoxContainer/VSplitContainer"]
+custom_minimum_size = Vector2(0, 250)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="KEY_GLOBAL_STYLES" parent="HSplitContainer/VBoxContainer/VSplitContainer/TabContainer" instance=ExtResource("4_ibf44")]
+layout_mode = 2
+
+[node name="KEY_LOCAL_STYLES" parent="HSplitContainer/VBoxContainer/VSplitContainer/TabContainer" instance=ExtResource("5_588pq")]
+visible = false
+layout_mode = 2
+
+[node name="TabContainer2" type="TabContainer" parent="HSplitContainer/VBoxContainer/VSplitContainer"]
+custom_minimum_size = Vector2(0, 250)
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.5
+
+[node name="KEY_LAYERS" parent="HSplitContainer/VBoxContainer/VSplitContainer/TabContainer2" instance=ExtResource("5_ggo1k")]
+layout_mode = 2
+
+[connection signal="item_selected" from="HSplitContainer/VBoxContainer/PagesContainer/PagesOptionButton" to="HSplitContainer/VBoxContainer/PagesContainer" method="_on_pages_option_button_item_selected"]
+[connection signal="pressed" from="HSplitContainer/VBoxContainer/PagesContainer/BackButton" to="HSplitContainer/VBoxContainer/PagesContainer" method="_on_back_button_pressed"]
+[connection signal="pressed" from="HSplitContainer/VBoxContainer/PagesContainer/FowardButton" to="HSplitContainer/VBoxContainer/PagesContainer" method="_on_foward_button_pressed"]

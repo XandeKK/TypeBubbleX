@@ -1,0 +1,95 @@
+[gd_scene load_steps=4 format=3 uid="uid://dfs1m2gxhxsd6"]
+
+[ext_resource type="Script" path="res://src/UI/MenuBar/Preference/Scripts/fonts_panel.gd" id="1_1ouhj"]
+[ext_resource type="PackedScene" uid="uid://2cftnam31qlk" path="res://src/UI/Components/input.tscn" id="1_b7jlp"]
+[ext_resource type="PackedScene" uid="uid://cnski1gvsuras" path="res://src/UI/Components/input_drop_down.tscn" id="1_njtop"]
+
+[node name="FontsPanel" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"PanelX"
+script = ExtResource("1_1ouhj")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="MangaLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Manga"
+
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Font"
+
+[node name="MangaInputDropDown" parent="ScrollContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("1_njtop")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MangaFontSizeInput" parent="ScrollContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer" instance=ExtResource("1_b7jlp")]
+layout_mode = 2
+type = 2
+name_label = "Font Size"
+suffix_label = "Px"
+reset = false
+
+[node name="ManhwaLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Manhwa
+"
+
+[node name="MarginContainer2" type="MarginContainer" parent="ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Font"
+
+[node name="ManhwaInputDropDown" parent="ScrollContainer/MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer" instance=ExtResource("1_njtop")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ManhwaFontSizeInput" parent="ScrollContainer/MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer" instance=ExtResource("1_b7jlp")]
+layout_mode = 2
+type = 2
+name_label = "Font Size"
+suffix_label = "Px"
+reset = false
+
+[connection signal="changed" from="ScrollContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/MangaInputDropDown" to="." method="_on_manga_input_drop_down_changed"]
+[connection signal="changed" from="ScrollContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/MangaFontSizeInput" to="." method="_on_manga_font_size_input_changed"]
+[connection signal="changed" from="ScrollContainer/MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/ManhwaInputDropDown" to="." method="_on_manhwa_input_drop_down_changed"]
+[connection signal="changed" from="ScrollContainer/MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/ManhwaFontSizeInput" to="." method="_on_manhwa_font_size_input_changed"]

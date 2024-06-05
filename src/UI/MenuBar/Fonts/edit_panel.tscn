@@ -1,0 +1,103 @@
+[gd_scene load_steps=4 format=3 uid="uid://dfckiqhurilgr"]
+
+[ext_resource type="Script" path="res://src/UI/MenuBar/Fonts/Scripts/edit_panel.gd" id="1_7ape8"]
+[ext_resource type="PackedScene" uid="uid://2cftnam31qlk" path="res://src/UI/Components/input.tscn" id="1_ga5jd"]
+[ext_resource type="PackedScene" uid="uid://bsgfo3yew27qa" path="res://src/UI/MenuBar/Fonts/FontsPanel/style_container.tscn" id="3_ylme2"]
+
+[node name="EditPanel" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"PanelX"
+script = ExtResource("1_7ape8")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="FontNameLineEdit" type="LineEdit" parent="ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+placeholder_text = "Font Name"
+
+[node name="PanelContainer" type="PanelContainer" parent="ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.5
+theme_type_variation = &"PanelX"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.2
+
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="GridContainer" type="GridContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/PanelContainer/ScrollContainer/MarginContainer"]
+layout_mode = 2
+columns = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ExampleLineEdit" type="LineEdit" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Example"
+
+[node name="FontSizeInput" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("1_ga5jd")]
+layout_mode = 2
+type = 2
+suffix_label = "Px"
+reset = false
+
+[node name="NicknameInput" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("1_ga5jd")]
+layout_mode = 2
+name_label = "KEY_NICKNAME"
+reset = false
+
+[node name="TabContainer" type="TabContainer" parent="ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Regular" parent="ScrollContainer/MarginContainer/VBoxContainer/TabContainer" instance=ExtResource("3_ylme2")]
+layout_mode = 2
+
+[node name="Bold" parent="ScrollContainer/MarginContainer/VBoxContainer/TabContainer" instance=ExtResource("3_ylme2")]
+visible = false
+layout_mode = 2
+style = 1
+
+[node name="Italic" parent="ScrollContainer/MarginContainer/VBoxContainer/TabContainer" instance=ExtResource("3_ylme2")]
+visible = false
+layout_mode = 2
+style = 2
+
+[node name="BoldItalic" parent="ScrollContainer/MarginContainer/VBoxContainer/TabContainer" instance=ExtResource("3_ylme2")]
+visible = false
+layout_mode = 2
+style = 3
+
+[connection signal="text_changed" from="ScrollContainer/MarginContainer/VBoxContainer/FontNameLineEdit" to="." method="_on_font_name_line_edit_text_changed"]
+[connection signal="text_changed" from="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/ExampleLineEdit" to="." method="_on_example_line_edit_text_changed"]
+[connection signal="changed" from="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/FontSizeInput" to="." method="_on_font_size_input_changed"]
+[connection signal="changed" from="ScrollContainer/MarginContainer/VBoxContainer/NicknameInput" to="." method="_on_nickname_input_changed"]

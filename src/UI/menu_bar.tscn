@@ -1,0 +1,59 @@
+[gd_scene load_steps=7 format=3 uid="uid://ds6j3c0qw36uk"]
+
+[ext_resource type="Script" path="res://src/UI/MenuBar/Scripts/file_popup_menu.gd" id="1_rex3q"]
+[ext_resource type="PackedScene" uid="uid://btgx71jwsqhqp" path="res://src/UI/MenuBar/file_window.tscn" id="2_0ub8b"]
+[ext_resource type="Script" path="res://src/UI/MenuBar/Scripts/help_popup_menu.gd" id="2_s5xjn"]
+[ext_resource type="PackedScene" uid="uid://xmptrcx26v6r" path="res://src/UI/MenuBar/preference_window.tscn" id="3_odgaq"]
+[ext_resource type="PackedScene" uid="uid://b6ovvshp3qt62" path="res://src/UI/MenuBar/fonts_window.tscn" id="4_b4fhf"]
+[ext_resource type="PackedScene" uid="uid://hvps2g2a2xny" path="res://src/UI/MenuBar/patterns_window.tscn" id="6_nta08"]
+
+[node name="MenuBar" type="MenuBar"]
+
+[node name="KEY_FILE" type="PopupMenu" parent="." node_paths=PackedStringArray("file_window", "preference_window", "fonts_window", "patterns_window")]
+item_count = 6
+item_0/text = "KEY_OPEN"
+item_0/id = 0
+item_1/text = "KEY_SAVE"
+item_1/id = 1
+item_2/text = ""
+item_2/id = 2
+item_2/separator = true
+item_3/text = "KEY_PREFERENCE"
+item_3/id = 3
+item_4/text = "KEY_PATTERNS"
+item_4/id = 5
+item_4/disabled = true
+item_5/text = "KEY_FONTS"
+item_5/id = 4
+script = ExtResource("1_rex3q")
+file_window = NodePath("../FileWindow")
+preference_window = NodePath("../PreferenceWindow")
+fonts_window = NodePath("../FontsWindow")
+patterns_window = NodePath("../PatternsWindow")
+
+[node name="KEY_HELP" type="PopupMenu" parent="."]
+item_count = 4
+item_0/text = "KEY_ONLINE_DOCS"
+item_0/id = 0
+item_1/text = "KEY_ISSUE_TRACKER"
+item_1/id = 1
+item_2/text = "KEY_TYPEBUBBLEAI"
+item_2/id = 2
+item_3/text = "KEY_ABOUT_TYPEBUBBLEX"
+item_3/id = 3
+script = ExtResource("2_s5xjn")
+
+[node name="FileWindow" parent="." instance=ExtResource("2_0ub8b")]
+visible = false
+
+[node name="PreferenceWindow" parent="." instance=ExtResource("3_odgaq")]
+visible = false
+
+[node name="FontsWindow" parent="." instance=ExtResource("4_b4fhf")]
+visible = false
+
+[node name="PatternsWindow" parent="." instance=ExtResource("6_nta08")]
+visible = false
+
+[connection signal="id_pressed" from="KEY_FILE" to="KEY_FILE" method="_on_id_pressed"]
+[connection signal="id_pressed" from="KEY_HELP" to="KEY_HELP" method="_on_id_pressed"]

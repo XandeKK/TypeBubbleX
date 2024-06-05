@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://0rbs464xcygo"]
+
+[ext_resource type="Script" path="res://src/UI/Body/GlobalStyles/Scripts/blur_container.gd" id="1_32c7r"]
+[ext_resource type="PackedScene" uid="uid://2cftnam31qlk" path="res://src/UI/Components/input.tscn" id="2_gilmd"]
+
+[node name="BlurContainer" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_32c7r")
+
+[node name="BlurSizeInput" parent="." instance=ExtResource("2_gilmd")]
+layout_mode = 2
+type = 2
+name_label = "KEY_BLUR_SIZE"
+reset = false
+
+[connection signal="changed" from="BlurSizeInput" to="." method="_on_blur_size_input_changed"]

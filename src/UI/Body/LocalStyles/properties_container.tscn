@@ -1,0 +1,88 @@
+[gd_scene load_steps=5 format=3 uid="uid://crklcldb0vmyy"]
+
+[ext_resource type="Script" path="res://src/UI/Body/LocalStyles/properties_container.gd" id="1_6y7js"]
+[ext_resource type="PackedScene" uid="uid://2cftnam31qlk" path="res://src/UI/Components/input.tscn" id="2_xe06y"]
+[ext_resource type="PackedScene" uid="uid://cnski1gvsuras" path="res://src/UI/Components/input_drop_down.tscn" id="3_k4qpd"]
+[ext_resource type="PackedScene" uid="uid://nfofbgvn8r41" path="res://src/UI/Components/input_color.tscn" id="4_tu3v6"]
+
+[node name="PropertiesContainer" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_6y7js")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="StartInput" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("2_xe06y")]
+layout_mode = 2
+type = 2
+name_label = "KEY_START"
+reset = false
+
+[node name="EndInput" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("2_xe06y")]
+layout_mode = 2
+type = 2
+name_label = "KEY_END"
+reset = false
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="BoldCheckButton" type="CheckButton" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "KEY_BOLD"
+
+[node name="ItalicCheckButton" type="CheckButton" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "KEY_ITALIC"
+
+[node name="FontInputDropDown" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("3_k4qpd")]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="FontSizeInput" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2" instance=ExtResource("2_xe06y")]
+layout_mode = 2
+size_flags_horizontal = 3
+type = 2
+suffix_label = "Px"
+reset = false
+
+[node name="InputColor" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2" instance=ExtResource("4_tu3v6")]
+layout_mode = 2
+size_flags_horizontal = 3
+reset = false
+
+[node name="UppercaseCheckButton" type="CheckButton" parent="ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "KEY_UPPERCASE"
+
+[connection signal="changed" from="ScrollContainer/MarginContainer/VBoxContainer/StartInput" to="." method="_on_start_input_changed"]
+[connection signal="changed" from="ScrollContainer/MarginContainer/VBoxContainer/EndInput" to="." method="_on_end_input_changed"]
+[connection signal="toggled" from="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/BoldCheckButton" to="." method="_on_bold_check_button_toggled"]
+[connection signal="toggled" from="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/ItalicCheckButton" to="." method="_on_italic_check_button_toggled"]
+[connection signal="changed" from="ScrollContainer/MarginContainer/VBoxContainer/FontInputDropDown" to="." method="_on_font_input_drop_down_changed"]
+[connection signal="changed" from="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2/FontSizeInput" to="." method="_on_font_size_input_changed"]
+[connection signal="changed" from="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2/InputColor" to="." method="_on_input_color_changed"]
+[connection signal="toggled" from="ScrollContainer/MarginContainer/VBoxContainer/UppercaseCheckButton" to="." method="_on_uppercase_check_button_toggled"]

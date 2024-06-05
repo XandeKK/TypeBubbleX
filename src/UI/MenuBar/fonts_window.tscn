@@ -1,0 +1,92 @@
+[gd_scene load_steps=8 format=3 uid="uid://b6ovvshp3qt62"]
+
+[ext_resource type="Script" path="res://src/UI/MenuBar/Scripts/fonts_window.gd" id="1_d8c3v"]
+[ext_resource type="PackedScene" uid="uid://k4sbqjmx3jiw" path="res://src/UI/Components/tab_container_vertical.tscn" id="2_6dbrd"]
+[ext_resource type="PackedScene" uid="uid://sjcihdv8ggt4" path="res://src/UI/Components/tab.tscn" id="3_0slh4"]
+[ext_resource type="PackedScene" uid="uid://o72mksvvctg5" path="res://src/UI/MenuBar/Fonts/directories_panel.tscn" id="4_8jppx"]
+[ext_resource type="PackedScene" uid="uid://cu7kxrvdeaql1" path="res://src/UI/MenuBar/Fonts/fonts_panel.tscn" id="5_y1qcc"]
+[ext_resource type="PackedScene" uid="uid://dfckiqhurilgr" path="res://src/UI/MenuBar/Fonts/edit_panel.tscn" id="6_wrutl"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8xwfh"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 0.365, 0.365, 1)
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_detail = 1
+
+[node name="FontsWindow" type="Window"]
+disable_3d = true
+title = "KEY_FONTS"
+initial_position = 2
+size = Vector2i(800, 500)
+transient = true
+script = ExtResource("1_d8c3v")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.2
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/HBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="TabContainerVertical" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer" instance=ExtResource("2_6dbrd")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.2
+theme_override_constants/separation = 1
+
+[node name="KEY_DIRECTORIES" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer/TabContainerVertical" node_paths=PackedStringArray("content") instance=ExtResource("3_0slh4")]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8xwfh")
+content = NodePath("../../../../TabsContent/DirectoriesPanel")
+
+[node name="KEY_FONTS" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer/TabContainerVertical" node_paths=PackedStringArray("content") instance=ExtResource("3_0slh4")]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8xwfh")
+content = NodePath("../../../../TabsContent/FontsPanel")
+
+[node name="KEY_EDIT" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer/TabContainerVertical" node_paths=PackedStringArray("content") instance=ExtResource("3_0slh4")]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8xwfh")
+content = NodePath("../../../../TabsContent/EditPanel")
+
+[node name="TabsContent" type="Control" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="DirectoriesPanel" parent="MarginContainer/HBoxContainer/TabsContent" instance=ExtResource("4_8jppx")]
+layout_mode = 1
+
+[node name="FontsPanel" parent="MarginContainer/HBoxContainer/TabsContent" instance=ExtResource("5_y1qcc")]
+visible = false
+layout_mode = 1
+
+[node name="EditPanel" parent="MarginContainer/HBoxContainer/TabsContent" instance=ExtResource("6_wrutl")]
+visible = false
+layout_mode = 1
+
+[connection signal="close_requested" from="." to="." method="_on_close_requested"]

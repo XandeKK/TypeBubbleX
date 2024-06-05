@@ -1,77 +1,9 @@
-[gd_scene load_steps=29 format=3 uid="uid://2r0gvw58wdbh"]
+[gd_scene load_steps=5 format=3 uid="uid://dfv6fvv4etaqb"]
 
-[ext_resource type="Script" path="res://addons/dockable_container/dockable_container.gd" id="1_h1uv5"]
-[ext_resource type="Theme" uid="uid://ds37dvaj7sob8" path="res://Assets/Themes/main.tres" id="1_s8eie"]
-[ext_resource type="Script" path="res://addons/dockable_container/layout_panel.gd" id="2_1axbj"]
-[ext_resource type="Script" path="res://src/main.gd" id="2_nagta"]
-[ext_resource type="Theme" uid="uid://cudnsdf5nwnfo" path="res://Assets/Themes/menu_bar.tres" id="2_q156j"]
-[ext_resource type="Theme" uid="uid://cxq78k14m2105" path="res://Assets/Themes/dockable_container.tres" id="3_5suyl"]
-[ext_resource type="Script" path="res://addons/dockable_container/layout_split.gd" id="3_8ibwx"]
-[ext_resource type="Script" path="res://addons/dockable_container/layout.gd" id="3_8sp2d"]
-[ext_resource type="Script" path="res://src/UI/MenuBar/file.gd" id="3_pq15j"]
-[ext_resource type="Script" path="res://src/UI/MenuBar/edit.gd" id="5_6s0g1"]
-[ext_resource type="PackedScene" uid="uid://70ws3ecdqctq" path="res://src/Canvas/top_canvas.tscn" id="5_7c32o"]
-[ext_resource type="PackedScene" uid="uid://dmbvxdw1csjx6" path="res://src/UI/properties_docker.tscn" id="8_4wsqh"]
-[ext_resource type="PackedScene" uid="uid://c2epjjnugh0xq" path="res://src/UI/text_docker.tscn" id="9_qcy0h"]
-[ext_resource type="PackedScene" uid="uid://brpmrfe8bjswa" path="res://src/UI/styles_docker.tscn" id="11_18n82"]
-[ext_resource type="PackedScene" uid="uid://blvd0jvk8hugt" path="res://src/UI/layers_docker.tscn" id="11_rfhdm"]
-[ext_resource type="PackedScene" uid="uid://c77at2skcq0u1" path="res://src/UI/selection_styles_docker.tscn" id="12_pdg4t"]
-[ext_resource type="Script" path="res://src/UI/pages.gd" id="13_ngdfa"]
-[ext_resource type="PackedScene" uid="uid://cn2srwer6532q" path="res://src/UI/MenuBar/file_confirmation_dialog.tscn" id="15_jngg0"]
-[ext_resource type="PackedScene" uid="uid://bhoq0trkym5ay" path="res://src/UI/MenuBar/font_config.tscn" id="19_d4akj"]
-[ext_resource type="PackedScene" uid="uid://dysv6jsajl5ro" path="res://src/UI/MenuBar/preference.tscn" id="20_5srkf"]
-
-[sub_resource type="Resource" id="Resource_7k7ct"]
-resource_name = "Tabs"
-script = ExtResource("2_1axbj")
-names = PackedStringArray("KEY_PROPERTIES")
-current_tab = 0
-
-[sub_resource type="Resource" id="Resource_l5wtx"]
-resource_name = "Tabs"
-script = ExtResource("2_1axbj")
-names = PackedStringArray("KEY_TEXTS")
-current_tab = 0
-
-[sub_resource type="Resource" id="Resource_r1bqr"]
-resource_name = "Split"
-script = ExtResource("3_8ibwx")
-direction = 1
-percent = 0.5
-first = SubResource("Resource_7k7ct")
-second = SubResource("Resource_l5wtx")
-
-[sub_resource type="Resource" id="Resource_82d3e"]
-resource_name = "Layout"
-script = ExtResource("3_8sp2d")
-root = SubResource("Resource_r1bqr")
-hidden_tabs = {}
-
-[sub_resource type="Resource" id="Resource_gtfdq"]
-resource_name = "Tabs"
-script = ExtResource("2_1axbj")
-names = PackedStringArray("KEY_STYLES", "KEY_STYLE_GROUPS")
-current_tab = 0
-
-[sub_resource type="Resource" id="Resource_e1xoq"]
-resource_name = "Tabs"
-script = ExtResource("2_1axbj")
-names = PackedStringArray("KEY_LAYERS")
-current_tab = 0
-
-[sub_resource type="Resource" id="Resource_hdb1q"]
-resource_name = "Split"
-script = ExtResource("3_8ibwx")
-direction = 1
-percent = 0.5
-first = SubResource("Resource_gtfdq")
-second = SubResource("Resource_e1xoq")
-
-[sub_resource type="Resource" id="Resource_vt5i7"]
-resource_name = "Layout"
-script = ExtResource("3_8sp2d")
-root = SubResource("Resource_hdb1q")
-hidden_tabs = {}
+[ext_resource type="Theme" uid="uid://dtdq6gbuvl053" path="res://Assets/Themes/default_theme.tres" id="1_itxbo"]
+[ext_resource type="PackedScene" uid="uid://ds6j3c0qw36uk" path="res://src/UI/menu_bar.tscn" id="1_kf4sx"]
+[ext_resource type="PackedScene" uid="uid://ctu6jvlh35yti" path="res://src/UI/body.tscn" id="3_oq7ki"]
+[ext_resource type="Script" path="res://src/UI/Notification/notifications_box.gd" id="4_stvuc"]
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -80,8 +12,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_s8eie")
-script = ExtResource("2_nagta")
+theme = ExtResource("1_itxbo")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -91,191 +22,23 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 5
+theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 
-[node name="MenuBar" type="MenuBar" parent="MarginContainer/VBoxContainer"]
+[node name="MenuBar" parent="MarginContainer/VBoxContainer" instance=ExtResource("1_kf4sx")]
 layout_mode = 2
-theme = ExtResource("2_q156j")
-
-[node name="KEY_FILE" type="PopupMenu" parent="MarginContainer/VBoxContainer/MenuBar" node_paths=PackedStringArray("confirmation_dialog", "font_config", "preference")]
-size = Vector2i(122, 100)
-item_count = 6
-item_0/text = "KEY_OPEN"
-item_0/id = 0
-item_1/text = "KEY_SAVE"
-item_1/id = 1
-item_2/text = "KEY_EXPORT_TO_JSON"
-item_2/id = 2
-item_3/text = ""
-item_3/id = 3
-item_3/separator = true
-item_4/text = "KEY_PREFERENCE"
-item_4/id = 4
-item_5/text = "KEY_FONTS"
-item_5/id = 5
-script = ExtResource("3_pq15j")
-confirmation_dialog = NodePath("../../../../Popups/FileConfirmationDialog")
-font_config = NodePath("../../../../Popups/FontConfig")
-preference = NodePath("../../../../Popups/Preference")
-
-[node name="KEY_EDIT" type="PopupMenu" parent="MarginContainer/VBoxContainer/MenuBar" node_paths=PackedStringArray("canvas")]
-item_count = 1
-item_0/text = "KEY_CLEAR"
-item_0/id = 0
-script = ExtResource("5_6s0g1")
-canvas = NodePath("../../MarginContainer/HSplitContainer/HSplitContainer/Canvas/TopCanvas")
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_constants/margin_top = 5
+theme_override_constants/margin_top = 3
 
-[node name="HSplitContainer" type="HSplitContainer" parent="MarginContainer/VBoxContainer/MarginContainer"]
+[node name="Body" parent="MarginContainer/VBoxContainer/MarginContainer" instance=ExtResource("3_oq7ki")]
 layout_mode = 2
-size_flags_vertical = 3
-
-[node name="DockableContainer" type="Container" parent="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer"]
-custom_minimum_size = Vector2(190, 0)
-layout_mode = 2
-theme = ExtResource("3_5suyl")
-script = ExtResource("1_h1uv5")
-tab_alignment = 0
-layout = SubResource("Resource_82d3e")
-
-[node name="KEY_PROPERTIES" type="TabBar" parent="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/DockableContainer"]
-custom_minimum_size = Vector2(0, 200)
-layout_mode = 2
-
-[node name="PropertiesDocker" parent="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/DockableContainer/KEY_PROPERTIES" node_paths=PackedStringArray("canvas") instance=ExtResource("8_4wsqh")]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = 0.0
-offset_bottom = 0.0
-grow_horizontal = 2
-grow_vertical = 2
-canvas = NodePath("../../../HSplitContainer/Canvas/TopCanvas")
-
-[node name="KEY_TEXTS" type="TabBar" parent="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/DockableContainer"]
-custom_minimum_size = Vector2(0, 200)
-layout_mode = 2
-
-[node name="TextDocker" parent="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/DockableContainer/KEY_TEXTS" node_paths=PackedStringArray("canvas") instance=ExtResource("9_qcy0h")]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = 0.0
-offset_bottom = 0.0
-grow_horizontal = 2
-grow_vertical = 2
-canvas = NodePath("../../../HSplitContainer/Canvas/TopCanvas")
-
-[node name="HSplitContainer" type="HSplitContainer" parent="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Canvas" type="Control" parent="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/HSplitContainer"]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="TopCanvas" parent="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/HSplitContainer/Canvas" instance=ExtResource("5_7c32o")]
-layout_mode = 1
-metadata/_edit_lock_ = true
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/HSplitContainer"]
-layout_mode = 2
-
-[node name="PagesContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/HSplitContainer/VBoxContainer"]
-layout_mode = 2
-script = ExtResource("13_ngdfa")
-
-[node name="PagesOptionButton" type="OptionButton" parent="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/HSplitContainer/VBoxContainer/PagesContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="BackButton" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/HSplitContainer/VBoxContainer/PagesContainer"]
-layout_mode = 2
-text = "<"
-
-[node name="NextButton" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/HSplitContainer/VBoxContainer/PagesContainer"]
-layout_mode = 2
-text = ">"
-
-[node name="DockableContainer" type="Container" parent="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/HSplitContainer/VBoxContainer"]
-custom_minimum_size = Vector2(190, 0)
-layout_mode = 2
-size_flags_vertical = 3
-theme = ExtResource("3_5suyl")
-script = ExtResource("1_h1uv5")
-tab_alignment = 0
-layout = SubResource("Resource_vt5i7")
-
-[node name="KEY_STYLES" type="TabBar" parent="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/HSplitContainer/VBoxContainer/DockableContainer"]
-custom_minimum_size = Vector2(0, 200)
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="StylesDocker" parent="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/HSplitContainer/VBoxContainer/DockableContainer/KEY_STYLES" node_paths=PackedStringArray("canvas") instance=ExtResource("11_18n82")]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = 0.0
-offset_bottom = 0.0
-grow_horizontal = 2
-grow_vertical = 2
-canvas = NodePath("../../../../Canvas/TopCanvas")
-
-[node name="KEY_STYLE_GROUPS" type="TabBar" parent="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/HSplitContainer/VBoxContainer/DockableContainer"]
-visible = false
-custom_minimum_size = Vector2(0, 200)
-layout_mode = 2
-
-[node name="SelectionStylesDocker" parent="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/HSplitContainer/VBoxContainer/DockableContainer/KEY_STYLE_GROUPS" node_paths=PackedStringArray("canvas") instance=ExtResource("12_pdg4t")]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = 0.0
-offset_bottom = 0.0
-grow_horizontal = 2
-grow_vertical = 2
-canvas = NodePath("../../../../Canvas/TopCanvas")
-
-[node name="KEY_LAYERS" type="TabBar" parent="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/HSplitContainer/VBoxContainer/DockableContainer"]
-custom_minimum_size = Vector2(0, 200)
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="LayersDocker" parent="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/HSplitContainer/VBoxContainer/DockableContainer/KEY_LAYERS" node_paths=PackedStringArray("canvas") instance=ExtResource("11_rfhdm")]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = 0.0
-offset_bottom = 0.0
-grow_horizontal = 2
-grow_vertical = 2
-canvas = NodePath("../../../../Canvas/TopCanvas")
-
-[node name="Popups" type="Node" parent="."]
-
-[node name="FileConfirmationDialog" parent="Popups" instance=ExtResource("15_jngg0")]
-visible = false
-
-[node name="FontConfig" parent="Popups" instance=ExtResource("19_d4akj")]
-visible = false
-
-[node name="Preference" parent="Popups" instance=ExtResource("20_5srkf")]
-visible = false
 
 [node name="NotificationsBox" type="VBoxContainer" parent="."]
 custom_minimum_size = Vector2(200, 0)
@@ -284,19 +47,8 @@ anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -207.0
-offset_top = 10.0
-offset_right = -7.0
-offset_bottom = -10.0
 grow_horizontal = 0
 grow_vertical = 2
 mouse_filter = 2
 alignment = 2
-
-[node name="HTTPRequest" type="HTTPRequest" parent="."]
-
-[connection signal="id_pressed" from="MarginContainer/VBoxContainer/MenuBar/KEY_FILE" to="MarginContainer/VBoxContainer/MenuBar/KEY_FILE" method="_on_id_pressed"]
-[connection signal="id_pressed" from="MarginContainer/VBoxContainer/MenuBar/KEY_EDIT" to="MarginContainer/VBoxContainer/MenuBar/KEY_EDIT" method="_on_id_pressed"]
-[connection signal="item_selected" from="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/HSplitContainer/VBoxContainer/PagesContainer/PagesOptionButton" to="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/HSplitContainer/VBoxContainer/PagesContainer" method="_on_pages_option_button_item_selected"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/HSplitContainer/VBoxContainer/PagesContainer/BackButton" to="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/HSplitContainer/VBoxContainer/PagesContainer" method="_on_back_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/HSplitContainer/VBoxContainer/PagesContainer/NextButton" to="MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/HSplitContainer/VBoxContainer/PagesContainer" method="_on_next_button_pressed"]
+script = ExtResource("4_stvuc")
