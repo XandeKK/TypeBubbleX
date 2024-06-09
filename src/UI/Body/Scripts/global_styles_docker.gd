@@ -8,6 +8,7 @@ extends PanelContainer
 @onready var perspective_container : VBoxContainer = $VBoxContainer/MarginContainer2/PerspectiveContainer
 @onready var gradient_container : VBoxContainer = $VBoxContainer/MarginContainer2/GradientContainer
 @onready var mask_container : VBoxContainer = $VBoxContainer/MarginContainer2/MaskContainer
+@onready var path_container : VBoxContainer = $VBoxContainer/MarginContainer2/PathContainer
 
 var selected_tab : Node
 
@@ -38,6 +39,7 @@ func blank_all():
 	perspective_container.blank_all()
 	gradient_container.blank_all()
 	mask_container.blank_all()
+	path_container.blank_all()
 
 func set_values(bubble : Bubble):
 	if not bubble:
@@ -50,6 +52,7 @@ func set_values(bubble : Bubble):
 	perspective_container.set_values(bubble.perspective)
 	gradient_container.set_values(bubble.text.gradient)
 	mask_container.set_values(bubble.mask)
+	path_container.set_values(bubble.text_path)
 
 func _selected(tab) -> void:
 	if selected_tab == tab:

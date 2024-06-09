@@ -6,8 +6,9 @@ class_name Text
 @onready var motion_blur : MotionBlur = $MotionBlur
 @onready var blur : ColorRect = $Blur
 @onready var gradient : GradientText = $TextRenderer/Gradient
-@onready var pattern : Pattern = $TextRenderer/Pattern
+#@onready var pattern : Pattern = $TextRenderer/Pattern
 
+var text_path : TextPath2D
 var blur_size : int = 0 : get = get_blur_size, set = set_blur_size
 
 func _ready():
@@ -60,7 +61,6 @@ func load(data : Dictionary) -> void:
 	horizontal_alignment = data['horizontal_alignment']
 	uppercase = data['uppercase']
 	font_name = data['font_name']
-	# I will change it to make it shareable.
 	if FontConfigManager.fonts.has(font_name):
 		font_settings = FontConfigManager.fonts[font_name]
 

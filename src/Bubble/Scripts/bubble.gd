@@ -5,6 +5,7 @@ class_name Bubble
 @onready var sub_viewport_container : SubViewportContainer = $Mask/SubViewportContainer
 @onready var sub_viewport : SubViewport = $Mask/SubViewportContainer/SubViewport
 @onready var text : Text = $Mask/SubViewportContainer/SubViewport/Text
+@onready var text_path : TextPath2D = $TextPath2D
 
 var move_bubble : MoveBubble = MoveBubble.new()
 var rotation_bubble : RotationBubble = RotationBubble.new()
@@ -12,7 +13,7 @@ var perspective : Perspective = Perspective.new()
 
 var focus : bool = false : get = _get_focus
 var can_draw : bool = true : set = _set_can_draw
-var canvas : SubViewportContainer : set = _set_canvas
+var canvas : Canvas : set = _set_canvas
 
 signal focused(node : Bubble)
 signal focus_changed
@@ -22,6 +23,7 @@ func _ready():
 	move_bubble.bubble = self
 	rotation_bubble.bubble = self
 	perspective.bubble = self
+	text_path.text = text
 	
 	add_child(rotation_bubble)
 	add_child(perspective)
@@ -70,6 +72,7 @@ func readjust_size():
 	text.size = size
 	perspective.size = size
 	mask.set_deferred('size', size)
+	text_path.size = size
 	
 	pivot_offset = size / 2
 	rotation_bubble.readjust_size()
@@ -93,9 +96,10 @@ func set_focus(value : bool = true, emit : bool = true) -> void:
 func _set_can_draw(value : bool) -> void:
 	can_draw = value
 	perspective.can_draw = can_draw
+	text_path.can_draw = can_draw
 	queue_redraw()
 
-func _set_canvas(value : SubViewportContainer) -> void:
+func _set_canvas(value : Canvas) -> void:
 	canvas = value
 
 func apply_rotation(value : float):
@@ -112,45 +116,16 @@ func to_dictionary() -> Dictionary:
 		'size': size,
 		'rotation_degrees': rotation_degrees,
 		'perspective': perspective.to_dictionary(),
-		'text': text.to_dictionary()
+		'text': text.to_dictionary(),
+		'text_path': text_path.to_dictionary()
 	}
 
 func load(data : Dictionary) -> void:
 	rotation_degrees = data['rotation_degrees']
 	perspective.load(data['perspective'])
+	text_path.load(data['text_path'])
 	
 	text.load(data['text'])
-
-func extract_data_for_ai() -> Dictionary:
-	var _text : String = text.text.replace('-\n', '').replace("\n", ' ').replace('  ', ' ')
-	var current_font : FontVariation
-	
-	if text.bold and text.italic:
-		current_font = text.font_settings['bold-italic']
-	elif text.bold:
-		current_font = text.font_settings['bold']
-	elif text.italic:
-		current_font = text.font_settings['italic']
-	else:
-		current_font = text.font_settings['regular']
-
-	var get_string_size : Callable = func(word) -> Array:
-		var string_size : Vector2 = current_font.get_string_size(word, HORIZONTAL_ALIGNMENT_CENTER, -1, text.font_size)
-		return [string_size.x, string_size.y]
-		
-	var data : Dictionary = {
-		'image': sub_viewport.get_texture().get_image(),
-		'text': _text,
-		'font_size': text.font_size,
-		'font_name': text.font_name,
-		'words_size': Array(_text.split(' ')).map(func(word): return get_string_size.call(word)),
-		'size': {
-			'x': size.x,
-			'y': size.y
-		}
-	}
-	
-	return data
 
 func _exit_tree():
 	move_bubble.free()

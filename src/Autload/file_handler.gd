@@ -84,7 +84,6 @@ func save() -> void:
 	save_to_file(data)
 	update_tbx_file()
 	save_image()
-	save_extracted_data_for_ai()
 
 func save_to_file(data: Dictionary) -> void:
 	if cleaned_images_path.is_empty():
@@ -137,26 +136,6 @@ func _thread_save_image(image : Image, save_path : String) -> void:
 		image.save_webp(save_path)
 	
 	Notification.call_deferred_thread_group('message', "Saved image")
-
-func save_extracted_data_for_ai() -> void:
-	var data = Global.canvas.extract_data_for_ai()
-	var dir = '/home/xandekk/AI'
-	var dir_images = dir.path_join('images')
-	
-	if not DirAccess.dir_exists_absolute(dir):
-		DirAccess.make_dir_recursive_absolute(dir)
-		DirAccess.make_dir_recursive_absolute(dir_images)
-	
-	for bubble : Dictionary in data:
-		var id = str(randf()) + Time.get_date_string_from_system()
-		bubble.image.save_png(dir_images.path_join(id + '.png'))
-		var file = FileAccess.open(dir.path_join(id + '.json'), FileAccess.WRITE)
-		var json = JSON.stringify({
-			'text': bubble.text,
-			'size': bubble.size,
-			'words_size': bubble.words_size
-		})
-		file.store_string(json)
 
 func get_image_extension(file_path: String) -> String:
 	if file_path.ends_with('.png'):

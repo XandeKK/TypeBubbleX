@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://d2asgx8ee3hv1"]
+[gd_scene load_steps=8 format=3 uid="uid://d2asgx8ee3hv1"]
 
 [ext_resource type="Script" path="res://src/Bubble/Scripts/bubble.gd" id="1_aox3q"]
 [ext_resource type="Shader" path="res://src/Shaders/perspective.gdshader" id="2_8tq2u"]
 [ext_resource type="PackedScene" uid="uid://d04rejcksx1o3" path="res://src/Bubble/text.tscn" id="2_gn6hi"]
 [ext_resource type="PackedScene" uid="uid://1unmhqqklsqe" path="res://src/Bubble/mask.tscn" id="2_mj8ji"]
+[ext_resource type="Script" path="res://src/Bubble/Scripts/text_path2D.gd" id="5_r5lkv"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nmspq"]
 resource_local_to_scene = true
@@ -12,6 +13,9 @@ shader_parameter/top_left = Vector2(0, 0)
 shader_parameter/top_right = Vector2(0, 0)
 shader_parameter/bottom_left = Vector2(0, 0)
 shader_parameter/bottom_right = Vector2(0, 0)
+
+[sub_resource type="Curve2D" id="Curve2D_5lsc1"]
+resource_local_to_scene = true
 
 [node name="Bubble" type="Control"]
 layout_mode = 3
@@ -35,3 +39,7 @@ render_target_update_mode = 4
 
 [node name="Text" parent="Mask/SubViewportContainer/SubViewport" instance=ExtResource("2_gn6hi")]
 texture_filter = 6
+
+[node name="TextPath2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_5lsc1")
+script = ExtResource("5_r5lkv")

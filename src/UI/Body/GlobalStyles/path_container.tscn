@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=3 uid="uid://dqa40gey6genb"]
+
+[ext_resource type="Script" path="res://src/UI/Body/GlobalStyles/Scripts/path_container.gd" id="1_qbt5h"]
+
+[node name="PathContainer" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qbt5h")
+
+[node name="ActiveCheckButton" type="CheckButton" parent="."]
+layout_mode = 2
+text = "KEY_ACTIVE"
+
+[node name="DrawCheckButton" type="CheckButton" parent="."]
+layout_mode = 2
+text = "KEY_Draw"
+
+[node name="ResetButton" type="Button" parent="."]
+layout_mode = 2
+text = "KEY_RESET"
+
+[connection signal="toggled" from="ActiveCheckButton" to="." method="_on_active_check_button_toggled"]
+[connection signal="toggled" from="DrawCheckButton" to="." method="_on_draw_check_button_toggled"]
+[connection signal="pressed" from="ResetButton" to="." method="_on_reset_button_pressed"]

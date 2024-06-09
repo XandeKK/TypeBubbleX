@@ -51,7 +51,8 @@ func add_bubble(start_position : Vector2, end_position : Vector2) -> void:
 	emit_signal('bubble_added', obj)
 
 func remove_bubble(node : Bubble):
-	focus(null)
+	if node == focused_bubble:
+		focus(null)
 	node.queue_free()
 	emit_signal('bubble_removed', node)
 

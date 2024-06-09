@@ -98,9 +98,6 @@ func _prepare_glyphs_to_render() -> void:
 					ofs.x = style_box.get_offset().x
 				else:
 					ofs.x = int(size.x - style_box.get_margin(SIDE_RIGHT) - line_size.x)
-		
-		if flip_x:
-			ofs.x = size.x - ofs.x
 
 		var glyphs : Array[Dictionary] = TSManager.TS.shaped_text_get_glyphs(lines_rid[i])
 		var gl_size : int = TSManager.TS.shaped_text_get_glyph_count(lines_rid[i])
@@ -112,13 +109,10 @@ func _prepare_glyphs_to_render() -> void:
 					'glyph': glyphs[j],
 					'ofs': ofs
 				})
-				if flip_x:
-					ofs.x -= glyphs[j].advance
-				else:
-					ofs.x += glyphs[j].advance
+				ofs.x += glyphs[j].advance
 		ofs.y += TSManager.TS.shaped_text_get_descent(lines_rid[i]) + vsep + line_spacing
 	
-	emit_signal('render')
+	render_()
 
 func _shape() -> void:
 	@warning_ignore("narrowing_conversion")
@@ -186,6 +180,9 @@ func _shape() -> void:
 	_prepare_glyphs_to_render()
 	text_style_normal.free()
 
+func render_() -> void:
+	emit_signal('render')
+
 func add_formatted_text(_text, text_style):
 	var _current_font : Font
 
@@ -235,7 +232,7 @@ func _get_color() -> Color:
 
 func _set_color(value : Color) -> void:
 	color = value
-	emit_signal('render')
+	render_()
 
 func _get_letter_spacing() -> int:
 	return letter_spacing
@@ -284,14 +281,12 @@ func _get_flip_x() -> bool:
 
 func _set_flip_x(value : bool) -> void:
 	flip_x = value
-	_shape()
 
 func _get_flip_y() -> bool:
 	return flip_y
 
 func _set_flip_y(value : bool) -> void:
 	flip_y = value
-	_shape()
 
 func _get_font_name() -> String:
 	return font_name
