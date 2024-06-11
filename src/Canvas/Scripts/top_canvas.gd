@@ -40,29 +40,28 @@ func add_bubble(start_position : Vector2, end_position : Vector2) -> void:
 	if max_pos - min_pos < Vector2(10,10):
 		return
 	
-	var obj = bubble_scene.instantiate()
+	var bubble = bubble_scene.instantiate()
 	
-	bubbles.add_child(obj)
+	bubbles.add_child(bubble)
 	
-	obj.focused.connect(focus)
-	obj.init(min_pos, max_pos - min_pos, type)
-	obj.canvas = self
+	bubble.focused.connect(focus)
+	bubble.init(min_pos, max_pos - min_pos, type)
 	
-	emit_signal('bubble_added', obj)
+	emit_signal('bubble_added', bubble)
 
-func remove_bubble(node : Bubble):
-	if node == focused_bubble:
+func remove_bubble(bubble : Bubble):
+	if bubble == focused_bubble:
 		focus(null)
-	node.queue_free()
-	emit_signal('bubble_removed', node)
+	bubble.queue_free()
+	emit_signal('bubble_removed', bubble)
 
-func focus(node : Bubble) -> void:
+func focus(bubble : Bubble) -> void:
 	if focused_bubble:
 		focused_bubble.set_focus(false, false)
-	if focused_bubble == node:
+	if focused_bubble == bubble:
 		return
-	focused_bubble = node
-	emit_signal('bubble_focus_changed', node)
+	focused_bubble = bubble
+	emit_signal('bubble_focus_changed', bubble)
 
 func get_focused_bubble() -> Bubble:
 	return focused_bubble
@@ -117,15 +116,6 @@ func get_image() -> Image:
 	raw_image.visible = raw_visible
 	
 	return image
-
-func extract_data_for_ai() -> Array[Dictionary]:
-	var data : Array[Dictionary] = []
-	
-	for bubble : Bubble in bubbles.get_children():
-		if bubble.text.text_styles.list.is_empty():
-			data.append(bubble.extract_data_for_ai())
-
-	return data
 
 func clear() -> void:
 	for bubble in bubbles.get_children():

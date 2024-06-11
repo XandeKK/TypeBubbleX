@@ -321,9 +321,3 @@ func get_glyphs_to_render() -> Array[Dictionary]:
 func set_content_margin(margin : Side, offset : float):
 	style_box.set_content_margin(margin, offset)
 	_shape()
-
-func _exit_tree():
-	text_styles.free()
-	TSManager.TS.free_rid(text_rid)
-	for i in range(lines_rid.size()):
-		TSManager.TS.free_rid(lines_rid[i])

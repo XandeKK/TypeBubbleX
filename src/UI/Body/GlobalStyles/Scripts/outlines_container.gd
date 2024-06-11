@@ -1,6 +1,6 @@
 extends VBoxContainer
 
-@onready var tab_container : TabContainer = $ScrollContainer/TabContainer
+@onready var tab_container : TabContainer = $TabContainer
 
 @onready var add_button : Button = $HBoxContainer/AddButton
 @onready var outline_item_packed : PackedScene = load("res://src/UI/Body/GlobalStyles/outline_container.tscn")

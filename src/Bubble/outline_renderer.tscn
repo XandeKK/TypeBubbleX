@@ -1,10 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://cj256770t5xni"]
+[gd_scene load_steps=9 format=3 uid="uid://cj256770t5xni"]
 
 [ext_resource type="Script" path="res://src/Bubble/Scripts/outline.gd" id="1_fk7rb"]
 [ext_resource type="Script" path="res://src/Bubble/Scripts/outline_renderer.gd" id="2_7ngka"]
 [ext_resource type="Shader" path="res://src/Shaders/blur.gdshader" id="3_l7t3a"]
 [ext_resource type="PackedScene" uid="uid://l4jrpafvbsma" path="res://src/Bubble/gradient.tscn" id="3_sak0n"]
-[ext_resource type="PackedScene" uid="uid://cvsecubesv0b1" path="res://src/Bubble/pattern.tscn" id="4_v3msk"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_t1fwc"]
 blend_mode = 4
@@ -49,11 +48,9 @@ grow_vertical = 2
 script = ExtResource("2_7ngka")
 
 [node name="Gradient" parent="SubViewport/Renderer" instance=ExtResource("3_sak0n")]
+visible = false
 layout_mode = 1
 texture = SubResource("GradientTexture2D_tbxym")
-
-[node name="Pattern" parent="SubViewport/Renderer" instance=ExtResource("4_v3msk")]
-layout_mode = 1
 
 [node name="Blur" type="ColorRect" parent="SubViewport"]
 material = SubResource("ShaderMaterial_2olw3")

@@ -47,11 +47,11 @@ func set_values(bubble : Bubble):
 		return
 
 	outlines_container.set_values(bubble.text.outline_manager)
-	motion_blur_container.set_values(bubble.text.motion_blur)
+	motion_blur_container.set_values(bubble.text)
 	blur_container.set_values(bubble.text)
 	perspective_container.set_values(bubble.perspective)
-	gradient_container.set_values(bubble.text.gradient)
-	mask_container.set_values(bubble.mask)
+	gradient_container.set_values(bubble.text)
+	mask_container.set_values(bubble)
 	path_container.set_values(bubble.text_path)
 
 func _selected(tab) -> void:

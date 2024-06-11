@@ -14,6 +14,11 @@ script = ExtResource("1_yc0dy")
 layout_mode = 2
 text = "KEY_ACTIVE"
 
+[node name="DrawingCheckButton" type="CheckButton" parent="."]
+layout_mode = 2
+text = "KEY_DRAWING
+"
+
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
 
@@ -54,6 +59,7 @@ layout_mode = 2
 text = "KEY_RESET"
 
 [connection signal="toggled" from="ActiveCheckButton" to="." method="_on_active_check_button_toggled"]
+[connection signal="toggled" from="DrawingCheckButton" to="." method="_on_drawing_check_button_toggled"]
 [connection signal="value_changed" from="HBoxContainer/OpacityHSlider" to="." method="_on_opacity_h_slider_value_changed"]
 [connection signal="value_changed" from="HBoxContainer2/RadiusHSlider" to="." method="_on_radius_h_slider_value_changed"]
 [connection signal="pressed" from="ResetButton" to="." method="_on_reset_button_pressed"]

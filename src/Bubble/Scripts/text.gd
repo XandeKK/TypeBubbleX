@@ -3,30 +3,52 @@ class_name Text
 
 @onready var text_renderer : Control = $TextRenderer
 @onready var outline_manager : OutlineManager = $OutlineManager
-@onready var motion_blur : MotionBlur = $MotionBlur
-@onready var blur : ColorRect = $Blur
-@onready var gradient : GradientText = $TextRenderer/Gradient
-#@onready var pattern : Pattern = $TextRenderer/Pattern
+@onready var motion_blur : MotionBlur
+@onready var blur : Blur
+@onready var gradient : GradientText
 
 var text_path : TextPath2D
-var blur_size : int = 0 : get = get_blur_size, set = set_blur_size
 
 func _ready():
 	text_renderer.text = self
 	outline_manager.text = self
 	text_styles.text = self
 
-func get_blur_size() -> int:
-	return blur_size
+func active_motion_blur(value : bool) -> void:
+	if value:
+		motion_blur = Global.motion_blur.instantiate()
+		add_child(motion_blur)
+		
+		motion_blur.anchors_preset = PRESET_FULL_RECT
+	else:
+		remove_child(motion_blur)
+		motion_blur.queue_free()
+		motion_blur = null
 
-func set_blur_size(value : int) -> void:
-	blur_size = value
-	blur.visible = blur_size > 0
-	
-	blur.material.set_shader_parameter('blur_size', blur_size)
+func active_blur(value : bool) -> void:
+	if value:
+		blur = Global.blur.instantiate()
+		add_child(blur)
+		
+		blur.anchors_preset = PRESET_FULL_RECT
+	else:
+		remove_child(blur)
+		blur.queue_free()
+		blur = null
+
+func active_gradient(value : bool) -> void:
+	if value:
+		gradient = Global.gradient.instantiate()
+		text_renderer.add_child(gradient)
+		
+		gradient.anchors_preset = PRESET_FULL_RECT
+	else:
+		text_renderer.remove_child(gradient)
+		gradient.queue_free()
+		gradient = null
 
 func to_dictionary() -> Dictionary:
-	return {
+	var data = {
 		'text': text,
 		'color': color,
 		'letter_spacing': letter_spacing,
@@ -44,11 +66,16 @@ func to_dictionary() -> Dictionary:
 			SIDE_BOTTOM: style_box.get_margin(SIDE_BOTTOM),
 			SIDE_RIGHT: style_box.get_margin(SIDE_RIGHT)
 		},
-		'outline_manager' : outline_manager.to_dictionary(),
-		'motion_blur': motion_blur.to_dictionary(),
-		'gradient': gradient.to_dictionary(),
-		#'pattern': pattern.to_dictionary()
+		'outline_manager' : outline_manager.to_dictionary()
 	}
+	
+	for element in ['blur', 'motion_blur', 'gradient']:
+		if self[element] != null:
+			data[element] = self[element].to_dictionary()
+		else:
+			data[element] = null
+	
+	return data
 
 func load(data : Dictionary) -> void:
 	text = data['text']
@@ -72,6 +99,27 @@ func load(data : Dictionary) -> void:
 	set_content_margin(SIDE_RIGHT, data['content_margins'][SIDE_RIGHT])
 	
 	outline_manager.load(data['outline_manager'])
-	motion_blur.load(data['motion_blur'])
-	gradient.load(data['gradient'])
-	#pattern.load(data['pattern'])
+	
+	if data['blur']:
+		active_blur(true)
+		blur.load(data['blur'])
+	
+	if data['motion_blur']:
+		active_motion_blur(true)
+		motion_blur.load(data['motion_blur'])
+	
+	if data['gradient']:
+		active_gradient(true)
+		gradient.load(data['gradient'])
+
+func _notification(what):
+	if what == NOTIFICATION_WM_CLOSE_REQUEST:
+		TSManager.TS.free_rid(text_rid)
+		for i in range(lines_rid.size()):
+			TSManager.TS.free_rid(lines_rid[i])
+
+func _exit_tree():
+	if Global.canvas.bubbles.get_child(0).is_queued_for_deletion():
+		TSManager.TS.free_rid(text_rid)
+		for i in range(lines_rid.size()):
+			TSManager.TS.free_rid(lines_rid[i])

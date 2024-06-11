@@ -14,7 +14,6 @@ var blur_size : int = 0 : get = get_blur_size, set = set_blur_size
 @onready var renderer : Control = $SubViewport/Renderer
 @onready var blur : ColorRect = $SubViewport/Blur
 @onready var gradient : GradientText = $SubViewport/Renderer/Gradient
-@onready var pattern : TextureRect = $SubViewport/Renderer/Pattern
 
 func _ready():
 	renderer.outline = self
@@ -85,8 +84,7 @@ func to_dictionary() -> Dictionary:
 		'color': color,
 		'outline_size': outline_size,
 		'offset': offset,
-		'gradient': gradient.to_dictionary(),
-		'pattern': pattern.to_dictionary()
+		'gradient': gradient.to_dictionary()
 	}
 
 func load(data : Dictionary) -> void:
@@ -95,4 +93,3 @@ func load(data : Dictionary) -> void:
 	offset = data['offset']
 	
 	gradient.load(data['gradient'])
-	pattern.load(data['pattern'])

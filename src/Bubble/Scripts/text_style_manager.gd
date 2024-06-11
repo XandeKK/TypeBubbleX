@@ -1,4 +1,3 @@
-extends Node
 class_name TextStyleManager
 
 var text : Text : set = _set_text

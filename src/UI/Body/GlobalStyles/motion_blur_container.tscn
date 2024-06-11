@@ -11,6 +11,10 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_rcvu0")
 
+[node name="ActiveCheckButton" type="CheckButton" parent="."]
+layout_mode = 2
+text = "KEY_ACTIVE"
+
 [node name="DirectionXInput" parent="." instance=ExtResource("2_2cf2t")]
 layout_mode = 2
 type = 1
@@ -31,6 +35,7 @@ type = 2
 name_label = "KEY_BLUR_AMOUNT"
 reset = false
 
+[connection signal="toggled" from="ActiveCheckButton" to="." method="_on_active_check_button_toggled"]
 [connection signal="changed" from="DirectionXInput" to="." method="_on_direction_x_input_changed"]
 [connection signal="changed" from="DirectionYInput" to="." method="_on_direction_y_input_changed"]
 [connection signal="changed" from="BlurAmountInput" to="." method="_on_blur_amount_input_changed"]

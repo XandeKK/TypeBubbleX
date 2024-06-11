@@ -1,10 +1,10 @@
 extends Control
 class_name Bubble
 
-@onready var mask : Mask = $Mask
-@onready var sub_viewport_container : SubViewportContainer = $Mask/SubViewportContainer
-@onready var sub_viewport : SubViewport = $Mask/SubViewportContainer/SubViewport
-@onready var text : Text = $Mask/SubViewportContainer/SubViewport/Text
+@onready var mask : Mask
+@onready var sub_viewport_container : SubViewportContainer = $SubViewportContainer
+@onready var sub_viewport : SubViewport = $SubViewportContainer/SubViewport
+@onready var text : Text = $SubViewportContainer/SubViewport/Text
 @onready var text_path : TextPath2D = $TextPath2D
 
 var move_bubble : MoveBubble = MoveBubble.new()
@@ -13,7 +13,6 @@ var perspective : Perspective = Perspective.new()
 
 var focus : bool = false : get = _get_focus
 var can_draw : bool = true : set = _set_can_draw
-var canvas : Canvas : set = _set_canvas
 
 signal focused(node : Bubble)
 signal focus_changed
@@ -40,19 +39,40 @@ func _draw():
 		return
 
 	if focus:
-		var left = text.style_box.get_margin(SIDE_LEFT)
-		var right = text.style_box.get_margin(SIDE_RIGHT)
-		var top = text.style_box.get_margin(SIDE_TOP)
-		var bottom = text.style_box.get_margin(SIDE_BOTTOM)
-		# draw content margin rect
-		draw_rect(Rect2(Vector2(left, top), size - Vector2(right + left, bottom + top)), Preference.colors.padding.active, false, 3)
-		# draw rotation rect
-		draw_rect(Rect2(rotation_bubble.position, rotation_bubble.size), Preference.colors.bubble.active)
-		# draw text rect
-		draw_rect(Rect2(Vector2.ZERO, size), Preference.colors.bubble.active, false, 3)
+		draw_focused_elements()
 	else:
-		# draw text rect
-		draw_rect(Rect2(Vector2.ZERO, size), Preference.colors.bubble.inactive, false, 3)
+		draw_inactive_text_rect()
+
+func draw_focused_elements():
+	var left = text.style_box.get_margin(SIDE_LEFT)
+	var right = text.style_box.get_margin(SIDE_RIGHT)
+	var top = text.style_box.get_margin(SIDE_TOP)
+	var bottom = text.style_box.get_margin(SIDE_BOTTOM)
+	
+	# Draw content margin rect
+	var content_rect = Rect2(Vector2(left, top), size - Vector2(right, bottom))
+	draw_polyline(create_packed_vector(content_rect), Preference.colors.padding.active, 1, true)
+	
+	# Draw rotation rect
+	var rotation_rect = Rect2(rotation_bubble.position, rotation_bubble.size)
+	draw_rect(rotation_rect, Preference.colors.bubble.active)
+	
+	# Draw text rect
+	var text_rect = Rect2(Vector2.ZERO, size)
+	draw_polyline(create_packed_vector(text_rect), Preference.colors.bubble.active, 1, true)
+
+func draw_inactive_text_rect():
+	var text_rect = Rect2(Vector2.ZERO, size)
+	draw_polyline(create_packed_vector(text_rect), Preference.colors.bubble.inactive, 1, true)
+
+func create_packed_vector(rect : Rect2) -> PackedVector2Array:
+	return PackedVector2Array([
+		Vector2(rect.position),
+		Vector2(rect.size.x, rect.position.y),
+		Vector2(rect.size.x, rect.size.y),
+		Vector2(rect.position.x, rect.size.y),
+		Vector2(rect.position)
+	])
 
 func init(_position : Vector2, _size : Vector2, type : Preference.HQTypes) -> void:
 	self.position = _position
@@ -71,7 +91,6 @@ func readjust_size():
 	sub_viewport_container.size = size
 	text.size = size
 	perspective.size = size
-	mask.set_deferred('size', size)
 	text_path.size = size
 	
 	pivot_offset = size / 2
@@ -79,6 +98,23 @@ func readjust_size():
 	perspective.reset()
 	
 	text._shape()
+
+func active_mask(value : bool) -> void:
+	if value:
+		mask = Global.mask.instantiate()
+		add_child(mask)
+		mask.set_deferred('size', size)
+		remove_child(sub_viewport_container)
+		mask.add_child(sub_viewport_container)
+		
+		mask.anchors_preset = PRESET_FULL_RECT
+	else:
+		mask.remove_child(sub_viewport_container)
+		add_child(sub_viewport_container)
+		move_child(sub_viewport_container, 0)
+		remove_child(mask)
+		mask.queue_free()
+		mask = null
 
 func _get_focus() -> bool:
 	return focus
@@ -99,9 +135,6 @@ func _set_can_draw(value : bool) -> void:
 	text_path.can_draw = can_draw
 	queue_redraw()
 
-func _set_canvas(value : Canvas) -> void:
-	canvas = value
-
 func apply_rotation(value : float):
 	rotation_degrees = value
 	emit_signal('rotation_changed', value)
@@ -111,7 +144,7 @@ func set_content_margin(margin : Side, offset : float):
 	queue_redraw()
 
 func to_dictionary() -> Dictionary:
-	return {
+	var data = {
 		'position': position,
 		'size': size,
 		'rotation_degrees': rotation_degrees,
@@ -119,6 +152,10 @@ func to_dictionary() -> Dictionary:
 		'text': text.to_dictionary(),
 		'text_path': text_path.to_dictionary()
 	}
+	if mask:
+		data['mask'] = mask.to_dictionary()
+	
+	return data
 
 func load(data : Dictionary) -> void:
 	rotation_degrees = data['rotation_degrees']
@@ -126,6 +163,9 @@ func load(data : Dictionary) -> void:
 	text_path.load(data['text_path'])
 	
 	text.load(data['text'])
+	if data['mask']:
+		active_mask(true)
+		mask.load(data['mask'])
 
 func _exit_tree():
 	move_bubble.free()

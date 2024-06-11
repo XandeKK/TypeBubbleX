@@ -1,13 +1,13 @@
 extends Control
 
-@onready var x_input : _Input = $XInput
-@onready var y_input : _Input = $YInput
-@onready var outline_size_input : _Input = $OutlineSizeInput
-@onready var blur_size_input : _Input = $BlurSizeInput
-@onready var input_color : _InputColor = $InputColor
-@onready var only_outline_check_button : CheckButton = $OnlyOutlineCheckButton
-@onready var active_gradient_check_button : CheckButton = $ActiveGradientCheckButton
-@onready var body_gradient : PanelContainer = $BodyGradient
+@onready var x_input : _Input = $ScrollContainer/VBoxContainer/XInput
+@onready var y_input : _Input = $ScrollContainer/VBoxContainer/YInput
+@onready var outline_size_input : _Input = $ScrollContainer/VBoxContainer/OutlineSizeInput
+@onready var blur_size_input : _Input = $ScrollContainer/VBoxContainer/BlurSizeInput
+@onready var input_color : _InputColor = $ScrollContainer/VBoxContainer/InputColor
+@onready var only_outline_check_button : CheckButton = $ScrollContainer/VBoxContainer/OnlyOutlineCheckButton
+@onready var active_gradient_check_button : CheckButton = $ScrollContainer/VBoxContainer/ActiveGradientCheckButton
+@onready var body_gradient : PanelContainer = $ScrollContainer/VBoxContainer/BodyGradient
 
 var outline : Outline : set = set_outline
 var outline_manager : OutlineManager : set = set_outline_manager
