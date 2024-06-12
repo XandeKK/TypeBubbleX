@@ -30,7 +30,7 @@ layout_mode = 2
 
 [node name="MangaLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Manga"
+text = "KEY_MANGA"
 
 [node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -45,7 +45,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Font"
+text = "KEY_FONT"
 
 [node name="MangaInputDropDown" parent="ScrollContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("1_njtop")]
 layout_mode = 2
@@ -54,14 +54,13 @@ size_flags_horizontal = 3
 [node name="MangaFontSizeInput" parent="ScrollContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer" instance=ExtResource("1_b7jlp")]
 layout_mode = 2
 type = 2
-name_label = "Font Size"
+name_label = "KEY_FONT_SIZE"
 suffix_label = "Px"
 reset = false
 
 [node name="ManhwaLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Manhwa
-"
+text = "KEY_MANHWA"
 
 [node name="MarginContainer2" type="MarginContainer" parent="ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -76,7 +75,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Font"
+text = "KEY_FONT"
 
 [node name="ManhwaInputDropDown" parent="ScrollContainer/MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer" instance=ExtResource("1_njtop")]
 layout_mode = 2
@@ -85,7 +84,7 @@ size_flags_horizontal = 3
 [node name="ManhwaFontSizeInput" parent="ScrollContainer/MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer" instance=ExtResource("1_b7jlp")]
 layout_mode = 2
 type = 2
-name_label = "Font Size"
+name_label = "KEY_FONT_SIZE"
 suffix_label = "Px"
 reset = false
 

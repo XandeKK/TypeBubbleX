@@ -70,12 +70,14 @@ text = "KEY_UPPERCASE"
 
 [node name="LeadingInput" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("2_b1il8")]
 layout_mode = 2
+tooltip_text = "KEY_ABOUT_LEADING"
 type = 2
 name_label = "KEY_LEADING"
 reset = false
 
 [node name="TrackingInput" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("2_b1il8")]
 layout_mode = 2
+tooltip_text = "KEY_ABOUT_TRACKING"
 type = 2
 name_label = "KEY_TRACKING"
 reset = false
@@ -108,8 +110,9 @@ reset = false
 
 [node name="Label" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "KEY_PADDING
-"
+tooltip_text = "KEY_ABOUT_PADDING"
+mouse_filter = 1
+text = "KEY_PADDING"
 
 [node name="GridContainer" type="GridContainer" parent="ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2

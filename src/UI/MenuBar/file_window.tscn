@@ -5,7 +5,7 @@
 [node name="FileWindow" type="ConfirmationDialog"]
 disable_3d = true
 initial_position = 2
-size = Vector2i(400, 272)
+size = Vector2i(400, 200)
 unresizable = true
 ok_button_text = "KEY_OK"
 cancel_button_text = "KEY_CANCEL"
@@ -15,7 +15,7 @@ script = ExtResource("1_5a67p")
 offset_left = 8.0
 offset_top = 8.0
 offset_right = 392.0
-offset_bottom = 229.0
+offset_bottom = 157.0
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
 layout_mode = 2
@@ -63,7 +63,7 @@ size_flags_horizontal = 3
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.1
-tooltip_text = "???"
+tooltip_text = "KEY_ABOUT_TYPES"
 mouse_filter = 1
 theme_override_font_sizes/font_size = 16
 text = "?"
@@ -90,7 +90,7 @@ theme_override_constants/margin_bottom = 10
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.631035, 0.631035, 0.631035, 1)
-text = "Para uso de AI, é necessário que o aplicativo TypeBubbleAI esteja aberto, se não, não vai acontecer nada. Caso não saiba do que estou falando, acesse no menu Ajuda  e clique no TypeBubbleAi."
+text = "KEY_ABOUT_AI"
 autowrap_mode = 2
 
 [node name="FileDialog" type="FileDialog" parent="."]

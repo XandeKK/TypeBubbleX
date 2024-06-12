@@ -30,7 +30,7 @@ layout_mode = 2
 
 [node name="FontNameLineEdit" type="LineEdit" parent="ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-placeholder_text = "Font Name"
+placeholder_text = "KEY_FONT_NAME"
 
 [node name="PanelContainer" type="PanelContainer" parent="ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -62,7 +62,8 @@ layout_mode = 2
 [node name="ExampleLineEdit" type="LineEdit" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-placeholder_text = "Example"
+text = "KEY_EXAMPLE"
+placeholder_text = "KEY_EXAMPLE"
 
 [node name="FontSizeInput" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("1_ga5jd")]
 layout_mode = 2

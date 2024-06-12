@@ -33,19 +33,19 @@ text = "X"
 [node name="XInput" parent="ScrollContainer/VBoxContainer" instance=ExtResource("2_0hpev")]
 layout_mode = 2
 type = 2
-name_label = "X"
+name_label = "KEY_X"
 reset = false
 
 [node name="YInput" parent="ScrollContainer/VBoxContainer" instance=ExtResource("2_0hpev")]
 layout_mode = 2
 type = 2
-name_label = "Y"
+name_label = "KEY_Y"
 reset = false
 
 [node name="OutlineSizeInput" parent="ScrollContainer/VBoxContainer" instance=ExtResource("2_0hpev")]
 layout_mode = 2
 type = 2
-name_label = "KEY_OUTLINE_SIZE"
+name_label = "KEY_SIZE"
 reset = false
 
 [node name="BlurSizeInput" parent="ScrollContainer/VBoxContainer" instance=ExtResource("2_0hpev")]

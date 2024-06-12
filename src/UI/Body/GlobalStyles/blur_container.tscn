@@ -18,7 +18,7 @@ text = "KEY_ACTIVE"
 [node name="BlurSizeInput" parent="." instance=ExtResource("2_gilmd")]
 layout_mode = 2
 type = 2
-name_label = "KEY_BLUR_SIZE"
+name_label = "KEY_SIZE"
 reset = false
 
 [connection signal="toggled" from="ActiveCheckButton" to="." method="_on_active_check_button_toggled"]

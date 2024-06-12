@@ -29,7 +29,7 @@ layout_mode = 2
 
 [node name="FontNameLineEdit" type="LineEdit" parent="ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-placeholder_text = "Font name"
+placeholder_text = "KEY_FONT_NAME"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -37,12 +37,12 @@ layout_mode = 2
 [node name="OnlySelectedCheckBox" type="CheckBox" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Only Selected"
+text = "KEY_ONLY_SELECTED"
 
 [node name="ShowFontsCheckBox" type="CheckBox" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Show Fonts"
+text = "KEY_SHOW_FONTS"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -50,8 +50,8 @@ layout_mode = 2
 [node name="ExampleLineEdit" type="LineEdit" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Example"
-placeholder_text = "Example"
+text = "KEY_EXAMPLE"
+placeholder_text = "KEY_EXAMPLE"
 
 [node name="FontSizeInput" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2" instance=ExtResource("1_gl2os")]
 layout_mode = 2

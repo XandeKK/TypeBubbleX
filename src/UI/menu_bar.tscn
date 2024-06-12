@@ -44,7 +44,6 @@ item_3/id = 3
 script = ExtResource("2_s5xjn")
 
 [node name="FileWindow" parent="." instance=ExtResource("2_0ub8b")]
-visible = false
 
 [node name="PreferenceWindow" parent="." instance=ExtResource("3_odgaq")]
 visible = false

@@ -31,7 +31,7 @@ size_flags_vertical = 3
 
 [node name="Label" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Bubble Color"
+text = "KEY_BUBBLE_COLOR"
 
 [node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -42,15 +42,15 @@ layout_mode = 2
 
 [node name="BubbleActiveInputColor" parent="ScrollContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer" instance=ExtResource("2_h2kjl")]
 layout_mode = 2
-name_label = "Active"
+name_label = "KEY_ACTIVE"
 
 [node name="BubbleInactiveInputColor" parent="ScrollContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer" instance=ExtResource("2_h2kjl")]
 layout_mode = 2
-name_label = "Active"
+name_label = "KEY_INACTIVE"
 
 [node name="Label2" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Padding Color"
+text = "KEY_PADDING_COLOR"
 
 [node name="MarginContainer2" type="MarginContainer" parent="ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -61,7 +61,7 @@ layout_mode = 2
 
 [node name="PaddingActiveInputColor" parent="ScrollContainer/MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer" instance=ExtResource("2_h2kjl")]
 layout_mode = 2
-name_label = "Active"
+name_label = "KEY_ACTIVE"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2

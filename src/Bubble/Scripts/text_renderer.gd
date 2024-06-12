@@ -20,11 +20,12 @@ func _draw():
 			draw_glyph_directly(info, _color)
 
 func draw_glyph_on_path(info: Dictionary, _color : Color) -> void:
-	var baked : Transform2D = text.text_path.curve.sample_baked_with_rotation(text.text_path.curve.get_closest_offset(info['ofs'] + info['glyph'].offset))
+	var ofs : Vector2 = info['ofs'] + info['glyph'].offset
+	var closest_point : Vector2 = text.text_path.curve.get_closest_point(ofs)
+	var distance : Vector2 = text.text_path.curve_original.get_closest_point(ofs) - ofs
+	var _position : Vector2 = closest_point - distance
+	var baked : Transform2D = text.text_path.curve.sample_baked_with_rotation(text.text_path.curve.get_closest_offset(closest_point))
 	var _rotation = baked.get_rotation() - deg_to_rad(90)
-	var closet_point : Vector2 = text.text_path.curve.get_closest_point(info['ofs'] + info['glyph'].offset)
-	var distance : Vector2 = text.text_path.curve_original.get_closest_point(info['ofs'] + info['glyph'].offset) - info['ofs'] + info['glyph'].offset
-	var _position : Vector2 = closet_point - distance
 	
 	draw_set_transform(Vector2(_position.x  + info['glyph'].font_size / 2, _position.y + info['glyph'].font_size / 2), _rotation)
 	

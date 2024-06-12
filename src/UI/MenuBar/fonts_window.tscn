@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cu7kxrvdeaql1" path="res://src/UI/MenuBar/Fonts/fonts_panel.tscn" id="5_y1qcc"]
 [ext_resource type="PackedScene" uid="uid://dfckiqhurilgr" path="res://src/UI/MenuBar/Fonts/edit_panel.tscn" id="6_wrutl"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8xwfh"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2wir1"]
 content_margin_left = 4.0
 content_margin_top = 4.0
 content_margin_right = 4.0
@@ -61,17 +61,17 @@ theme_override_constants/separation = 1
 
 [node name="KEY_DIRECTORIES" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer/TabContainerVertical" node_paths=PackedStringArray("content") instance=ExtResource("3_0slh4")]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_8xwfh")
+theme_override_styles/panel = SubResource("StyleBoxFlat_2wir1")
 content = NodePath("../../../../TabsContent/DirectoriesPanel")
 
 [node name="KEY_FONTS" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer/TabContainerVertical" node_paths=PackedStringArray("content") instance=ExtResource("3_0slh4")]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_8xwfh")
+theme_override_styles/panel = SubResource("StyleBoxFlat_2wir1")
 content = NodePath("../../../../TabsContent/FontsPanel")
 
 [node name="KEY_EDIT" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer/TabContainerVertical" node_paths=PackedStringArray("content") instance=ExtResource("3_0slh4")]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_8xwfh")
+theme_override_styles/panel = SubResource("StyleBoxFlat_2wir1")
 content = NodePath("../../../../TabsContent/EditPanel")
 
 [node name="TabsContent" type="Control" parent="MarginContainer/HBoxContainer"]

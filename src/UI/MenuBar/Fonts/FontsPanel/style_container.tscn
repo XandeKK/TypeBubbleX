@@ -24,25 +24,25 @@ layout_mode = 2
 
 [node name="ExampleLabel" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Example"
+text = "KEY_EXAMPLE"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="EmboldenInput" parent="MarginContainer/VBoxContainer" instance=ExtResource("2_mne1w")]
 layout_mode = 2
 type = 1
-name_label = "Embolden"
+name_label = "KEY_EMBOLDEN"
 step = 0.1
 
 [node name="SpacingGlyphInput" parent="MarginContainer/VBoxContainer" instance=ExtResource("2_mne1w")]
 layout_mode = 2
 type = 1
-name_label = "Spacing Glyphd"
+name_label = "KEY_SPACING_GLYPH"
 
 [node name="SkewInput" parent="MarginContainer/VBoxContainer" instance=ExtResource("2_mne1w")]
 layout_mode = 2
 type = 1
-name_label = "Skew"
+name_label = "KEY_SKEW"
 step = 0.1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
@@ -51,7 +51,7 @@ alignment = 2
 
 [node name="SaveButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-text = "Save"
+text = "KEY_SAVE"
 
 [connection signal="changed" from="MarginContainer/VBoxContainer/EmboldenInput" to="." method="_on_embolden_input_changed"]
 [connection signal="changed" from="MarginContainer/VBoxContainer/SpacingGlyphInput" to="." method="_on_spacing_glyph_input_changed"]

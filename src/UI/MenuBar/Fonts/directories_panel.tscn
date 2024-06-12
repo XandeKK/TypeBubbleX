@@ -32,7 +32,7 @@ layout_mode = 2
 [node name="DirectoryLineEdit" type="LineEdit" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-placeholder_text = "Directory"
+placeholder_text = "KEY_DIRECTORY"
 
 [node name="FileDialogButton" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2

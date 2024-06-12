@@ -18,14 +18,14 @@ text = "KEY_ACTIVE"
 [node name="DirectionXInput" parent="." instance=ExtResource("2_2cf2t")]
 layout_mode = 2
 type = 1
-name_label = "X"
+name_label = "KEY_X"
 reset = false
 step = 0.1
 
 [node name="DirectionYInput" parent="." instance=ExtResource("2_2cf2t")]
 layout_mode = 2
 type = 1
-name_label = "Y"
+name_label = "KEY_Y"
 reset = false
 step = 0.1
 

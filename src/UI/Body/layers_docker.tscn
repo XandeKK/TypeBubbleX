@@ -28,6 +28,7 @@ layout_mode = 2
 
 [node name="ShowRawCheckButton" type="CheckButton" parent="ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+tooltip_text = "KEY_ABOUT_SHOW_RAW"
 text = "KEY_SHOW_RAW "
 
 [node name="PanelContainer" type="PanelContainer" parent="ScrollContainer/MarginContainer/VBoxContainer"]
