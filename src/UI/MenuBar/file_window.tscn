@@ -103,6 +103,7 @@ access = 2
 filters = PackedStringArray("*")
 use_native_dialog = true
 
+[connection signal="canceled" from="." to="." method="_on_canceled"]
 [connection signal="confirmed" from="." to="." method="_on_confirmed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/PathHBox/PathButton" to="." method="_on_path_button_pressed"]
 [connection signal="dir_selected" from="FileDialog" to="." method="_on_file_dialog_dir_selected"]

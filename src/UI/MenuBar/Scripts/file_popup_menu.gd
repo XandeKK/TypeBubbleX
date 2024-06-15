@@ -1,9 +1,13 @@
 extends PopupMenu
 
-@export var file_window : ConfirmationDialog
-@export var preference_window : Window
-@export var fonts_window : Window
-@export var patterns_window : Window
+@onready var file_window : PackedScene = load("res://src/UI/MenuBar/file_window.tscn")
+@onready var preference_window : PackedScene = load("res://src/UI/MenuBar/preference_window.tscn")
+@onready var fonts_window : PackedScene = load("res://src/UI/MenuBar/fonts_window.tscn")
+@onready var patterns_window : PackedScene = load("res://src/UI/MenuBar/patterns_window.tscn")
+#@export var file_window : ConfirmationDialog
+#@export var preference_window : Window
+#@export var fonts_window : Window
+#@export var patterns_window : Window
 
 var items : Array[Dictionary] = [
 	{
@@ -59,19 +63,27 @@ func _ready():
 		count+= 1
 
 func _on_open_selected() -> void:
-	file_window.show()
+	var window : ConfirmationDialog = file_window.instantiate()
+	get_tree().root.add_child(window)
+	window.show()
 
 func _on_save_selected() -> void:
 	FileHandler.save()
 
 func _on_preference_selected() -> void:
-	preference_window.show()
+	var window : Window = preference_window.instantiate()
+	get_tree().root.add_child(window)
+	window.show()
 
 func _on_fonts_selected() -> void:
-	fonts_window.show()
+	var window : Window = fonts_window.instantiate()
+	get_tree().root.add_child(window)
+	window.show()
 
 func _on_patterns_selected() -> void:
-	patterns_window.show()
+	var window : Window = patterns_window.instantiate()
+	get_tree().root.add_child(window)
+	window.show()
 
 func _on_id_pressed(id):
 	items[id].callable.call()

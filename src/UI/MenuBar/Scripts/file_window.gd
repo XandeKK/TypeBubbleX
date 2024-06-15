@@ -29,9 +29,14 @@ func _on_confirmed():
 		'AI': ai.button_pressed,
 	})
 	hide()
+	queue_free()
 
 func _on_file_dialog_dir_selected(dir):
 	path.text = dir
 
 func _on_path_button_pressed():
 	file_dialog.show()
+
+func _on_canceled():
+	hide()
+	queue_free()

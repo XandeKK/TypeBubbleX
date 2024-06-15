@@ -33,7 +33,13 @@ var colors : Dictionary = {
 }
 var default_colors : Dictionary = colors
 
+var languages : Array = [
+	'en',
+	'pt_BR'
+]
+
 var general : Dictionary = {
+	'language': languages[0],
 	'font_size': 12,
 	'raw_path': 'raw',
 	'cleaned_path': 'cleaned',
@@ -82,3 +88,7 @@ func load_configuration() -> void:
  
 func load_general() -> void:
 	theme.default_font_size = general.font_size
+	set_locale(general.language)
+
+func set_locale(language : String) -> void:
+	TranslationServer.set_locale(language)

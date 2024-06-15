@@ -1,5 +1,6 @@
 extends PanelContainer
 
+@onready var language_option_button : OptionButton = $ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/LanguageOptionButton
 @onready var font_size : _Input = $ScrollContainer/MarginContainer/VBoxContainer/FontSizeInput
 @onready var raw_path : _Input = $ScrollContainer/MarginContainer/VBoxContainer/RawPathInput
 @onready var cleaned_path : _Input = $ScrollContainer/MarginContainer/VBoxContainer/CleanedPathInput
@@ -13,6 +14,9 @@ extends PanelContainer
 @onready var zoom_rate : _Input = $ScrollContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/ZoomRateInput
 
 func _ready():
+	for language in Preference.languages:
+		language_option_button.add_item(language)
+	
 	font_size.default_value = Preference.default_general.font_size
 	raw_path.default_value = Preference.default_general.raw_path
 	cleaned_path.default_value = Preference.default_general.cleaned_path
@@ -68,4 +72,9 @@ func _on_max_zoom_input_changed(value):
 
 func _on_zoom_rate_input_changed(value):
 	Preference.general.camera.zoom_rate = value
+	Preference.save_configuration()
+
+func _on_language_option_button_item_selected(index):
+	Preference.general.language = Preference.languages[index]
+	Preference.set_locale(Preference.general.language)
 	Preference.save_configuration()

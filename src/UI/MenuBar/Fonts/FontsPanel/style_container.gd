@@ -56,15 +56,27 @@ func _set_font_size(value) -> void:
 	example_label.add_theme_font_size_override('font_size', value)
 
 func _on_embolden_input_changed(value):
+	if not font:
+		return
+	
 	font.variation_embolden = value
 
 func _on_spacing_glyph_input_changed(value):
+	if not font:
+		return
+	
 	font.spacing_glyph = value
 
 func _on_skew_input_changed(value):
+	if not font:
+		return
+	
 	font.variation_transform.x.y = value
 
 func _on_save_button_pressed():
+	if not font:
+		return
+
 	FontConfigManager.edit_font(font_name, style_name, font)
 	Notification.message(tr('KEY_FONT_SAVED_SUCCESSFULLY'))
 	FontConfigManager.save_configuration()
