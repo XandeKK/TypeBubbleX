@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://cmh5xibsddwbr"]
+
+[ext_resource type="Script" path="res://src/UI/Body/GlobalStyles/Scripts/outlines_container.gd" id="1_m7bnk"]
+
+[node name="OutlinesContainer" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_m7bnk")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+alignment = 2
+
+[node name="AddButton" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "+"
+
+[node name="TabContainer" type="TabContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[connection signal="pressed" from="HBoxContainer/AddButton" to="." method="_on_add_button_pressed"]

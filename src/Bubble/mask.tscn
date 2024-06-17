@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://1unmhqqklsqe"]
+
+[ext_resource type="Script" path="res://src/Bubble/Scripts/mask.gd" id="2_2e1dm"]
+[ext_resource type="Script" path="res://src/Bubble/Mask/brush.gd" id="3_y0i4q"]
+
+[node name="Mask" type="TextureRect"]
+clip_children = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_2e1dm")
+
+[node name="Brush" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_y0i4q")
+
+[connection signal="resized" from="." to="." method="_on_resized"]

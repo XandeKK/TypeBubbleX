@@ -1,0 +1,169 @@
+[gd_scene load_steps=5 format=3 uid="uid://d0hus1d758di"]
+
+[ext_resource type="PackedScene" uid="uid://cnski1gvsuras" path="res://src/UI/Components/input_drop_down.tscn" id="1_auk40"]
+[ext_resource type="Script" path="res://src/UI/Body/Scripts/properties_docker.gd" id="1_pt4xe"]
+[ext_resource type="PackedScene" uid="uid://2cftnam31qlk" path="res://src/UI/Components/input.tscn" id="2_b1il8"]
+[ext_resource type="PackedScene" uid="uid://nfofbgvn8r41" path="res://src/UI/Components/input_color.tscn" id="3_4rqqb"]
+
+[node name="KEY_PROPERTIES" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"PanelX"
+script = ExtResource("1_pt4xe")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="FontNameLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "KEY_FONT"
+
+[node name="FontInputDropDown" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("1_auk40")]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="FontSizeInput" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("2_b1il8")]
+layout_mode = 2
+size_flags_horizontal = 3
+type = 2
+suffix_label = "PX"
+reset = false
+
+[node name="ColorInput" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("3_4rqqb")]
+layout_mode = 2
+size_flags_horizontal = 3
+reset = false
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="BoldCheckButton" type="CheckButton" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "KEY_BOLD"
+
+[node name="ItalicCheckButton" type="CheckButton" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "KEY_ITALIC"
+
+[node name="UppercaseCheckButton" type="CheckButton" parent="ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "KEY_UPPERCASE"
+
+[node name="LeadingInput" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("2_b1il8")]
+layout_mode = 2
+tooltip_text = "KEY_ABOUT_LEADING"
+type = 2
+name_label = "KEY_LEADING"
+reset = false
+
+[node name="TrackingInput" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("2_b1il8")]
+layout_mode = 2
+tooltip_text = "KEY_ABOUT_TRACKING"
+type = 2
+name_label = "KEY_TRACKING"
+reset = false
+
+[node name="AligmentHBoxContainer" type="HBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/AligmentHBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "KEY_ALIGNMENT"
+
+[node name="AlignmentOptionButton" type="OptionButton" parent="ScrollContainer/MarginContainer/VBoxContainer/AligmentHBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+item_count = 3
+fit_to_longest_item = false
+popup/item_0/text = "KEY_LEFT"
+popup/item_0/id = 0
+popup/item_1/text = "KEY_CENTER"
+popup/item_1/id = 1
+popup/item_2/text = "KEY_RIGHT"
+popup/item_2/id = 2
+
+[node name="RotationInput" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("2_b1il8")]
+layout_mode = 2
+type = 2
+name_label = "KEY_ROTATION"
+reset = false
+
+[node name="Label" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "KEY_ABOUT_PADDING"
+mouse_filter = 1
+text = "KEY_PADDING"
+
+[node name="GridContainer" type="GridContainer" parent="ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+columns = 3
+
+[node name="Control" type="Control" parent="ScrollContainer/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TopInput" parent="ScrollContainer/MarginContainer/VBoxContainer/GridContainer" instance=ExtResource("2_b1il8")]
+layout_mode = 2
+size_flags_horizontal = 3
+type = 2
+reset = false
+
+[node name="Control2" type="Control" parent="ScrollContainer/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="LeftInput" parent="ScrollContainer/MarginContainer/VBoxContainer/GridContainer" instance=ExtResource("2_b1il8")]
+layout_mode = 2
+type = 2
+reset = false
+
+[node name="Control3" type="Control" parent="ScrollContainer/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="RightInput" parent="ScrollContainer/MarginContainer/VBoxContainer/GridContainer" instance=ExtResource("2_b1il8")]
+layout_mode = 2
+type = 2
+reset = false
+
+[node name="Control4" type="Control" parent="ScrollContainer/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="BottomInput" parent="ScrollContainer/MarginContainer/VBoxContainer/GridContainer" instance=ExtResource("2_b1il8")]
+layout_mode = 2
+type = 2
+reset = false
+
+[connection signal="changed" from="ScrollContainer/MarginContainer/VBoxContainer/FontInputDropDown" to="." method="_on_font_input_drop_down_changed"]
+[connection signal="changed" from="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/FontSizeInput" to="." method="_on_font_size_input_changed"]
+[connection signal="changed" from="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/ColorInput" to="." method="_on_color_input_changed"]
+[connection signal="toggled" from="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2/BoldCheckButton" to="." method="_on_bold_check_button_toggled"]
+[connection signal="toggled" from="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2/ItalicCheckButton" to="." method="_on_italic_check_button_toggled"]
+[connection signal="toggled" from="ScrollContainer/MarginContainer/VBoxContainer/UppercaseCheckButton" to="." method="_on_uppercase_check_button_toggled"]
+[connection signal="changed" from="ScrollContainer/MarginContainer/VBoxContainer/LeadingInput" to="." method="_on_leading_input_changed"]
+[connection signal="changed" from="ScrollContainer/MarginContainer/VBoxContainer/TrackingInput" to="." method="_on_tracking_input_changed"]
+[connection signal="item_selected" from="ScrollContainer/MarginContainer/VBoxContainer/AligmentHBoxContainer/AlignmentOptionButton" to="." method="_on_alignment_option_button_item_selected"]
+[connection signal="changed" from="ScrollContainer/MarginContainer/VBoxContainer/RotationInput" to="." method="_on_rotation_input_changed"]
+[connection signal="changed" from="ScrollContainer/MarginContainer/VBoxContainer/GridContainer/TopInput" to="." method="_on_top_input_changed"]
+[connection signal="changed" from="ScrollContainer/MarginContainer/VBoxContainer/GridContainer/LeftInput" to="." method="_on_left_input_changed"]
+[connection signal="changed" from="ScrollContainer/MarginContainer/VBoxContainer/GridContainer/RightInput" to="." method="_on_right_input_changed"]
+[connection signal="changed" from="ScrollContainer/MarginContainer/VBoxContainer/GridContainer/BottomInput" to="." method="_on_bottom_input_changed"]

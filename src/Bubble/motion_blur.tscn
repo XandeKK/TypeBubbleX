@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://dn4qvbmxl5fbg"]
+
+[ext_resource type="Shader" path="res://src/Shaders/motion_blur.gdshader" id="1_f5wec"]
+[ext_resource type="Script" path="res://src/Bubble/Scripts/motion_blur.gd" id="2_tvdto"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ip1bk"]
+resource_local_to_scene = true
+shader = ExtResource("1_f5wec")
+shader_parameter/blur_amount = 16
+shader_parameter/blur_direction = Vector2(0, 0)
+
+[node name="MotionBlur" type="ColorRect"]
+material = SubResource("ShaderMaterial_ip1bk")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_tvdto")

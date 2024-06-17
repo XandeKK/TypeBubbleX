@@ -1,0 +1,59 @@
+[gd_scene load_steps=3 format=3 uid="uid://bsgfo3yew27qa"]
+
+[ext_resource type="Script" path="res://src/UI/MenuBar/Fonts/FontsPanel/style_container.gd" id="1_oxbtk"]
+[ext_resource type="PackedScene" uid="uid://2cftnam31qlk" path="res://src/UI/Components/input.tscn" id="2_mne1w"]
+
+[node name="StyleContainer" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"PanelX"
+script = ExtResource("1_oxbtk")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="ExampleLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "KEY_EXAMPLE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EmboldenInput" parent="MarginContainer/VBoxContainer" instance=ExtResource("2_mne1w")]
+layout_mode = 2
+type = 1
+name_label = "KEY_EMBOLDEN"
+step = 0.1
+
+[node name="SpacingGlyphInput" parent="MarginContainer/VBoxContainer" instance=ExtResource("2_mne1w")]
+layout_mode = 2
+type = 1
+name_label = "KEY_SPACING_GLYPH"
+
+[node name="SkewInput" parent="MarginContainer/VBoxContainer" instance=ExtResource("2_mne1w")]
+layout_mode = 2
+type = 1
+name_label = "KEY_SKEW"
+step = 0.1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="SaveButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "KEY_SAVE"
+
+[connection signal="changed" from="MarginContainer/VBoxContainer/EmboldenInput" to="." method="_on_embolden_input_changed"]
+[connection signal="changed" from="MarginContainer/VBoxContainer/SpacingGlyphInput" to="." method="_on_spacing_glyph_input_changed"]
+[connection signal="changed" from="MarginContainer/VBoxContainer/SkewInput" to="." method="_on_skew_input_changed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/SaveButton" to="." method="_on_save_button_pressed"]

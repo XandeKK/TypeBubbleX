@@ -1,0 +1,65 @@
+[gd_scene load_steps=2 format=3 uid="uid://gb37yfjyshkt"]
+
+[ext_resource type="Script" path="res://src/UI/Body/GlobalStyles/Scripts/mask_container.gd" id="1_yc0dy"]
+
+[node name="MaskContainer" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yc0dy")
+
+[node name="ActiveCheckButton" type="CheckButton" parent="."]
+layout_mode = 2
+text = "KEY_ACTIVE"
+
+[node name="DrawingCheckButton" type="CheckButton" parent="."]
+layout_mode = 2
+text = "KEY_DRAWING
+"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "KEY_OPACITY"
+
+[node name="OpacityHSlider" type="HSlider" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1.0
+step = 0.1
+
+[node name="OpacityNumberLabel" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "0.0"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "KEY_RADIUS"
+
+[node name="RadiusHSlider" type="HSlider" parent="HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 20.0
+
+[node name="RadiusNumberLabel" type="Label" parent="HBoxContainer2"]
+layout_mode = 2
+text = "0.0"
+
+[node name="ResetButton" type="Button" parent="."]
+layout_mode = 2
+text = "KEY_RESET"
+
+[connection signal="toggled" from="ActiveCheckButton" to="." method="_on_active_check_button_toggled"]
+[connection signal="toggled" from="DrawingCheckButton" to="." method="_on_drawing_check_button_toggled"]
+[connection signal="value_changed" from="HBoxContainer/OpacityHSlider" to="." method="_on_opacity_h_slider_value_changed"]
+[connection signal="value_changed" from="HBoxContainer2/RadiusHSlider" to="." method="_on_radius_h_slider_value_changed"]
+[connection signal="pressed" from="ResetButton" to="." method="_on_reset_button_pressed"]

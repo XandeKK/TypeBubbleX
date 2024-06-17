@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://bbv84tiujqf65"]
+
+[ext_resource type="Script" path="res://src/UI/Body/GlobalStyles/Scripts/perspective_container.gd" id="1_2ekkl"]
+
+[node name="PerspectiveContainer" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2ekkl")
+
+[node name="ActiveCheckButton" type="CheckButton" parent="."]
+layout_mode = 2
+text = "KEY_ACTIVE"
+
+[node name="ResetButton" type="Button" parent="."]
+layout_mode = 2
+text = "KEY_RESET"
+
+[connection signal="toggled" from="ActiveCheckButton" to="." method="_on_active_check_button_toggled"]
+[connection signal="pressed" from="ResetButton" to="." method="_on_reset_button_pressed"]

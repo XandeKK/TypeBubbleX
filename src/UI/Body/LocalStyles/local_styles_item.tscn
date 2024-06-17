@@ -1,0 +1,81 @@
+[gd_scene load_steps=6 format=3 uid="uid://d4it5crgl3woa"]
+
+[ext_resource type="Script" path="res://src/UI/Body/LocalStyles/local_styles_item.gd" id="1_xjnnd"]
+[ext_resource type="PackedScene" uid="uid://sjcihdv8ggt4" path="res://src/UI/Components/tab.tscn" id="1_yd3se"]
+[ext_resource type="PackedScene" uid="uid://cmh5xibsddwbr" path="res://src/UI/Body/GlobalStyles/outlines_container.tscn" id="2_ye2a0"]
+[ext_resource type="PackedScene" uid="uid://crklcldb0vmyy" path="res://src/UI/Body/LocalStyles/properties_container.tscn" id="3_j2ave"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_51fan"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 0.365, 0.365, 1)
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_detail = 1
+
+[node name="LocalStylesItem" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"PanelX"
+script = ExtResource("1_xjnnd")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="RemoveButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "X"
+
+[node name="HFlowContainer" type="HFlowContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="KEY_PROPERTIES" parent="MarginContainer/VBoxContainer/HFlowContainer" node_paths=PackedStringArray("content") instance=ExtResource("1_yd3se")]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_51fan")
+content = NodePath("../../MarginContainer/PropertiesContainer")
+theme_type = "TabStyle"
+
+[node name="KEY_OUTLINE" parent="MarginContainer/VBoxContainer/HFlowContainer" node_paths=PackedStringArray("content") instance=ExtResource("1_yd3se")]
+visible = false
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_51fan")
+content = NodePath("../../MarginContainer/OutlinesContainer")
+theme_type = "TabStyle"
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 1
+theme_override_constants/margin_top = 1
+theme_override_constants/margin_right = 1
+
+[node name="PropertiesContainer" parent="MarginContainer/VBoxContainer/MarginContainer" instance=ExtResource("3_j2ave")]
+visible = false
+layout_mode = 2
+
+[node name="OutlinesContainer" parent="MarginContainer/VBoxContainer/MarginContainer" instance=ExtResource("2_ye2a0")]
+visible = false
+layout_mode = 2
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/RemoveButton" to="." method="_on_remove_button_pressed"]

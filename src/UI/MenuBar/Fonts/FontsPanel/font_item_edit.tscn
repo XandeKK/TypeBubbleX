@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://b5mvq5q3rmye0"]
+
+[ext_resource type="Script" path="res://src/UI/MenuBar/Fonts/FontsPanel/font_item_edit.gd" id="1_jxwaw"]
+
+[node name="FontItemEdit" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+script = ExtResource("1_jxwaw")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = "Font name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
