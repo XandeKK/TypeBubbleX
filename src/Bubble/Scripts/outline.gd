@@ -84,6 +84,7 @@ func to_dictionary() -> Dictionary:
 		'color': color,
 		'outline_size': outline_size,
 		'offset': offset,
+		'blur_size': blur_size,
 		'gradient': gradient.to_dictionary()
 	}
 
@@ -91,5 +92,7 @@ func load(data : Dictionary) -> void:
 	color = data['color']
 	outline_size = data['outline_size']
 	offset = data['offset']
+	if data.has('blur_size'):
+		blur_size = data['blur_size']
 	
 	gradient.load(data['gradient'])

@@ -19,3 +19,4 @@ func to_dictionary() -> Dictionary:
 
 func load(data : Dictionary) -> void:
 	blur_size = data['blur_size']
+	print(blur_size)

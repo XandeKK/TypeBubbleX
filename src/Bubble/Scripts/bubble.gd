@@ -152,8 +152,10 @@ func to_dictionary() -> Dictionary:
 		'text': text.to_dictionary(),
 		'text_path': text_path.to_dictionary()
 	}
-	if mask:
+	if mask != null:
 		data['mask'] = mask.to_dictionary()
+	else:
+		data['mask'] = null
 	
 	return data
 
@@ -163,7 +165,7 @@ func load(data : Dictionary) -> void:
 	text_path.load(data['text_path'])
 	
 	text.load(data['text'])
-	if data['mask']:
+	if data.has('mask') and data['mask']:
 		active_mask(true)
 		mask.load(data['mask'])
 

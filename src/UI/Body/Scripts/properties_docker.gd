@@ -40,9 +40,9 @@ func blank_all():
 	font_input_drop_down.text = ''
 	font_size_input.set_value(0)
 	color_input.set_color(Color.BLACK)
-	bold_check_button.button_pressed = false
-	italic_check_button.button_pressed = false
-	uppercase_check_button.button_pressed = false
+	bold_check_button.set_pressed_no_signal(false)
+	italic_check_button.set_pressed_no_signal(false)
+	uppercase_check_button.set_pressed_no_signal(false)
 	leading_input.set_value(0)
 	tracking_input.set_value(0)
 	alignment_option_button.selected = -1
@@ -92,9 +92,9 @@ func set_values(node : Bubble):
 	font_input_drop_down.text = node.text.font_name
 	font_size_input.set_value(node.text.font_size)
 	color_input.set_color(node.text.color)
-	bold_check_button.button_pressed = node.text.bold
-	italic_check_button.button_pressed = node.text.italic
-	uppercase_check_button.button_pressed = node.text.uppercase
+	bold_check_button.set_pressed_no_signal(node.text.bold)
+	italic_check_button.set_pressed_no_signal(node.text.italic)
+	uppercase_check_button.set_pressed_no_signal(node.text.uppercase)
 	leading_input.set_value(node.text.line_spacing)
 	tracking_input.set_value(node.text.letter_spacing)
 	alignment_option_button.selected = node.text.horizontal_alignment

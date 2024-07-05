@@ -69,11 +69,20 @@ func to_dictionary() -> Dictionary:
 		'outline_manager' : outline_manager.to_dictionary()
 	}
 	
-	for element in ['blur', 'motion_blur', 'gradient']:
-		if self[element] != null:
-			data[element] = self[element].to_dictionary()
-		else:
-			data[element] = null
+	if blur != null:
+		data['blur'] = blur.to_dictionary()
+	else:
+		data['blur'] = null
+	
+	if motion_blur != null:
+		data['motion_blur'] = motion_blur.to_dictionary()
+	else:
+		data['motion_blur'] = null
+	
+	if gradient != null:
+		data['gradient'] = gradient.to_dictionary()
+	else:
+		data['gradient'] = null
 	
 	return data
 
@@ -110,6 +119,7 @@ func load(data : Dictionary) -> void:
 	
 	if data['gradient']:
 		active_gradient(true)
+		data['gradient']['active'] = true
 		gradient.load(data['gradient'])
 
 func _notification(what):
