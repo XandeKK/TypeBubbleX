@@ -1,0 +1,39 @@
+[gd_scene load_steps=2 format=3 uid="uid://dn56cyfy3akar"]
+
+[ext_resource type="Script" path="res://src/UI/Body/GlobalStyles/Scripts/pattern_container.gd" id="1_egs88"]
+
+[node name="PatternContainer" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_egs88")
+
+[node name="ActiveCheckButton" type="CheckButton" parent="."]
+layout_mode = 2
+text = "Active"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Path"
+
+[node name="PathLineEdit" type="LineEdit" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "Ok"
+
+[node name="ClearButton" type="Button" parent="."]
+layout_mode = 2
+text = "Clear"
+
+[connection signal="toggled" from="ActiveCheckButton" to="." method="_on_active_check_button_toggled"]
+[connection signal="pressed" from="HBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="ClearButton" to="." method="_on_clear_button_pressed"]

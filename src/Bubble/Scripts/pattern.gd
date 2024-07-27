@@ -1,20 +1,26 @@
 extends TextureRect
 class_name Pattern
 
-var image : String
+var image : Image
+var active : bool = false : set = set_active
 
 func load_image(path : String) -> void:
-	texture = FileHandler.load_image(path)
-	image = path
+	image = Image.load_from_file(path)
+	texture = ImageTexture.create_from_image(image)
 
-func remove_image() -> void:
+func clear():
+	image = null
 	texture = null
-	image = ''
+
+func set_active(value : bool) -> void:
+	active = value
 
 func to_dictionary() -> Dictionary:
 	return {
-		'image': image
+		'image': image.save_jpg_to_buffer()
 	}
 
 func load(data : Dictionary) -> void:
-	load_image(data['image'])
+	image = Image.create(size.x as int, size.y as int, true, Image.FORMAT_RGBA8)
+	image.load_png_from_buffer(data['image'])
+	texture = ImageTexture.create_from_image(image)

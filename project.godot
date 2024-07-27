@@ -27,7 +27,6 @@ FileHandler="*res://src/Autload/file_handler.gd"
 TSManager="*res://src/Autload/ts_manager.gd"
 FontConfigManager="*res://src/Autload/font_config_manager.gd"
 WebSocket="*res://src/Autload/web_socket.gd"
-PatternsManager="*res://src/Autload/patterns_manager.gd"
 
 [display]
 

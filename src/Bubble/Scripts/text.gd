@@ -3,9 +3,10 @@ class_name Text
 
 @onready var text_renderer : Control = $TextRenderer
 @onready var outline_manager : OutlineManager = $OutlineManager
-@onready var motion_blur : MotionBlur
-@onready var blur : Blur
-@onready var gradient : GradientText
+var motion_blur : MotionBlur
+var blur : Blur
+var gradient : GradientText
+var pattern : Pattern
 
 var text_path : TextPath2D
 
@@ -47,6 +48,17 @@ func active_gradient(value : bool) -> void:
 		gradient.queue_free()
 		gradient = null
 
+func active_pattern(value : bool) -> void:
+	if value:
+		pattern = Global.pattern.instantiate()
+		text_renderer.add_child(pattern)
+		
+		pattern.anchors_preset = PRESET_FULL_RECT
+	else:
+		text_renderer.remove_child(pattern)
+		pattern.queue_free()
+		pattern = null
+
 func to_dictionary() -> Dictionary:
 	var data = {
 		'text': text,
@@ -83,6 +95,11 @@ func to_dictionary() -> Dictionary:
 		data['gradient'] = gradient.to_dictionary()
 	else:
 		data['gradient'] = null
+	
+	if pattern != null:
+		data['pattern'] = pattern.to_dictionary()
+	else:
+		data['pattern'] = null
 	
 	return data
 
@@ -121,6 +138,11 @@ func load(data : Dictionary) -> void:
 		active_gradient(true)
 		data['gradient']['active'] = true
 		gradient.load(data['gradient'])
+	
+	if data['pattern']:
+		active_pattern(true)
+		data['pattern']['active'] = true
+		pattern.load(data['pattern'])
 
 func _notification(what):
 	if what == NOTIFICATION_WM_CLOSE_REQUEST:

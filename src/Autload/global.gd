@@ -6,6 +6,7 @@ var mask : PackedScene = load("res://src/Bubble/mask.tscn")
 var motion_blur : PackedScene = load("res://src/Bubble/motion_blur.tscn")
 var blur : PackedScene = load("res://src/Bubble/blur.tscn")
 var gradient : PackedScene = load("res://src/Bubble/gradient.tscn")
+var pattern : PackedScene = load('res://src/Bubble/pattern.tscn')
 
 signal canvas_setted
 

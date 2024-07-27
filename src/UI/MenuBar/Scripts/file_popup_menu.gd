@@ -3,11 +3,9 @@ extends PopupMenu
 @onready var file_window : PackedScene = load("res://src/UI/MenuBar/file_window.tscn")
 @onready var preference_window : PackedScene = load("res://src/UI/MenuBar/preference_window.tscn")
 @onready var fonts_window : PackedScene = load("res://src/UI/MenuBar/fonts_window.tscn")
-@onready var patterns_window : PackedScene = load("res://src/UI/MenuBar/patterns_window.tscn")
 #@export var file_window : ConfirmationDialog
 #@export var preference_window : Window
 #@export var fonts_window : Window
-#@export var patterns_window : Window
 
 var items : Array[Dictionary] = [
 	{
@@ -36,12 +34,6 @@ var items : Array[Dictionary] = [
 		'keycode': null,
 		'ctrl': false,
 		'callable': _on_fonts_selected,
-		'separator': false,
-	},
-	{
-		'keycode': null,
-		'ctrl': false,
-		'callable': _on_patterns_selected,
 		'separator': false,
 	},
 ]
@@ -77,11 +69,6 @@ func _on_preference_selected() -> void:
 
 func _on_fonts_selected() -> void:
 	var window : Window = fonts_window.instantiate()
-	get_tree().root.add_child(window)
-	window.show()
-
-func _on_patterns_selected() -> void:
-	var window : Window = patterns_window.instantiate()
 	get_tree().root.add_child(window)
 	window.show()
 
