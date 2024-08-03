@@ -1,7 +1,7 @@
 extends Control
 class_name Perspective
 
-var bubble : Control : set = _set_bubble
+var bubble : Bubble : set = _set_bubble
 
 var can_draw : bool = true : set = _set_can_draw
 var active : bool = false : get = _get_active, set = _set_active
@@ -100,7 +100,7 @@ func reset() -> void:
 	
 	queue_redraw()
 
-func _set_bubble(value : Control) -> void:
+func _set_bubble(value : Bubble) -> void:
 	bubble = value
 	
 	reset()
@@ -149,3 +149,8 @@ func load(data : Dictionary) -> void:
 	points.top_right.position_initial = data['top_right']['position_initial']
 	points.bottom_left.position_initial = data['bottom_left']['position_initial']
 	points.bottom_right.position_initial = data['bottom_right']['position_initial']
+	
+	for point_key in points:
+		var point : Dictionary = points[point_key]
+		var _position : Vector2 = point.position - point.position_initial
+		bubble.sub_viewport_container.material.set_shader_parameter(point_key, _position)
