@@ -139,7 +139,7 @@ func load(data : Dictionary) -> void:
 		data['gradient']['active'] = true
 		gradient.load(data['gradient'])
 	
-	if data['pattern']:
+	if data.has('pattern') and data['pattern']:
 		active_pattern(true)
 		data['pattern']['active'] = true
 		pattern.load(data['pattern'])

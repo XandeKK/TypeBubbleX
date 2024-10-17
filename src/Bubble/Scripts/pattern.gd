@@ -22,5 +22,5 @@ func to_dictionary() -> Dictionary:
 
 func load(data : Dictionary) -> void:
 	image = Image.create(size.x as int, size.y as int, true, Image.FORMAT_RGBA8)
-	image.load_png_from_buffer(data['image'])
+	image.load_jpg_from_buffer(data['image'])
 	texture = ImageTexture.create_from_image(image)
