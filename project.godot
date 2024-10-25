@@ -11,27 +11,14 @@ config_version=5
 [application]
 
 config/name="TypeBubbleX"
-config/version="1.0"
-run/main_scene="res://src/main.tscn"
+config/version="3.0"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 run/low_processor_mode=true
-config/icon="res://icon.png"
 config/windows_native_icon="res://icon.ico"
-
-[autoload]
-
-Notification="*res://src/Autload/notification.gd"
-Global="*res://src/Autload/global.gd"
-Preference="*res://src/Autload/preference.gd"
-FileHandler="*res://src/Autload/file_handler.gd"
-TSManager="*res://src/Autload/ts_manager.gd"
-FontConfigManager="*res://src/Autload/font_config_manager.gd"
-WebSocket="*res://src/Autload/web_socket.gd"
 
 [display]
 
 window/subwindows/embed_subwindows=false
-window/vsync/vsync_mode=0
 
 [dotnet]
 
@@ -41,21 +28,9 @@ project/assembly_name="TypeBubbleX"
 
 enabled=PackedStringArray()
 
-[gui]
-
-theme/custom="res://Assets/Themes/default_theme.tres"
-theme/custom_font="res://Assets/Fonts/Roboto-Regular.ttf"
-
-[internationalization]
-
-locale/translations=PackedStringArray("res://Assets/Translations/translations.en.translation", "res://Assets/Translations/translations.pt_BR.translation")
-
 [rendering]
 
-textures/canvas_textures/default_texture_filter=2
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
 textures/default_filters/use_nearest_mipmap_filter=true
 anti_aliasing/screen_space_roughness_limiter/enabled=false
-environment/defaults/default_clear_color=Color(0.129412, 0.129412, 0.129412, 1)
-anti_aliasing/quality/screen_space_aa=1

@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://cwrc7hf4k822m"]
-
-[ext_resource type="Script" path="res://src/Bubble/Scripts/text_renderer.gd" id="1_esrwt"]
-
-[node name="TextRenderer" type="Control"]
-layout_mode = 3
-anchors_preset = 0
-script = ExtResource("1_esrwt")
