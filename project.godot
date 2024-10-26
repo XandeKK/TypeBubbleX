@@ -16,6 +16,11 @@ config/features=PackedStringArray("4.3", "GL Compatibility")
 run/low_processor_mode=true
 config/windows_native_icon="res://icon.ico"
 
+[autoload]
+
+Preferences="*res://src/autoloads/preferences.gd"
+FileHandler="*res://src/autoloads/file_handler.gd"
+
 [display]
 
 window/subwindows/embed_subwindows=false

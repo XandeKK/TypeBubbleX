@@ -11,7 +11,7 @@ enum Sort {
 }
 
 var error : Error
-var files : Array : get = _get_files
+var files : Array[String] : get = _get_files
 var path : String : get = _get_path, set = _set_path
 var extension : String : set = _set_extension
 var regex : RegEx = RegEx.new()
@@ -23,6 +23,7 @@ func _init(_path : String, recursive : bool = false, _extension : String = "", s
 	if DirAccess.dir_exists_absolute(path):
 		get_files(recursive)
 		sort_files(sort)
+		error = Error.OK
 	else:
 		error = Error.ERR_DOES_NOT_EXIST
 		push_error("Dir does not exit")
@@ -31,9 +32,9 @@ func get_files(recursive : bool = false) -> void:
 	if recursive:
 		files = get_all_files(path, files)
 	else:
-		files = Array(DirAccess.get_files_at(path))
+		files.assign(DirAccess.get_files_at(path))
 		filter_files()
-		files = files.map(func(file : String): return path.path_join(file))
+		files.assign(files.map(func(file : String): return path.path_join(file)))
 
 func filter_files() -> void:
 	if extension.is_empty():
@@ -41,7 +42,7 @@ func filter_files() -> void:
 	
 	files = files.filter(func(file): return regex.search(file))
 
-func get_all_files(_path : String, _files : Array) -> Array:
+func get_all_files(_path : String, _files : Array) -> Array[String]:
 	var dir : DirAccess = DirAccess.open(_path)
 
 	if DirAccess.get_open_error() == OK:
