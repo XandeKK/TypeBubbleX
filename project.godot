@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="TypeBubbleX"
+config/name="TypeBubbleXV3"
 config/version="3.0"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 run/low_processor_mode=true
@@ -20,6 +20,7 @@ config/windows_native_icon="res://icon.ico"
 
 Preferences="*res://src/autoloads/preferences.gd"
 FileHandler="*res://src/autoloads/file_handler.gd"
+FontConfigManager="*res://src/autoloads/font_config_manager.gd"
 
 [display]
 
