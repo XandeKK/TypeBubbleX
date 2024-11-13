@@ -43,6 +43,8 @@ func generate_bubbles() -> void:
 
 func _exit_tree() -> void:
 	file_processor.free()
-	raw_images.free()
-	cleaned_images.free()
-	tbx_files.free()
+	
+	if raw_images:
+		raw_images.free()
+		cleaned_images.free()
+		tbx_files.free()
