@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://ctj6gaenbg0xt"]
+
+[ext_resource type="Script" path="res://src/bubble/sub_viewports/scripts/sub_viewport_shader_motion_blur.gd" id="1_da12q"]
+[ext_resource type="Shader" path="res://src/shaders/motion_blur.gdshader" id="2_l5d1t"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mmwcq"]
+resource_local_to_scene = true
+shader = ExtResource("2_l5d1t")
+shader_parameter/blur_amount = 16
+shader_parameter/blur_direction = Vector2(0, 0)
+
+[node name="SubViewportShaderMotionBlur" type="SubViewport"]
+disable_3d = true
+transparent_bg = true
+render_target_update_mode = 4
+script = ExtResource("1_da12q")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_mmwcq")
+offset_right = 40.0
+offset_bottom = 40.0
+
+[connection signal="size_changed" from="." to="." method="_on_size_changed"]
