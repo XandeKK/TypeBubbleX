@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://5etw3ho1u0wy"]
+
+[ext_resource type="Script" path="res://src/bubble/sub_viewports/scripts/sub_viewport_shader_persperctive.gd" id="1_117wj"]
+[ext_resource type="Shader" path="res://src/shaders/perspective.gdshader" id="2_81p3g"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_stxoo"]
+resource_local_to_scene = true
+shader = ExtResource("2_81p3g")
+shader_parameter/top_left = Vector2(0, 0)
+shader_parameter/top_right = Vector2(0, 0)
+shader_parameter/bottom_left = Vector2(0, 0)
+shader_parameter/bottom_right = Vector2(0, 0)
+
+[node name="SubViewportShaderPersperctive" type="SubViewport"]
+disable_3d = true
+transparent_bg = true
+render_target_update_mode = 4
+script = ExtResource("1_117wj")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_stxoo")
+offset_right = 40.0
+offset_bottom = 40.0
+
+[connection signal="size_changed" from="." to="." method="_on_size_changed"]
