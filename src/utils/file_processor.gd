@@ -1,11 +1,15 @@
-extends Node
 class_name FileProcessor
+extends Node
 
 var thread: Thread
 var error : Error
 
 func _init() -> void:
 	thread = Thread.new()
+
+func _exit_tree():
+	if thread.is_started():
+		thread.wait_to_finish()
 
 func load_image(path : String) -> Image:
 	return Image.load_from_file(path)
@@ -77,7 +81,3 @@ func save_file_var(data : Dictionary, path : String) -> void:
 	
 	file.store_var(data)
 	file.close()
-
-func _exit_tree():
-	if thread.is_started():
-		thread.wait_to_finish()

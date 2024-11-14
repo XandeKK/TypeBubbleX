@@ -1,5 +1,5 @@
-extends Node
 class_name FileManager
+extends Node
 
 enum Sort {
 	NOTHING,

@@ -21,6 +21,7 @@ config/windows_native_icon="res://icon.ico"
 Preferences="*res://src/autoloads/preferences.gd"
 FileHandler="*res://src/autoloads/file_handler.gd"
 FontConfigManager="*res://src/autoloads/font_config_manager.gd"
+Global="*res://src/autoloads/global.gd"
 
 [display]
 
@@ -33,6 +34,10 @@ project/assembly_name="TypeBubbleX"
 [editor_plugins]
 
 enabled=PackedStringArray()
+
+[global_group]
+
+Bubbles=""
 
 [rendering]
 

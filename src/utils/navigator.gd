@@ -1,5 +1,5 @@
-extends Node
 class_name Navigator
+extends Node
 
 class NavigatorFileHandler:
 	signal element_changed(current_element : Dictionary)

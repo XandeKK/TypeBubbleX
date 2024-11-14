@@ -3,7 +3,8 @@ extends Node
 enum ComicType {
 	NULL,
 	MANGA,
-	MANHWA_MANHUA
+	MANHWA,
+	MANHUA
 }
 
 var default_comic : Dictionary = {
@@ -20,6 +21,17 @@ var comics : Dictionary = {
 }
 
 var defaults_comics : Dictionary = comics.duplicate()
+
+var bubble_colors : Dictionary = {
+	'bubble': {
+		'active': Color(Color.RED, 0.7),
+		'inactive': Color(Color.BLACK, 0.3),
+	},
+	'padding': {
+		'active': Color(Color.BLUE, 0.7)
+	}
+}
+var default_bubble_colors : Dictionary = bubble_colors
 
 var languages : Array = [
 	'en',
@@ -51,6 +63,7 @@ func save_configuration() -> void:
 	var config = ConfigFile.new()
 	
 	config.set_value("comics", "comics", comics)
+	config.set_value("bubble_colors", "bubble_colors", bubble_colors)
 	config.set_value("general", "general", general)
 	
 	config.save(filename)
@@ -63,6 +76,9 @@ func load_configuration() -> void:
 	if error == OK:
 		if config.has_section_key("comics", "comics"):
 			comics = config.get_value("comics", "comics")
+		
+		if config.has_section_key("bubble_colors", "bubble_colors"):
+			bubble_colors = config.get_value("bubble_colors", "bubble_colors")
 		
 		if config.has_section_key("general", "general"):
 			general = config.get_value("general", "general")
