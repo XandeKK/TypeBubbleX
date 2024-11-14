@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://balyncmm3lmun"]
+
+[ext_resource type="Shader" path="res://src/shaders/blur.gdshader" id="1_8ekwo"]
+[ext_resource type="Script" path="res://src/bubble/scripts/blur_outline.gd" id="1_8f6ii"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nbhbt"]
+resource_local_to_scene = true
+shader = ExtResource("1_8ekwo")
+shader_parameter/blur_size = null
+
+[node name="BlurOutline" type="ColorRect"]
+material = SubResource("ShaderMaterial_nbhbt")
+script = ExtResource("1_8f6ii")
