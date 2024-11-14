@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bd3n3do11qdo0"]
+
+[ext_resource type="Script" path="res://src/bubble/scripts/brush_cursor.gd" id="1_wwkod"]
+
+[node name="BrushCursor" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 2
+script = ExtResource("1_wwkod")
