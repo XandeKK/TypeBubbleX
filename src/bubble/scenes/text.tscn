@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://dlk5sxu3qpkcb"]
+
+[ext_resource type="Script" path="res://src/bubble/scripts/text.gd" id="1_7s6i8"]
+[ext_resource type="Script" path="res://src/bubble/scripts/outline_manager.gd" id="2_0q7ax"]
+[ext_resource type="Script" path="res://src/bubble/scripts/text_renderer.gd" id="2_rqicv"]
+
+[node name="Text" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_7s6i8")
+
+[node name="OutlineManager" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_0q7ax")
+
+[node name="TextRenderer" type="Control" parent="."]
+clip_children = 2
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_rqicv")
+
+[connection signal="resized" from="." to="." method="_on_resized"]
+[connection signal="resized" from="OutlineManager" to="OutlineManager" method="_on_resized"]
+[connection signal="resized" from="TextRenderer" to="TextRenderer" method="_on_resized"]

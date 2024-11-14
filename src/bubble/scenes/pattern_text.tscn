@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://u5dce7sloead"]
+
+[ext_resource type="Script" path="res://src/bubble/scripts/pattern_text.gd" id="1_2djtf"]
+
+[node name="Pattern" type="TextureRect"]
+stretch_mode = 1
+script = ExtResource("1_2djtf")
