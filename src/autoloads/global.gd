@@ -1,9 +1,17 @@
 extends Node
 
 signal bubble_focused(bubble : Bubble)
+@warning_ignore("unused_signal")
+signal bubble_added(bubble: Bubble)
+@warning_ignore("unused_signal")
+signal bubble_removed(bubble: Bubble)
 
 var TS : TextServer = TextServerManager.get_primary_interface() : get = get_text_server
 var focused_bubble : Bubble = null : set = set_focused_bubble
+var top_canvas : TopCanvas = null
+var comic_name : String = Preferences.comics.keys()[0]
+
+var bubble_scene : PackedScene = load("res://src/bubble/scenes/bubble.tscn")
 
 var outline_scene : PackedScene = load("res://src/bubble/scenes/outline.tscn")
 var blur_outline_scene : PackedScene = load("res://src/bubble/scenes/blur_outline.tscn")
@@ -22,7 +30,9 @@ func get_text_server() -> TextServer:
 
 func set_focused_bubble(value : Bubble) -> void:
 	focused_bubble = value
-	bubble_focused.emit(focused_bubble)
+	
+	if focused_bubble != null:
+		bubble_focused.emit(focused_bubble)
 	
 	var bubbles : Array[Node] = get_tree().get_nodes_in_group('Bubbles')
 	
@@ -37,8 +47,8 @@ func update_scene_hierarchy_indices() -> void:
 		if bubble.get_index() != bubble.scene_hierarchy_index:
 			bubble.scene_hierarchy_index = bubble.get_index()
 
-#func _notification(what: int):
-	#if what == NOTIFICATION_APPLICATION_FOCUS_OUT:
-		#get_tree().paused = true
-	#elif what == NOTIFICATION_APPLICATION_FOCUS_IN:
-		#get_tree().paused = false
+func _notification(what: int):
+	if what == NOTIFICATION_APPLICATION_FOCUS_OUT:
+		get_tree().paused = true
+	elif what == NOTIFICATION_APPLICATION_FOCUS_IN:
+		get_tree().paused = false

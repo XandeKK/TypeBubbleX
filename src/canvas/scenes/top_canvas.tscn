@@ -1,0 +1,56 @@
+[gd_scene load_steps=4 format=3 uid="uid://c3ar0fxse5ehv"]
+
+[ext_resource type="Script" path="res://src/canvas/scripts/top_canvas.gd" id="1_astlf"]
+[ext_resource type="Script" path="res://src/canvas/scripts/camera_2d.gd" id="2_8jvbs"]
+[ext_resource type="Script" path="res://src/canvas/scripts/draw_observer.gd" id="3_abqp6"]
+
+[node name="TopCanvas" type="SubViewportContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+script = ExtResource("1_astlf")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+handle_input_locally = false
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+
+[node name="Camera2D" type="Camera2D" parent="SubViewport"]
+script = ExtResource("2_8jvbs")
+
+[node name="BottomCanvas" type="SubViewportContainer" parent="SubViewport"]
+offset_right = 40.0
+offset_bottom = 40.0
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewport/BottomCanvas"]
+handle_input_locally = false
+size = Vector2i(40, 40)
+render_target_update_mode = 4
+
+[node name="TestBackground" type="ColorRect" parent="SubViewport/BottomCanvas/SubViewport"]
+offset_right = 720.0
+offset_bottom = 1000.0
+
+[node name="CleanedImage" type="TextureRect" parent="SubViewport/BottomCanvas/SubViewport"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="DrawObserver" type="Control" parent="SubViewport/BottomCanvas/SubViewport"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_abqp6")
+
+[node name="Bubbles" type="Node" parent="SubViewport/BottomCanvas/SubViewport"]
+
+[node name="RawImage" type="TextureRect" parent="SubViewport/BottomCanvas/SubViewport"]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0

@@ -20,6 +20,21 @@ var sub_viewport_manager : SubViewportManager
 
 var is_focused : bool = false
 var scene_hierarchy_index : int
+var can_draw : bool = true : set = _set_can_draw
+
+func init(_position : Vector2, _size : Vector2) -> void:
+	position = _position
+	size = _size
+	
+	var font_name = Preferences.comics[Global.comic_name]['default_font']
+	
+	if font_name and FontConfigManager.fonts.has(font_name):
+		text.font_name = font_name
+		text.font_settings = FontConfigManager.fonts[font_name]
+	else:
+		push_error(Global.comic_name + ' does not have a defined font or does not have this font, check this in preferences or fonts')
+	
+	text.font_size = Preferences.comics[Global.comic_name]['font_size']
 
 func _ready() -> void:
 	sub_viewport_manager = SubViewportManager.new(first_sub_viewport)
@@ -151,6 +166,19 @@ func remove_text_path_2d() -> void:
 		text.curve = null
 		text_path_2d.free()
 		text_path_2d = null
+
+func _set_can_draw(value : bool) -> void:
+	can_draw = value
+	draw_bubble.can_draw = can_draw
+	rotation_bubble.can_draw = can_draw
+	
+	if perspective_bubble != null:
+		perspective_bubble.can_draw = can_draw
+	
+	if mask_bubble != null:
+		mask_bubble.brush_cursor.can_draw = can_draw
+	
+	queue_redraw()
 
 func to_dictionary() -> Dictionary:
 	var data = {

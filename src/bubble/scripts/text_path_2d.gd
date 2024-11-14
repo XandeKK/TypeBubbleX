@@ -11,6 +11,7 @@ var radius : int = 5
 var mouse_position_initial : Vector2
 var path2d_position_initial : Vector2
 var is_dragging : bool = false
+var can_draw : bool = true
 
 enum STATUS {
 	NONE,
@@ -26,6 +27,9 @@ func _init(_bubble : Bubble) -> void:
 	bubble = _bubble
 
 func _draw():
+	if not can_draw:
+		return
+
 	if curve.point_count >= 2:
 		draw_polyline(curve.get_baked_points(), Color.AQUA, 1, true)
 	

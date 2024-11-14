@@ -2,7 +2,7 @@ class_name MaskBubble
 extends TextureRect
 
 var bubble : Bubble
-var brush_cursor : Control = preload('res://src/bubble/scenes/brush_cursor.tscn').instantiate()
+var brush_cursor : BrushCursor = preload('res://src/bubble/scenes/brush_cursor.tscn').instantiate()
 @onready var sub_viewport : SubViewport = $SubViewport
 @onready var sub_viewport_canvas : SubViewport = $SubViewport/SubViewportContainer/SubViewportCanvas
 @onready var sub_viewport_container : SubViewportContainer = $SubViewport/SubViewportContainer

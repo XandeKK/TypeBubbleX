@@ -11,6 +11,7 @@ var points : Dictionary = {
 var default_radius : float = 8
 var default_radius_vector2 : Vector2 = Vector2(default_radius, default_radius)
 var sub_viewport_perspective : SubViewport
+var can_draw : bool = true : set = _set_can_draw
 
 func _init(_bubble : Bubble, _sub_viewport_perspective) -> void:
 	mouse_filter = MOUSE_FILTER_IGNORE
@@ -32,6 +33,9 @@ func _exit_tree() -> void:
 		point.free()
 
 func _draw() -> void:
+	if not can_draw:
+		return
+
 	draw_line(points['top_left'].position + default_radius_vector2, points['top_right'].position + default_radius_vector2, Color.BLUE, 1, true)
 	draw_line(points['top_left'].position + default_radius_vector2, points['bottom_left'].position + default_radius_vector2, Color.BLUE, 1, true)
 	draw_line(points['bottom_left'].position + default_radius_vector2, points['bottom_right'].position + default_radius_vector2, Color.BLUE, 1, true)
@@ -49,6 +53,14 @@ func reset() -> void:
 	points['top_right'] = Point.new('top_right', Vector2(bubble.size.x, 0) + default_radius_vector2, default_radius, self)
 	points['bottom_left'] = Point.new('bottom_left', Vector2(0, bubble.size.y) + default_radius_vector2, default_radius, self)
 	points['bottom_right'] = Point.new('bottom_right', bubble.size + default_radius_vector2, default_radius, self)
+
+func _set_can_draw(value : bool) -> void:
+	can_draw = value
+	
+	for point : Point in points.values():
+		point.can_draw = can_draw
+	
+	queue_redraw()
 
 func to_dictionary() -> Dictionary:
 	var data : Dictionary = {
@@ -78,6 +90,7 @@ class Point extends Control:
 	
 	var shader_material : ShaderMaterial
 	var parent : PerspectiveBubble
+	var can_draw : bool = true : set = _set_can_draw
 	
 	func _init(_identifier : String, _position : Vector2, _radius : float, _parent : PerspectiveBubble) -> void:
 		identifier = _identifier
@@ -91,6 +104,9 @@ class Point extends Control:
 		parent.add_child(self)
 
 	func _draw() -> void:
+		if not can_draw:
+			return
+
 		var circle_color = Color.GREEN if is_dragging else Color.PURPLE
 		draw_circle(Vector2.ZERO + size / 2, radius, circle_color, true)
 
@@ -134,6 +150,10 @@ class Point extends Control:
 			mouse_default_cursor_shape = Control.CURSOR_MOVE
 		else:
 			mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
+	
+	func _set_can_draw(value : bool) -> void:
+		can_draw = value
+		queue_redraw()
 	
 	func to_dictionary() -> Dictionary:
 		return {

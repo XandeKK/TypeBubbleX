@@ -3,6 +3,7 @@ extends Control
 
 var bubble : Bubble = null
 var is_dragging : float = false
+var can_draw : bool = true : set = _set_can_draw
 
 func _init(_bubble : Bubble) -> void:
 	bubble = _bubble
@@ -10,6 +11,9 @@ func _init(_bubble : Bubble) -> void:
 	bubble.add_child(self)
 
 func _draw() -> void:
+	if not can_draw:
+		return
+
 	if bubble.is_focused:
 		draw_rect(Rect2(Vector2.ZERO, size), Color.RED, true, -1.0, true)
 
@@ -42,3 +46,7 @@ func set_mouse_cursor() -> void:
 		mouse_default_cursor_shape = Control.CURSOR_MOVE
 	else:
 		mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
+
+func _set_can_draw(value : bool) -> void:
+	can_draw = value
+	queue_redraw()

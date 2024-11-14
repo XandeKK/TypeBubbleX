@@ -2,7 +2,7 @@ class_name DrawBubble
 extends Control
 
 var bubble : Bubble
-var can_draw : bool = true
+var can_draw : bool = true : set = _set_can_draw
 
 func _init(_bubble : Bubble) -> void:
 	bubble = _bubble
@@ -47,3 +47,7 @@ func create_packed_vector(rect : Rect2) -> PackedVector2Array:
 		Vector2(rect.position.x, rect.size.y),
 		Vector2(rect.position),
 	])
+
+func _set_can_draw(value : bool) -> void:
+	can_draw = value
+	queue_redraw()
