@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://5etw3ho1u0wy"]
 
-[ext_resource type="Script" path="res://src/bubble/sub_viewports/scripts/sub_viewport_shader_persperctive.gd" id="1_117wj"]
+[ext_resource type="Script" path="res://src/bubble/sub_viewports/scripts/sub_viewport_shader_perspective.gd" id="1_117wj"]
 [ext_resource type="Shader" path="res://src/shaders/perspective.gdshader" id="2_81p3g"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_stxoo"]
