@@ -1,3 +1,7 @@
+# Project Archived
+
+This project has been archived as I no longer have interest in pursuing it further. Thank you for your understanding. If anyone is interested in continuing this project, feel free to fork the repository!
+
 # TypeBubbleX
 
 **[Description](#description) | [Resources](#resources) | [License](#license)** 
