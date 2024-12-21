@@ -1,0 +1,43 @@
+[gd_scene load_steps=2 format=3 uid="uid://c3cth25pqh1fe"]
+
+[ext_resource type="Script" path="res://src/ui/windows/fonts_window/scripts/font.gd" id="1_swqo1"]
+
+[node name="Font" type="PanelContainer"]
+offset_right = 361.0
+offset_bottom = 53.0
+size_flags_horizontal = 3
+script = ExtResource("1_swqo1")
+
+[node name="Font" type="Button" parent="."]
+layout_mode = 2
+toggle_mode = true
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="FontNameLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+text = "Font Name"
+
+[node name="Example" type="Label" parent="MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 6
+text = "Example"
+
+[node name="CheckBox" type="CheckBox" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+mouse_filter = 2
+
+[connection signal="toggled" from="Font" to="." method="_on_font_toggled"]

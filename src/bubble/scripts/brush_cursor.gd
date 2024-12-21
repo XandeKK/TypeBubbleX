@@ -1,5 +1,5 @@
-extends Control
 class_name BrushCursor
+extends Control
 
 var width : int : set = _set_width
 var can_draw : bool = true : set = _set_can_draw

@@ -1,0 +1,100 @@
+[gd_scene load_steps=4 format=3 uid="uid://bvn3m1ipfr8l5"]
+
+[ext_resource type="Script" path="res://src/ui/layouts/gradient/scripts/gradient_editor.gd" id="1_mb45d"]
+[ext_resource type="PackedScene" uid="uid://bwifx3xlf2s4p" path="res://src/ui/layouts/gradient/scenes/gradient_1d_editor.tscn" id="1_wa7tx"]
+[ext_resource type="PackedScene" uid="uid://3njfo2w7tevd" path="res://src/ui/layouts/gradient/scenes/gradient_2d_editor.tscn" id="2_nwh8l"]
+
+[node name="GradientEditor" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mb45d")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Fill"
+
+[node name="Fill" type="OptionButton" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+item_count = 3
+popup/item_0/text = "Linear"
+popup/item_1/text = "Radial"
+popup/item_1/id = 1
+popup/item_2/text = "Square"
+popup/item_2/id = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Repeat"
+
+[node name="Repeat" type="OptionButton" parent="HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+item_count = 3
+popup/item_0/text = "No Repeat"
+popup/item_1/text = "Repeat"
+popup/item_1/id = 1
+popup/item_2/text = "Mirror Repeat"
+popup/item_2/id = 2
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Interpoletion"
+
+[node name="Interpoletaion" type="OptionButton" parent="HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+item_count = 3
+popup/item_0/text = "Linear"
+popup/item_1/text = "Constant"
+popup/item_1/id = 1
+popup/item_2/text = "Cubic"
+popup/item_2/id = 2
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Color Space"
+
+[node name="ColorSpace" type="OptionButton" parent="HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 3
+item_count = 3
+popup/item_0/text = "sRGB"
+popup/item_1/text = "Linear sRGB"
+popup/item_1/id = 1
+popup/item_2/text = "Oklab"
+popup/item_2/id = 2
+
+[node name="Gradient1DEditor" parent="." instance=ExtResource("1_wa7tx")]
+layout_mode = 2
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="."]
+layout_mode = 2
+alignment = 1
+
+[node name="Gradient2DEditor" parent="HBoxContainer5" instance=ExtResource("2_nwh8l")]
+layout_mode = 2
+
+[connection signal="item_selected" from="HBoxContainer/Fill" to="." method="_on_fill_item_selected"]
+[connection signal="item_selected" from="HBoxContainer2/Repeat" to="." method="_on_repeat_item_selected"]
+[connection signal="item_selected" from="HBoxContainer3/Interpoletaion" to="." method="_on_interpoletaion_item_selected"]
+[connection signal="item_selected" from="HBoxContainer4/ColorSpace" to="." method="_on_color_space_item_selected"]

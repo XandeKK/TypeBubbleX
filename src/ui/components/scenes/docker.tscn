@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://b1pix4taaapgw"]
+
+[node name="Docker" type="TabContainer"]
+offset_right = 390.0
+offset_bottom = 449.0

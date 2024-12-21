@@ -1,0 +1,63 @@
+[gd_resource type="Theme" load_steps=8 format=3 uid="uid://6w7ys8jixvkr"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l0csi"]
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.5, 1, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bc8ep"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.255208, 0.255208, 0.255208, 1)
+border_width_left = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.137255, 0.137255, 0.137255, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_40s7v"]
+bg_color = Color(0.135417, 0.135417, 0.135417, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w7yyc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5n0mf"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.130208, 0.130208, 0.130208, 1)
+
+[sub_resource type="ImageTexture" id="ImageTexture_x04dq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_d31mm"]
+content_margin_right = 5.0
+
+[resource]
+default_font_size = 12
+Canvas/base_type = &"PanelContainer"
+Canvas/styles/panel = SubResource("StyleBoxFlat_l0csi")
+CheckButton/constants/h_separation = 0
+Docker/base_type = &"TabContainer"
+Docker/constants/icon_max_width = 0
+Docker/constants/icon_separation = 0
+Docker/constants/outline_size = 0
+Docker/constants/side_margin = 0
+Docker/styles/panel = SubResource("StyleBoxFlat_bc8ep")
+Docker/styles/tabbar_background = SubResource("StyleBoxFlat_40s7v")
+DockerContent/base_type = &"PanelContainer"
+DockerContent/styles/panel = SubResource("StyleBoxEmpty_w7yyc")
+HSplitContainer/constants/autohide = 0
+HSplitContainer/constants/separation = 5
+Main/base_type = &"PanelContainer"
+Main/styles/panel = SubResource("StyleBoxFlat_5n0mf")
+SpinBox/icons/updown = SubResource("ImageTexture_x04dq")
+TextItem/base_type = &"PanelContainer"
+TextItem/colors/body_color = Color(0, 0, 0, 0.25098)
+TextItem/colors/dash_color = Color(0.5625, 0.5625, 0.5625, 1)
+TextItem/colors/number_color = Color(0, 0, 0, 0.596078)
+TextItem/styles/panel = SubResource("StyleBoxEmpty_d31mm")
+VSplitContainer/constants/autohide = 0
+VSplitContainer/constants/separation = 5

@@ -1,0 +1,39 @@
+[gd_scene load_steps=3 format=3 uid="uid://bl7ywr44s3myc"]
+
+[ext_resource type="Script" path="res://src/ui/windows/fonts_window/scripts/directories.gd" id="1_tefae"]
+[ext_resource type="PackedScene" uid="uid://5me8mkc6sih3" path="res://src/ui/components/scenes/path_box.tscn" id="2_xxem3"]
+
+[node name="Directories" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tefae")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="PathBox" parent="VBoxContainer/HBoxContainer" instance=ExtResource("2_xxem3")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="AddButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = " + "
+
+[node name="RemoveButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = " - "
+
+[node name="ItemList" type="ItemList" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+allow_search = false
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/AddButton" to="." method="_on_add_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/RemoveButton" to="." method="_on_remove_button_pressed"]
+[connection signal="item_selected" from="VBoxContainer/ItemList" to="." method="_on_item_list_item_selected"]

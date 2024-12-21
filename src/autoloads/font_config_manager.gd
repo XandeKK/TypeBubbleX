@@ -107,6 +107,7 @@ func add_directory(directory : String) -> void:
 	directories.append(directory)
 	scan_directories()
 	directories_changed.emit()
+	save_configuration()
 
 func remove_directory(index : int) -> void:
 	if index < 0 or index >= directories.size():
@@ -116,6 +117,7 @@ func remove_directory(index : int) -> void:
 	directories.remove_at(index)
 	scan_directories()
 	directories_changed.emit()
+	save_configuration()
 
 func scan_directories() -> void:
 	var old_fonts = fonts.duplicate()

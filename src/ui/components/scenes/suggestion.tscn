@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://dweoaouyr38o0"]
+
+[ext_resource type="Script" path="res://src/ui/components/scripts/suggestion.gd" id="1_r6vks"]
+
+[node name="Suggestion" type="Button"]
+offset_right = 160.0
+offset_bottom = 40.0
+text = " "
+script = ExtResource("1_r6vks")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 4
+mouse_filter = 2
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

@@ -10,11 +10,15 @@ var text : Text : set = _set_text
 var color : Color = Color.WHITE : get = _get_color, set = _set_color
 var outline_size : int = 8 : get = _get_outline_size, set = _set_outline_size
 var offset : Vector2 = Vector2.ZERO : get = _get_offset, set = _set_offset
-var only_outline : bool = true : get = _get_only_outline, set = _set_only_outline
+var fill : bool = false : get = _get_fill, set = _set_fill
 var blur_outline : BlurOutline = null
 
 func _ready() -> void:
 	outline_renderer.outline = self
+
+func _exit_tree() -> void:
+	if blur_outline != null:
+		blur_outline.free()
 
 func add_blur() -> void:
 	if blur_outline == null:
@@ -32,12 +36,14 @@ func get_start() -> int:
 
 func set_start(value : int) -> void:
 	start = value
+	outline_renderer.queue_redraw()
 
 func _get_end() -> int:
 	return end
 
 func _set_end(value : int) -> void:
 	end = value
+	outline_renderer.queue_redraw()
 
 func _set_text(value : Text) -> void:
 	text = value
@@ -64,11 +70,11 @@ func _set_offset(value : Vector2) -> void:
 	offset = value
 	outline_renderer.queue_redraw()
 
-func _get_only_outline() -> bool:
-	return only_outline
+func _get_fill() -> bool:
+	return fill
 
-func _set_only_outline(value : bool) -> void:
-	only_outline = value
+func _set_fill(value : bool) -> void:
+	fill = value
 	outline_renderer.queue_redraw()
 
 func _on_resized() -> void:
@@ -87,7 +93,7 @@ func to_dictionary() -> Dictionary:
 		'color': color,
 		'outline_size': outline_size,
 		'offset': offset,
-		'only_outline': only_outline,
+		'fill': fill,
 	}
 	
 	if blur_outline != null:
@@ -101,7 +107,7 @@ func load(data : Dictionary) -> void:
 	color = data['color']
 	outline_size = data['outline_size']
 	offset = data['offset']
-	only_outline = data['only_outline']
+	fill = data['fill']
 	
 	if data.has('blur'):
 		add_blur()

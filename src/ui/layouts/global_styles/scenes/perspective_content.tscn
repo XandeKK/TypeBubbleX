@@ -1,0 +1,30 @@
+[gd_scene load_steps=2 format=3 uid="uid://bg3vddwve3raf"]
+
+[ext_resource type="Script" path="res://src/ui/layouts/global_styles/scripts/perspective_content.gd" id="1_ppc2e"]
+
+[node name="PerspectiveContent" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ppc2e")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Enable" type="CheckButton" parent="VBoxContainer"]
+layout_mode = 2
+text = "Enable"
+
+[node name="Visible" type="CheckButton" parent="VBoxContainer"]
+layout_mode = 2
+text = "Visible"
+
+[node name="Reset" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Reset"
+
+[connection signal="toggled" from="VBoxContainer/Enable" to="." method="_on_enable_toggled"]
+[connection signal="toggled" from="VBoxContainer/Visible" to="." method="_on_visible_toggled"]
+[connection signal="pressed" from="VBoxContainer/Reset" to="." method="_on_reset_pressed"]

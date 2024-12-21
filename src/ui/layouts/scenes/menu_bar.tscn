@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=3 uid="uid://pbmsj3g4ga8k"]
+
+[ext_resource type="Script" path="res://src/ui/layouts/menu_bar/scripts/file.gd" id="1_0l6va"]
+[ext_resource type="PackedScene" uid="uid://xtlwt6gnsqre" path="res://src/ui/windows/scenes/file_window.tscn" id="2_nbval"]
+[ext_resource type="PackedScene" uid="uid://vvt1ul7ka6d4" path="res://src/ui/windows/scenes/preferences_window.tscn" id="3_bc66v"]
+[ext_resource type="PackedScene" uid="uid://dg38cvt0boohn" path="res://src/ui/windows/scenes/fonts_window.tscn" id="4_qjig8"]
+
+[node name="MenuBar" type="MenuBar"]
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+
+[node name="File" type="PopupMenu" parent="." node_paths=PackedStringArray("windows", "file_window", "preferences_window", "fonts_window")]
+item_count = 5
+item_0/text = "Open"
+item_1/text = "Save"
+item_1/id = 1
+item_2/id = 2
+item_2/separator = true
+item_3/text = "Preferences"
+item_3/id = 3
+item_4/text = "Fonts"
+item_4/id = 4
+script = ExtResource("1_0l6va")
+windows = NodePath("../Windows")
+file_window = NodePath("../Windows/FileWindow")
+preferences_window = NodePath("../Windows/PreferencesWindow")
+fonts_window = NodePath("../Windows/FontsWindow")
+
+[node name="Windows" type="Node" parent="."]
+
+[node name="FileWindow" parent="Windows" instance=ExtResource("2_nbval")]
+visible = false
+
+[node name="PreferencesWindow" parent="Windows" instance=ExtResource("3_bc66v")]
+visible = false
+
+[node name="FontsWindow" parent="Windows" instance=ExtResource("4_qjig8")]
+visible = false
+
+[connection signal="id_pressed" from="File" to="File" method="_on_id_pressed"]
+[connection signal="close_requested" from="Windows/FileWindow" to="File" method="_on_file_window_close_requested"]
+[connection signal="close_requested" from="Windows/PreferencesWindow" to="File" method="_on_preferences_window_close_requested"]
+[connection signal="close_requested" from="Windows/FontsWindow" to="File" method="_on_fonts_window_close_requested"]

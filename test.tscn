@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://dle4g0xk5hxk7"]
+
+[ext_resource type="Script" path="res://test.gd" id="1_t6bf3"]
+[ext_resource type="PackedScene" uid="uid://dfqauvgvylk35" path="res://src/ui/components/scenes/number_box.tscn" id="2_y835x"]
+
+[node name="Test" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_t6bf3")
+
+[node name="TextEdit" type="TextEdit" parent="."]
+layout_mode = 0
+offset_left = 392.0
+offset_top = 216.0
+offset_right = 494.0
+offset_bottom = 328.0
+
+[node name="NumberBox" parent="." instance=ExtResource("2_y835x")]
+layout_mode = 0
+
+[connection signal="value_changed" from="NumberBox" to="." method="_on_number_box_value_changed"]

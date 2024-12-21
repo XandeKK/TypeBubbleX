@@ -1,45 +1,52 @@
 extends Node
 
 enum ComicType {
-	NULL,
 	MANGA,
 	MANHWA,
-	MANHUA
+	MANHUA,
 }
+
+var comic_type_string : Array = [
+	'Manga',
+	'Manhwa',
+	'Manhua',
+]
 
 var default_comic : Dictionary = {
-	'default_font': null,
-	'font_size': 20
+	'name': '',
+	'default_font': '',
+	'font_size': 20,
+	'comic_type': ComicType.MANGA,
+	'can_be_deleted': false,
 }
 
-var comics : Dictionary = {
-	'manga': default_comic.duplicate(),
-	'manhwa': default_comic.duplicate(),
-	'manhua': default_comic.duplicate(),
-	'comic_1': default_comic.duplicate(),
-	'comic_2': default_comic.duplicate()
-}
+var comics : Array = [
+	default_comic.duplicate(),
+	default_comic.duplicate(),
+	default_comic.duplicate(),
+]
 
-var defaults_comics : Dictionary = comics.duplicate()
+var defaults_comics : Array = comics.duplicate(true)
 
-var bubble_colors : Dictionary = {
+var colors : Dictionary = {
 	'bubble': {
 		'active': Color(Color.RED, 0.7),
 		'inactive': Color(Color.BLACK, 0.3),
 	},
 	'padding': {
 		'active': Color(Color.BLUE, 0.7)
-	}
+	},
+	'swatches': {},
 }
-var default_bubble_colors : Dictionary = bubble_colors
+var default_colors : Dictionary = colors
 
 var languages : Array = [
 	'en',
-	'pt_BR'
+	'pt_BR',
 ]
 
 var general : Dictionary = {
-	'language': languages[0],
+	'language': 0,
 	'font_size': 12,
 	'raw_dir': 'raw',
 	'cleaned_dir': 'cleaned',
@@ -48,8 +55,8 @@ var general : Dictionary = {
 	'camera': {
 		'min_zoom': 0.2,
 		'max_zoom': 1.5,
-		'zoom_rate': 0.1
-	}
+		'zoom_rate': 0.1,
+	},
 }
 
 var default_general : Dictionary = general.duplicate()
@@ -57,13 +64,20 @@ var default_general : Dictionary = general.duplicate()
 var filename : String = "user://preference_configuration.cfg"
 
 func _ready() -> void:
+	comics[0].comic_type = ComicType.MANGA
+	comics[0].name = 'Manga'
+	comics[1].comic_type = ComicType.MANHWA
+	comics[1].name = 'Manhwa'
+	comics[2].comic_type = ComicType.MANHUA
+	comics[2].name = 'Manhua'
+	
 	load_configuration()
 
 func save_configuration() -> void:
 	var config = ConfigFile.new()
 	
 	config.set_value("comics", "comics", comics)
-	config.set_value("bubble_colors", "bubble_colors", bubble_colors)
+	config.set_value("colors", "colors", colors)
 	config.set_value("general", "general", general)
 	
 	config.save(filename)
@@ -75,13 +89,30 @@ func load_configuration() -> void:
 	
 	if error == OK:
 		if config.has_section_key("comics", "comics"):
-			comics = config.get_value("comics", "comics")
+			var data : Variant = config.get_value("comics", "comics")
+			if typeof(data) == TYPE_ARRAY:
+				comics = data
 		
-		if config.has_section_key("bubble_colors", "bubble_colors"):
-			bubble_colors = config.get_value("bubble_colors", "bubble_colors")
+		if config.has_section_key("colors", "colors"):
+			var data : Dictionary = config.get_value("colors", "colors")
+			
+			colors.bubble.merge(data.bubble, true)
+			colors.padding.merge(data.padding, true)
+			
+			data.erase('bubble')
+			data.erase('padding')
+			
+			colors.merge(data, true)
 		
 		if config.has_section_key("general", "general"):
-			general = config.get_value("general", "general")
+			var data : Dictionary = config.get_value("general", "general")
+			
+			general.camera.merge(data.camera, true)
+			
+			data.erase('camera')
+			
+			general.merge(data, true)
+			
 			load_general()
  
 func reset_general() -> void:
@@ -91,7 +122,7 @@ func reset_comics() -> void:
 	comics = defaults_comics
 
 func load_general() -> void:
-	set_locale(general.language)
+	set_locale(languages[general.language])
 
 func set_locale(language : String) -> void:
 	TranslationServer.set_locale(language)

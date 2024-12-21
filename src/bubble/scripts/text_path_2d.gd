@@ -11,11 +11,12 @@ var radius : int = 5
 var mouse_position_initial : Vector2
 var path2d_position_initial : Vector2
 var is_dragging : bool = false
+var dragged_point_index : int = -1
 var can_draw : bool = true
+var visible_status : bool = true : set = _set_visible_status
 
 enum STATUS {
 	NONE,
-	MOVE,
 	ADD,
 	REMOVE,
 	EDIT,
@@ -49,11 +50,11 @@ func _input(event: InputEvent) -> void:
 	match current_status:
 		STATUS.NONE:
 			return
-		STATUS.MOVE:
-			move_path(event)
 		STATUS.ADD:
-			add_point(event)
-			queue_redraw()
+			if is_dragging:
+				move_point(event)
+			else:
+				add_point(event)
 		STATUS.REMOVE:
 			remove_point(event)
 		STATUS.EDIT:
@@ -72,29 +73,26 @@ func draw_point(index : int) -> void:
 	draw_circle(point_in + point_position, 5, Color.RED)
 	draw_circle(point_out + point_position, 5, Color.RED)
 
-func move_path(event : InputEvent) -> void:
-	if event is InputEventMouseButton:
-		handle_mouse_button_move(event)
-	
-	if event is InputEventMouseMotion and is_dragging:
-		position = event.position - mouse_position_initial + path2d_position_initial
-
-func handle_mouse_button_move(event : InputEventMouseButton) -> void:
-	if event.button_index == MOUSE_BUTTON_LEFT:
-		if not is_dragging and event.pressed:
-			is_dragging = true
-			path2d_position_initial = position
-			mouse_position_initial = event.position
-		elif is_dragging and not event.is_pressed():
-			is_dragging = false
+func move_point(event: InputEvent) -> void:
+	if event is InputEventMouseMotion:
+		if dragged_point_index != -1:
+			curve.set_point_position(dragged_point_index, get_local_mouse_position())
+			queue_redraw()
+	else:
+		is_dragging = false
+		dragged_point_index = -1
 
 func add_point(event : InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 		curve.add_point(get_local_mouse_position())
+		queue_redraw()
+		
+		dragged_point_index = curve.point_count - 1
+		is_dragging = true
 
 func remove_point(event : InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
-		if event.pressed:
+		if event.pressed and curve.point_count > 2:
 			for idx in range(curve.point_count):
 				var point_position : Vector2 = curve.get_point_position(idx)
 				if (get_local_mouse_position() - point_position).length() < radius:
@@ -216,6 +214,11 @@ func handle_mouse_button_manipulate(event : InputEventMouseButton) -> void:
 					break
 		elif is_dragging and not event.pressed:
 			reset_drag_state()
+
+func _set_visible_status(value : bool) -> void:
+	visible_status = value
+	visible = visible_status
+	set_process_input(visible_status)
 
 func get_points() -> Array:
 	var points : Array = []

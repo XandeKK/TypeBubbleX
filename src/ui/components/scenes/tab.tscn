@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://6voqyw1h4x2e"]
+
+[ext_resource type="Script" path="res://src/ui/components/scripts/tab.gd" id="1_k4awk"]
+
+[node name="Tab" type="Button" groups=["tabs"]]
+offset_right = 41.0
+offset_bottom = 8.0
+toggle_mode = true
+script = ExtResource("1_k4awk")
+
+[connection signal="toggled" from="." to="." method="_on_toggled"]

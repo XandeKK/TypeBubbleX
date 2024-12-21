@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://c2qv0gkyj6mh"]
+
+[ext_resource type="Script" path="res://src/ui/layouts/global_styles/scripts/gradient_content.gd" id="1_ffxpo"]
+[ext_resource type="PackedScene" uid="uid://bvn3m1ipfr8l5" path="res://src/ui/layouts/gradient/scenes/gradient_editor.tscn" id="2_xedsv"]
+
+[node name="GradientContainer" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ffxpo")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Enable" type="CheckButton" parent="VBoxContainer"]
+layout_mode = 2
+text = "Enable"
+
+[node name="GradientEditor" parent="VBoxContainer" instance=ExtResource("2_xedsv")]
+layout_mode = 2
+size_flags_vertical = 3
+
+[connection signal="toggled" from="VBoxContainer/Enable" to="." method="_on_enable_toggled"]

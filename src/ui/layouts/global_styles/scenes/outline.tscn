@@ -1,0 +1,131 @@
+[gd_scene load_steps=3 format=3 uid="uid://ctdoi2e7ewyny"]
+
+[ext_resource type="Script" path="res://src/ui/layouts/global_styles/scripts/outline.gd" id="1_dgerk"]
+[ext_resource type="PackedScene" uid="uid://dfqauvgvylk35" path="res://src/ui/components/scenes/number_box.tscn" id="1_fyks1"]
+
+[node name="Outline" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dgerk")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Delete" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = " X "
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Start"
+text_overrun_behavior = 3
+
+[node name="Start" parent="VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer" instance=ExtResource("1_fyks1")]
+layout_mode = 2
+size_flags_horizontal = 3
+value = -1.0
+min_value = -1.0
+allow_lesser = false
+
+[node name="Label2" type="Label" parent="VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "End"
+text_overrun_behavior = 3
+
+[node name="End" parent="VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer" instance=ExtResource("1_fyks1")]
+layout_mode = 2
+size_flags_horizontal = 3
+allow_lesser = false
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "X"
+text_overrun_behavior = 3
+
+[node name="X" parent="VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer2" instance=ExtResource("1_fyks1")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label2" type="Label" parent="VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Y"
+text_overrun_behavior = 3
+
+[node name="Y" parent="VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer2" instance=ExtResource("1_fyks1")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Size"
+text_overrun_behavior = 3
+
+[node name="Size" parent="VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer3" instance=ExtResource("1_fyks1")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label2" type="Label" parent="VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Blur"
+text_overrun_behavior = 3
+
+[node name="Blur" parent="VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer3" instance=ExtResource("1_fyks1")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Fill" type="CheckButton" parent="VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Fill"
+text_overrun_behavior = 4
+
+[node name="Color" type="ColorPickerButton" parent="VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[connection signal="pressed" from="VBoxContainer/Delete" to="." method="_on_delete_pressed"]
+[connection signal="value_changed" from="VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer/Start" to="." method="_on_start_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer/End" to="." method="_on_end_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer2/X" to="." method="_on_x_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer2/Y" to="." method="_on_y_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer3/Size" to="." method="_on_size_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer3/Blur" to="." method="_on_blur_value_changed"]
+[connection signal="toggled" from="VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer4/Fill" to="." method="_on_fill_toggled"]
+[connection signal="color_changed" from="VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer4/Color" to="." method="_on_color_color_changed"]

@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=3 uid="uid://o8kf2ae17yem"]
+
+[ext_resource type="Script" path="res://src/ui/components/scripts/tab_with_icon.gd" id="1_gohb2"]
+
+[node name="TabWithIcon" type="Button" groups=["global_styles"]]
+custom_minimum_size = Vector2(28, 28)
+offset_right = 24.0
+offset_bottom = 24.0
+toggle_mode = true
+script = ExtResource("1_gohb2")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="Icon" type="TextureRect" parent="MarginContainer"]
+layout_mode = 2
+expand_mode = 1
+
+[connection signal="toggled" from="." to="." method="_on_toggled"]

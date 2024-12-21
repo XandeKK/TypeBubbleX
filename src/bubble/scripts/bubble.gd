@@ -26,15 +26,15 @@ func init(_position : Vector2, _size : Vector2) -> void:
 	position = _position
 	size = _size
 	
-	var font_name = Preferences.comics[Global.comic_name]['default_font']
+	var font_name = Global.current_comic['default_font']
 	
 	if font_name and FontConfigManager.fonts.has(font_name):
 		text.font_name = font_name
 		text.font_settings = FontConfigManager.fonts[font_name]
 	else:
-		push_error(Global.comic_name + ' does not have a defined font or does not have this font, check this in preferences or fonts')
+		push_error(Global.current_comic.name + ' does not have a defined font or does not have this font, check this in preferences or fonts')
 	
-	text.font_size = Preferences.comics[Global.comic_name]['font_size']
+	text.font_size = Global.current_comic['font_size']
 
 func _ready() -> void:
 	sub_viewport_manager = SubViewportManager.new(first_sub_viewport)
@@ -84,12 +84,19 @@ func set_focus(value : bool) -> void:
 	if is_focused:
 		Global.focused_bubble = self
 		get_parent().move_child(self, -1)
-	elif not is_focused and get_index() != scene_hierarchy_index:
-		get_parent().move_child(self, scene_hierarchy_index)
+		if perspective_bubble != null and perspective_bubble.visible_status:
+			perspective_bubble.visible = true
+	elif not is_focused:
+		if get_index() != scene_hierarchy_index:
+			get_parent().move_child(self, scene_hierarchy_index)
+		if perspective_bubble != null:
+			perspective_bubble.visible = false
 
 func delete() -> void:
 	remove_from_group("Bubbles")
 	Global.update_scene_hierarchy_indices()
+	Global.bubble_removed.emit(self)
+	Global.set_focused_bubble(null)
 	queue_free()
 
 func reconnect_sub_viewport() -> void:
@@ -166,6 +173,10 @@ func remove_text_path_2d() -> void:
 		text.curve = null
 		text_path_2d.free()
 		text_path_2d = null
+
+func set_content_margin(margin : Side, offset : float) -> void:
+	text.set_content_margin(margin, offset)
+	draw_bubble.queue_redraw()
 
 func _set_can_draw(value : bool) -> void:
 	can_draw = value

@@ -116,6 +116,8 @@ func _prepare_glyphs_to_render_with_path() -> void:
 	var y : int = 0
 	
 	for i in range(last_line):
+		if glyphs_to_render_tmp.is_empty():
+			continue
 		for glyphs in glyphs_to_render_tmp[i]:
 			var baked : Transform2D = curve.sample_baked_with_rotation(glyphs.x)
 			@warning_ignore("narrowing_conversion")
@@ -261,7 +263,7 @@ func add_formatted_text(_text, text_style):
 	_text = Global.TS.string_to_upper(_text) if text_style.uppercase else _text
 	Global.TS.shaped_text_add_string(text_rid, _text, _current_font.get_rids(), text_style.font_size, _current_font.get_opentype_features())
 
-func set_content_margin(margin : Side, offset : float):
+func set_content_margin(margin : Side, offset : float) -> void:
 	style_box.set_content_margin(margin, offset)
 	_shape()
 

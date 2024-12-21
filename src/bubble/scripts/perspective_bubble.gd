@@ -12,6 +12,7 @@ var default_radius : float = 8
 var default_radius_vector2 : Vector2 = Vector2(default_radius, default_radius)
 var sub_viewport_perspective : SubViewport
 var can_draw : bool = true : set = _set_can_draw
+var visible_status : bool = true : set = _set_visible_status
 
 func _init(_bubble : Bubble, _sub_viewport_perspective) -> void:
 	mouse_filter = MOUSE_FILTER_IGNORE
@@ -45,14 +46,18 @@ func _on_resized() -> void:
 	size = bubble.size
 	reset()
 
-func toggle_visible() -> void:
-	visible = not visible
-
 func reset() -> void:
+	for point_key : String in points:
+		if points[point_key] != null:
+			points[point_key].free()
+	
 	points['top_left'] = Point.new('top_left', +default_radius_vector2, default_radius, self)
 	points['top_right'] = Point.new('top_right', Vector2(bubble.size.x, 0) + default_radius_vector2, default_radius, self)
 	points['bottom_left'] = Point.new('bottom_left', Vector2(0, bubble.size.y) + default_radius_vector2, default_radius, self)
 	points['bottom_right'] = Point.new('bottom_right', bubble.size + default_radius_vector2, default_radius, self)
+	
+	for point_key : String in points:
+		points[point_key].set_shader_parameter()
 
 func _set_can_draw(value : bool) -> void:
 	can_draw = value
@@ -61,6 +66,10 @@ func _set_can_draw(value : bool) -> void:
 		point.can_draw = can_draw
 	
 	queue_redraw()
+
+func _set_visible_status(value : bool) -> void:
+	visible = value
+	visible_status = value
 
 func to_dictionary() -> Dictionary:
 	var data : Dictionary = {

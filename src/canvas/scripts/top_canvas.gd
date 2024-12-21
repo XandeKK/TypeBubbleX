@@ -68,6 +68,20 @@ func remove_bubble(bubble : Bubble):
 	bubble.queue_free()
 	Global.bubble_removed.emit(bubble)
 
+func bring_forward(bubble : Bubble) -> bool:
+	if bubble.scene_hierarchy_index + 1 == bubbles.get_child_count():
+		return false
+	else:
+		bubble.update_scene_hierarchy_index(bubble.scene_hierarchy_index + 1)
+	return true
+
+func bring_backward(bubble : Bubble) -> bool:
+	if bubble.scene_hierarchy_index == 0:
+		return false
+	else:
+		bubble.update_scene_hierarchy_index(bubble.scene_hierarchy_index - 1)
+	return true
+
 func clear() -> void:
 	for bubble in bubbles.get_children():
 		remove_bubble(bubble)

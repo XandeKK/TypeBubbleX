@@ -6,13 +6,15 @@ var text : Text : set = set_text
 func get_outlines() -> Array:
 	return get_children()
 
-func add() -> void:
+func add() -> Outline:
 	var outline : Outline = Global.outline_scene.instantiate()
 	
 	add_child(outline)
 	
 	outline.text = text
 	outline.size = size
+	
+	return outline
 
 func remove(outline : Outline) -> void:
 	remove_child(outline)

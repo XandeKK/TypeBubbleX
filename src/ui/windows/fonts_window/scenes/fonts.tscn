@@ -1,0 +1,84 @@
+[gd_scene load_steps=3 format=3 uid="uid://dldrmanjksj7l"]
+
+[ext_resource type="Script" path="res://src/ui/windows/fonts_window/scripts/fonts.gd" id="1_yfynv"]
+[ext_resource type="PackedScene" uid="uid://dfqauvgvylk35" path="res://src/ui/components/scenes/number_box.tscn" id="2_jlhwa"]
+
+[node name="Fonts" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yfynv")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="FontName" type="LineEdit" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="OnlySelected" type="CheckBox" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Only Selected"
+
+[node name="ShowFonts" type="CheckBox" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Show Fonts"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Example" type="LineEdit" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Example"
+
+[node name="FontSize" parent="VBoxContainer/HBoxContainer2" instance=ExtResource("2_jlhwa")]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+value = 25.0
+allow_greater = true
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 2
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="BackButton" type="Button" parent="VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = "<"
+
+[node name="CurrentPage" parent="VBoxContainer/HBoxContainer3" instance=ExtResource("2_jlhwa")]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+show_arrows = false
+alignment = 2
+
+[node name="MaxPage" type="Label" parent="VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = "/1"
+
+[node name="FowardButton" type="Button" parent="VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = ">"
+
+[connection signal="text_changed" from="VBoxContainer/FontName" to="." method="_on_font_name_text_changed"]
+[connection signal="toggled" from="VBoxContainer/HBoxContainer/OnlySelected" to="." method="_on_only_selected_toggled"]
+[connection signal="toggled" from="VBoxContainer/HBoxContainer/ShowFonts" to="." method="_on_show_fonts_toggled"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer3/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="value_changed" from="VBoxContainer/HBoxContainer3/CurrentPage" to="." method="_on_current_page_value_changed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer3/FowardButton" to="." method="_on_foward_button_pressed"]

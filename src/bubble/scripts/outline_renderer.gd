@@ -24,7 +24,7 @@ func draw_glypgh(info : Dictionary) -> void:
 func draw_glyph_on_path(info : Dictionary) -> void:
 	draw_set_transform(info.offset + outline.offset, info.rotation)
 	
-	if not outline.only_outline:
+	if outline.fill:
 		Global.TS.font_draw_glyph(info.glyph.font_rid, canvas_item, info.glyph.font_size, Vector2.ZERO, info.glyph.index, outline.color)
 	
 	Global.TS.font_draw_glyph_outline(info.glyph.font_rid, canvas_item,
@@ -35,7 +35,7 @@ func draw_glyph_on_path(info : Dictionary) -> void:
 func draw_glyph_directly(info : Dictionary) -> void:
 	draw_set_transform(Vector2.ZERO, 0)
 
-	if not outline.only_outline:
+	if outline.fill:
 		Global.TS.font_draw_glyph(info.glyph.font_rid, canvas_item, info.glyph.font_size, info.offset + outline.offset, info.glyph.index, outline.color)
 	
 	Global.TS.font_draw_glyph_outline(info.glyph.font_rid, canvas_item,

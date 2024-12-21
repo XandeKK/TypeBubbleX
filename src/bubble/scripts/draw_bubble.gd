@@ -29,15 +29,15 @@ func draw_focused_elements():
 	
 	# Draw content margin rect
 	var content_rect = Rect2(Vector2(left, top), size - Vector2(right, bottom))
-	draw_polyline(create_packed_vector(content_rect), Preferences.bubble_colors.padding.active, 1, true)
+	draw_polyline(create_packed_vector(content_rect), Preferences.colors.padding.active, 1, true)
 	
 	# Draw text rect
 	var text_rect = Rect2(Vector2.ZERO, size)
-	draw_polyline(create_packed_vector(text_rect), Preferences.bubble_colors.bubble.active, 1, true)
+	draw_polyline(create_packed_vector(text_rect), Preferences.colors.bubble.active, 1, true)
 
 func draw_inactive_text_rect():
 	var text_rect = Rect2(Vector2.ZERO, size)
-	draw_polyline(create_packed_vector(text_rect), Preferences.bubble_colors.bubble.inactive, 1, true)
+	draw_polyline(create_packed_vector(text_rect), Preferences.colors.bubble.inactive, 1, true)
 
 func create_packed_vector(rect : Rect2) -> PackedVector2Array:
 	return PackedVector2Array([

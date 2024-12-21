@@ -1,0 +1,114 @@
+[gd_scene load_steps=3 format=3 uid="uid://xtlwt6gnsqre"]
+
+[ext_resource type="Script" path="res://src/ui/windows/scripts/file_window.gd" id="1_0bbw0"]
+[ext_resource type="PackedScene" uid="uid://5me8mkc6sih3" path="res://src/ui/components/scenes/path_box.tscn" id="2_mqivd"]
+
+[node name="FileWindow" type="Window"]
+disable_3d = true
+initial_position = 2
+size = Vector2i(800, 258)
+wrap_controls = true
+unresizable = true
+script = ExtResource("1_0bbw0")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.4
+text = "Path"
+
+[node name="PathBox" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("2_mqivd")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.4
+text = "Raw"
+
+[node name="RawPathBox" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("2_mqivd")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.4
+text = "Cleaned"
+
+[node name="CleanedPathBox" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2" instance=ExtResource("2_mqivd")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.4
+text = "Comic"
+
+[node name="Comic" type="OptionButton" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+fit_to_longest_item = false
+
+[node name="AI" type="CheckButton" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Enable AI Speech Bubble Detection"
+
+[node name="MarginContainer2" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 20
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 250
+alignment = 1
+
+[node name="Cancel" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer4"]
+layout_mode = 2
+text = "Cancel"
+
+[node name="Ok" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer4"]
+layout_mode = 2
+text = "Ok"
+
+[connection signal="text_changed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PathBox" to="." method="_on_path_box_text_changed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer4/Cancel" to="." method="_on_cancel_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer4/Ok" to="." method="_on_ok_pressed"]

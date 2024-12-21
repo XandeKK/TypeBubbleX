@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=3 uid="uid://5me8mkc6sih3"]
+
+[ext_resource type="Script" path="res://src/ui/components/scripts/path_box.gd" id="1_atr7s"]
+
+[node name="PathBox" type="HBoxContainer"]
+offset_right = 299.0
+offset_bottom = 40.0
+script = ExtResource("1_atr7s")
+
+[node name="LineEdit" type="LineEdit" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 2
+text = " ... "
+
+[node name="FileDialog" type="FileDialog" parent="."]
+title = "Open a Directory"
+ok_button_text = "Select Current Folder"
+file_mode = 2
+access = 2
+filters = PackedStringArray("*")
+use_native_dialog = true
+
+[connection signal="text_changed" from="LineEdit" to="." method="_on_line_edit_text_changed"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="dir_selected" from="FileDialog" to="." method="_on_file_dialog_dir_selected"]

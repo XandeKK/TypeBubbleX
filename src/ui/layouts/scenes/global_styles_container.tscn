@@ -1,0 +1,127 @@
+[gd_scene load_steps=18 format=3 uid="uid://b04sepq5eqvjf"]
+
+[ext_resource type="PackedScene" uid="uid://o8kf2ae17yem" path="res://src/ui/components/scenes/tab_with_icon.tscn" id="1_0nl82"]
+[ext_resource type="Texture2D" uid="uid://bhons8lyfbl1y" path="res://src/ui/assets/icons/Outline.png" id="2_axafd"]
+[ext_resource type="Texture2D" uid="uid://bx1t8jrb37nym" path="res://src/ui/assets/icons/Blur.png" id="3_725sc"]
+[ext_resource type="Texture2D" uid="uid://c6w8j08vhdq62" path="res://src/ui/assets/icons/Motion Blur.png" id="4_b6esm"]
+[ext_resource type="Texture2D" uid="uid://cqkh03xmfkt4e" path="res://src/ui/assets/icons/Perspective Warp.png" id="5_hd5kq"]
+[ext_resource type="Texture2D" uid="uid://dxxgab0p4the" path="res://src/ui/assets/icons/Gradient.png" id="6_eoatu"]
+[ext_resource type="Texture2D" uid="uid://brf2n1oht5lim" path="res://src/ui/assets/icons/Mask Layer.png" id="7_vn7au"]
+[ext_resource type="Texture2D" uid="uid://c5ogodqg7p4t3" path="res://src/ui/assets/icons/Pattern.png" id="8_igstw"]
+[ext_resource type="Texture2D" uid="uid://du61tqgjo3kxb" path="res://src/ui/assets/icons/Path.png" id="9_v8etr"]
+[ext_resource type="PackedScene" uid="uid://dlw7c74g0qfdy" path="res://src/ui/layouts/global_styles/scenes/outline_content.tscn" id="10_ncrh1"]
+[ext_resource type="PackedScene" uid="uid://cjtrjiwpyyow4" path="res://src/ui/layouts/global_styles/scenes/blur_content.tscn" id="11_6hq41"]
+[ext_resource type="PackedScene" uid="uid://tkg87c5r4e1q" path="res://src/ui/layouts/global_styles/scenes/motion_blur_content.tscn" id="12_fwhmc"]
+[ext_resource type="PackedScene" uid="uid://bg3vddwve3raf" path="res://src/ui/layouts/global_styles/scenes/perspective_content.tscn" id="13_jlsn8"]
+[ext_resource type="PackedScene" uid="uid://c2qv0gkyj6mh" path="res://src/ui/layouts/global_styles/scenes/gradient_content.tscn" id="14_jrgh8"]
+[ext_resource type="PackedScene" uid="uid://c736cbfiqka5q" path="res://src/ui/layouts/global_styles/scenes/mask_content.tscn" id="15_0ejpn"]
+[ext_resource type="PackedScene" uid="uid://cdtf3weqnqch6" path="res://src/ui/layouts/global_styles/scenes/pattern_content.tscn" id="16_n2p5n"]
+[ext_resource type="PackedScene" uid="uid://jqj80x1fmo85" path="res://src/ui/layouts/global_styles/scenes/path_content.tscn" id="17_x7ngm"]
+
+[node name="GlobalStylesContainer" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"DockerContent"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HFlowContainer" type="HFlowContainer" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Outline" parent="ScrollContainer/VBoxContainer/HFlowContainer" node_paths=PackedStringArray("content") instance=ExtResource("1_0nl82")]
+layout_mode = 2
+button_pressed = true
+content = NodePath("../../Contents/OutlineContent")
+image = ExtResource("2_axafd")
+
+[node name="Blur" parent="ScrollContainer/VBoxContainer/HFlowContainer" node_paths=PackedStringArray("content") instance=ExtResource("1_0nl82")]
+layout_mode = 2
+content = NodePath("../../Contents/BlurContent")
+image = ExtResource("3_725sc")
+
+[node name="MotionBlur" parent="ScrollContainer/VBoxContainer/HFlowContainer" node_paths=PackedStringArray("content") instance=ExtResource("1_0nl82")]
+layout_mode = 2
+content = NodePath("../../Contents/MotionBlurContent")
+image = ExtResource("4_b6esm")
+
+[node name="Perspective" parent="ScrollContainer/VBoxContainer/HFlowContainer" node_paths=PackedStringArray("content") instance=ExtResource("1_0nl82")]
+layout_mode = 2
+content = NodePath("../../Contents/PerspectiveContent")
+image = ExtResource("5_hd5kq")
+
+[node name="Gradient" parent="ScrollContainer/VBoxContainer/HFlowContainer" node_paths=PackedStringArray("content") instance=ExtResource("1_0nl82")]
+layout_mode = 2
+content = NodePath("../../Contents/GradientScrollContainer/GradientContent")
+image = ExtResource("6_eoatu")
+
+[node name="Mask" parent="ScrollContainer/VBoxContainer/HFlowContainer" node_paths=PackedStringArray("content") instance=ExtResource("1_0nl82")]
+layout_mode = 2
+content = NodePath("../../Contents/MaskContent")
+image = ExtResource("7_vn7au")
+
+[node name="Pattern" parent="ScrollContainer/VBoxContainer/HFlowContainer" node_paths=PackedStringArray("content") instance=ExtResource("1_0nl82")]
+visible = false
+layout_mode = 2
+content = NodePath("../../Contents/PatternContent")
+image = ExtResource("8_igstw")
+
+[node name="Path" parent="ScrollContainer/VBoxContainer/HFlowContainer" node_paths=PackedStringArray("content") instance=ExtResource("1_0nl82")]
+layout_mode = 2
+content = NodePath("../../Contents/PathContent")
+image = ExtResource("9_v8etr")
+
+[node name="Contents" type="Control" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="OutlineContent" parent="ScrollContainer/VBoxContainer/Contents" instance=ExtResource("10_ncrh1")]
+layout_mode = 1
+
+[node name="BlurContent" parent="ScrollContainer/VBoxContainer/Contents" instance=ExtResource("11_6hq41")]
+visible = false
+layout_mode = 1
+
+[node name="MotionBlurContent" parent="ScrollContainer/VBoxContainer/Contents" instance=ExtResource("12_fwhmc")]
+visible = false
+layout_mode = 1
+
+[node name="PerspectiveContent" parent="ScrollContainer/VBoxContainer/Contents" instance=ExtResource("13_jlsn8")]
+visible = false
+layout_mode = 1
+
+[node name="GradientScrollContainer" type="ScrollContainer" parent="ScrollContainer/VBoxContainer/Contents"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="GradientContent" parent="ScrollContainer/VBoxContainer/Contents/GradientScrollContainer" instance=ExtResource("14_jrgh8")]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MaskContent" parent="ScrollContainer/VBoxContainer/Contents" instance=ExtResource("15_0ejpn")]
+visible = false
+layout_mode = 1
+
+[node name="PatternContent" parent="ScrollContainer/VBoxContainer/Contents" instance=ExtResource("16_n2p5n")]
+visible = false
+layout_mode = 1
+
+[node name="PathContent" parent="ScrollContainer/VBoxContainer/Contents" instance=ExtResource("17_x7ngm")]
+visible = false
+layout_mode = 1

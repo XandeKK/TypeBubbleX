@@ -1,0 +1,34 @@
+[gd_scene load_steps=4 format=3 uid="uid://bwifx3xlf2s4p"]
+
+[ext_resource type="Script" path="res://src/ui/layouts/gradient/scripts/gradient_1d_editor.gd" id="1_1rfmr"]
+[ext_resource type="Script" path="res://src/ui/layouts/gradient/scripts/1d_editor.gd" id="2_o3cla"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y6pnj"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+
+[node name="Gradient1DEditor" type="PanelContainer"]
+custom_minimum_size = Vector2(100, 10)
+offset_right = 239.0
+offset_bottom = 30.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_y6pnj")
+script = ExtResource("1_1rfmr")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="1DEditor" type="Control" parent="HBoxContainer" node_paths=PackedStringArray("color_picker")]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("2_o3cla")
+color_picker = NodePath("../ColorPickerButton")
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="HBoxContainer"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+text = " "
+
+[connection signal="color_changed" from="HBoxContainer/ColorPickerButton" to="HBoxContainer/1DEditor" method="_on_color_picker_button_color_changed"]

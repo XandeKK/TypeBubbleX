@@ -1,0 +1,74 @@
+[gd_scene load_steps=2 format=3 uid="uid://c736cbfiqka5q"]
+
+[ext_resource type="Script" path="res://src/ui/layouts/global_styles/scripts/mask_content.gd" id="1_ee5xe"]
+
+[node name="MaskContent" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ee5xe")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Enable" type="CheckButton" parent="VBoxContainer"]
+layout_mode = 2
+text = "Enable"
+
+[node name="Drawing" type="CheckButton" parent="VBoxContainer"]
+layout_mode = 2
+text = "Drawing"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Opacity"
+
+[node name="OpacityNumber" type="Label" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Opacity" type="HSlider" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1.0
+step = 0.1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Radius"
+
+[node name="RadiusNumber" type="Label" parent="VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Radius" type="HSlider" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 5.0
+value = 5.0
+
+[node name="Reset" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Reset"
+
+[connection signal="toggled" from="VBoxContainer/Enable" to="." method="_on_enable_toggled"]
+[connection signal="toggled" from="VBoxContainer/Drawing" to="." method="_on_drawing_toggled"]
+[connection signal="value_changed" from="VBoxContainer/HBoxContainer/Opacity" to="." method="_on_opacity_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/HBoxContainer2/Radius" to="." method="_on_radius_value_changed"]
+[connection signal="pressed" from="VBoxContainer/Reset" to="." method="_on_reset_pressed"]

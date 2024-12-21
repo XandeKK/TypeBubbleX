@@ -2,14 +2,12 @@
 
 [ext_resource type="Script" path="res://src/bubble/scripts/gradient_text.gd" id="1_7pxnb"]
 
-[sub_resource type="Gradient" id="Gradient_5cxj1"]
+[sub_resource type="Gradient" id="Gradient_emnre"]
 resource_local_to_scene = true
-colors = PackedColorArray(0, 0, 0, 1, 0.15625, 0, 1, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_18sel"]
 resource_local_to_scene = true
-gradient = SubResource("Gradient_5cxj1")
-fill_to = Vector2(0.883191, 0.988604)
+gradient = SubResource("Gradient_emnre")
 
 [node name="GradientText" type="TextureRect"]
 offset_right = 64.0

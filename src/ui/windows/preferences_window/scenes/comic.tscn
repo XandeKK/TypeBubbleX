@@ -1,0 +1,84 @@
+[gd_scene load_steps=4 format=3 uid="uid://cuo5k8h2lg80p"]
+
+[ext_resource type="Script" path="res://src/ui/windows/preferences_window/scripts/comic.gd" id="1_dc7qc"]
+[ext_resource type="PackedScene" uid="uid://c86v8bt5b1ilb" path="res://src/ui/components/scenes/auto_complete_box.tscn" id="2_fmh8s"]
+[ext_resource type="PackedScene" uid="uid://dfqauvgvylk35" path="res://src/ui/components/scenes/number_box.tscn" id="3_x1bjo"]
+
+[node name="comic" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dc7qc")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="Delete" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = " X "
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.4
+text = "Name"
+
+[node name="Name" type="LineEdit" parent="VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.4
+text = "Default Font
+"
+
+[node name="DefaultFont" parent="VBoxContainer/HBoxContainer2" instance=ExtResource("2_fmh8s")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.4
+text = "Font Size"
+
+[node name="FontSize" parent="VBoxContainer/HBoxContainer3" instance=ExtResource("3_x1bjo")]
+layout_mode = 2
+size_flags_horizontal = 3
+suffix = "PX"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.4
+text = "Comic Type"
+
+[node name="ComicType" type="OptionButton" parent="VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Delete" to="." method="_on_delete_pressed"]
+[connection signal="text_changed" from="VBoxContainer/HBoxContainer5/Name" to="." method="_on_name_text_changed"]
+[connection signal="value_changed" from="VBoxContainer/HBoxContainer2/DefaultFont" to="." method="_on_default_font_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/HBoxContainer3/FontSize" to="." method="_on_font_size_value_changed"]
+[connection signal="item_selected" from="VBoxContainer/HBoxContainer4/ComicType" to="." method="_on_comic_type_item_selected"]

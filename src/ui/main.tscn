@@ -1,0 +1,90 @@
+[gd_scene load_steps=9 format=3 uid="uid://rbwldc317x7s"]
+
+[ext_resource type="PackedScene" uid="uid://pbmsj3g4ga8k" path="res://src/ui/layouts/scenes/menu_bar.tscn" id="1_ov5yu"]
+[ext_resource type="PackedScene" uid="uid://b1pix4taaapgw" path="res://src/ui/components/scenes/docker.tscn" id="2_b1x4t"]
+[ext_resource type="PackedScene" uid="uid://c3ar0fxse5ehv" path="res://src/canvas/scenes/top_canvas.tscn" id="2_v2j8t"]
+[ext_resource type="PackedScene" uid="uid://bo5uh50evmmnc" path="res://src/ui/layouts/scenes/properties_container.tscn" id="3_2lh36"]
+[ext_resource type="PackedScene" uid="uid://boj43n885usti" path="res://src/ui/layouts/scenes/text_container.tscn" id="4_yfeja"]
+[ext_resource type="PackedScene" uid="uid://b04sepq5eqvjf" path="res://src/ui/layouts/scenes/global_styles_container.tscn" id="6_m2eq1"]
+[ext_resource type="PackedScene" uid="uid://cpkjmjvsbrsg5" path="res://src/ui/layouts/scenes/local_styles_container.tscn" id="7_vlt68"]
+[ext_resource type="PackedScene" uid="uid://divo8gkmvrrol" path="res://src/ui/layouts/scenes/layers_container.tscn" id="8_lnejy"]
+
+[node name="Main" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"Main"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="MenuBar" parent="VBoxContainer" instance=ExtResource("1_ov5yu")]
+layout_mode = 2
+
+[node name="HSplitContainer" type="HSplitContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VSplitContainer" type="VSplitContainer" parent="VBoxContainer/HSplitContainer"]
+custom_minimum_size = Vector2(235, 0)
+layout_mode = 2
+
+[node name="Docker" parent="VBoxContainer/HSplitContainer/VSplitContainer" instance=ExtResource("2_b1x4t")]
+layout_mode = 2
+size_flags_vertical = 3
+theme_type_variation = &"Docker"
+current_tab = 0
+
+[node name="PropertiesContainer" parent="VBoxContainer/HSplitContainer/VSplitContainer/Docker" instance=ExtResource("3_2lh36")]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="Docker2" parent="VBoxContainer/HSplitContainer/VSplitContainer" instance=ExtResource("2_b1x4t")]
+layout_mode = 2
+size_flags_vertical = 3
+theme_type_variation = &"Docker"
+current_tab = 0
+
+[node name="TextContainer" parent="VBoxContainer/HSplitContainer/VSplitContainer/Docker2" instance=ExtResource("4_yfeja")]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="HSplitContainer" type="HSplitContainer" parent="VBoxContainer/HSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TopCanvas" parent="VBoxContainer/HSplitContainer/HSplitContainer" instance=ExtResource("2_v2j8t")]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VSplitContainer" type="VSplitContainer" parent="VBoxContainer/HSplitContainer/HSplitContainer"]
+custom_minimum_size = Vector2(235, 0)
+layout_mode = 2
+
+[node name="Docker" parent="VBoxContainer/HSplitContainer/HSplitContainer/VSplitContainer" instance=ExtResource("2_b1x4t")]
+layout_mode = 2
+size_flags_vertical = 3
+theme_type_variation = &"Docker"
+current_tab = 0
+
+[node name="GlobalStylesContainer" parent="VBoxContainer/HSplitContainer/HSplitContainer/VSplitContainer/Docker" instance=ExtResource("6_m2eq1")]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="LocalStylesContainer" parent="VBoxContainer/HSplitContainer/HSplitContainer/VSplitContainer/Docker" instance=ExtResource("7_vlt68")]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="Docker2" parent="VBoxContainer/HSplitContainer/HSplitContainer/VSplitContainer" instance=ExtResource("2_b1x4t")]
+layout_mode = 2
+size_flags_vertical = 3
+theme_type_variation = &"Docker"
+current_tab = 0
+
+[node name="LayersContainer" parent="VBoxContainer/HSplitContainer/HSplitContainer/VSplitContainer/Docker2" instance=ExtResource("8_lnejy")]
+layout_mode = 2
+metadata/_tab_index = 0

@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=3 uid="uid://c86v8bt5b1ilb"]
+
+[ext_resource type="Script" path="res://src/ui/components/scripts/auto_complete_box.gd" id="1_4jtnl"]
+
+[node name="AutoCompleteBox" type="LineEdit"]
+offset_right = 175.0
+offset_bottom = 31.0
+virtual_keyboard_enabled = false
+script = ExtResource("1_4jtnl")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PopUp" type="PanelContainer" parent="CanvasLayer"]
+visible = false
+offset_right = 299.0
+offset_bottom = 197.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/PopUp"]
+layout_mode = 2
+
+[node name="Suggestions" type="VBoxContainer" parent="CanvasLayer/PopUp/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[connection signal="focus_exited" from="." to="." method="_on_focus_exited"]
+[connection signal="text_changed" from="." to="." method="_on_text_changed"]
+[connection signal="text_submitted" from="." to="." method="_on_text_submitted"]

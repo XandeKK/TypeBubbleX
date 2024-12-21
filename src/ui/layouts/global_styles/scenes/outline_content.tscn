@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://dlw7c74g0qfdy"]
+
+[ext_resource type="Script" path="res://src/ui/layouts/global_styles/scripts/outline_content.gd" id="1_tvpn4"]
+
+[node name="OutlineContent" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tvpn4")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Add" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = " + "
+
+[node name="TabContainer" type="TabContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[connection signal="pressed" from="VBoxContainer/Add" to="." method="_on_add_pressed"]

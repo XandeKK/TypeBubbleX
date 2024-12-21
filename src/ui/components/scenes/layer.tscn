@@ -1,0 +1,40 @@
+[gd_scene load_steps=3 format=3 uid="uid://dkqqdeoehknrm"]
+
+[ext_resource type="Script" path="res://src/ui/components/scripts/layer.gd" id="1_aanlg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_aybd0"]
+
+[node name="Layer" type="PanelContainer"]
+offset_right = 369.0
+offset_bottom = 25.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_aybd0")
+script = ExtResource("1_aanlg")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 2
+toggle_mode = true
+text = " "
+alignment = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="Button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Button/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Button/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Layer"
+text_overrun_behavior = 3
+
+[connection signal="toggled" from="Button" to="." method="_on_button_toggled"]

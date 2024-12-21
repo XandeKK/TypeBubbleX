@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://3njfo2w7tevd"]
+
+[ext_resource type="Script" path="res://src/ui/layouts/gradient/scripts/gradient_2d_editor.gd" id="1_i5801"]
+
+[node name="Gradient2DEditor" type="Control"]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 150.0
+offset_bottom = 150.0
+script = ExtResource("1_i5801")

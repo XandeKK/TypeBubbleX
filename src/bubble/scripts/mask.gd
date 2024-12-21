@@ -2,7 +2,7 @@ class_name Mask
 extends Control
 
 var sub_viewport : SubViewport
-var brush_cursor : Control : set = _set_brush_cursor
+var brush_cursor : BrushCursor : set = _set_brush_cursor
 
 var redo_stack : Array
 var undo_stack : Array
@@ -94,6 +94,11 @@ func undo() -> void:
 	redo_stack.append(sub_viewport.get_texture().get_image())
 	image_texture = ImageTexture.create_from_image(image)
 
+func reset() -> void:
+	var image = Image.create(size.x as int, size.y as int, true, Image.FORMAT_RGBA8)
+	image.fill(Color.BLACK)
+	image_texture = ImageTexture.create_from_image(image)
+
 func _set_image_texture(value : ImageTexture) -> void:
 	image_texture = value
 	is_texture_ready = true
@@ -104,7 +109,7 @@ func _set_width(value : int) -> void:
 	width = value
 	brush_cursor.width = width
 
-func _set_brush_cursor(value : Control) -> void:
+func _set_brush_cursor(value : BrushCursor) -> void:
 	brush_cursor = value
 	brush_cursor.width = width
 

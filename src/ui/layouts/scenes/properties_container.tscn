@@ -1,0 +1,238 @@
+[gd_scene load_steps=22 format=3 uid="uid://bo5uh50evmmnc"]
+
+[ext_resource type="Script" path="res://src/ui/layouts/scripts/properties_container.gd" id="1_n4mn2"]
+[ext_resource type="PackedScene" uid="uid://c86v8bt5b1ilb" path="res://src/ui/components/scenes/auto_complete_box.tscn" id="2_v0qgv"]
+[ext_resource type="PackedScene" uid="uid://dfqauvgvylk35" path="res://src/ui/components/scenes/number_box.tscn" id="3_m3oty"]
+[ext_resource type="PackedScene" uid="uid://cxbgd6gmhxcra" path="res://src/ui/components/scenes/button_with_icon.tscn" id="4_bb4jn"]
+[ext_resource type="Texture2D" uid="uid://1f4gwc6qkesx" path="res://src/ui/assets/icons/Bold.png" id="5_rd71p"]
+[ext_resource type="Texture2D" uid="uid://8mjt5518wudt" path="res://src/ui/assets/icons/Italic.png" id="6_st4d8"]
+[ext_resource type="Texture2D" uid="uid://b5safjtavucam" path="res://src/ui/assets/icons/Uppercase.png" id="7_x5cyt"]
+[ext_resource type="Texture2D" uid="uid://b417ywowmysdy" path="res://src/ui/assets/icons/Tracking.png" id="8_28p4f"]
+[ext_resource type="PackedScene" uid="uid://b2f1cgjb6ad1u" path="res://src/ui/components/scenes/input_icon.tscn" id="8_ks3d5"]
+[ext_resource type="Texture2D" uid="uid://ceefs2xxjcunu" path="res://src/ui/assets/icons/Leading.png" id="9_bws7k"]
+[ext_resource type="Texture2D" uid="uid://des0pcsv3qiy3" path="res://src/ui/assets/icons/Alignment Bottom.png" id="10_4i7jh"]
+[ext_resource type="Texture2D" uid="uid://buexc2gtn73nm" path="res://src/ui/assets/icons/Alignment Middle.png" id="11_pt0w4"]
+[ext_resource type="Texture2D" uid="uid://boqspagoskqb6" path="res://src/ui/assets/icons/Alignment Top.png" id="12_8rtos"]
+[ext_resource type="Texture2D" uid="uid://ddnyosalgtv4j" path="res://src/ui/assets/icons/Alignment Left.png" id="13_2dn4f"]
+[ext_resource type="Texture2D" uid="uid://cm1rjrhhb5xh8" path="res://src/ui/assets/icons/Alignment Center.png" id="14_0gl5s"]
+[ext_resource type="Texture2D" uid="uid://b06wlnoqgu36w" path="res://src/ui/assets/icons/Alignment Right.png" id="15_af5t3"]
+[ext_resource type="Texture2D" uid="uid://dm346je2qanlp" path="res://src/ui/assets/icons/Rotation.png" id="16_rwiil"]
+[ext_resource type="Texture2D" uid="uid://cfvyqup56xvj6" path="res://src/ui/assets/icons/Padding Right.png" id="17_gbsml"]
+[ext_resource type="Texture2D" uid="uid://b0a2dtyxsv7ea" path="res://src/ui/assets/icons/Padding Left.png" id="18_315ma"]
+[ext_resource type="Texture2D" uid="uid://c3b6pfwibkxq5" path="res://src/ui/assets/icons/Padding Top.png" id="19_67wfe"]
+[ext_resource type="Texture2D" uid="uid://clsxh6wx0ed23" path="res://src/ui/assets/icons/Padding Bottom.png" id="20_0hedj"]
+
+[node name="PropertiesContainer" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"DockerContent"
+script = ExtResource("1_n4mn2")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 3
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Fonts"
+
+[node name="Font" parent="ScrollContainer/VBoxContainer" instance=ExtResource("2_v0qgv")]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="FontSize" parent="ScrollContainer/VBoxContainer/HBoxContainer" instance=ExtResource("3_m3oty")]
+layout_mode = 2
+size_flags_horizontal = 3
+allow_lesser = false
+suffix = "PX"
+
+[node name="Color" type="ColorPickerButton" parent="ScrollContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Bold" parent="ScrollContainer/VBoxContainer/HBoxContainer2" instance=ExtResource("4_bb4jn")]
+layout_mode = 2
+toggle_mode = true
+image = ExtResource("5_rd71p")
+
+[node name="Italic" parent="ScrollContainer/VBoxContainer/HBoxContainer2" instance=ExtResource("4_bb4jn")]
+layout_mode = 2
+toggle_mode = true
+image = ExtResource("6_st4d8")
+
+[node name="Uppercase" parent="ScrollContainer/VBoxContainer/HBoxContainer2" instance=ExtResource("4_bb4jn")]
+layout_mode = 2
+toggle_mode = true
+image = ExtResource("7_x5cyt")
+
+[node name="HBoxContainer9" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer9"]
+layout_mode = 2
+
+[node name="AlignmentLeft" parent="ScrollContainer/VBoxContainer/HBoxContainer9/HBoxContainer5" instance=ExtResource("4_bb4jn")]
+layout_mode = 2
+toggle_mode = true
+image = ExtResource("13_2dn4f")
+
+[node name="AlignmentCenter" parent="ScrollContainer/VBoxContainer/HBoxContainer9/HBoxContainer5" instance=ExtResource("4_bb4jn")]
+layout_mode = 2
+toggle_mode = true
+image = ExtResource("14_0gl5s")
+
+[node name="AlignmentRight" parent="ScrollContainer/VBoxContainer/HBoxContainer9/HBoxContainer5" instance=ExtResource("4_bb4jn")]
+layout_mode = 2
+toggle_mode = true
+image = ExtResource("15_af5t3")
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer9"]
+layout_mode = 2
+
+[node name="AlignmentBottom" parent="ScrollContainer/VBoxContainer/HBoxContainer9/HBoxContainer4" instance=ExtResource("4_bb4jn")]
+layout_mode = 2
+toggle_mode = true
+image = ExtResource("10_4i7jh")
+
+[node name="AlignmentMiddle" parent="ScrollContainer/VBoxContainer/HBoxContainer9/HBoxContainer4" instance=ExtResource("4_bb4jn")]
+layout_mode = 2
+toggle_mode = true
+image = ExtResource("11_pt0w4")
+
+[node name="AlignmentTop" parent="ScrollContainer/VBoxContainer/HBoxContainer9/HBoxContainer4" instance=ExtResource("4_bb4jn")]
+layout_mode = 2
+toggle_mode = true
+image = ExtResource("12_8rtos")
+
+[node name="HBoxContainer6" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="InputIcon" parent="ScrollContainer/VBoxContainer/HBoxContainer6" instance=ExtResource("8_ks3d5")]
+layout_mode = 2
+icon = ExtResource("16_rwiil")
+
+[node name="Rotation" parent="ScrollContainer/VBoxContainer/HBoxContainer6" instance=ExtResource("3_m3oty")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="InputIcon" parent="ScrollContainer/VBoxContainer/HBoxContainer3/HBoxContainer3" instance=ExtResource("8_ks3d5")]
+layout_mode = 2
+icon = ExtResource("8_28p4f")
+
+[node name="Tracking" parent="ScrollContainer/VBoxContainer/HBoxContainer3/HBoxContainer3" instance=ExtResource("3_m3oty")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="InputIcon" parent="ScrollContainer/VBoxContainer/HBoxContainer3/HBoxContainer4" instance=ExtResource("8_ks3d5")]
+layout_mode = 2
+icon = ExtResource("9_bws7k")
+
+[node name="Leading" parent="ScrollContainer/VBoxContainer/HBoxContainer3/HBoxContainer4" instance=ExtResource("3_m3oty")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer7" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer7"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="InputIcon" parent="ScrollContainer/VBoxContainer/HBoxContainer7/HBoxContainer3" instance=ExtResource("8_ks3d5")]
+layout_mode = 2
+icon = ExtResource("17_gbsml")
+
+[node name="PaddingLeft" parent="ScrollContainer/VBoxContainer/HBoxContainer7/HBoxContainer3" instance=ExtResource("3_m3oty")]
+layout_mode = 2
+size_flags_horizontal = 3
+allow_lesser = false
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer7"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="InputIcon" parent="ScrollContainer/VBoxContainer/HBoxContainer7/HBoxContainer4" instance=ExtResource("8_ks3d5")]
+layout_mode = 2
+icon = ExtResource("18_315ma")
+
+[node name="PaddingRight" parent="ScrollContainer/VBoxContainer/HBoxContainer7/HBoxContainer4" instance=ExtResource("3_m3oty")]
+layout_mode = 2
+size_flags_horizontal = 3
+allow_lesser = false
+
+[node name="HBoxContainer8" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer8"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="InputIcon" parent="ScrollContainer/VBoxContainer/HBoxContainer8/HBoxContainer3" instance=ExtResource("8_ks3d5")]
+layout_mode = 2
+icon = ExtResource("19_67wfe")
+
+[node name="PaddingBottom" parent="ScrollContainer/VBoxContainer/HBoxContainer8/HBoxContainer3" instance=ExtResource("3_m3oty")]
+layout_mode = 2
+size_flags_horizontal = 3
+allow_lesser = false
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer8"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="InputIcon" parent="ScrollContainer/VBoxContainer/HBoxContainer8/HBoxContainer4" instance=ExtResource("8_ks3d5")]
+layout_mode = 2
+icon = ExtResource("20_0hedj")
+
+[node name="PaddingTop" parent="ScrollContainer/VBoxContainer/HBoxContainer8/HBoxContainer4" instance=ExtResource("3_m3oty")]
+layout_mode = 2
+size_flags_horizontal = 3
+allow_lesser = false
+
+[connection signal="value_changed" from="ScrollContainer/VBoxContainer/Font" to="." method="_on_font_value_changed"]
+[connection signal="value_changed" from="ScrollContainer/VBoxContainer/HBoxContainer/FontSize" to="." method="_on_font_size_value_changed"]
+[connection signal="color_changed" from="ScrollContainer/VBoxContainer/HBoxContainer/Color" to="." method="_on_color_color_changed"]
+[connection signal="toggled" from="ScrollContainer/VBoxContainer/HBoxContainer2/Bold" to="." method="_on_bold_toggled"]
+[connection signal="toggled" from="ScrollContainer/VBoxContainer/HBoxContainer2/Italic" to="." method="_on_italic_toggled"]
+[connection signal="toggled" from="ScrollContainer/VBoxContainer/HBoxContainer2/Uppercase" to="." method="_on_uppercase_toggled"]
+[connection signal="toggled" from="ScrollContainer/VBoxContainer/HBoxContainer9/HBoxContainer5/AlignmentLeft" to="." method="_on_alignment_left_toggled"]
+[connection signal="toggled" from="ScrollContainer/VBoxContainer/HBoxContainer9/HBoxContainer5/AlignmentCenter" to="." method="_on_alignment_center_toggled"]
+[connection signal="toggled" from="ScrollContainer/VBoxContainer/HBoxContainer9/HBoxContainer5/AlignmentRight" to="." method="_on_alignment_right_toggled"]
+[connection signal="toggled" from="ScrollContainer/VBoxContainer/HBoxContainer9/HBoxContainer4/AlignmentBottom" to="." method="_on_alignment_bottom_toggled"]
+[connection signal="toggled" from="ScrollContainer/VBoxContainer/HBoxContainer9/HBoxContainer4/AlignmentMiddle" to="." method="_on_alignment_middle_toggled"]
+[connection signal="toggled" from="ScrollContainer/VBoxContainer/HBoxContainer9/HBoxContainer4/AlignmentTop" to="." method="_on_alignment_top_toggled"]
+[connection signal="value_changed" from="ScrollContainer/VBoxContainer/HBoxContainer6/Rotation" to="." method="_on_rotation_value_changed"]
+[connection signal="value_changed" from="ScrollContainer/VBoxContainer/HBoxContainer3/HBoxContainer3/Tracking" to="." method="_on_tracking_value_changed"]
+[connection signal="value_changed" from="ScrollContainer/VBoxContainer/HBoxContainer3/HBoxContainer4/Leading" to="." method="_on_leading_value_changed"]
+[connection signal="value_changed" from="ScrollContainer/VBoxContainer/HBoxContainer7/HBoxContainer3/PaddingLeft" to="." method="_on_padding_left_value_changed"]
+[connection signal="value_changed" from="ScrollContainer/VBoxContainer/HBoxContainer7/HBoxContainer4/PaddingRight" to="." method="_on_padding_right_value_changed"]
+[connection signal="value_changed" from="ScrollContainer/VBoxContainer/HBoxContainer8/HBoxContainer3/PaddingBottom" to="." method="_on_padding_bottom_value_changed"]
+[connection signal="value_changed" from="ScrollContainer/VBoxContainer/HBoxContainer8/HBoxContainer4/PaddingTop" to="." method="_on_padding_top_value_changed"]

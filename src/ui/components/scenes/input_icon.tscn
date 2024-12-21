@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://b2f1cgjb6ad1u"]
+
+[ext_resource type="Script" path="res://src/ui/components/scripts/input_icon.gd" id="1_x8mnn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yp0su"]
+content_margin_left = 1.0
+content_margin_top = 1.0
+content_margin_right = 1.0
+content_margin_bottom = 1.0
+
+[node name="InputIcon" type="PanelContainer"]
+custom_minimum_size = Vector2(24, 24)
+offset_right = 24.0
+offset_bottom = 24.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_yp0su")
+script = ExtResource("1_x8mnn")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 2
+expand_mode = 2
+stretch_mode = 4
