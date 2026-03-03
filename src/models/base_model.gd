@@ -55,6 +55,15 @@ func from_dict(data : Dictionary) -> void:
 		if key in self:
 			set(key, data[key])
 
+func load_by_id(target_id : String) -> bool:
+	var results = DBClient.select_where(table_name, "id = '" + target_id + "'")
+	
+	if results.size() > 0:
+		from_dict(results[0])
+		return true
+	
+	return false
+
 func save() -> bool:
 	var data = get_db_properties()
 	
@@ -64,6 +73,18 @@ func save() -> bool:
 		return not DBClient.insert(table_name, data).is_empty()
 	else:
 		return DBClient.update(table_name, id, data)
+
+func delete() -> bool:
+	if id == "":
+		push_warning("Attempt to delete an object without an ID (not persisted).")
+		return false
+	
+	var success : bool = DBClient.delete(table_name, "id = '" + id + "'")
+	
+	if success:
+		id = ""
+		
+	return success
 
 func all() -> Array:
 	return find_all("")
@@ -91,18 +112,6 @@ func find_by(column: String, value: Variant) -> bool:
 		return true
 	return false
 
-func delete() -> bool:
-	if id == "":
-		push_warning("Attempt to delete an object without an ID (not persisted).")
-		return false
-	
-	var success : bool = DBClient.delete(table_name, "id = '" + id + "'")
-	
-	if success:
-		id = ""
-		
-	return success
-
 func find_all_like(column: String, search_term: String) -> Array:
 	var results : Array = DBClient.select_like_bound(table_name, column, search_term)
 	var list : Array = []
@@ -129,15 +138,6 @@ func find_all(where_clause: String = "") -> Array:
 		list.append(obj)
 		
 	return list
-
-func load_by_id(target_id : String) -> bool:
-	var results = DBClient.select_where(table_name, "id = '" + target_id + "'")
-	
-	if results.size() > 0:
-		from_dict(results[0])
-		return true
-	
-	return false
 
 func _to_string() -> String:
 	var props = get_db_properties()

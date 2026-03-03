@@ -1,10 +1,11 @@
 extends Node
 
 var db : SQLite
-var db_path : String = "user://database.db"
+var db_path : String = ""
 var verbosity_level : int = SQLite.NORMAL
 
-func _ready() -> void:
+func open_db(_db_path : String) -> void:
+	db_path = _db_path
 	_connect_to_db()
 
 func _connect_to_db() -> void:
@@ -27,6 +28,15 @@ func insert(table_name : String, data : Dictionary) -> String:
 func update(table_name : String, id : String, data : Dictionary) -> bool:
 	var condition = 'id = "' + str(id) + '"'
 	return db.update_rows(table_name, condition, data)
+
+func count(table_name : String, condition : String = "") -> int:
+	var query : String = "SELECT COUNT(*) as total FROM %s" % table_name
+	if condition != "":
+		query += " WHERE %s" % condition
+	
+	if db.query(query):
+		return int(db.query_result[0].get("total", 0))
+	return 0
 
 func select_all(table_name : String) -> Array:
 	return db.select_rows(table_name, "", ["*"])
