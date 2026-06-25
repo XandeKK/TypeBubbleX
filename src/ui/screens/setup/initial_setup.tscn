@@ -1,0 +1,108 @@
+[gd_scene format=3 uid="uid://bo3xpa5byfjaa"]
+
+[ext_resource type="Script" uid="uid://dbvaakdfaohf0" path="res://src/ui/screens/setup/initial_setup.gd" id="1_fyu2k"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fyu2k"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[node name="InitialSetup" type="Window" unique_id=641025840]
+oversampling_override = 1.0
+title = "Initial Setup"
+initial_position = 2
+size = Vector2i(570, 350)
+unresizable = true
+borderless = true
+script = ExtResource("1_fyu2k")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=808807884]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_fyu2k")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=446271165]
+layout_mode = 2
+
+[node name="InitialSetupLabel" type="Label" parent="PanelContainer/VBoxContainer" unique_id=136288194]
+layout_mode = 2
+text = "Initial Setup"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=1914602359]
+layout_mode = 2
+
+[node name="PathLabel" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer" unique_id=82812828]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Path:"
+
+[node name="CreateFolderCheckButton" type="CheckButton" parent="PanelContainer/VBoxContainer/HBoxContainer" unique_id=671082603]
+layout_mode = 2
+button_pressed = true
+text = "Create Folder"
+
+[node name="PathHBox" type="HBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=1055051522]
+layout_mode = 2
+
+[node name="PathLineEdit" type="LineEdit" parent="PanelContainer/VBoxContainer/PathHBox" unique_id=1283711274]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="StatusIcon" type="TextureRect" parent="PanelContainer/VBoxContainer/PathHBox" unique_id=514700439]
+layout_mode = 2
+
+[node name="FileDialogButton" type="Button" parent="PanelContainer/VBoxContainer/PathHBox" unique_id=1964323555]
+layout_mode = 2
+text = "..."
+
+[node name="MessageLabel" type="Label" parent="PanelContainer/VBoxContainer" unique_id=1396466370]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+text = "Message"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="NoteLabel" type="Label" parent="PanelContainer/VBoxContainer" unique_id=2044616490]
+custom_minimum_size = Vector2(550, 90)
+layout_mode = 2
+text = "Set the directory for storing configurations and works.
+If you already have a previously used directory, select it to automatically load your data.
+Important: Do not delete this directory; otherwise, all your data will be lost."
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Space" type="Control" parent="PanelContainer/VBoxContainer" unique_id=676711119]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ActionHBox" type="HBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=2036962070]
+layout_mode = 2
+alignment = 1
+
+[node name="ActionButton" type="Button" parent="PanelContainer/VBoxContainer/ActionHBox" unique_id=1726042161]
+layout_mode = 2
+text = "create"
+
+[node name="FileDialog" type="FileDialog" parent="." unique_id=185560693]
+title = "Open a Directory"
+file_mode = 2
+use_native_dialog = true
+
+[connection signal="toggled" from="PanelContainer/VBoxContainer/HBoxContainer/CreateFolderCheckButton" to="." method="_on_create_folder_check_button_toggled"]
+[connection signal="text_changed" from="PanelContainer/VBoxContainer/PathHBox/PathLineEdit" to="." method="_on_path_line_edit_text_changed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/PathHBox/FileDialogButton" to="." method="_on_file_dialog_button_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/ActionHBox/ActionButton" to="." method="_on_action_button_pressed"]
+[connection signal="dir_selected" from="FileDialog" to="." method="_on_file_dialog_dir_selected"]

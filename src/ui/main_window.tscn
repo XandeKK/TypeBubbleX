@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://cdr23ot0jbp8q"]
+
+[ext_resource type="Script" uid="uid://cm428hngxcyv0" path="res://src/ui/main_window.gd" id="1_6j0p2"]
+[ext_resource type="PackedScene" uid="uid://bo3xpa5byfjaa" path="res://src/ui/screens/setup/initial_setup.tscn" id="2_0nvd1"]
+
+[node name="MainWindow" type="Control" unique_id=613315897]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6j0p2")
+
+[node name="InitialSetup" parent="." unique_id=641025840 instance=ExtResource("2_0nvd1")]
+visible = false
+
+[node name="ErrorDialog" type="AcceptDialog" parent="." unique_id=1507711875]
+oversampling_override = 1.0
+title = "Error!"
+size = Vector2i(330, 100)
+unresizable = true
+borderless = true
+force_native = true
+ok_button_text = "OK"
+dialog_close_on_escape = false
+dialog_autowrap = true
+
+[connection signal="confirmed" from="ErrorDialog" to="." method="_on_error_dialog_confirmed"]
