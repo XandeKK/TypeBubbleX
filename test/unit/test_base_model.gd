@@ -183,7 +183,7 @@ func test_delete_non_persisted_record() -> void:
 
 func test_load_by_id_not_found() -> void:
 	var work : Work = Work.new()
-	var exists : bool = work.load_by_id("id-que-nao-existe")
+	var exists : bool = work.load_by_id("id-that-does-not-exist")
 	
 	assert_false(exists, "Should return false if ID does not exist in database")
 

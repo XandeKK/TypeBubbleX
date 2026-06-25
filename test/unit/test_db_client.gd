@@ -115,8 +115,8 @@ func test_unicode_storage():
 	DBClient.insert(test_table, emoji_data)
 	var result = DBClient.select_where(test_table, "id = '" + emoji_data.id + "'")
 	
-	assert_eq(result[0]["original_title"], "One Piece 🏴‍☠️ 🔥", "Falha ao salvar Emojis")
-	assert_eq(result[0]["translated_title"], "ワンピース", "Falha ao salvar caracteres não-ASCII")
+	assert_eq(result[0]["original_title"], "One Piece 🏴‍☠️ 🔥", "Should Not Fail when saving Emojis")
+	assert_eq(result[0]["translated_title"], "ワンピース", "Should not Fail when saving non-ASCII characters")
 
 class TestFileDatabase:
 	extends GutTest
