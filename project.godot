@@ -16,13 +16,29 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 
 config/name="TypeBubbleX"
 config/features=PackedStringArray("4.7", "Forward Plus")
+run/low_processor_mode=true
 config/icon="res://icon.svg"
+
+[audio]
+
+driver/driver="Dummy"
 
 [autoload]
 
 Preference="*uid://c5ve47eeodbrl"
 DBClient="*res://src/database/db_client.gd"
+MenuManager="*uid://b63s3n0b032mf"
+
+[display]
+
+window/size/mode=2
+window/energy_saving/keep_screen_on=false
 
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/godot-sqlite/plugin.cfg", "res://addons/gut/plugin.cfg")
+
+[physics]
+
+2d/physics_engine="Dummy"
+3d/physics_engine="Dummy"
