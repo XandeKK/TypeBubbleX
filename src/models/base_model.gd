@@ -3,12 +3,13 @@ extends RefCounted
 
 var table_name : String = ""
 var id : String = ""
+var _is_new : bool = true
 
 func get_db_properties() -> Dictionary:
 	var props : Dictionary = {}
 	
 	for prop in get_property_list():
-		if prop.usage & PROPERTY_USAGE_SCRIPT_VARIABLE and prop.name != "table_name":
+		if prop.usage & PROPERTY_USAGE_SCRIPT_VARIABLE and prop.name != "table_name" and prop.name != "_is_new":
 			var prop_name = prop.name
 			props[prop_name] = get(prop_name)
 	
@@ -54,6 +55,8 @@ func from_dict(data : Dictionary) -> void:
 	for key in data.keys():
 		if key in self:
 			set(key, data[key])
+	
+	_is_new = false
 
 func load_by_id(target_id : String) -> bool:
 	var results = DBClient.select_where(table_name, "id = '" + target_id + "'")
@@ -64,18 +67,29 @@ func load_by_id(target_id : String) -> bool:
 	
 	return false
 
+func generate_id() -> String:
+	if id.is_empty():
+		id = UUID.v4()
+	return id
+
 func save() -> bool:
 	var data = get_db_properties()
 	
-	if id == "":
+	if id.is_empty():
 		id = UUID.v4()
-		data["id"] = id
-		return not DBClient.insert(table_name, data).is_empty()
+		
+	data["id"] = id
+	
+	if _is_new:
+		var success = not DBClient.insert(table_name, data).is_empty()
+		if success:
+			_is_new = false
+		return success
 	else:
 		return DBClient.update(table_name, id, data)
 
 func delete() -> bool:
-	if id == "":
+	if id.is_empty():
 		push_warning("Attempt to delete an object without an ID (not persisted).")
 		return false
 	
@@ -125,7 +139,7 @@ func find_all_like(column: String, search_term: String) -> Array:
 
 func find_all(where_clause: String = "") -> Array:
 	var results: Array
-	if where_clause == "":
+	if where_clause.strip_edges().is_empty():
 		results = DBClient.select_all(table_name)
 	else:
 		results = DBClient.select_where(table_name, where_clause)

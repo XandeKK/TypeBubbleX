@@ -28,6 +28,8 @@ driver/driver="Dummy"
 Preference="*uid://c5ve47eeodbrl"
 DBClient="*res://src/database/db_client.gd"
 MenuManager="*uid://b63s3n0b032mf"
+ImageManager="*uid://c1sqfw7j6u1vo"
+ScreenManager="*uid://cf1lwo0funk7k"
 
 [display]
 
